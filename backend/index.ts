@@ -1,3 +1,13 @@
+import {  Personnel,
+  Apprenti,
+  Formation,
+  Session,
+  EducAdmin,
+  ElementDefaut,
+  FicheIntervention,
+  LaisserTrace,
+  Assister,
+  Composer} from './sequelize';
 const express = require('express')
 const cors = require('cors')
 const app = express()
