@@ -1,6 +1,6 @@
 import React from 'react';
 
-function FicheBox3() {
+function FicheBox4() {
     return (
         <div>
             <fieldset>
@@ -54,4 +54,4 @@ function FicheBox3() {
     );
 };
 
-export default FicheBox3;
+export default FicheBox4;

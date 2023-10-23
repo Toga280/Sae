@@ -1,6 +1,6 @@
 import React from 'react';
 
-function FicheBox4() {
+function FicheBox5() {
     return (
         <div className="colonne listeCheckbox">
             <fieldset className="colonne">
@@ -34,4 +34,4 @@ function FicheBox4() {
     );
 }
 
-export default FicheBox4;
+export default FicheBox5;
