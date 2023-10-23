@@ -3,11 +3,8 @@ import React from 'react';
 function FicheBox3() {
     return (
         <div>
-            <div className="espaceHor"></div>
             <fieldset>
                 <legend>Intervention</legend>
-
-                <div className="espaceHor"></div>
                 <div>
                     <div className="titre">Date d'intervention</div>
                     <div>
@@ -35,7 +32,6 @@ function FicheBox3() {
                             <option>04h00</option>
                         </select>
                     </div>
-                    <div className="espaceHor"></div>
                     <div>
                         <div className="colonne listeCheckbox">
                             <fieldset className="colonne">
