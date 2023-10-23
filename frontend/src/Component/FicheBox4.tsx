@@ -1,37 +1,57 @@
 import React from 'react';
 
-function FicheBox4() {
+function FicheBox3() {
     return (
-        <div className="colonne listeCheckbox">
-            <fieldset className="colonne">
-                <legend>Type de Maintenance</legend>
+        <div>
+            <fieldset>
+                <legend>Intervention</legend>
                 <div>
-                    <div className="demi">
-                        <input type="checkbox" />
+                    <div className="titre">Date d'intervention</div>
+                    <div>
+                        <input type="date" />
                     </div>
-                    <div className="droite">
-                        <label>améliorative</label>
+                    <div className="titre">Durée de l'opération</div>
+                    <div>
+                        <select>
+                            <option>-- Choisir une durée --</option>
+                            <option>00h15</option>
+                            <option>00h30</option>
+                            <option>00h45</option>
+                            <option>01h00</option>
+                            <option>01h15</option>
+                            <option>01h30</option>
+                            <option>01h45</option>
+                            <option>02h00</option>
+                            <option>02h15</option>
+                            <option>02h30</option>
+                            <option>02h45</option>
+                            <option>03h00</option>
+                            <option>03h15</option>
+                            <option>03h30</option>
+                            <option>03h45</option>
+                            <option>04h00</option>
+                        </select>
                     </div>
-                </div>
-                <div>
-                    <div className="demi">
-                        <input type="checkbox" />
-                    </div>
-                    <div className="droite">
-                        <label>préventive</label>
-                    </div>
-                </div>
-                <div>
-                    <div className="demi">
-                        <input type="checkbox" />
-                    </div>
-                    <div className="droite">
-                        <label>corrective</label>
+                    <div>
+                        <div className="colonne listeCheckbox">
+                            <fieldset className="colonne">
+                                <legend>Action</legend>
+                                <div>
+                                    <div className="demi">
+                                        <input type="checkbox" />
+                                    </div>
+                                    <div className="droite">
+                                        <label> </label>
+                                    </div>
+                                </div>
+                                <div></div>
+                            </fieldset>
+                        </div>
                     </div>
                 </div>
             </fieldset>
         </div>
     );
-}
+};
 
-export default FicheBox4;
+export default FicheBox3;

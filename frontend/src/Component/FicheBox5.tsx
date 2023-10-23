@@ -1,16 +1,16 @@
 import React from 'react';
 
-function FicheBox5() {
+function FicheBox4() {
     return (
         <div className="colonne listeCheckbox">
             <fieldset className="colonne">
-                <legend>Nature de l'intervention</legend>
+                <legend>Type de Maintenance</legend>
                 <div>
                     <div className="demi">
                         <input type="checkbox" />
                     </div>
                     <div className="droite">
-                        <label>Aménagement</label>
+                        <label>améliorative</label>
                     </div>
                 </div>
                 <div>
@@ -18,7 +18,7 @@ function FicheBox5() {
                         <input type="checkbox" />
                     </div>
                     <div className="droite">
-                        <label>Finitions</label>
+                        <label>préventive</label>
                     </div>
                 </div>
                 <div>
@@ -26,20 +26,12 @@ function FicheBox5() {
                         <input type="checkbox" />
                     </div>
                     <div className="droite">
-                        <label>Installation sanitaire</label>
-                    </div>
-                </div>
-                <div>
-                    <div className="demi">
-                        <input type="checkbox" />
-                    </div>
-                    <div className="droite">
-                        <label>Installation électrique</label>
+                        <label>corrective</label>
                     </div>
                 </div>
             </fieldset>
         </div>
     );
-};
+}
 
-export default FicheBox5;
+export default FicheBox4;
