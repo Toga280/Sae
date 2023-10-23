@@ -1,11 +1,10 @@
 import React from "react";
 import ReactDOM from "react-dom";
 import "./index.css";
-import App from "./App";
-
+import FicheBox1 from "./Component/FicheBox1";
 ReactDOM.render(
   <React.StrictMode>
-    <App />
+    <FicheBox1></FicheBox1>
   </React.StrictMode>,
   document.getElementById("root")
 );

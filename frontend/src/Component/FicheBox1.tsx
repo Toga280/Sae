@@ -1,14 +1,24 @@
-import './App.css';
-import React from 'react'
+
+import React from 'react';
+
 function FicheBox1() {
-  
-  return (
-    <div className="FicheBox1">
-      <header className="App-header">
-          Learn React
-      </header>
-    </div>
-  );
+    let ok : number = 10
+   
+
+    return (
+        <div className="Box">
+            <div>
+                <div className="nom_inter">Nom de l'intervenant</div>
+                <div className="text_input">
+                    <input type="text" />
+                </div>
+                <div className="prenom_inter">Prénom de l'intervenant</div>
+                <div className="text_input">
+                    <input type="text" />
+                </div>
+            </div>
+        </div>
+    );
 }
 
 export default FicheBox1;
