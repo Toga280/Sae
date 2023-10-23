@@ -1,6 +1,6 @@
 import React from 'react';
 
-function FicheBox6() {
+function FicheBox7() {
     return (
         <div>
             <div className="colonnePrint">
@@ -23,4 +23,4 @@ function FicheBox6() {
     );
 }
 
-export default FicheBox6;
+export default FicheBox7;

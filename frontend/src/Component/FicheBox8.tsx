@@ -1,6 +1,6 @@
 import React from 'react';
 
-function FicheBox7() {
+function FicheBox8() {
     return (
         <div>
             <div className="noPrint "></div>
@@ -120,4 +120,4 @@ function FicheBox7() {
     );
 }
 
-export default FicheBox7;
+export default FicheBox8;
