@@ -12,7 +12,7 @@ function FicheBox2() {
                     <div>
                         <input type="text" />
                     </div>
-              </div>
+                </div>
         </div>
     );
 };
