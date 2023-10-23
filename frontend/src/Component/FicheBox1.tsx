@@ -3,7 +3,6 @@ import React from 'react';
 
 function FicheBox1() {
     let ok : number = 10
-   
 
     return (
         <div className="Box">
