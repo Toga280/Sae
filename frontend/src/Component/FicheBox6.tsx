@@ -1,26 +1,45 @@
 import React from 'react';
 
-function FicheBox6() {
+function FicheBox5() {
     return (
-        <div>
-            <div className="colonnePrint">
-                <div className="titre demi">Travaux réalisés</div>
+        <div className="colonne listeCheckbox">
+            <fieldset className="colonne">
+                <legend>Nature de l'intervention</legend>
                 <div>
-                    <textarea rows={10}></textarea>
-                </div>
-            </div>
-            <div className="espaceHor"></div>
-
-            <div>
-                <div className="colonnePrint">
-                    <div className="titre demi">Travaux non réalisés</div>
-                    <div>
-                        <textarea rows={5}></textarea>
+                    <div className="demi">
+                        <input type="checkbox" />
+                    </div>
+                    <div className="droite">
+                        <label>Aménagement</label>
                     </div>
                 </div>
-            </div>
+                <div>
+                    <div className="demi">
+                        <input type="checkbox" />
+                    </div>
+                    <div className="droite">
+                        <label>Finitions</label>
+                    </div>
+                </div>
+                <div>
+                    <div className="demi">
+                        <input type="checkbox" />
+                    </div>
+                    <div className="droite">
+                        <label>Installation sanitaire</label>
+                    </div>
+                </div>
+                <div>
+                    <div className="demi">
+                        <input type="checkbox" />
+                    </div>
+                    <div className="droite">
+                        <label>Installation électrique</label>
+                    </div>
+                </div>
+            </fieldset>
         </div>
     );
-}
+};
 
-export default FicheBox6;
+export default FicheBox5;
