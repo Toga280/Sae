@@ -3,7 +3,6 @@ import React from 'react';
 function FicheBox2() {
     return (
         <div>
-              <div></div>
                 <div>
                     <div className="nom_inter">Nom de l'intervenant</div>
                     <div>
@@ -13,7 +12,7 @@ function FicheBox2() {
                     <div>
                         <input type="text" />
                     </div>
-              </div>
+                </div>
         </div>
     );
 };
