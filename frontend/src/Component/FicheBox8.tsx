@@ -7,8 +7,8 @@ function FicheBox8() {
 
                 <input type="checkbox" /> Nécessite une nouvelle intervention 
 
-                <div className="titre demi">Matériaux Utilisés</div>
-                <div className="selectADupliquer">
+                <div className="">Matériaux Utilisés</div>
+                <div className="">
                     {/* Liste des matériaux */}
                     <select>
                         <option>-- Choisir une valeur --</option>
