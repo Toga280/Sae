@@ -3,29 +3,20 @@ import React from 'react';
 function FicheBox8() {
     return (
         <div>
-            <div className="noPrint "></div>
-            <div className="check">
-                <input type="checkbox" />
-            </div>
-            <div className="droite">
-                <label>Nécessite une nouvelle intervention</label>
-            </div>
-            <div className="espaceHor"></div>
-            <div>
+         
+
+                <input type="checkbox" /> Nécessite une nouvelle intervention 
+
                 <div className="titre demi">Matériaux Utilisés</div>
-                <div className="noPrint"></div>
-                <div></div>
-            </div>
-            <div className="espaceHor"></div>
-            <div>
                 <div className="selectADupliquer">
+                    {/* Liste des matériaux */}
                     <select>
                         <option>-- Choisir une valeur --</option>
                         <option>Bonde à grille pour lave-mains</option>
                         <option>Bouchon laiton à visser F 1/2</option>
                         <option>Chevilles à expansion avec patte à vis</option>
                         <option>Chevilles à frapper</option>
-                        <option>Chevilles autoforeuses - Fixation plaque de plâtre</option>
+                        <option>Chevilles autoforeuses - Fixation plaque de plâtre</option>s
                         <option>Chiffons</option>
                         <option>Colle acrylique de fixation pour plinthe</option>
                         <option>Colle PVC</option>
@@ -52,7 +43,7 @@ function FicheBox8() {
                         <option>Manchon de dilatation PVC H Ø 100</option>
                         <option>Manchon mâle 243 CGU Ø 12 - M 12x17</option>
                         <option>Manchon mâle 243 CGU Ø 12 - M 15x21</option>
-                        <option>Manchon PVC Ø 100</option>
+                        <option>Manchon PVC Ø 100</option> 
                         <option>Manchon PVC Ø 32</option>
                         <option>Manchon PVC Ø 40</option>
                         <option>Mélangeur pour lave-mains + Fléxibles de raccordement</option>
@@ -88,34 +79,7 @@ function FicheBox8() {
                         <option>Vis TTPC 25</option>
                         <option>Vis TTPC 35</option>
                     </select>
-                </div>
-                <div className="demi"></div>
-                <div className="selectADupliquer"></div>
-            </div>
-            <div className="espaceHor"></div>
-            <div>
-                <div className="selectADupliquer"></div>
-                <div className="demi"></div>
-                <div className="selectADupliquer"></div>
-            </div>
-            <div className="espaceHor"></div>
-            <div>
-                <div className="selectADupliquer"></div>
-                <div className="demi"></div>
-                <div className="selectADupliquer"></div>
-            </div>
-            <div className="espaceHor"></div>
-            <div>
-                <div className="selectADupliquer"></div>
-                <div className="demi"></div>
-                <div className="selectADupliquer"></div>
-            </div>
-            <div className="espaceHor"></div>
-            <div>
-                <div className="selectADupliquer"></div>
-                <div className="demi"></div>
-                <div className="selectADupliquer"></div>
-            </div>
+                </div>      
         </div>
     );
 }
