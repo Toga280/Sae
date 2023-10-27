@@ -2,19 +2,17 @@ import React from 'react';
 
 function FicheBox5() {
     return (
-        <div className="colonne listeCheckbox">
-            <fieldset className="colonne">
-                <legend>Type de Maintenance</legend>
+        <div className="boxes">
                 <div>
-                    <div className="demi">
-                        <input type="checkbox" />
+                    <div className="">
+                        <input type="" />
                     </div>
-                    <div className="droite">
+                    <div className="">
                         <label>améliorative</label>
                     </div>
                 </div>
                 <div>
-                    <div className="demi">
+                    <div className="">
                         <input type="checkbox" />
                     </div>
                     <div className="droite">
@@ -22,14 +20,13 @@ function FicheBox5() {
                     </div>
                 </div>
                 <div>
-                    <div className="demi">
+                    <div className="">
                         <input type="checkbox" />
                     </div>
-                    <div className="droite">
+                    <div className="">
                         <label>corrective</label>
                     </div>
                 </div>
-            </fieldset>
         </div>
     );
 }

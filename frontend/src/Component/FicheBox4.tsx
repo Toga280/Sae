@@ -2,15 +2,13 @@ import React from 'react';
 
 function FicheBox4() {
     return (
-        <div>
-            <fieldset>
-                <legend>Intervention</legend>
+        <div className="boxes">
+            <div>
+                <div className="">Date d'intervention</div>
                 <div>
-                    <div className="titre">Date d'intervention</div>
-                    <div>
-                        <input type="date" />
-                    </div>
-                    <div className="titre">Durée de l'opération</div>
+                    <input type="" />
+                </div>
+                <div className="">Durée de l'opération</div>
                     <div>
                         <select>
                             <option>-- Choisir une durée --</option>
@@ -32,24 +30,22 @@ function FicheBox4() {
                             <option>04h00</option>
                         </select>
                     </div>
-                    <div>
-                        <div className="colonne listeCheckbox">
-                            <fieldset className="colonne">
-                                <legend>Action</legend>
-                                <div>
-                                    <div className="demi">
-                                        <input type="checkbox" />
-                                    </div>
-                                    <div className="droite">
-                                        <label> </label>
-                                    </div>
+                <div>
+                    <div className="">
+                        <div className="">
+                            <legend>Action</legend>
+                            <div>
+                                <div className="">
+                                    <input type="" />
                                 </div>
-                                <div></div>
-                            </fieldset>
+                                <div className="">
+                                    <label> </label>
+                                </div>
+                            </div>
                         </div>
                     </div>
                 </div>
-            </fieldset>
+            </div>
         </div>
     );
 };
