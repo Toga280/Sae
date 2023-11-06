@@ -3,7 +3,7 @@ import React from 'react';
 function FicheBox8() {
     return (
 
-        <div className="box"> 
+        <div className="Box"> 
 
 
             <input type="checkbox" /> Nécessite une nouvelle intervention 
