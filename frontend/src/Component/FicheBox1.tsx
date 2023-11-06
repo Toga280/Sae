@@ -1,5 +1,5 @@
 import React from 'react';
-import '../style/ficheGlobal.css';
+import '../style/fiche.css';
 
 function FicheBox1() {
     let numeroFiche : number = 10
