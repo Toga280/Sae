@@ -15,7 +15,7 @@ function FicheBoxTotal() {
         <FicheBox1 />
       </div>
       <div>
-        <FicheBox2 />
+        <FicheBox2 /> 
       </div>
       <div>
         <FicheBox3 />
