@@ -1,15 +1,15 @@
 import React from 'react';
 
-function FicheBox8() {
+export function FicheBox8() {
     return (
 
-        <div className="Box"> 
+        <div className="Box">
 
 
-            <input type="checkbox" /> Nécessite une nouvelle intervention 
+            <input type="checkbox" /> Nécessite une nouvelle intervention
 
             <div className="">Matériaux Utilisés</div>
-            <div className="">
+            <div className="selectMateriaux">
                 {/* Liste des matériaux */}
                 <select>
                     <option>-- Choisir une valeur --</option>
@@ -44,7 +44,7 @@ function FicheBox8() {
                     <option>Manchon de dilatation PVC H Ø 100</option>
                     <option>Manchon mâle 243 CGU Ø 12 - M 12x17</option>
                     <option>Manchon mâle 243 CGU Ø 12 - M 15x21</option>
-                    <option>Manchon PVC Ø 100</option> 
+                    <option>Manchon PVC Ø 100</option>
                     <option>Manchon PVC Ø 32</option>
                     <option>Manchon PVC Ø 40</option>
                     <option>Mélangeur pour lave-mains + Fléxibles de raccordement</option>
@@ -80,9 +80,8 @@ function FicheBox8() {
                     <option>Vis TTPC 25</option>
                     <option>Vis TTPC 35</option>
                 </select>
-            </div>      
+            </div>
+
         </div>
     );
 }
-
-export default FicheBox8;

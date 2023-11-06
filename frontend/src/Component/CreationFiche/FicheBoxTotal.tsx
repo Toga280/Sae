@@ -6,7 +6,7 @@ import FicheBox4 from "./FicheBox4";
 import FicheBox5 from "./FicheBox5";
 import FicheBox6 from "./FicheBox6";
 import FicheBox7 from "./FicheBox7";
-import FicheBox8 from "./FicheBox8";
+import FicheBox8 from './FicheBox8';
 
 function FicheBoxTotal() {
   return (
