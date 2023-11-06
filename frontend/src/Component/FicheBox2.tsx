@@ -2,7 +2,7 @@ import React from 'react';
 
 function FicheBox2() {
     return (
-        <div>
+        <div className='Box'>
                 <div>
                     <div className="nom_inter">Nom de l'intervenant</div>
                     <div>
