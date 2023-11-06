@@ -2,7 +2,7 @@ import React from 'react';
 
 function FicheBox7() {
     return (
-        <div>     
+        <div className="Box">     
             <div className="">Travaux réalisés</div>
             <textarea rows={10}></textarea>
             <div>

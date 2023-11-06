@@ -2,7 +2,7 @@ import React from 'react';
 
 function FicheBox4() {
     return (
-        <div className="boxes">
+        <div className="Box">
             <div>
                 <div className="">Date d'intervention</div>
                 <div>

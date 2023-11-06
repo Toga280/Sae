@@ -2,7 +2,7 @@ import React from 'react';
 
 function FicheBox8() {
     return (
-        <div>
+        <div className="Box">
          
 
                 <input type="checkbox" /> Nécessite une nouvelle intervention 
