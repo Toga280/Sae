@@ -2,7 +2,7 @@ import React from 'react';
 
 function FicheBox3() {
     return (
-            <div className="boxes">
+            <div className="Box">
                 <div>
                     <div className="titre">Nom du demandeur</div>
                     <div> <input value=""/></div>  
