@@ -11,14 +11,30 @@ import FicheBox8 from "./FicheBox8";
 function FicheBoxTotal() {
   return (
     <div>
-      <FicheBox1 />
-      <FicheBox2 />
-      <FicheBox3 />
-      <FicheBox4 />
-      <FicheBox5 />
-      <FicheBox6 />
-      <FicheBox7 />
-      <FicheBox8 />
+      <div>
+        <FicheBox1 />
+      </div>
+      <div>
+        <FicheBox2 />
+      </div>
+      <div>
+        <FicheBox3 />
+      </div>
+      <div>
+        <FicheBox4 />
+      </div>
+      <div>
+        <FicheBox5 />
+      </div>
+      <div>
+        <FicheBox6 />
+      </div>
+      <div>
+        <FicheBox7 />
+      </div>
+      <div>
+        <FicheBox8 />
+      </div>
     </div>
   );
 }
