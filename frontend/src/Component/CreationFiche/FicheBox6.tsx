@@ -1,5 +1,6 @@
 import React from "react";
 import ChoixMiniBox from "./MiniBoxChoix/ChoixMiniBox";
+import "../../style/ficheGlobal.css";
 function FicheBox6({ choixMiniBox, setTypeMiniBox, numeroMiniBox }: any) {
   return (
     <div className="Box">
