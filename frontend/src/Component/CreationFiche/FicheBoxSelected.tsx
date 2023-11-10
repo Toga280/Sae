@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from "react";
+import React from "react";
 import FicheBox1 from "./FicheBox1";
 import FicheBox2 from "./FicheBox2";
 import FicheBox3 from "./FicheBox3";
@@ -7,30 +7,37 @@ import FicheBox5 from "./FicheBox5";
 import FicheBox6 from "./FicheBox6";
 import FicheBox7 from "./FicheBox7";
 import FicheBox8 from "./FicheBox8";
-function FicheBoxTotal({ onSelectBox, listeType }: any) {
-  const [numBox, setNumBox] = useState(0);
-  const handleClick = (numero: number) => {
-    setNumBox(numero);
+function FicheBoxSelected({
+  numberFichBox,
+  onSelectBoxChange,
+  listeType,
+  setTypeMiniBox,
+}: any) {
+  const boutonRetour = () => {
+    onSelectBoxChange(null);
   };
-
-  useEffect(() => {
-    if (numBox !== 0) {
-      onSelectBox(numBox);
-    }
-  }, [numBox, onSelectBox, listeType]);
 
   return (
     <div>
-      <div onClick={() => handleClick(1)}>
-        <FicheBox1 choixMiniBox={[listeType[0]]} numeroMiniBox={[0]} />
-      </div>
-      <div onClick={() => handleClick(2)}>
+      {numberFichBox === 1 ? (
+        <FicheBox1
+          choixMiniBox={[listeType[0]]}
+          setTypeMiniBox={setTypeMiniBox}
+          numeroMiniBox={[0]}
+        />
+      ) : (
+        <p> </p>
+      )}
+      {numberFichBox === 2 ? (
         <FicheBox2
           choixMiniBox={[listeType[1], listeType[2]]}
+          setTypeMiniBox={setTypeMiniBox}
           numeroMiniBox={[1, 2]}
         />
-      </div>
-      <div onClick={() => handleClick(3)}>
+      ) : (
+        <p> </p>
+      )}
+      {numberFichBox === 3 ? (
         <FicheBox3
           choixMiniBox={[
             listeType[3],
@@ -39,10 +46,13 @@ function FicheBoxTotal({ onSelectBox, listeType }: any) {
             listeType[6],
             listeType[7],
           ]}
+          setTypeMiniBox={setTypeMiniBox}
           numeroMiniBox={[3, 4, 5, 6, 7]}
         />
-      </div>
-      <div onClick={() => handleClick(4)}>
+      ) : (
+        <p> </p>
+      )}
+      {numberFichBox === 4 ? (
         <FicheBox4
           choixMiniBox={[
             listeType[8],
@@ -50,16 +60,22 @@ function FicheBoxTotal({ onSelectBox, listeType }: any) {
             listeType[10],
             listeType[11],
           ]}
+          setTypeMiniBox={setTypeMiniBox}
           numeroMiniBox={[8, 9, 10, 11]}
         />
-      </div>
-      <div onClick={() => handleClick(5)}>
+      ) : (
+        <p> </p>
+      )}
+      {numberFichBox === 5 ? (
         <FicheBox5
           choixMiniBox={[listeType[12], listeType[13], listeType[14]]}
+          setTypeMiniBox={setTypeMiniBox}
           numeroMiniBox={[12, 13, 14]}
         />
-      </div>
-      <div onClick={() => handleClick(6)}>
+      ) : (
+        <p> </p>
+      )}
+      {numberFichBox === 6 ? (
         <FicheBox6
           choixMiniBox={[
             listeType[15],
@@ -67,23 +83,33 @@ function FicheBoxTotal({ onSelectBox, listeType }: any) {
             listeType[17],
             listeType[18],
           ]}
+          setTypeMiniBox={setTypeMiniBox}
           numeroMiniBox={[15, 16, 17, 18]}
         />
-      </div>
-      <div onClick={() => handleClick(7)}>
+      ) : (
+        <p> </p>
+      )}
+      {numberFichBox === 7 ? (
         <FicheBox7
           choixMiniBox={[listeType[19], listeType[20]]}
+          setTypeMiniBox={setTypeMiniBox}
           numeroMiniBox={[19, 20]}
         />
-      </div>
-      <div onClick={() => handleClick(8)}>
+      ) : (
+        <p> </p>
+      )}
+      {numberFichBox === 8 ? (
         <FicheBox8
           choixMiniBox={[listeType[21], listeType[22]]}
+          setTypeMiniBox={setTypeMiniBox}
           numeroMiniBox={[21, 22]}
         />
-      </div>
+      ) : (
+        <p> </p>
+      )}
+      <button onClick={boutonRetour}>Retour</button>
     </div>
   );
 }
 
-export default FicheBoxTotal;
+export default FicheBoxSelected;

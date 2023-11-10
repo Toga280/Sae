@@ -1,0 +1,34 @@
+
+.grp_demandeur{
+    display: flex;
+    width: 100%;
+    height: 100%;
+    margin: auto;
+}
+.name_demandeur{
+    width: 100%;
+    margin-right: 2em;
+}
+.grp_localisation{
+    justify-content: center;
+    margin-top: 1em;
+    margin-bottom: 1em;
+    display: flex;
+}
+.date_localisation{
+    margin-right: 2em;
+}
+.locali_localisation{
+    margin-right: 2em;
+    margin-left: 2em;
+}
+.description_demande{
+    display: flex;
+    justify-content: center;
+}
+textarea {
+    width: 100%;
+    height: 13em;
+    margin-top: 1em;
+}
+    

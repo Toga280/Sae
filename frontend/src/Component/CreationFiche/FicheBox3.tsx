@@ -1,31 +1,71 @@
-import React from 'react';
-
-function FicheBox3() {
-    return (
-            <div className="Box">
-                <div>
-                    <div className="titre">Nom du demandeur</div>
-                    <div> <input value=""/></div>  
-                </div>
-                <div>
-                    <div className="">Date de la demande</div>
-                        <input value=""/>
-                    <div className="">Localisation</div>
-                        <input value=""/>
-                </div>
-                <div className="">
-                    <div className="">Description de la demande</div>
-                    <div> 
-                        <textarea rows={10}>
-                        </textarea>
-                    </div>
-                </div>
-                <div>
-                    <div className="">Degré d'urgence</div>
-                    <div> <input value=""/></div>
-                </div>
-            </div>
-    );
+import React from "react";
+import "../../style/fiche3.css";
+import "../../style/ficheGlobal.css";
+import ChoixMiniBox from "./MiniBoxChoix/ChoixMiniBox";
+function FicheBox3({ choixMiniBox, setTypeMiniBox, numeroMiniBox }: any) {
+  return (
+    <div className="Box">
+      <div className="flex">
+        <div className="grp_demandeur">
+          <ChoixMiniBox
+            choixMiniBox={choixMiniBox[0]}
+            TexteInfo={"Nom du demandeur"}
+            Balise={1}
+            ClassName={"name_demandeur"}
+            setTypeMiniBox={setTypeMiniBox}
+            numeroMiniBox={numeroMiniBox[0]}
+          />
+          <div>
+            <input value="" />
+          </div>
+        </div>
+        <div className="grp_localisation">
+          <ChoixMiniBox
+            choixMiniBox={choixMiniBox[1]}
+            TexteInfo={"Date de la demande"}
+            Balise={1}
+            ClassName={"date_localisation"}
+            setTypeMiniBox={setTypeMiniBox}
+            numeroMiniBox={numeroMiniBox[1]}
+          />
+          <input value="" />
+          <ChoixMiniBox
+            choixMiniBox={choixMiniBox[2]}
+            TexteInfo={"Localisation"}
+            Balise={1}
+            ClassName={"locali_localisation"}
+            setTypeMiniBox={setTypeMiniBox}
+            numeroMiniBox={numeroMiniBox[2]}
+          />
+          <input value="" />
+        </div>
+        <ChoixMiniBox
+          choixMiniBox={choixMiniBox[3]}
+          TexteInfo={"Description de la demande"}
+          Balise={1}
+          ClassName={"description_demande"}
+          setTypeMiniBox={setTypeMiniBox}
+          numeroMiniBox={numeroMiniBox[3]}
+        />
+        <div>
+          <textarea rows={10}></textarea>
+        </div>
+        <div>
+          <ChoixMiniBox
+            choixMiniBox={choixMiniBox[4]}
+            TexteInfo={"Degré d'urgence"}
+            Balise={1}
+            ClassName={""}
+            setTypeMiniBox={setTypeMiniBox}
+            numeroMiniBox={numeroMiniBox[4]}
+          />
+          <div>
+            <input value="" />
+          </div>
+        </div>
+      </div>
+    </div>
+  );
 }
 
 export default FicheBox3;
