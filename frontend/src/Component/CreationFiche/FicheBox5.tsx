@@ -1,11 +1,12 @@
 import React from "react";
 import ChoixMiniBox from "./MiniBoxChoix/ChoixMiniBox";
+import "../../style/ficheGlobal.css";
 function FicheBox5({ choixMiniBox, setTypeMiniBox, numeroMiniBox }: any) {
   return (
     <div className="Box">
       <div>
         <div className="">
-          <input type="" />
+          <input type="" className = "TextInput" />
         </div>
         <div className="">
           <ChoixMiniBox
@@ -35,7 +36,7 @@ function FicheBox5({ choixMiniBox, setTypeMiniBox, numeroMiniBox }: any) {
       </div>
       <div>
         <div className="">
-          <input type="checkbox" />
+          <input type="checkbox" className = "TextInput" />
         </div>
         <div className="">
           <ChoixMiniBox
