@@ -40,3 +40,12 @@ textarea {
 .txt_urgence{
     margin-right: 2em;
 }
+@media (max-width: 768px) {
+
+    .Box {
+      padding: 10px;
+    }
+    .fd2 {
+      flex-direction: column;
+    }
+  }
