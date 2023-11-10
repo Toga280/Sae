@@ -1,9 +1,10 @@
 import React from "react";
 import ChoixMiniBox from "./MiniBoxChoix/ChoixMiniBox";
+import "../../style/ficheGlobal.css";
 function FicheBox4({ choixMiniBox, setTypeMiniBox, numeroMiniBox }: any) {
   return (
     <div className="Box">
-      <div>
+      <div className="">
         <ChoixMiniBox
           choixMiniBox={choixMiniBox[0]}
           TexteInfo={"Date d'intervention"}
@@ -13,7 +14,7 @@ function FicheBox4({ choixMiniBox, setTypeMiniBox, numeroMiniBox }: any) {
           numeroMiniBox={numeroMiniBox[0]}
         />
         <div>
-          <input type="" />
+          <input type="" className = "TextInput" />
         </div>
         <ChoixMiniBox
           choixMiniBox={choixMiniBox[1]}
@@ -57,7 +58,7 @@ function FicheBox4({ choixMiniBox, setTypeMiniBox, numeroMiniBox }: any) {
               />
               <div>
                 <div className="">
-                  <input type="" />
+                  <input type="" className = "TextInput" />
                 </div>
                 <div className="">
                   <label> </label>

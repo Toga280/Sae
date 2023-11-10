@@ -16,7 +16,7 @@ function FicheBox3({ choixMiniBox, setTypeMiniBox, numeroMiniBox }: any) {
             numeroMiniBox={numeroMiniBox[0]}
           />
           <div>
-            <input value="" />
+            <input value="" className = "TextInput" />
           </div>
         </div>
         <div className="grp_localisation">
@@ -28,7 +28,7 @@ function FicheBox3({ choixMiniBox, setTypeMiniBox, numeroMiniBox }: any) {
             setTypeMiniBox={setTypeMiniBox}
             numeroMiniBox={numeroMiniBox[1]}
           />
-          <input value="" />
+          <input value="" className = "TextInput" />
           <ChoixMiniBox
             choixMiniBox={choixMiniBox[2]}
             TexteInfo={"Localisation"}
@@ -37,7 +37,7 @@ function FicheBox3({ choixMiniBox, setTypeMiniBox, numeroMiniBox }: any) {
             setTypeMiniBox={setTypeMiniBox}
             numeroMiniBox={numeroMiniBox[2]}
           />
-          <input value="" />
+          <input value="" className = "TextInput" />
         </div>
         <ChoixMiniBox
           choixMiniBox={choixMiniBox[3]}
@@ -48,19 +48,19 @@ function FicheBox3({ choixMiniBox, setTypeMiniBox, numeroMiniBox }: any) {
           numeroMiniBox={numeroMiniBox[3]}
         />
         <div>
-          <textarea rows={10}></textarea>
+          <textarea rows={10} className="TextInput"></textarea>
         </div>
-        <div>
+        <div className="degree_urgence">
           <ChoixMiniBox
             choixMiniBox={choixMiniBox[4]}
             TexteInfo={"Degré d'urgence"}
             Balise={1}
-            ClassName={""}
+            ClassName={"txt_urgence"}
             setTypeMiniBox={setTypeMiniBox}
             numeroMiniBox={numeroMiniBox[4]}
           />
           <div>
-            <input value="" />
+            <input value="" className = "TextInput" />
           </div>
         </div>
       </div>
