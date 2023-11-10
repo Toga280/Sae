@@ -1,3 +1,4 @@
+/*
 import React from 'react';
 import DupliquerSelect from './DupliquerSelect';
 function FicheBox8() {
@@ -25,3 +26,4 @@ function FicheBox8() {
 
 
 export default FicheBox8;
+*/

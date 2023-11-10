@@ -18,7 +18,6 @@ function FicheBoxTotal() {
       <FicheBox5 />
       <FicheBox6 />
       <FicheBox7 />
-      <FicheBox8 />
     </div>
   );
 }
