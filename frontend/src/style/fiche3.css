@@ -1,10 +1,11 @@
 
 .grp_demandeur{
+    justify-content: center;
+    margin-top: 1em;
+    margin-bottom: 1em;
     display: flex;
-    width: 100%;
-    height: 100%;
-    margin: auto;
 }
+
 .name_demandeur{
     width: 100%;
     margin-right: 2em;
@@ -31,4 +32,11 @@ textarea {
     height: 13em;
     margin-top: 1em;
 }
-    
+.degree_urgence{
+    justify-content: center ;
+    margin-top: 1em;
+    display: flex;
+} 
+.txt_urgence{
+    margin-right: 2em;
+}

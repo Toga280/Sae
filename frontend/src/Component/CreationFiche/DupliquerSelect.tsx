@@ -1,16 +1,8 @@
-import React from 'react';
+import React from "react";
 
-export function FicheBox8() {
+function DupliquerSelect() {
     return (
 
-        <div className="Box">
-
-
-            <input type="checkbox" /> Nécessite une nouvelle intervention
-
-            <div className="">Matériaux Utilisés</div>
-            <div className="selectMateriaux">
-                {/* Liste des matériaux */}
                 <select>
                     <option>-- Choisir une valeur --</option>
                     <option>Bonde à grille pour lave-mains</option>
@@ -80,8 +72,9 @@ export function FicheBox8() {
                     <option>Vis TTPC 25</option>
                     <option>Vis TTPC 35</option>
                 </select>
-            </div>
 
-        </div>
     );
 }
+
+export default DupliquerSelect;
+

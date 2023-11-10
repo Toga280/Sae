@@ -1,13 +1,18 @@
 import React from "react";
-import "../../style/fiche1.css"
-import "../../style/ficheGlobal.css"
-
-function FicheBox1() {
-  let numeroFiche: number = 10;
-
+import ChoixMiniBox from "./MiniBoxChoix/ChoixMiniBox";
+import "../../style/fiche1.css";
+import "../../style/ficheGlobal.css";
+function FicheBox1({ choixMiniBox, setTypeMiniBox, numeroMiniBox }: any) {
   return (
     <div className="Box">
-      <h1>Fiche d'intervention N°{numeroFiche}</h1>
+      <ChoixMiniBox
+        choixMiniBox={choixMiniBox[0]}
+        TexteInfo={"Fiche d'intervention N°10"}
+        Balise={2}
+        ClassName={""}
+        setTypeMiniBox={setTypeMiniBox}
+        numeroMiniBox={numeroMiniBox[0]}
+      />
     </div>
   );
 }

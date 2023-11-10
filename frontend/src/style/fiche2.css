@@ -1,15 +1,30 @@
-.fb2 {
+/* Ajoutez ces règles CSS dans votre fiche2.css ou ficheGlobal.css ou un fichier CSS séparé */
+
+  
+  .fd2 {
     display: flex;
+    align-items: center;
+  }
+  
+  .ChoixMiniBox {
+    margin: 10px;
+    text-align: center;
+  }
+  
+  input {
     width: 100%;
-    height: 100%;
-    margin: auto;
-}
-.nom_inter{
-    width: 100%;
-    margin-left: 2em;
-    margin-right: 1em;
-}
-.prenom_inter{
-    margin-left: 2em;
-    margin-right: 2em;
-}
+    margin: 5px;
+    padding: 5px;
+    box-sizing: border-box;
+  }
+  
+  @media (max-width: 768px) {
+    /* Réglez ces valeurs en fonction de vos besoins pour les écrans plus petits */
+    .Box {
+      padding: 10px;
+    }
+    .fd2 {
+      flex-direction: column;
+    }
+  }
+  

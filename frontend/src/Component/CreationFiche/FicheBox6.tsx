@@ -1,42 +1,70 @@
-import React from 'react';
-
-function FicheBox6() {
-    return (
-        <div className="Box">
-            <div>
-                <div className="">
-                    <input type="checkbox" />
-                </div>
-                <div className="">
-                    <label>Aménagement</label>
-                </div>
-            </div>
-            <div>
-                <div className="">
-                    <input type="checkbox" />
-                </div>
-                <div className="">
-                    <label>Finitions</label>
-                </div>
-            </div>
-            <div>
-                <div className="">
-                    <input type="checkbox" />
-                </div>
-                <div className="">
-                    <label>Installation sanitaire</label>
-                </div>
-            </div>
-            <div>
-                <div className="">
-                    <input type="checkbox" />
-                </div>
-                <div className="">
-                    <label>Installation électrique</label>
-                </div>
-            </div>
+import React from "react";
+import ChoixMiniBox from "./MiniBoxChoix/ChoixMiniBox";
+function FicheBox6({ choixMiniBox, setTypeMiniBox, numeroMiniBox }: any) {
+  return (
+    <div className="Box">
+      <div>
+        <div className="">
+          <input type="checkbox" />
         </div>
-    );
-};
+        <div className="">
+          <ChoixMiniBox
+            choixMiniBox={choixMiniBox[0]}
+            TexteInfo={"Aménagement"}
+            Balise={4}
+            ClassName={""}
+            setTypeMiniBox={setTypeMiniBox}
+            numeroMiniBox={numeroMiniBox[0]}
+          />
+        </div>
+      </div>
+      <div>
+        <div className="">
+          <input type="checkbox" />
+        </div>
+        <div className="">
+          <ChoixMiniBox
+            choixMiniBox={choixMiniBox[1]}
+            TexteInfo={"Finitions"}
+            Balise={4}
+            ClassName={""}
+            setTypeMiniBox={setTypeMiniBox}
+            numeroMiniBox={numeroMiniBox[1]}
+          />
+        </div>
+      </div>
+      <div>
+        <div className="">
+          <input type="checkbox" />
+        </div>
+        <div className="">
+          <ChoixMiniBox
+            choixMiniBox={choixMiniBox[2]}
+            TexteInfo={"Installation sanitaire"}
+            Balise={4}
+            ClassName={""}
+            setTypeMiniBox={setTypeMiniBox}
+            numeroMiniBox={numeroMiniBox[2]}
+          />
+        </div>
+      </div>
+      <div>
+        <div className="">
+          <input type="checkbox" />
+        </div>
+        <div className="">
+          <ChoixMiniBox
+            choixMiniBox={choixMiniBox[3]}
+            TexteInfo={"Installation électrique"}
+            Balise={4}
+            ClassName={""}
+            setTypeMiniBox={setTypeMiniBox}
+            numeroMiniBox={numeroMiniBox[3]}
+          />
+        </div>
+      </div>
+    </div>
+  );
+}
 
 export default FicheBox6;

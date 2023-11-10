@@ -1,22 +1,32 @@
-import React from 'react';
-import "../../style/fiche2.css"
-import "../../style/ficheGlobal.css"
-
-function FicheBox2() {
-    return (
-        <div className='Box'>
-                <div className='fb2'>
-                    <div className="nom_inter">Nom de l'intervenant</div>
-                    <div>
-                        <input type="text" />
-                    </div>
-                    <div className="prenom_inter">Prénom de l'intervenant</div>
-                    <div>
-                        <input type="text" />
-                    </div>
-                </div>
-        </div>
-    );
-};
+import React from "react";
+import "../../style/fiche2.css";
+import "../../style/ficheGlobal.css";
+import ChoixMiniBox from "./MiniBoxChoix/ChoixMiniBox";
+function FicheBox2({ choixMiniBox, setTypeMiniBox, numeroMiniBox }: any) {
+  return (
+    <div className="Box">
+      <div className="fd2">
+        <ChoixMiniBox
+          choixMiniBox={choixMiniBox[0]}
+          TexteInfo={"Nom de l'intervenant"}
+          Balise={1}
+          ClassName={"nom_inter"}
+          setTypeMiniBox={setTypeMiniBox}
+          numeroMiniBox={numeroMiniBox[0]}
+        />
+        <input type="" />
+        <ChoixMiniBox
+          choixMiniBox={choixMiniBox[1]}
+          TexteInfo={"Prénom de l'intervenant"}
+          Balise={1}
+          ClassName={"prenom_inter"}
+          setTypeMiniBox={setTypeMiniBox}
+          numeroMiniBox={numeroMiniBox[1]}
+        />
+        <input type="text" />
+      </div>
+    </div>
+  );
+}
 
 export default FicheBox2;
