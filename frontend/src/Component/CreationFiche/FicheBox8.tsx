@@ -6,15 +6,6 @@ import "../../style/ficheGlobal.css";
 function FicheBox8({ choixMiniBox, setTypeMiniBox, numeroMiniBox }: any) {
   return (
     <div className="Box">
-      <input type="checkbox" />
-      <ChoixMiniBox
-        choixMiniBox={choixMiniBox[0]}
-        TexteInfo={"Nécessite une nouvelle intervention"}
-        Balise={4}
-        ClassName={""}
-        setTypeMiniBox={setTypeMiniBox}
-        numeroMiniBox={numeroMiniBox[0]}
-      />
       <ChoixMiniBox
         choixMiniBox={choixMiniBox[1]}
         TexteInfo={"Matériaux Utilisés"}

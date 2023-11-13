@@ -26,6 +26,15 @@ function FicheBox7({ choixMiniBox, setTypeMiniBox, numeroMiniBox }: any) {
           <textarea rows={5} className="TextInput"></textarea>
         </div>
       </div>
+      <input type="checkbox" />
+      <ChoixMiniBox
+        choixMiniBox={choixMiniBox[0]}
+        TexteInfo={"Nécessite une nouvelle intervention"}
+        Balise={4}
+        ClassName={""}
+        setTypeMiniBox={setTypeMiniBox}
+        numeroMiniBox={numeroMiniBox[0]}
+      />
     </div>
   );
 }

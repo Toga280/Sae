@@ -10,17 +10,17 @@ function SelectionChoixMiniBox({
   const setTypeMiniBoxPictogramme = () => {
     setTypeMiniBox(2, numeroMiniBox);
   };
-  const setTypeMiniBoxSong = () => {
+  const setTypeMiniBoxSon = () => {
     setTypeMiniBox(3, numeroMiniBox);
   };
   return (
     <div onClick={setSelectionChoixMiniBoxFalse}>
       <p>Selection des choix</p>
       <div>
-        {/*<img src={require("./logo.webp")} alt="song" />*/}
+        {/*<img src={require("./logo.webp")} alt="son" />*/}
         <button onClick={setTypeMiniBoxTexte}>texte</button>
         <button onClick={setTypeMiniBoxPictogramme}>Pictogramme</button>
-        <button onClick={setTypeMiniBoxSong}>Song</button>
+        <button onClick={setTypeMiniBoxSon}>Son</button>
       </div>
     </div>
   );
