@@ -1,6 +1,6 @@
 import React from "react";
 
-function Song() {
+function Son() {
   return (
     <div>
       <h1>Audio prochainement</h1>
@@ -8,4 +8,4 @@ function Song() {
   );
 }
 
-export default Song;
+export default Son;

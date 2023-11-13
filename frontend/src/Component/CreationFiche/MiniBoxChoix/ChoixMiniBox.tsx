@@ -1,7 +1,7 @@
 import React, { useState } from "react";
 import Texte from "./Texte";
 import Pictogramme from "./Pictogramme";
-import Song from "./Song";
+import Son from "./Son";
 import SelectionChoixMiniBox from "./SelectionChoixMiniBox";
 function ChoixMiniBox({
   choixMiniBox,
@@ -27,7 +27,7 @@ function ChoixMiniBox({
           <p></p>
         )}
         {choixMiniBox === 2 ? <Pictogramme /> : <p></p>}
-        {choixMiniBox === 3 ? <Song /> : <p></p>}
+        {choixMiniBox === 3 ? <Son /> : <p></p>}
       </div>
       <div>
         {selectionChoixMiniBox === true ? (
