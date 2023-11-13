@@ -4,7 +4,7 @@ import "../../style/ficheGlobal.css";
 function FicheBox4({ choixMiniBox, setTypeMiniBox, numeroMiniBox }: any) {
   return (
     <div className="Box">
-      <div className="">
+      <div className="grp_intervention">
         <ChoixMiniBox
           choixMiniBox={choixMiniBox[0]}
           TexteInfo={"Date d'intervention"}
@@ -45,8 +45,8 @@ function FicheBox4({ choixMiniBox, setTypeMiniBox, numeroMiniBox }: any) {
             <option>04h00</option>
           </select>
         </div>
-        <div>
-          <div className="">
+        {/* <div>
+          { <div className="">
             <div className="">
               <ChoixMiniBox
                 choixMiniBox={choixMiniBox[2]}
@@ -65,8 +65,8 @@ function FicheBox4({ choixMiniBox, setTypeMiniBox, numeroMiniBox }: any) {
                 </div>
               </div>
             </div>
-          </div>
-        </div>
+          </div> }
+        </div> */}
       </div>
     </div>
   );

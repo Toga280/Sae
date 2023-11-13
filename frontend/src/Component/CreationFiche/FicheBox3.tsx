@@ -5,7 +5,7 @@ import ChoixMiniBox from "./MiniBoxChoix/ChoixMiniBox";
 function FicheBox3({ choixMiniBox, setTypeMiniBox, numeroMiniBox }: any) {
   return (
     <div className="Box">
-      <div className="flex">
+      <div className="grp3">
         <div className="grp_demandeur">
           <ChoixMiniBox
             choixMiniBox={choixMiniBox[0]}
@@ -39,18 +39,20 @@ function FicheBox3({ choixMiniBox, setTypeMiniBox, numeroMiniBox }: any) {
           />
           <input value="" className = "TextInput" />
         </div>
-        <ChoixMiniBox
-          choixMiniBox={choixMiniBox[3]}
-          TexteInfo={"Description de la demande"}
-          Balise={1}
-          ClassName={"description_demande"}
-          setTypeMiniBox={setTypeMiniBox}
-          numeroMiniBox={numeroMiniBox[3]}
-        />
-        <div>
-          <textarea rows={10} className="TextInput"></textarea>
+        <div className="grp_description_demande">
+          <ChoixMiniBox
+            choixMiniBox={choixMiniBox[3]}
+            TexteInfo={"Description de la demande"}
+            Balise={1}
+            ClassName={"description_demande"}
+            setTypeMiniBox={setTypeMiniBox}
+            numeroMiniBox={numeroMiniBox[3]}
+          />
         </div>
-        <div className="degree_urgence">
+        <div>
+          <textarea rows={10} className="descdmd"></textarea>
+        </div>
+        <div className="grp_degree_urgence">
           <ChoixMiniBox
             choixMiniBox={choixMiniBox[4]}
             TexteInfo={"Degré d'urgence"}
@@ -59,9 +61,7 @@ function FicheBox3({ choixMiniBox, setTypeMiniBox, numeroMiniBox }: any) {
             setTypeMiniBox={setTypeMiniBox}
             numeroMiniBox={numeroMiniBox[4]}
           />
-          <div>
-            <input value="" className = "TextInput" />
-          </div>
+          <input value="" className = "TextInput" />
         </div>
       </div>
     </div>
