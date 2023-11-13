@@ -1,6 +1,8 @@
 import React from "react";
 import ChoixMiniBox from "./MiniBoxChoix/ChoixMiniBox";
 import "../../style/ficheGlobal.css";
+import "../../style/fiche4.css";
+
 function FicheBox4({ choixMiniBox, setTypeMiniBox, numeroMiniBox }: any) {
   return (
     <div className="Box">
@@ -20,11 +22,11 @@ function FicheBox4({ choixMiniBox, setTypeMiniBox, numeroMiniBox }: any) {
           choixMiniBox={choixMiniBox[1]}
           TexteInfo={"Durée de l'opération"}
           Balise={1}
-          ClassName={""}
+          ClassName={"duree_operation"}
           setTypeMiniBox={setTypeMiniBox}
           numeroMiniBox={numeroMiniBox[1]}
         />
-        <div>
+        <div className="selecteur_duree">
           <select>
             <option>-- Choisir une durée --</option>
             <option>00h15</option>

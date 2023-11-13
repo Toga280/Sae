@@ -4,3 +4,22 @@
     justify-content: center;
     border: 1px solid #ccc;
 }
+.duree_operation{
+    margin: 3em;
+    text-align: center;
+}
+@media (max-width: 768px) {
+    .box {
+      padding: 10px;
+    }
+    .grp_intervention{
+        flex-direction: column;
+    }
+    .duree_operation{
+        text-align: center;
+        margin: 0em;
+    }
+    .selecteur_duree{
+        margin: 1em;
+    }
+}

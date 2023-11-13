@@ -22,3 +22,13 @@
 select {
   border: none;
 }
+@media (max-width: 768px) {
+  .TextInput{
+    border: none;
+    width: 100%;
+    max-width: 15em;
+    margin: 1em;
+    padding: 1em;
+    box-sizing: border-box;
+  }
+}
