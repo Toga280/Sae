@@ -12,9 +12,6 @@ function FicheBox2({ numeroMiniBox }: any) {
           ClassName={"nom_inter"}
           numeroMiniBox={numeroMiniBox[0]}
         />
-        <div>
-          <input type="text" className="TextInput" />
-        </div>
         <input type="text" className="TextInput" />
         <ChoixMiniBox
           TexteInfo={"Prénom de l'intervenant"}
@@ -22,9 +19,6 @@ function FicheBox2({ numeroMiniBox }: any) {
           ClassName={"prenom_inter"}
           numeroMiniBox={numeroMiniBox[1]}
         />
-        <div>
-          <input type="text" className="TextInput" />
-        </div>
         <input type="text" className="TextInput" />
       </div>
     </div>
