@@ -1,30 +1,62 @@
-import React from "react";
 import "../../../style/style_choix.css";
+import React, { useState } from "react";
+import ModificationTexte from "./ModificationTexte";
+import SetSelectionChoixMiniBox from "./SetSelectionChoixMiniBox";
+import fonctionsMiniBoxInfoJson from "../MiniBoxInfoFunction";
 function SelectionChoixMiniBox({
   setSelectionChoixMiniBoxFalse,
-  setTypeMiniBox,
   numeroMiniBox,
+  setRefreshComponent,
 }: any) {
+  const [modificationTexteProps, setModificationTexteProps] = useState(Boolean);
+  const [choixMiniBoxBoolean, setChoixMiniBoxBoolean] = useState(true);
+
+  const setModificationTextePropsTrue = () => {
+    setModificationTexteProps(true);
+  };
+  const setModificationTextePropsFalse = () => {
+    setModificationTexteProps(false);
+  };
+
+  const setChoixMiniBoxBooleanFalse = () => {
+    setChoixMiniBoxBoolean(false);
+  };
+
   const setTypeMiniBoxTexte = () => {
-    setTypeMiniBox(1, numeroMiniBox);
+    fonctionsMiniBoxInfoJson.modifierChoixMiniBox(numeroMiniBox, "Texte");
+    setModificationTextePropsTrue();
+    setRefreshComponent((prevState: Boolean) => !prevState);
   };
   const setTypeMiniBoxPictogramme = () => {
-    setTypeMiniBox(2, numeroMiniBox);
+    fonctionsMiniBoxInfoJson.modifierChoixMiniBox(numeroMiniBox, "Pictogramme");
+    setRefreshComponent((prevState: Boolean) => !prevState);
   };
   const setTypeMiniBoxSon = () => {
-    setTypeMiniBox(3, numeroMiniBox);
+    fonctionsMiniBoxInfoJson.modifierChoixMiniBox(numeroMiniBox, "Son");
+    setRefreshComponent((prevState: Boolean) => !prevState);
   };
   return (
-    <div onClick={setSelectionChoixMiniBoxFalse} className="test">
-      <p>Selection des choix</p>
-      <div className="choix_specifique">
-        {/*<img src={require("./logo.webp")} alt="son" />*/}
-        <div className="choix_specifique_texte">
-          <button onClick={setTypeMiniBoxTexte}>texte</button>
-        </div>
-        <button onClick={setTypeMiniBoxPictogramme}>Pictogramme</button>
-        <button onClick={setTypeMiniBoxSon}>Son</button>
+    <div>
+      <div>
+        {choixMiniBoxBoolean === true ? (
+          <SetSelectionChoixMiniBox
+            setTypeMiniBoxTexte={setTypeMiniBoxTexte}
+            setTypeMiniBoxPictogramme={setTypeMiniBoxPictogramme}
+            setTypeMiniBoxSon={setTypeMiniBoxSon}
+            setChoixMiniBoxBooleanFalse={setChoixMiniBoxBooleanFalse}
+          />
+        ) : (
+          <p></p>
+        )}
+        {modificationTexteProps === true ? (
+          <ModificationTexte
+            setModificationTextePropsFalse={setModificationTextePropsFalse}
+          />
+        ) : (
+          <p></p>
+        )}
       </div>
+      <button onClick={setSelectionChoixMiniBoxFalse}>annuler</button>
     </div>
   );
 }

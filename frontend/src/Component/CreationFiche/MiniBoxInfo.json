@@ -1,0 +1,186 @@
+{
+  "MiniBox1": {
+    "ChoixMiniBox": "Texte",
+    "Position": 0,
+    "CouleurTexte": "black",
+    "PoliceTexte": "none",
+    "Taille": "none",
+    "CouleurFond": "none"
+  },
+  "MiniBox2": {
+    "ChoixMiniBox": "Texte",
+    "Position": 1,
+    "CouleurTexte": "black",
+    "PoliceTexte": "none",
+    "Taille": "none",
+    "CouleurFond": "none"
+  },
+  "MiniBox3": {
+    "ChoixMiniBox": "Texte",
+    "Position": 2,
+    "CouleurTexte": "black",
+    "PoliceTexte": "none",
+    "Taille": "none",
+    "CouleurFond": "none"
+  },
+  "MiniBox4": {
+    "ChoixMiniBox": "Texte",
+    "Position": 3,
+    "CouleurTexte": "black",
+    "PoliceTexte": "none",
+    "Taille": "none",
+    "CouleurFond": "none"
+  },
+  "MiniBox5": {
+    "ChoixMiniBox": "Texte",
+    "Position": 4,
+    "CouleurTexte": "black",
+    "PoliceTexte": "none",
+    "Taille": "none",
+    "CouleurFond": "none"
+  },
+  "MiniBox6": {
+    "ChoixMiniBox": "Texte",
+    "Position": 5,
+    "CouleurTexte": "black",
+    "PoliceTexte": "none",
+    "Taille": "none",
+    "CouleurFond": "none"
+  },
+  "MiniBox7": {
+    "ChoixMiniBox": "Texte",
+    "Position": 6,
+    "CouleurTexte": "black",
+    "PoliceTexte": "none",
+    "Taille": "none",
+    "CouleurFond": "none"
+  },
+  "MiniBox8": {
+    "ChoixMiniBox": "Texte",
+    "Position": 7,
+    "CouleurTexte": "black",
+    "PoliceTexte": "none",
+    "Taille": "none",
+    "CouleurFond": "none"
+  },
+  "MiniBox9": {
+    "ChoixMiniBox": "Texte",
+    "Position": 8,
+    "CouleurTexte": "black",
+    "PoliceTexte": "none",
+    "Taille": "none",
+    "CouleurFond": "none"
+  },
+  "MiniBox10": {
+    "ChoixMiniBox": "Texte",
+    "Position": 9,
+    "CouleurTexte": "black",
+    "PoliceTexte": "none",
+    "Taille": "none",
+    "CouleurFond": "none"
+  },
+  "MiniBox11": {
+    "ChoixMiniBox": "Texte",
+    "Position": 10,
+    "CouleurTexte": "black",
+    "PoliceTexte": "none",
+    "Taille": "none",
+    "CouleurFond": "none"
+  },
+  "MiniBox12": {
+    "ChoixMiniBox": "Texte",
+    "Position": 11,
+    "CouleurTexte": "black",
+    "PoliceTexte": "none",
+    "Taille": "none",
+    "CouleurFond": "none"
+  },
+  "MiniBox13": {
+    "ChoixMiniBox": "Texte",
+    "Position": 12,
+    "CouleurTexte": "black",
+    "PoliceTexte": "none",
+    "Taille": "none",
+    "CouleurFond": "none"
+  },
+  "MiniBox14": {
+    "ChoixMiniBox": "Texte",
+    "Position": 13,
+    "CouleurTexte": "black",
+    "PoliceTexte": "none",
+    "Taille": "none",
+    "CouleurFond": "none"
+  },
+  "MiniBox15": {
+    "ChoixMiniBox": "Texte",
+    "Position": 14,
+    "CouleurTexte": "black",
+    "PoliceTexte": "none",
+    "Taille": "none",
+    "CouleurFond": "none"
+  },
+  "MiniBox16": {
+    "ChoixMiniBox": "Texte",
+    "Position": 15,
+    "CouleurTexte": "black",
+    "PoliceTexte": "none",
+    "Taille": "none",
+    "CouleurFond": "none"
+  },
+  "MiniBox17": {
+    "ChoixMiniBox": "Texte",
+    "Position": 16,
+    "CouleurTexte": "black",
+    "PoliceTexte": "none",
+    "Taille": "none",
+    "CouleurFond": "none"
+  },
+  "MiniBox18": {
+    "ChoixMiniBox": "Texte",
+    "Position": 17,
+    "CouleurTexte": "black",
+    "PoliceTexte": "none",
+    "Taille": "none",
+    "CouleurFond": "none"
+  },
+  "MiniBox19": {
+    "ChoixMiniBox": "Texte",
+    "Position": 18,
+    "CouleurTexte": "black",
+    "PoliceTexte": "none",
+    "Taille": "none",
+    "CouleurFond": "none"
+  },
+  "MiniBox20": {
+    "ChoixMiniBox": "Texte",
+    "Position": 19,
+    "CouleurTexte": "black",
+    "PoliceTexte": "none",
+    "Taille": "none",
+    "CouleurFond": "none"
+  },
+  "MiniBox21": {
+    "ChoixMiniBox": "Texte",
+    "Position": 20,
+    "CouleurTexte": "black",
+    "PoliceTexte": "none",
+    "Taille": "none",
+    "CouleurFond": "none"
+  },
+  "MiniBox22": {
+    "ChoixMiniBox": "Texte",
+    "Position": 21,
+    "CouleurTexte": "black",
+    "PoliceTexte": "none",
+    "Taille": "none",
+    "CouleurFond": "none"
+  },
+  "MiniBox23": {
+    "ChoixMiniBox": "Texte",
+    "Position": 22,
+    "CouleurTexte": "black",
+    "PoliceTexte": "none",
+    "Taille": "none",
+    "CouleurFond": "none"
+  }
+}
