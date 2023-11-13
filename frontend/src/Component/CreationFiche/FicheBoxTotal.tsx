@@ -26,7 +26,10 @@ function FicheBoxTotal({ onSelectBox, listeType }: any) {
       </div>
       <div onClick={() => handleClick(2)}>
         <FicheBox2
-          choixMiniBox={[listeType[1], listeType[2]]}
+          choixMiniBox={[
+            listeType[1], 
+            listeType[2]
+          ]}
           numeroMiniBox={[1, 2]}
         />
       </div>
@@ -55,7 +58,11 @@ function FicheBoxTotal({ onSelectBox, listeType }: any) {
       </div>
       <div onClick={() => handleClick(5)}>
         <FicheBox5
-          choixMiniBox={[listeType[12], listeType[13], listeType[14]]}
+          choixMiniBox={[
+            listeType[12],
+            listeType[13],
+            listeType[14]
+          ]}
           numeroMiniBox={[12, 13, 14]}
         />
       </div>
@@ -72,13 +79,19 @@ function FicheBoxTotal({ onSelectBox, listeType }: any) {
       </div>
       <div onClick={() => handleClick(7)}>
         <FicheBox7
-          choixMiniBox={[listeType[19], listeType[20]]}
+          choixMiniBox={[
+            listeType[19],
+            listeType[20]
+          ]}
           numeroMiniBox={[19, 20]}
         />
       </div>
       <div onClick={() => handleClick(8)}>
         <FicheBox8
-          choixMiniBox={[listeType[21], listeType[22]]}
+          choixMiniBox={[
+            listeType[21],
+            listeType[22]
+          ]}
           numeroMiniBox={[21, 22]}
         />
       </div>
