@@ -1,4 +1,5 @@
 import React from "react";
+import "../../../style/style_choix.css";
 function SelectionChoixMiniBox({
   setSelectionChoixMiniBoxFalse,
   setTypeMiniBox,
@@ -14,11 +15,13 @@ function SelectionChoixMiniBox({
     setTypeMiniBox(3, numeroMiniBox);
   };
   return (
-    <div onClick={setSelectionChoixMiniBoxFalse}>
+    <div onClick={setSelectionChoixMiniBoxFalse} className="test">
       <p>Selection des choix</p>
-      <div>
+      <div className="choix_specifique">
         {/*<img src={require("./logo.webp")} alt="son" />*/}
-        <button onClick={setTypeMiniBoxTexte}>texte</button>
+        <div className="choix_specifique_texte">
+          <button onClick={setTypeMiniBoxTexte}>texte</button>
+        </div>
         <button onClick={setTypeMiniBoxPictogramme}>Pictogramme</button>
         <button onClick={setTypeMiniBoxSon}>Son</button>
       </div>

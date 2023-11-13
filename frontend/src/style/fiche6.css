@@ -1,0 +1,8 @@
+.grp_nature_intervention{
+    display: flex;
+    align-items: center;
+    justify-content: left;
+}
+.txt_nature_intervention{
+    margin-left: 1em;
+}

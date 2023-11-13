@@ -1,0 +1,10 @@
+.grp_travaux_realises{
+    text-align: center;
+}
+.grp_travaux_non_realises{
+    text-align: center;
+}
+.nvlle_inter{
+    display: flex;
+    justify-content: center;
+}

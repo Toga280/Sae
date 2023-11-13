@@ -1,0 +1,8 @@
+.grp_type_maintenance{
+    display: flex;
+    align-items: center;
+    justify-content: left;
+}
+.txt_type_maintenance{
+    margin-left: 1em;
+}
