@@ -2,7 +2,6 @@
     display: flex;
     align-items: center;
     justify-content: center;
-    border: 1px solid #ccc;
 }
 .duree_operation{
     margin: 3em;

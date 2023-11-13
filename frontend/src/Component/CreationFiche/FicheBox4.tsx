@@ -15,9 +15,7 @@ function FicheBox4({ choixMiniBox, setTypeMiniBox, numeroMiniBox }: any) {
           setTypeMiniBox={setTypeMiniBox}
           numeroMiniBox={numeroMiniBox[0]}
         />
-        <div>
-          <input type="" className = "TextInput" />
-        </div>
+        <input type="" className = "TextInput" />
         <ChoixMiniBox
           choixMiniBox={choixMiniBox[1]}
           TexteInfo={"Durée de l'opération"}

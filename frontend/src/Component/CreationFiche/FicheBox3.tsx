@@ -6,7 +6,7 @@ function FicheBox3({ choixMiniBox, setTypeMiniBox, numeroMiniBox }: any) {
   return (
     <div className="Box">
       <div className="grp3">
-        <div className="grp_demandeur">
+        <div className="grp_demande">
           <ChoixMiniBox
             choixMiniBox={choixMiniBox[0]}
             TexteInfo={"Nom du demandeur"}
@@ -15,11 +15,9 @@ function FicheBox3({ choixMiniBox, setTypeMiniBox, numeroMiniBox }: any) {
             setTypeMiniBox={setTypeMiniBox}
             numeroMiniBox={numeroMiniBox[0]}
           />
-          <div>
-            <input value="" className = "TextInput" />
-          </div>
+          <input value="" className = "TextInput" />
         </div>
-        <div className="grp_localisation">
+        <div className="grp_demande">
           <ChoixMiniBox
             choixMiniBox={choixMiniBox[1]}
             TexteInfo={"Date de la demande"}
@@ -39,7 +37,7 @@ function FicheBox3({ choixMiniBox, setTypeMiniBox, numeroMiniBox }: any) {
           />
           <input value="" className = "TextInput" />
         </div>
-        <div className="grp_description_demande">
+        <div className="grp_demande">
           <ChoixMiniBox
             choixMiniBox={choixMiniBox[3]}
             TexteInfo={"Description de la demande"}
@@ -52,7 +50,7 @@ function FicheBox3({ choixMiniBox, setTypeMiniBox, numeroMiniBox }: any) {
         <div>
           <textarea rows={10} className="descdmd"></textarea>
         </div>
-        <div className="grp_degree_urgence">
+        <div className="grp_demande">
           <ChoixMiniBox
             choixMiniBox={choixMiniBox[4]}
             TexteInfo={"Degré d'urgence"}

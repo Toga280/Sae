@@ -2,29 +2,30 @@
 .Box {
   border: 0.1em solid #355c7d;
   color: #355c7d;
-  background-color: #f7f1e9;
   margin: 1em;
   padding: 0.5em;
   width: 90%;
   margin: auto;
   margin-top: 1em;
+  background-color: white;
 }
-
+body{
+  background-color: #f7f1e9;
+  padding-bottom: 1em;
+}
+select {
+  color: #355c7d;
+}
 .TextInput {
-  border: none;
   width: 100%;
   max-width: 15em;
-  margin: 3em;
+  margin: 1em;
   padding: 1em;
   box-sizing: border-box;
 }
 
-select {
-  border: none;
-}
 @media (max-width: 768px) {
   .TextInput{
-    border: none;
     width: 100%;
     max-width: 15em;
     margin: 1em;

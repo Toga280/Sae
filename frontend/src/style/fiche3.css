@@ -1,50 +1,20 @@
-.grp_demandeur{
+.grp_demande{
 
     display: flex;
     align-items: center;
     justify-content: center;
-    border: 1px solid #ccc;
-}
-.grp_localisation{
-
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    border: 1px solid #ccc;
-}
-.grp_description_demande{
-
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    border: 1px solid #ccc;
 }
 .descdmd{
     width: 100%;
     justify-content: center;
     max-height: 10em;
-    border: none;
-}
-.grp_degree_urgence{
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    border: 1px solid #ccc;
 }
 @media (max-width: 768px) {
     .box {
       padding: 10px;
     }
-    .grp_demandeur{
+    .grp_demande{
         flex-direction: column;
     }
-    .grp_localisation{
-        flex-direction: column;
-    }
-    .grp_description_demande{
-        flex-direction: column;
-    }
-    .grp_degree_urgence{
-        flex-direction: column;
-    }
+
 }
