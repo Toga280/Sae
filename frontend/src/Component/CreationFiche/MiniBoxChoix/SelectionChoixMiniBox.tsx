@@ -2,6 +2,8 @@ import React, { useState } from "react";
 import ModificationTexte from "./ModificationTexte";
 import SetSelectionChoixMiniBox from "./SetSelectionChoixMiniBox";
 import fonctionsMiniBoxInfoJson from "../MiniBoxInfoFunction";
+import Pictogramme from "./Pictogramme";
+
 function SelectionChoixMiniBox({
   setSelectionChoixMiniBoxFalse,
   numeroMiniBox,
@@ -10,11 +12,20 @@ function SelectionChoixMiniBox({
   const [modificationTexteProps, setModificationTexteProps] = useState(Boolean);
   const [choixMiniBoxBoolean, setChoixMiniBoxBoolean] = useState(true);
 
+  const [modificationPictoProps, setModificationPictoProps] = useState(Boolean);
+
   const setModificationTextePropsTrue = () => {
     setModificationTexteProps(true);
   };
   const setModificationTextePropsFalse = () => {
     setModificationTexteProps(false);
+  };
+
+  const setModificationPictoPropsTrue = () => {
+    setModificationPictoProps(true);
+  };
+  const setModificationPictoPropsFalse = () => {
+    setModificationPictoProps(false);
   };
 
   const setChoixMiniBoxBooleanFalse = () => {
@@ -51,9 +62,18 @@ function SelectionChoixMiniBox({
           <ModificationTexte
             setModificationTextePropsFalse={setModificationTextePropsFalse}
           />
-        ) : (
-          <p></p>
-        )}
+          ) : (
+            <p></p>
+          )
+        }
+      {/*  AJOUTER PLUS TARD STUART setModificationPicto  PropsFalse */}
+        {modificationPictoProps === true ? (
+          <Pictogramme />
+          ): (
+            <p></p>
+          )
+        }
+
       </div>
       <button onClick={setSelectionChoixMiniBoxFalse}>annuler</button>
     </div>
