@@ -1,4 +1,5 @@
 import React from "react";
+import "../../../style/style_choix.css"
 function SetSelectionChoixMiniBox({
   setTypeMiniBoxTexte,
   setTypeMiniBoxPictogramme,
@@ -8,10 +9,10 @@ function SetSelectionChoixMiniBox({
   return (
     <div onClick={setChoixMiniBoxBooleanFalse}>
       <p>Selection des choix</p>
-      <div>
-        <button onClick={setTypeMiniBoxTexte}>texte</button>
-        <button onClick={setTypeMiniBoxPictogramme}>Pictogramme</button>
-        <button onClick={setTypeMiniBoxSon}>Son</button>
+      <div className="choix ">
+        <button className="bouton" onClick={setTypeMiniBoxTexte}>texte</button>
+        <button className="bouton" onClick={setTypeMiniBoxPictogramme}>Pictogramme</button>
+        <button className="bouton" onClick={setTypeMiniBoxSon}>Son</button>
       </div>
     </div>
   );

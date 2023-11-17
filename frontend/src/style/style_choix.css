@@ -1,0 +1,18 @@
+.choix{
+    border-right: 1px solid black;
+    padding: 3em;
+    margin: 1em;
+}
+
+.all{
+    display: flex;
+}
+.retour{
+    margin-left:auto;
+}
+.bouton{
+    display: flex;
+
+    border: 1px solid black;
+    width: auto;
+}
