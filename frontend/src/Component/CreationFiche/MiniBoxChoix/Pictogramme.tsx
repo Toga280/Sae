@@ -1,11 +1,10 @@
 import React, { useEffect } from "react";
-import "./imagesTestStuart/1.webp";
+
 function Pictogramme() {
-  const images = [
-    "./imagesTestStuart/1.webp"
-  ];
+ 
+ /* 
 
-
+ //// FONCTION POUR AFFICHER TOUTES LES IMAGES A MODIFIER ////
   useEffect(() => {
     const parent = document.getElementById('ListePicto');
     if (!parent) return;
@@ -17,14 +16,17 @@ function Pictogramme() {
     }
     for (const image of images) {
       const newImage = document.createElement('img');
-      newImage.setAttribute('src', image);
+      newImage.src = image;
       parent.appendChild(newImage);
     }
   },);
+*/
+
+const img =  require("./imagesTestStuart/1.webp");
 
   return (
     <div id="ListePicto" style={{ border: "1px solid black" }}>
-      {/*<img src={image} alt="Description de l'image"></img>*/}
+      <img src={img} alt="Description de l'image"></img>
     </div>
   );
 }
