@@ -1,0 +1,12 @@
+
+.button_connection_edu,.bouton_retour_connection_edu{
+
+    background-color: gray;
+    color: #fff;
+    font-weight: bold;
+    font-size: 18px;
+    padding: 0.8em;
+    margin: 1em;
+    float: right;
+    border-radius: 4px;
+}
