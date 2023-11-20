@@ -26,6 +26,10 @@ function ModificationTexte({ setModificationTextePropsFalse, numeroMiniBox }: an
         color={selectedColor}
         onChange={handleColorChange}
       />
+      <p>Modification de la taille du texte : </p>
+      <input
+        type="number"
+        onChange={(e) => fonctionsMiniBoxInfoJson.modifierTaille(numeroMiniBox, e.target.value)}/>
       <button onClick={setModificationTextePropsFalse}>sauvegarder</button>
     </div>
   );
