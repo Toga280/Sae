@@ -9,4 +9,19 @@
     margin: 1em;
     float: right;
     border-radius: 4px;
+
+}
+.login{
+    display: flex;
+    flex-wrap: wrap;
+}
+.box{
+    display: c;
+    justify-content: center;
+    border: 1px solid black;
+    margin: 10px;
+}
+.image-redimensionnee {
+    width: 100%;
+    height: auto;
 }

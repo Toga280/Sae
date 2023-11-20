@@ -8,11 +8,9 @@ function PageLoginEducateur() {
       <form id="login-form">
         <p>
           <input type="text" id="username" name="username" placeholder="Nom" required />
-          <i className="validation"><span></span><span></span></i>
         </p>
         <p>
           <input type="password" id="password" name="password" placeholder="Mots de passe" required />
-          <i className="validation"><span></span><span></span></i>
         </p>
         <p>
           <input type="submit" id="login" value="Connexion" />
