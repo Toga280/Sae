@@ -54,6 +54,7 @@ function SelectionChoixMiniBox({
             setTypeMiniBoxPictogramme={setTypeMiniBoxPictogramme}
             setTypeMiniBoxSon={setTypeMiniBoxSon}
             setChoixMiniBoxBooleanFalse={setChoixMiniBoxBooleanFalse}
+            numeroMiniBox={numeroMiniBox}
           />
         ) : (
           <p></p>
