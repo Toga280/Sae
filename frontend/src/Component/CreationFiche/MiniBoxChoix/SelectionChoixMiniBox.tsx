@@ -42,7 +42,7 @@ function SelectionChoixMiniBox({
     setRefreshComponent((prevState: Boolean) => !prevState);
   };
   const setTypeMiniBoxSon = () => {
-    fonctionsMiniBoxInfoJson.modifierChoixMiniBox(numeroMiniBox, "Son");
+    fonctionsMiniBoxInfoJson.modificationAudio(numeroMiniBox, !fonctionsMiniBoxInfoJson.getAudio(numeroMiniBox));
     setRefreshComponent((prevState: Boolean) => !prevState);
   };
   return (

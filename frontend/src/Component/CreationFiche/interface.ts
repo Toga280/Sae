@@ -1,15 +1,16 @@
 import { Color } from "react-color";
 
 export interface MiniBox{
-  ChoixMiniBox : "Pictogramme" | "Son" | "Texte",
+  ChoixMiniBox : "Pictogramme" | "Texte",
   Position : number,
   CouleurTexte : string,
   PoliceTexte : string,
   Taille : Number,
   CouleurFond : string,
+  Audio : boolean
 }
 
-type ChoixMiniBoxType = "Texte" | "Son" | "Pictogramme";
+type ChoixMiniBoxType = "Texte" | "Pictogramme";
 
 export interface FonctionsMiniBoxInfoJson {
   modifierCouleurTexte: (position: number, nouvelleCouleurTexte: string) => void;
@@ -21,5 +22,7 @@ export interface FonctionsMiniBoxInfoJson {
   modifierTaille: (position: number, nouvelleTaille: string) => void;
   getTaille: (position: number) => Number | undefined;
   modifierCouleurFond: (position: number, nouvelleTaille: string) => void;
+  modificationAudio: (position: number, audio: boolean) => void;
+  getAudio: (position: number) => boolean | undefined;
   getAllJson: () => MiniBox;
 }

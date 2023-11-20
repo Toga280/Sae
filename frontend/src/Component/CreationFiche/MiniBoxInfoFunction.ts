@@ -97,6 +97,27 @@ const fonctionsMiniBoxInfoJson: FonctionsMiniBoxInfoJson = {
       }
     }
   },
+  modificationAudio: (position, audio) => {
+    for (let key in MiniBoxInfoJson) {
+      const currentBox = MiniBoxInfoJson[key];
+  
+      if (currentBox.Position === position) {
+        currentBox.Audio = audio;
+        break;
+      }
+    }
+  },
+  getAudio: (position) => {
+    for (let key in MiniBoxInfoJson) {
+      const currentBox = MiniBoxInfoJson[key];
+  
+      if (currentBox.Position === position) {
+        return currentBox.Audio;
+      }
+    }
+
+    return null;
+  },
   getAllJson:() => {
     return MiniBoxInfoJson
   }

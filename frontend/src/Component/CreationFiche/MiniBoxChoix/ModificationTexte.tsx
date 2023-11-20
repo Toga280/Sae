@@ -54,7 +54,9 @@ function ModificationTexte({ setModificationTextePropsFalse, numeroMiniBox }: an
           fonctionsMiniBoxInfoJson.modifierTaille(numeroMiniBox, e.target.value);
           setSelectedTaille(e.target.value);
         }}
+        style={{ width: '50px' }}
       />
+      <br/>
       <button onClick={setModificationTextePropsFalse}>sauvegarder</button>
     </div>
   );

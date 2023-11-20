@@ -18,13 +18,6 @@ function Son({ Texte, Balise, ClassName }: { Texte: string, Balise: number, Clas
 
   return (
     <div style={{ display: "flex", alignItems: "center" }}>
-      {/* Affichage du texte en fonction de la balise */}
-      {Balise === null ? <h1 className={ClassName}>{Texte}</h1> : null}
-      {Balise === 1 ? <div className={ClassName}>{Texte}</div> : null}
-      {Balise === 2 ? <h1 className={ClassName}>{Texte}</h1> : null}
-      {Balise === 3 ? <legend className={ClassName}>{Texte}</legend> : null}
-      {Balise === 4 ? <label className={ClassName}>{Texte}</label> : null}
-
       {/* Bouton pour lire le texte en audio */}
       <button onClick={lireTexte} disabled={isPlaying} style={{ marginLeft: "10px" }}>
         <img src={image} alt="Lire en audio" style={{ width: "24px", height: "24px" }} />
