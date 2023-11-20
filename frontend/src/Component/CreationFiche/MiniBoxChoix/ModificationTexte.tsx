@@ -17,8 +17,9 @@ function ModificationTexte({ setModificationTextePropsFalse, numeroMiniBox }: an
       <p>Modification de la police du texte : </p>
       <select onChange={(e) => fonctionsMiniBoxInfoJson.modifierPoliceTexte(numeroMiniBox, e.target.value)}>
         <option value="null">selectionner une police</option>
+        <option value="Times New Roman">(défault) Times New Roman</option>
         <option value="Arial">Arial</option>
-        {/*rajouter des police*/}
+        {/*rajouter des police ici*/}
       </select>
       <p>Modification de la couleur du texte : </p>
       <CompactPicker
