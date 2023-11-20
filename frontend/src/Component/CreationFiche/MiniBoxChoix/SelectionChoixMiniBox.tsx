@@ -6,7 +6,6 @@ import fonctionsMiniBoxInfoJson from "../MiniBoxInfoFunction";
 function SelectionChoixMiniBox({
   setSelectionChoixMiniBoxFalse,
   numeroMiniBox,
-  setRefreshComponent,
 }: any) {
   const [modificationTexteProps, setModificationTexteProps] = useState(Boolean);
   const [choixMiniBoxBoolean, setChoixMiniBoxBoolean] = useState(true);
@@ -25,15 +24,12 @@ function SelectionChoixMiniBox({
   const setTypeMiniBoxTexte = () => {
     fonctionsMiniBoxInfoJson.modifierChoixMiniBox(numeroMiniBox, "Texte");
     setModificationTextePropsTrue();
-    setRefreshComponent((prevState: Boolean) => !prevState);
   };
   const setTypeMiniBoxPictogramme = () => {
     fonctionsMiniBoxInfoJson.modifierChoixMiniBox(numeroMiniBox, "Pictogramme");
-    setRefreshComponent((prevState: Boolean) => !prevState);
   };
   const setTypeMiniBoxSon = () => {
     fonctionsMiniBoxInfoJson.modifierChoixMiniBox(numeroMiniBox, "Son");
-    setRefreshComponent((prevState: Boolean) => !prevState);
   };
   return (
     <div>

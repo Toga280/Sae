@@ -2,7 +2,7 @@ import React from "react";
 import ChoixMiniBox from "./MiniBoxChoix/ChoixMiniBox";
 import "../../style/ficheGlobal.css";
 import "../../style/fiche7.css";
-function FicheBox7({ numeroMiniBox }: any) {
+function FicheBox7({ numeroMiniBox, infoSelectionChoixMiniBox }: any) {
   return (
     <div className="Box">
       <div className="grp_travaux_realises">
@@ -11,6 +11,7 @@ function FicheBox7({ numeroMiniBox }: any) {
           Balise={4}
           ClassName={"txt_travaux_realises"}
           numeroMiniBox={numeroMiniBox[0]}
+          infoSelectionChoixMiniBox={infoSelectionChoixMiniBox}
         />
         <textarea rows={10} className="descdmd"></textarea>
       </div>
@@ -21,6 +22,7 @@ function FicheBox7({ numeroMiniBox }: any) {
             Balise={4}
             ClassName={"txt_travaux_non_realises"}
             numeroMiniBox={numeroMiniBox[1]}
+            infoSelectionChoixMiniBox={infoSelectionChoixMiniBox}
           />
           <div>
             <textarea rows={10} className="descdmd"></textarea>
@@ -33,7 +35,8 @@ function FicheBox7({ numeroMiniBox }: any) {
           TexteInfo={"Nécessite une nouvelle intervention"}
           Balise={4}
           ClassName={""}
-          numeroMiniBox={numeroMiniBox[0]}
+          numeroMiniBox={numeroMiniBox[2]}
+          infoSelectionChoixMiniBox={infoSelectionChoixMiniBox}
         />
       </div>
     </div>

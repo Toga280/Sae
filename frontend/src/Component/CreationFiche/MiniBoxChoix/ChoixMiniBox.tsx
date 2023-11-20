@@ -1,21 +1,18 @@
-import React, { useState } from "react";
+import React from "react";
 import Texte from "./Texte";
 import Pictogramme from "./Pictogramme";
 import Son from "./Son";
-import SelectionChoixMiniBox from "./SelectionChoixMiniBox";
 import fonctionsMiniBoxInfoJson from "../MiniBoxInfoFunction";
-function ChoixMiniBox({ TexteInfo, Balise, ClassName, numeroMiniBox }: any) {
-  const [selectionChoixMiniBox, setSelectionChoixMiniBox] = useState(false);
-
-  const [, setRefreshComponent] = useState(false);
-
+function ChoixMiniBox({
+  TexteInfo,
+  Balise,
+  ClassName,
+  numeroMiniBox,
+  infoSelectionChoixMiniBox,
+}: any) {
   const setSelectionChoixMiniBoxTrue = () => {
-    setSelectionChoixMiniBox(true);
+    infoSelectionChoixMiniBox(true, numeroMiniBox);
   };
-  const setSelectionChoixMiniBoxFalse = () => {
-    setSelectionChoixMiniBox(false);
-  };
-
   return (
     <div>
       <div onClick={setSelectionChoixMiniBoxTrue}>
@@ -32,17 +29,6 @@ function ChoixMiniBox({ TexteInfo, Balise, ClassName, numeroMiniBox }: any) {
         )}
         {fonctionsMiniBoxInfoJson.getChoixMiniBox(numeroMiniBox) === "Son" ? (
           <Son />
-        ) : (
-          <p></p>
-        )}
-      </div>
-      <div>
-        {selectionChoixMiniBox === true ? (
-          <SelectionChoixMiniBox
-            setSelectionChoixMiniBoxFalse={setSelectionChoixMiniBoxFalse}
-            numeroMiniBox={numeroMiniBox}
-            setRefreshComponent={setRefreshComponent}
-          />
         ) : (
           <p></p>
         )}

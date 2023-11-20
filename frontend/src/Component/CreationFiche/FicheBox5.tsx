@@ -2,7 +2,7 @@ import React from "react";
 import ChoixMiniBox from "./MiniBoxChoix/ChoixMiniBox";
 import "../../style/ficheGlobal.css";
 import "../../style/fiche5.css";
-function FicheBox5({ numeroMiniBox }: any) {
+function FicheBox5({ numeroMiniBox, infoSelectionChoixMiniBox }: any) {
   return (
     <div className="Box">
       <div className="grp_type_maintenance">
@@ -15,6 +15,7 @@ function FicheBox5({ numeroMiniBox }: any) {
             Balise={4}
             ClassName={"txt_type_maintenance"}
             numeroMiniBox={numeroMiniBox[0]}
+            infoSelectionChoixMiniBox={infoSelectionChoixMiniBox}
           />
         </div>
       </div>
@@ -28,6 +29,7 @@ function FicheBox5({ numeroMiniBox }: any) {
             Balise={4}
             ClassName={"txt_type_maintenance"}
             numeroMiniBox={numeroMiniBox[1]}
+            infoSelectionChoixMiniBox={infoSelectionChoixMiniBox}
           />
         </div>
       </div>
@@ -41,6 +43,7 @@ function FicheBox5({ numeroMiniBox }: any) {
             Balise={4}
             ClassName={"txt_type_maintenance"}
             numeroMiniBox={numeroMiniBox[2]}
+            infoSelectionChoixMiniBox={infoSelectionChoixMiniBox}
           />
         </div>
       </div>

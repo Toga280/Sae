@@ -2,7 +2,7 @@ import React from "react";
 import "../../style/fiche3.css";
 import "../../style/ficheGlobal.css";
 import ChoixMiniBox from "./MiniBoxChoix/ChoixMiniBox";
-function FicheBox3({ numeroMiniBox }: any) {
+function FicheBox3({ numeroMiniBox, infoSelectionChoixMiniBox }: any) {
   return (
     <div className="Box">
       <div className="grp3">
@@ -12,6 +12,7 @@ function FicheBox3({ numeroMiniBox }: any) {
             Balise={1}
             ClassName={"name_demandeur"}
             numeroMiniBox={numeroMiniBox[0]}
+            infoSelectionChoixMiniBox={infoSelectionChoixMiniBox}
           />
           <input value="" className="TextInput" />
         </div>
@@ -21,6 +22,7 @@ function FicheBox3({ numeroMiniBox }: any) {
             Balise={1}
             ClassName={"date_localisation"}
             numeroMiniBox={numeroMiniBox[1]}
+            infoSelectionChoixMiniBox={infoSelectionChoixMiniBox}
           />
           <input value="" className="TextInput" />
           <ChoixMiniBox
@@ -28,6 +30,7 @@ function FicheBox3({ numeroMiniBox }: any) {
             Balise={1}
             ClassName={"locali_localisation"}
             numeroMiniBox={numeroMiniBox[2]}
+            infoSelectionChoixMiniBox={infoSelectionChoixMiniBox}
           />
           <input value="" className="TextInput" />
         </div>
@@ -37,6 +40,7 @@ function FicheBox3({ numeroMiniBox }: any) {
             Balise={1}
             ClassName={"description_demande"}
             numeroMiniBox={numeroMiniBox[3]}
+            infoSelectionChoixMiniBox={infoSelectionChoixMiniBox}
           />
         </div>
         <div>
@@ -48,6 +52,7 @@ function FicheBox3({ numeroMiniBox }: any) {
             Balise={1}
             ClassName={"txt_urgence"}
             numeroMiniBox={numeroMiniBox[4]}
+            infoSelectionChoixMiniBox={infoSelectionChoixMiniBox}
           />
           <input value="" className="TextInput" />
         </div>

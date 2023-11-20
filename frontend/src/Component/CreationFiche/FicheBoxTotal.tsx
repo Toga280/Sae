@@ -18,6 +18,11 @@ function FicheBoxTotal({ onSelectBox }: any) {
     console.log(fonctionsMiniBoxInfoJson.getAllJson());
   };
 
+  const infoSelectionChoixMiniBox = (
+    booleanChoixMiniBox: boolean,
+    numeroMiniBox: any
+  ) => {};
+
   useEffect(() => {
     if (numBox !== 0) {
       onSelectBox(numBox);
@@ -27,28 +32,52 @@ function FicheBoxTotal({ onSelectBox }: any) {
   return (
     <div>
       <div onClick={() => handleClick(1)}>
-        <FicheBox1 numeroMiniBox={[0]} />
+        <FicheBox1
+          numeroMiniBox={[0]}
+          infoSelectionChoixMiniBox={infoSelectionChoixMiniBox}
+        />
       </div>
       <div onClick={() => handleClick(2)}>
-        <FicheBox2 numeroMiniBox={[1, 2]} />
+        <FicheBox2
+          numeroMiniBox={[1, 2]}
+          infoSelectionChoixMiniBox={infoSelectionChoixMiniBox}
+        />
       </div>
       <div onClick={() => handleClick(3)}>
-        <FicheBox3 numeroMiniBox={[3, 4, 5, 6, 7]} />
+        <FicheBox3
+          numeroMiniBox={[3, 4, 5, 6, 7]}
+          infoSelectionChoixMiniBox={infoSelectionChoixMiniBox}
+        />
       </div>
       <div onClick={() => handleClick(4)}>
-        <FicheBox4 numeroMiniBox={[8, 9, 10, 11]} />
+        <FicheBox4
+          numeroMiniBox={[8, 9, 10, 11]}
+          infoSelectionChoixMiniBox={infoSelectionChoixMiniBox}
+        />
       </div>
       <div onClick={() => handleClick(5)}>
-        <FicheBox5 numeroMiniBox={[12, 13, 14]} />
+        <FicheBox5
+          numeroMiniBox={[12, 13, 14]}
+          infoSelectionChoixMiniBox={infoSelectionChoixMiniBox}
+        />
       </div>
       <div onClick={() => handleClick(6)}>
-        <FicheBox6 numeroMiniBox={[15, 16, 17, 18]} />
+        <FicheBox6
+          numeroMiniBox={[15, 16, 17, 18]}
+          infoSelectionChoixMiniBox={infoSelectionChoixMiniBox}
+        />
       </div>
       <div onClick={() => handleClick(7)}>
-        <FicheBox7 numeroMiniBox={[19, 20]} />
+        <FicheBox7
+          numeroMiniBox={[19, 20]}
+          infoSelectionChoixMiniBox={infoSelectionChoixMiniBox}
+        />
       </div>
       <div onClick={() => handleClick(8)}>
-        <FicheBox8 numeroMiniBox={[21, 22]} />
+        <FicheBox8
+          numeroMiniBox={[21, 22]}
+          infoSelectionChoixMiniBox={infoSelectionChoixMiniBox}
+        />
       </div>
       <button onClick={consoleLogJson}>return log json</button>
     </div>

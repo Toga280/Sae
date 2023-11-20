@@ -2,7 +2,7 @@ import React from "react";
 import ChoixMiniBox from "./MiniBoxChoix/ChoixMiniBox";
 import "../../style/fiche1.css";
 import "../../style/ficheGlobal.css";
-function FicheBox1({ numeroMiniBox }: any) {
+function FicheBox1({ numeroMiniBox, infoSelectionChoixMiniBox }: any) {
   return (
     <div className="Box">
       <ChoixMiniBox
@@ -10,6 +10,7 @@ function FicheBox1({ numeroMiniBox }: any) {
         Balise={2}
         ClassName={""}
         numeroMiniBox={numeroMiniBox[0]}
+        infoSelectionChoixMiniBox={infoSelectionChoixMiniBox}
       />
     </div>
   );
