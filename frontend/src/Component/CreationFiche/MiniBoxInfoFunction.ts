@@ -55,6 +55,17 @@ const fonctionsMiniBoxInfoJson: FonctionsMiniBoxInfoJson = {
       }
     }
   },
+  getPoliceTexte: (position) => {
+    for (let key in MiniBoxInfoJson) {
+      const currentBox = MiniBoxInfoJson[key];
+  
+      if (currentBox.Position === position) {
+        return currentBox.PoliceTexte;
+      }
+    }
+
+    return null;
+  },
   modifierTaille: (position, nouvelleTaille) => {
     for (let key in MiniBoxInfoJson) {
       const currentBox = MiniBoxInfoJson[key];
@@ -64,6 +75,17 @@ const fonctionsMiniBoxInfoJson: FonctionsMiniBoxInfoJson = {
         break;
       }
     }
+  },
+  getTaille: (position) => {
+    for (let key in MiniBoxInfoJson) {
+      const currentBox = MiniBoxInfoJson[key];
+  
+      if (currentBox.Position === position) {
+        return currentBox.Taille;
+      }
+    }
+
+    return null;
   },
   modifierCouleurFond: (position, nouvelleCouleurFond) => {
     for (let key in MiniBoxInfoJson) {

@@ -4,7 +4,7 @@
     "Position": 0,
     "CouleurTexte": "#000000",
     "PoliceTexte": "Times New Roman",
-    "Taille": "none",
+    "Taille": "12",
     "CouleurFond": "none"
   },
   "MiniBox2": {
@@ -12,7 +12,7 @@
     "Position": 1,
     "CouleurTexte": "#000000",
     "PoliceTexte": "Times New Roman",
-    "Taille": "none",
+    "Taille": "12",
     "CouleurFond": "none"
   },
   "MiniBox3": {
@@ -20,7 +20,7 @@
     "Position": 2,
     "CouleurTexte": "#000000",
     "PoliceTexte": "Times New Roman",
-    "Taille": "none",
+    "Taille": "12",
     "CouleurFond": "none"
   },
   "MiniBox4": {
@@ -28,7 +28,7 @@
     "Position": 3,
     "CouleurTexte": "#000000",
     "PoliceTexte": "Times New Roman",
-    "Taille": "none",
+    "Taille": "12",
     "CouleurFond": "none"
   },
   "MiniBox5": {
@@ -36,7 +36,7 @@
     "Position": 4,
     "CouleurTexte": "#000000",
     "PoliceTexte": "Times New Roman",
-    "Taille": "none",
+    "Taille": "12",
     "CouleurFond": "none"
   },
   "MiniBox6": {
@@ -44,7 +44,7 @@
     "Position": 5,
     "CouleurTexte": "#000000",
     "PoliceTexte": "Times New Roman",
-    "Taille": "none",
+    "Taille": "12",
     "CouleurFond": "none"
   },
   "MiniBox7": {
@@ -52,7 +52,7 @@
     "Position": 6,
     "CouleurTexte": "#000000",
     "PoliceTexte": "Times New Roman",
-    "Taille": "none",
+    "Taille": "12",
     "CouleurFond": "none"
   },
   "MiniBox8": {
@@ -60,7 +60,7 @@
     "Position": 7,
     "CouleurTexte": "#000000",
     "PoliceTexte": "Times New Roman",
-    "Taille": "none",
+    "Taille": "12",
     "CouleurFond": "none"
   },
   "MiniBox9": {
@@ -68,7 +68,7 @@
     "Position": 8,
     "CouleurTexte": "#000000",
     "PoliceTexte": "Times New Roman",
-    "Taille": "none",
+    "Taille": "12",
     "CouleurFond": "none"
   },
   "MiniBox10": {
@@ -76,7 +76,7 @@
     "Position": 9,
     "CouleurTexte": "#000000",
     "PoliceTexte": "Times New Roman",
-    "Taille": "none",
+    "Taille": "12",
     "CouleurFond": "none"
   },
   "MiniBox11": {
@@ -84,7 +84,7 @@
     "Position": 10,
     "CouleurTexte": "#000000",
     "PoliceTexte": "Times New Roman",
-    "Taille": "none",
+    "Taille": "12",
     "CouleurFond": "none"
   },
   "MiniBox12": {
@@ -92,7 +92,7 @@
     "Position": 11,
     "CouleurTexte": "#000000",
     "PoliceTexte": "Times New Roman",
-    "Taille": "none",
+    "Taille": "12",
     "CouleurFond": "none"
   },
   "MiniBox13": {
@@ -100,7 +100,7 @@
     "Position": 12,
     "CouleurTexte": "#000000",
     "PoliceTexte": "Times New Roman",
-    "Taille": "none",
+    "Taille": "12",
     "CouleurFond": "none"
   },
   "MiniBox14": {
@@ -108,7 +108,7 @@
     "Position": 13,
     "CouleurTexte": "#000000",
     "PoliceTexte": "Times New Roman",
-    "Taille": "none",
+    "Taille": "12",
     "CouleurFond": "none"
   },
   "MiniBox15": {
@@ -116,7 +116,7 @@
     "Position": 14,
     "CouleurTexte": "#000000",
     "PoliceTexte": "Times New Roman",
-    "Taille": "none",
+    "Taille": "12",
     "CouleurFond": "none"
   },
   "MiniBox16": {
@@ -124,7 +124,7 @@
     "Position": 15,
     "CouleurTexte": "#000000",
     "PoliceTexte": "Times New Roman",
-    "Taille": "none",
+    "Taille": "12",
     "CouleurFond": "none"
   },
   "MiniBox17": {
@@ -132,7 +132,7 @@
     "Position": 16,
     "CouleurTexte": "#000000",
     "PoliceTexte": "Times New Roman",
-    "Taille": "none",
+    "Taille": "12",
     "CouleurFond": "none"
   },
   "MiniBox18": {
@@ -140,7 +140,7 @@
     "Position": 17,
     "CouleurTexte": "#000000",
     "PoliceTexte": "Times New Roman",
-    "Taille": "none",
+    "Taille": "12",
     "CouleurFond": "none"
   },
   "MiniBox19": {
@@ -148,7 +148,7 @@
     "Position": 18,
     "CouleurTexte": "#000000",
     "PoliceTexte": "Times New Roman",
-    "Taille": "none",
+    "Taille": "12",
     "CouleurFond": "none"
   },
   "MiniBox20": {
@@ -156,7 +156,7 @@
     "Position": 19,
     "CouleurTexte": "#000000",
     "PoliceTexte": "Times New Roman",
-    "Taille": "none",
+    "Taille": "12",
     "CouleurFond": "none"
   },
   "MiniBox21": {
@@ -164,7 +164,7 @@
     "Position": 20,
     "CouleurTexte": "#000000",
     "PoliceTexte": "Times New Roman",
-    "Taille": "none",
+    "Taille": "12",
     "CouleurFond": "none"
   },
   "MiniBox22": {
@@ -172,7 +172,7 @@
     "Position": 21,
     "CouleurTexte": "#000000",
     "PoliceTexte": "Times New Roman",
-    "Taille": "none",
+    "Taille": "12",
     "CouleurFond": "none"
   },
   "MiniBox23": {
@@ -180,7 +180,7 @@
     "Position": 22,
     "CouleurTexte": "#000000",
     "PoliceTexte": "Times New Roman",
-    "Taille": "none",
+    "Taille": "12",
     "CouleurFond": "none"
   }
 }
