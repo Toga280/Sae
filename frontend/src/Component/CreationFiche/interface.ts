@@ -1,3 +1,4 @@
+import { Color } from "react-color";
 
 export interface MiniBox{
   ChoixMiniBox : "Pictogramme" | "Son" | "Texte",
@@ -12,6 +13,7 @@ type ChoixMiniBoxType = "Texte" | "Son" | "Pictogramme";
 
 export interface FonctionsMiniBoxInfoJson {
   modifierCouleurTexte: (position: number, nouvelleCouleurTexte: string) => void;
+  getCouleurTexte: (position: number) => Color | undefined;
   modifierChoixMiniBox: (position: number, nouveauChoix: ChoixMiniBoxType) => void;
   getChoixMiniBox: (position: number) => string | null;
   modifierPoliceTexte: (position: number, nouvellePolice: string) => void;

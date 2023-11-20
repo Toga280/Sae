@@ -13,6 +13,17 @@ const fonctionsMiniBoxInfoJson: FonctionsMiniBoxInfoJson = {
       }
     }
   },
+  getCouleurTexte: (position) => {
+    for (let key in MiniBoxInfoJson) {
+      const currentBox = MiniBoxInfoJson[key];
+  
+      if (currentBox.Position === position) {
+        return currentBox.CouleurTexte;
+      }
+    }
+
+    return null;
+  },
   modifierChoixMiniBox: (position, nouveauChoix) => {
     for (let key in MiniBoxInfoJson) {
       const currentBox = MiniBoxInfoJson[key];

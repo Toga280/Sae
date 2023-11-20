@@ -50,6 +50,7 @@ function SelectionChoixMiniBox({
         {modificationTexteProps === true ? (
           <ModificationTexte
             setModificationTextePropsFalse={setModificationTextePropsFalse}
+            numeroMiniBox={numeroMiniBox}
           />
         ) : (
           <p></p>
