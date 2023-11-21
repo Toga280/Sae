@@ -66,6 +66,18 @@ const fonctionsMiniBoxInfoJson: FonctionsMiniBoxInfoJson = {
   },
   getAllJson:() => {
     return MiniBoxInfoJson
+  },
+  modifierAllJsonToBase:() => {
+    for (let key in MiniBoxInfoJson) {
+      const currentBox = MiniBoxInfoJson[key];
+      if(currentBox.Position === key) {
+        currentBox.ChoixMiniBox = "Texte"
+        currentBox.CouleurTexte = "Black"
+        currentBox.PoliceTexte = "none"
+        currentBox.Taille = "none"
+        currentBox.CouleurFond = "none"
+      }
+    }
   }
 };
 

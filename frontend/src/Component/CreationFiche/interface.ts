@@ -17,5 +17,6 @@ export interface FonctionsMiniBoxInfoJson {
   modifierPoliceTexte: (position: number, nouvellePolice: string) => void;
   modifierTaille: (position: number, nouvelleTaille: string) => void;
   modifierCouleurFond: (position: number, nouvelleTaille: string) => void;
+  modifierAllJsonToBase: () => void;
   getAllJson: () => MiniBox;
 }
