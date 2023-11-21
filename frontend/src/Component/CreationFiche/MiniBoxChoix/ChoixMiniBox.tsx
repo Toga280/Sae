@@ -28,7 +28,7 @@ function ChoixMiniBox({
           <p></p>
         )}
         {fonctionsMiniBoxInfoJson.getChoixMiniBox(numeroMiniBox) === "Son" ? (
-          <Son />
+          <Son Texte={TexteInfo} Balise={Balise} ClassName={ClassName} />
         ) : (
           <p></p>
         )}
