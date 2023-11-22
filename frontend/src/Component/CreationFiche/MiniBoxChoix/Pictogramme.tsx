@@ -1,8 +1,7 @@
-import React, { useEffect } from "react";
+import React from "react";
 
-function Pictogramme() {
- 
- /* 
+function Pictogramme({ setModificationPictoPropsFalse }: any) {
+  /* 
 
  //// FONCTION POUR AFFICHER TOUTES LES IMAGES A MODIFIER ////
   useEffect(() => {
@@ -22,11 +21,12 @@ function Pictogramme() {
   },);
 */
 
-const img =  require("./imagesTestStuart/1.webp");
+  //const img = require("./imagesTestStuart/1.webp");
 
   return (
     <div id="ListePicto" style={{ border: "1px solid black" }}>
-      <img src={img} alt="Description de l'image"></img>
+      {/*<img src={img} alt="Description de l'image"></img>*/}
+      <button onClick={setModificationPictoPropsFalse}> appliqué </button>
     </div>
   );
 }
