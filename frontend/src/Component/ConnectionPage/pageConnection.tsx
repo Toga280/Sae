@@ -3,7 +3,7 @@ import PageLoginEducateur from "./pageLoginEducateur";
 import ConnectionEleve from "./connectionEleve";  
 import "./pageConnection.css";
 
-function PageConnection() {
+function PageConnection({loginButton}: any) {
   const [selectBoutton, setSelectBoutton] = useState(false);
 
   const BoutonCliquezConnection = (etat : boolean) => {
@@ -20,7 +20,7 @@ function PageConnection() {
       {!selectBoutton && (<ConnectionEleve />)}
 
 
-      {selectBoutton ? <PageLoginEducateur /> : null}
+      {selectBoutton ? <PageLoginEducateur loginButton={loginButton}/> : null}
       {selectBoutton && (
         <button className="bouton_retour_connection_edu" onClick={() => BoutonCliquezConnection(false)}>Retour</button>
       )}

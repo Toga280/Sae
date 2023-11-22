@@ -1,7 +1,7 @@
 import React from "react";
 import "./PageLoginEducateurStyle.css";
 
-function PageLoginEducateur() {
+function PageLoginEducateur({loginButton}:any) {
   return (
     <div id="login-form-wrap">
       <h2>Connexion</h2>
@@ -13,7 +13,7 @@ function PageLoginEducateur() {
           <input type="password" id="password" name="password" placeholder="Mots de passe" required />
         </p>
         <p>
-          <input type="submit" id="login" value="Connexion" />
+          <input type="submit" id="login" value="Connexion" onClick={loginButton}/>
         </p>
       </form>
 
