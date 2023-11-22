@@ -41,7 +41,10 @@ function SelectionChoixMiniBox({
     setModificationPictoPropsTrue();
   };
   const setTypeMiniBoxSon = () => {
-    fonctionsMiniBoxInfoJson.modifierChoixMiniBox(numeroMiniBox, "Son");
+    fonctionsMiniBoxInfoJson.modificationAudio(
+      numeroMiniBox,
+      !fonctionsMiniBoxInfoJson.getAudio(numeroMiniBox)
+    );
   };
   return (
     <div>
@@ -52,6 +55,7 @@ function SelectionChoixMiniBox({
             setTypeMiniBoxPictogramme={setTypeMiniBoxPictogramme}
             setTypeMiniBoxSon={setTypeMiniBoxSon}
             setChoixMiniBoxBooleanFalse={setChoixMiniBoxBooleanFalse}
+            numeroMiniBox={numeroMiniBox}
           />
         ) : (
           <p></p>
@@ -59,6 +63,7 @@ function SelectionChoixMiniBox({
         {modificationTexteProps === true ? (
           <ModificationTexte
             setModificationTextePropsFalse={setModificationTextePropsFalse}
+            numeroMiniBox={numeroMiniBox}
           />
         ) : (
           <p></p>

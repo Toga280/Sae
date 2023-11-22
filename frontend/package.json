@@ -43,5 +43,8 @@
     ]
   },
   "main": "index.js",
-  "license": "MIT"
+  "license": "MIT",
+  "devDependencies": {
+    "@types/react-color": "^3.0.10"
+  }
 }

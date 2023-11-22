@@ -27,12 +27,10 @@ function ChoixMiniBox({
         ) : (
           <p></p>
         )}
-        {fonctionsMiniBoxInfoJson.getChoixMiniBox(numeroMiniBox) === "Son" ? (
-          <Son Texte={TexteInfo} Balise={Balise} ClassName={ClassName} />
-        ) : (
-          <p></p>
-        )}
       </div>
+      {fonctionsMiniBoxInfoJson.getAudio(numeroMiniBox) === true ? (
+        <Son Texte={TexteInfo} Balise={Balise} ClassName={ClassName} />
+      ) : null}
     </div>
   );
 }
