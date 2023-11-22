@@ -13,6 +13,17 @@ const fonctionsMiniBoxInfoJson: FonctionsMiniBoxInfoJson = {
       }
     }
   },
+  getCouleurTexte: (position) => {
+    for (let key in MiniBoxInfoJson) {
+      const currentBox = MiniBoxInfoJson[key];
+  
+      if (currentBox.Position === position) {
+        return currentBox.CouleurTexte;
+      }
+    }
+
+    return null;
+  },
   modifierChoixMiniBox: (position, nouveauChoix) => {
     for (let key in MiniBoxInfoJson) {
       const currentBox = MiniBoxInfoJson[key];
@@ -44,6 +55,17 @@ const fonctionsMiniBoxInfoJson: FonctionsMiniBoxInfoJson = {
       }
     }
   },
+  getPoliceTexte: (position) => {
+    for (let key in MiniBoxInfoJson) {
+      const currentBox = MiniBoxInfoJson[key];
+  
+      if (currentBox.Position === position) {
+        return currentBox.PoliceTexte;
+      }
+    }
+
+    return null;
+  },
   modifierTaille: (position, nouvelleTaille) => {
     for (let key in MiniBoxInfoJson) {
       const currentBox = MiniBoxInfoJson[key];
@@ -54,6 +76,17 @@ const fonctionsMiniBoxInfoJson: FonctionsMiniBoxInfoJson = {
       }
     }
   },
+  getTaille: (position) => {
+    for (let key in MiniBoxInfoJson) {
+      const currentBox = MiniBoxInfoJson[key];
+  
+      if (currentBox.Position === position) {
+        return currentBox.Taille;
+      }
+    }
+
+    return null;
+  },
   modifierCouleurFond: (position, nouvelleCouleurFond) => {
     for (let key in MiniBoxInfoJson) {
       const currentBox = MiniBoxInfoJson[key];
@@ -63,6 +96,27 @@ const fonctionsMiniBoxInfoJson: FonctionsMiniBoxInfoJson = {
         break;
       }
     }
+  },
+  modificationAudio: (position, audio) => {
+    for (let key in MiniBoxInfoJson) {
+      const currentBox = MiniBoxInfoJson[key];
+  
+      if (currentBox.Position === position) {
+        currentBox.Audio = audio;
+        break;
+      }
+    }
+  },
+  getAudio: (position) => {
+    for (let key in MiniBoxInfoJson) {
+      const currentBox = MiniBoxInfoJson[key];
+  
+      if (currentBox.Position === position) {
+        return currentBox.Audio;
+      }
+    }
+
+    return null;
   },
   getAllJson:() => {
     return MiniBoxInfoJson

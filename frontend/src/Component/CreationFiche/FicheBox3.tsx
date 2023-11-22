@@ -14,7 +14,7 @@ function FicheBox3({ numeroMiniBox }: any) {
             numeroMiniBox={numeroMiniBox[0]}
           />
           <div>
-            <input value="" className="TextInput" />
+            <input type="text" className="TextInput" />
           </div>
         </div>
         <div className="grp_localisation">
@@ -24,14 +24,14 @@ function FicheBox3({ numeroMiniBox }: any) {
             ClassName={"date_localisation"}
             numeroMiniBox={numeroMiniBox[1]}
           />
-          <input value="" className="TextInput" />
+          <input type="text" className="TextInput" />
           <ChoixMiniBox
             TexteInfo={"Localisation"}
             Balise={1}
             ClassName={"locali_localisation"}
             numeroMiniBox={numeroMiniBox[2]}
           />
-          <input value="" className="TextInput" />
+          <input type="text" className="TextInput" />
         </div>
         <ChoixMiniBox
           TexteInfo={"Description de la demande"}
@@ -50,7 +50,7 @@ function FicheBox3({ numeroMiniBox }: any) {
             numeroMiniBox={numeroMiniBox[4]}
           />
           <div>
-            <input value="" className="TextInput" />
+            <input type="text" className="TextInput" />
           </div>
         </div>
       </div>
