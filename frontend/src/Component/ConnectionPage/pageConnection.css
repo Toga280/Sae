@@ -1,0 +1,27 @@
+
+.button_connection_edu,.bouton_retour_connection_edu{
+
+    background-color: gray;
+    color: #fff;
+    font-weight: bold;
+    font-size: 18px;
+    padding: 0.8em;
+    margin: 1em;
+    float: right;
+    border-radius: 4px;
+
+}
+.login{
+    display: flex;
+    flex-wrap: wrap;
+}
+.box{
+    display: c;
+    justify-content: center;
+    border: 1px solid black;
+    margin: 10px;
+}
+.image-redimensionnee {
+    width: 100%;
+    height: auto;
+}
