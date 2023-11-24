@@ -12,12 +12,18 @@ function ChoixMiniBox({
 }: any) {
   const setSelectionChoixMiniBoxTrue = () => {
     infoSelectionChoixMiniBox(true, numeroMiniBox);
+    fonctionsMiniBoxInfoJson.modifierIsSelectedMiniBox(numeroMiniBox, true);
   };
   return (
     <div>
       <div onClick={setSelectionChoixMiniBoxTrue}>
         {fonctionsMiniBoxInfoJson.getChoixMiniBox(numeroMiniBox) === "Texte" ? (
-          <Texte Texte={TexteInfo} Balise={Balise} ClassName={ClassName} />
+          <Texte
+            Texte={TexteInfo}
+            Balise={Balise}
+            ClassName={ClassName}
+            numeroMiniBox={numeroMiniBox}
+          />
         ) : (
           <p></p>
         )}

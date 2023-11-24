@@ -45,6 +45,27 @@ const fonctionsMiniBoxInfoJson: FonctionsMiniBoxInfoJson = {
 
     return null;
   },
+  modifierIsSelectedMiniBox: (position, boolean) => {
+    for (let key in MiniBoxInfoJson) {
+      const currentBox = MiniBoxInfoJson[key];
+  
+      if (currentBox.Position === position) {
+        currentBox.isSelected = boolean;
+        break;
+      }
+    }
+  },
+  getIsSelectedMiniBox: (position) => {
+    for (let key in MiniBoxInfoJson) {
+      const currentBox = MiniBoxInfoJson[key];
+  
+      if (currentBox.Position === position) {
+        return currentBox.isSelected;
+      }
+    }
+
+    return null;
+  },
   modifierPoliceTexte: (position, nouvellePolice) => {
     for (let key in MiniBoxInfoJson) {
       const currentBox = MiniBoxInfoJson[key];
