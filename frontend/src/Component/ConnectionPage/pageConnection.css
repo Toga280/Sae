@@ -1,27 +1,54 @@
 
-.button_connection_edu,.bouton_retour_connection_edu{
+.general_login {
+    width: 75%;
+    margin: 1em auto; /* Ajout de 'auto' pour centrer horizontalement */
+    font-family: Arial, sans-serif;
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    align-items: center;
+}
 
-    background-color: gray;
+
+.login-container {
+    width: 20%;
+    margin: 1em;
+    background-color: #fff;
+    padding: 20px;
+    border-radius: 8px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+    text-align: center;
+}
+
+.user-photo {
+    border-radius: 50%;
+    width: 100px;
+    height: 100px;
+    object-fit: cover;
+    margin-bottom: 10px;
+}
+
+.user-name {
+    font-size: 18px;
+    margin-bottom: 20px;
+}
+
+.login-button {
+    background-color: #3498db;
     color: #fff;
+    padding: 10px 20px;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+    font-size: 16px;
+}
+.button_connection_edu{
+    
+    background-color: #f7f1e9;
+    color: #355c7d;
     font-weight: bold;
     font-size: 18px;
     padding: 0.8em;
     margin: 1em;
-    float: right;
     border-radius: 4px;
-
-}
-.login{
-    display: flex;
-    flex-wrap: wrap;
-}
-.box{
-    display: c;
-    justify-content: center;
-    border: 1px solid black;
-    margin: 10px;
-}
-.image-redimensionnee {
-    width: 100%;
-    height: auto;
 }

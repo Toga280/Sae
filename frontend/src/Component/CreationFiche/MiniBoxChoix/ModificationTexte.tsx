@@ -37,10 +37,10 @@ function ModificationTexte({
   };
 
   return (
-    <div>
+    <div className="modif_texte_ficheBox">
       <p>Modification de la police du texte : </p>
-      <select onChange={handlePoliceChange} value={selectedPolice}>
-        <option value="null">sélectionner une police</option>
+      <select className="choix_selection_police_ficheBox" onChange={handlePoliceChange} value={selectedPolice}>
+        <option value="null">Sélectionner une police</option>
         {policeOptions.map((police) => (
           <option
             key={police.value}
@@ -67,7 +67,7 @@ function ModificationTexte({
         style={{ width: "50px" }}
       />
       <br />
-      <button onClick={setModificationTextePropsFalse}>sauvegarder</button>
+      <button onClick={setModificationTextePropsFalse}>Sauvegarder</button>
     </div>
   );
 }

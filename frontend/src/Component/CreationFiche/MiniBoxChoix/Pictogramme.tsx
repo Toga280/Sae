@@ -21,8 +21,9 @@ function Pictogramme({ setModificationPictoPropsFalse }: any) {
   },);
 */
   return (
-    <div id="PictoIndividuel">
-      <img src={require("./imagesTestStuart/1.webp")} alt="Description"></img>
+    <div id="ListePicto" style={{ border: "1px solid black" }}>
+      <img src={img} alt="Description"></img>
+      {/*<button onClick={setModificationPictoPropsFalse}> appliqué </button>*/}
     </div>
   );
 }

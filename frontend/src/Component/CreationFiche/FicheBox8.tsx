@@ -3,9 +3,9 @@ import ChoixMiniBox from "./MiniBoxChoix/ChoixMiniBox";
 import DupliquerSelect from "./DupliquerSelect";
 import "../../style/fiche8.css";
 import "../../style/ficheGlobal.css";
-function FicheBox8({ numeroMiniBox, infoSelectionChoixMiniBox }: any) {
+function FicheBox8({ numeroMiniBox, infoSelectionChoixMiniBox,classNameDiv }: any) {
   return (
-    <div className="Box">
+    <div className={classNameDiv}>
       <ChoixMiniBox
         TexteInfo={"Matériaux Utilisés"}
         Balise={4}

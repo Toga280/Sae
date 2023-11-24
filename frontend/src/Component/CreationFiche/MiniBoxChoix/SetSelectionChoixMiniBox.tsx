@@ -10,12 +10,12 @@ function SetSelectionChoixMiniBox({
   const isAudioEnabled = fonctionsMiniBoxInfoJson.getAudio(numeroMiniBox);
 
   return (
-    <div>
-      <p>Sélection des choix</p>
-      <div>
-        <button onClick={setTypeMiniBoxTexte}>texte</button>
-        <button onClick={setTypeMiniBoxPictogramme}>Pictogramme</button>
-        <button onClick={setTypeMiniBoxSon}>
+    <div className ="choix">
+      <div className="container_bouton_choix_elem ">
+        <p>Sélection des choix</p>
+        <button className="bouton_choix_elem"onClick={setTypeMiniBoxTexte}>texte</button>
+        <button className="bouton_choix_elem"onClick={setTypeMiniBoxPictogramme}>Pictogramme</button>
+        <button className="bouton_choix_elem"onClick={setTypeMiniBoxSon}>
           {isAudioEnabled ? "Désactiver le son" : "Activer le son"}
         </button>
       </div>

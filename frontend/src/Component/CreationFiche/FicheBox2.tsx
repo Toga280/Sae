@@ -2,9 +2,9 @@ import React from "react";
 import "../../style/fiche2.css";
 import "../../style/ficheGlobal.css";
 import ChoixMiniBox from "./MiniBoxChoix/ChoixMiniBox";
-function FicheBox2({ numeroMiniBox, infoSelectionChoixMiniBox }: any) {
+function FicheBox2({ numeroMiniBox, infoSelectionChoixMiniBox, classNameDiv }: any) {
   return (
-    <div className="Box">
+    <div className={classNameDiv}>
       <div className="fd2">
         <ChoixMiniBox
           TexteInfo={"Nom de l'intervenant"}

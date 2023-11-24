@@ -1,10 +1,10 @@
 import React from "react";
-import "./PageLoginEducateurStyle.css";
 
-function PageLoginEducateur({ redirection }: any) {
-  const redirectionTwo = () => {
-    redirection(2);
+function Interface({ redirection }: any) {
+  const setRedirectionthree = () => {
+    redirection(3);
   };
+
   return (
     <div id="login-form-wrap">
       <h2 className="nom_login_edu">Connexion</h2>
@@ -35,7 +35,7 @@ function PageLoginEducateur({ redirection }: any) {
             type="submit"
             id="login"
             value="Connexion"
-            onClick={redirectionTwo}
+            onClick={setRedirectionthree}
           >
             Se connecter
           </button>
@@ -45,4 +45,4 @@ function PageLoginEducateur({ redirection }: any) {
   );
 }
 
-export default PageLoginEducateur;
+export default Interface;
