@@ -1,6 +1,6 @@
-import React from "react";
-
+import React, { useState } from "react";
 function Pictogramme({ setModificationPictoPropsFalse }: any) {
+  
   /* 
 
  //// FONCTION POUR AFFICHER TOUTES LES IMAGES A MODIFIER ////
@@ -20,9 +20,6 @@ function Pictogramme({ setModificationPictoPropsFalse }: any) {
     }
   },);
 */
-
-  const img = require("./imagesTestStuart/1.webp");
-
   return (
     <div id="ListePicto" style={{ border: "1px solid black" }}>
       <img src={img} alt="Description"></img>
