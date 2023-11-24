@@ -25,7 +25,7 @@ function Pictogramme({ setModificationPictoPropsFalse }: any) {
 
   return (
     <div id="ListePicto" style={{ border: "1px solid black" }}>
-      <img src={img} alt="Description de l'image"></img>
+      <img src={img} alt="Description"></img>
       {/*<button onClick={setModificationPictoPropsFalse}> appliqué </button>*/}
     </div>
   );
