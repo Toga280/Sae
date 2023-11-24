@@ -5,13 +5,12 @@ function SetSelectionChoixMiniBox({
   setTypeMiniBoxTexte,
   setTypeMiniBoxPictogramme,
   setTypeMiniBoxSon,
-  setChoixMiniBoxBooleanFalse,
   numeroMiniBox,
 }: any) {
   const isAudioEnabled = fonctionsMiniBoxInfoJson.getAudio(numeroMiniBox);
 
   return (
-    <div onClick={setChoixMiniBoxBooleanFalse}>
+    <div>
       <p>Sélection des choix</p>
       <div>
         <button onClick={setTypeMiniBoxTexte}>texte</button>

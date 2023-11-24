@@ -14,6 +14,11 @@ function SelectionChoixMiniBox({
 
   const [modificationPictoProps, setModificationPictoProps] = useState(Boolean);
 
+  const ouioui = () => {
+    setSelectionChoixMiniBoxFalse();
+    fonctionsMiniBoxInfoJson.modifierIsSelectedMiniBox(numeroMiniBox, false);
+  };
+
   const setModificationTextePropsTrue = () => {
     setModificationTexteProps(true);
   };
@@ -35,16 +40,19 @@ function SelectionChoixMiniBox({
   const setTypeMiniBoxTexte = () => {
     fonctionsMiniBoxInfoJson.modifierChoixMiniBox(numeroMiniBox, "Texte");
     setModificationTextePropsTrue();
+    setChoixMiniBoxBooleanFalse();
   };
   const setTypeMiniBoxPictogramme = () => {
     fonctionsMiniBoxInfoJson.modifierChoixMiniBox(numeroMiniBox, "Pictogramme");
     setModificationPictoPropsTrue();
+    setChoixMiniBoxBooleanFalse();
   };
   const setTypeMiniBoxSon = () => {
     fonctionsMiniBoxInfoJson.modificationAudio(
       numeroMiniBox,
       !fonctionsMiniBoxInfoJson.getAudio(numeroMiniBox)
     );
+    setChoixMiniBoxBooleanFalse();
   };
   return (
     <div>
@@ -54,7 +62,6 @@ function SelectionChoixMiniBox({
             setTypeMiniBoxTexte={setTypeMiniBoxTexte}
             setTypeMiniBoxPictogramme={setTypeMiniBoxPictogramme}
             setTypeMiniBoxSon={setTypeMiniBoxSon}
-            setChoixMiniBoxBooleanFalse={setChoixMiniBoxBooleanFalse}
             numeroMiniBox={numeroMiniBox}
           />
         ) : (
@@ -68,16 +75,13 @@ function SelectionChoixMiniBox({
         ) : (
           <p></p>
         )}
-        {/*  AJOUTER PLUS TARD STUART setModificationPicto  PropsFalse */}
         {modificationPictoProps === true ? (
           <Pictogramme
             setModificationPictoPropsFalse={setModificationPictoPropsFalse}
           />
-        ) : (
-          <p></p>
-        )}
+        ) : null}
       </div>
-      <button onClick={setSelectionChoixMiniBoxFalse}>appliqué</button>
+      <button onClick={ouioui}>appliqué</button>
     </div>
   );
 }

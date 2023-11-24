@@ -1,8 +1,15 @@
 import React from "react";
-
-function Texte({ Texte, Balise, ClassName }: any) {
+import fonctionsMiniBoxInfoJson from "./../MiniBoxInfoFunction";
+import "../../../style/pute.css";
+function Texte({ Texte, Balise, ClassName, numeroMiniBox }: any) {
   return (
-    <div>
+    <div
+      className={
+        fonctionsMiniBoxInfoJson.getIsSelectedMiniBox(numeroMiniBox) === true
+          ? "sUUUU"
+          : ""
+      }
+    >
       {Balise === null ? <h1 className={ClassName}>{Texte}</h1> : <p></p>}
       {Balise === 1 ? <div className={ClassName}>{Texte}</div> : <p></p>}
       {Balise === 2 ? <h1 className={ClassName}>{Texte}</h1> : <p></p>}
