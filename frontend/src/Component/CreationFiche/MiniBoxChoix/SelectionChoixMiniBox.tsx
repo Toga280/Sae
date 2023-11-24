@@ -81,7 +81,7 @@ function SelectionChoixMiniBox({
           />
         ) : null}
       </div>
-      <button onClick={ouioui}>appliqué</button>
+      <button className="button_apply_after_modif"onClick={ouioui}>Appliquer</button>
     </div>
   );
 }

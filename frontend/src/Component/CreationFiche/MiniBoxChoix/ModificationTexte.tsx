@@ -52,22 +52,26 @@ function ModificationTexte({
         ))}
       </select>
       <p>Modification de la couleur du texte : </p>
-      <CompactPicker color={selectedColor} onChange={handleColorChange} />
+      <div className="choix_couleur_modif_fiche">
+        <CompactPicker color={selectedColor} onChange={handleColorChange} />
+      </div>
       <p>Modification de la taille du texte : </p>
-      <input
-        type="number"
-        value={selectedTaille}
-        onChange={(e) => {
-          fonctionsMiniBoxInfoJson.modifierTaille(
-            numeroMiniBox,
-            e.target.value
-          );
-          setSelectedTaille(e.target.value);
-        }}
-        style={{ width: "50px" }}
-      />
+      <div className="choix_taille_police_modif_fiche"> 
+        <input
+          type="number"
+          value={selectedTaille}
+          onChange={(e) => {
+            fonctionsMiniBoxInfoJson.modifierTaille(
+              numeroMiniBox,
+              e.target.value
+            );
+            setSelectedTaille(e.target.value);
+          }}
+          style={{ width: "50px" }}
+        />
+      </div>
       <br />
-      <button onClick={setModificationTextePropsFalse}>Sauvegarder</button>
+      <button className="bouton_save_modif_texte" onClick={setModificationTextePropsFalse}>Sauvegarder</button>
     </div>
   );
 }
