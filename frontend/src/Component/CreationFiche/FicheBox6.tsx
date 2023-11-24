@@ -2,10 +2,10 @@ import React from "react";
 import ChoixMiniBox from "./MiniBoxChoix/ChoixMiniBox";
 import "../../style/ficheGlobal.css";
 import "../../style/fiche6.css";
-function FicheBox6({ numeroMiniBox, infoSelectionChoixMiniBox }: any) {
+function FicheBox6({ numeroMiniBox, infoSelectionChoixMiniBox,classNameDiv }: any) {
   return (
     //nature_intervention
-    <div className="Box">
+    <div className={classNameDiv}>
       <div className="grp_nature_intervention">
         <div className="">
           <input type="checkbox" />

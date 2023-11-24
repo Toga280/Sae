@@ -2,9 +2,10 @@ import React from "react";
 import ChoixMiniBox from "./MiniBoxChoix/ChoixMiniBox";
 import "../../style/fiche1.css";
 import "../../style/ficheGlobal.css";
-function FicheBox1({ numeroMiniBox, infoSelectionChoixMiniBox }: any) {
+function FicheBox1({ numeroMiniBox, infoSelectionChoixMiniBox, classNameDiv }: any) {
+
   return (
-    <div className="Box">
+    <div className={classNameDiv}>
       <div className="fb1">
       <ChoixMiniBox
         TexteInfo={"Fiche d'intervention N°10"}

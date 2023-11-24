@@ -35,48 +35,56 @@ function FicheBoxTotal({ onSelectBox }: any) {
         <FicheBox1
           numeroMiniBox={[0]}
           infoSelectionChoixMiniBox={infoSelectionChoixMiniBox}
+          classNameDiv={"Box"}
         />
       </div>
       <div onClick={() => handleClick(2)}>
         <FicheBox2
           numeroMiniBox={[1, 2]}
           infoSelectionChoixMiniBox={infoSelectionChoixMiniBox}
+          classNameDiv={"Box"}
         />
       </div>
       <div onClick={() => handleClick(3)}>
         <FicheBox3
           numeroMiniBox={[3, 4, 5, 6, 7]}
           infoSelectionChoixMiniBox={infoSelectionChoixMiniBox}
+          classNameDiv={"Box"}
         />
       </div>
       <div onClick={() => handleClick(4)}>
         <FicheBox4
           numeroMiniBox={[8, 9, 10, 11]}
           infoSelectionChoixMiniBox={infoSelectionChoixMiniBox}
+          classNameDiv={"Box"}
         />
       </div>
       <div onClick={() => handleClick(5)}>
         <FicheBox5
           numeroMiniBox={[12, 13, 14]}
           infoSelectionChoixMiniBox={infoSelectionChoixMiniBox}
+          classNameDiv={"Box"}
         />
       </div>
       <div onClick={() => handleClick(6)}>
         <FicheBox6
           numeroMiniBox={[15, 16, 17, 18]}
           infoSelectionChoixMiniBox={infoSelectionChoixMiniBox}
+          classNameDiv={"Box"}
         />
       </div>
       <div onClick={() => handleClick(7)}>
         <FicheBox7
           numeroMiniBox={[19, 20]}
           infoSelectionChoixMiniBox={infoSelectionChoixMiniBox}
+          classNameDiv={"Box"}
         />
       </div>
       <div onClick={() => handleClick(8)}>
         <FicheBox8
           numeroMiniBox={[21, 22]}
           infoSelectionChoixMiniBox={infoSelectionChoixMiniBox}
+          classNameDiv={"Box"}
         />
       </div>
       <button onClick={consoleLogJson}>return log json</button>

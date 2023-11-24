@@ -1,18 +1,69 @@
-.choix{
-    border-right: 1px solid black;
-    padding: 3em;
+.container_bouton_choix_elem{
+    margin: auto;
+    margin-top: 1em;
+    width: 30%;
+    display: flex;
+    flex-direction: column;
+    border: 0.1em solid #355c7d;
+    padding: 0.5em;
+}
+.bouton_choix_elem{
+    
+    background-color: #f7f1e9;
+    color: #355c7d;
+    font-weight: bold;
+    font-size: 18px;
+    padding: 0.8em;
     margin: 1em;
+    float: right;
+    border-radius: 4px;
 }
+p{
+    text-align: center;
+    color: #355c7d;
+    font-size: 20px;
+    font-weight: bold;
+    margin: 0.5em;
+}
+.boxSelected {
 
-.all{
-    display: flex;
-}
-.retour{
-    margin-left:auto;
-}
-.bouton{
-    display: flex;
-
-    border: 1px solid black;
-    width: auto;
-}
+    margin: auto;
+    margin-top: 1em;
+    border: 0.1em solid #355c7d;
+    color: #355c7d;
+    padding: 0.5em;
+    width: 90%;
+    background-color: white;
+  }
+  .modif_texte_ficheBox{
+    margin: 1em;
+    width: 25%;
+    border: 0.1em solid #355c7d;
+    
+  } 
+  @media (max-width: 1100px) {
+    .boxSelected {
+        border: 0.1em solid #355c7d;
+        color: #355c7d;
+        padding: 0.5em;
+        width: 90%;
+        margin: 1em;
+        background-color: white;
+    }
+    .container_bouton_choix_elem{
+        margin: auto;
+        width: 40%;
+        display: flex;
+        flex-direction: column;
+        border: 0.1em solid #355c7d;
+        justify-content: center;
+    }
+    .modif_texte_ficheBox{
+        margin: 1em;
+        display: flex;
+        flex-direction: column;
+        width: 90%;
+        border: 0.1em solid #355c7d;
+        
+      }
+  }

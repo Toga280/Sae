@@ -77,7 +77,7 @@ function SelectionChoixMiniBox({
           <p></p>
         )}
       </div>
-      <button onClick={setSelectionChoixMiniBoxFalse}>appliqué</button>
+      <button className="bouton_choix_elem" onClick={setSelectionChoixMiniBoxFalse}>Appliquer</button>
     </div>
   );
 }
