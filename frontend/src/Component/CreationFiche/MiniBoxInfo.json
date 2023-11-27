@@ -1,4 +1,7 @@
 {
+  "info": {
+    "name": ""
+  },
   "MiniBox1": {
     "ChoixMiniBox": "Texte",
     "Position": 0,
