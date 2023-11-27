@@ -12,6 +12,8 @@ function SelectionChoixMiniBox({
   const [choixMiniBoxBoolean, setChoixMiniBoxBoolean] = useState(true);
 
   const [modificationPictoProps, setModificationPictoProps] = useState(Boolean);
+  
+  const [BoolImage, SetBoolImage] = useState(true);
 
   const ouioui = () => {
     setSelectionChoixMiniBoxFalse();
@@ -53,6 +55,11 @@ function SelectionChoixMiniBox({
     );
     setChoixMiniBoxBooleanFalse();
   };
+  // ARNAQUE
+  const setBoolImage = (boolean : boolean) => {
+    SetBoolImage(boolean);
+  };
+
   return (
     <div>
       <div>
@@ -74,11 +81,18 @@ function SelectionChoixMiniBox({
         ) : (
           <p></p>
         )}
-        {modificationPictoProps === true ? (
-          <ModificationPicto
+
+      {modificationPictoProps === true ? (
+          <ModificationPicto 
             setModificationPictoPropsFalse={setModificationPictoPropsFalse}
+            setBoolImage={setBoolImage}
+            BoolImage={BoolImage}
+
           />
-        ) : null}
+        )  
+        : (
+          <p></p>
+        )}
       </div>
       <button className="button_apply_after_modif"onClick={ouioui}>Appliquer</button>
     </div>
