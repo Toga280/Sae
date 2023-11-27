@@ -74,7 +74,7 @@ function SelectionChoixMiniBox({
           />
         ) : null}
       </div>
-      <button onClick={closeSelectMiniBox}>appliqué</button>
+      <button className="apply_choix_change_button" onClick={closeSelectMiniBox}>Appliquer</button>
     </div>
   );
 }
