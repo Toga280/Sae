@@ -9,11 +9,19 @@ function SelectionChoixMiniBox({
   numeroMiniBox,
 }: any) {
   const [modificationTexteProps, setModificationTexteProps] = useState(Boolean);
+  const [modificationPictoProps, setModificationPictoProps] = useState(Boolean);
+  const [choixTypeElement, setChoixTypeElement] = useState(Number);
   const [choixMiniBoxBoolean, setChoixMiniBoxBoolean] = useState(true);
 
-  const [modificationPictoProps, setModificationPictoProps] = useState(Boolean);
-
   const closeSelectMiniBox = () => {
+    if (choixTypeElement === 1) {
+      fonctionsMiniBoxInfoJson.modifierChoixMiniBox(numeroMiniBox, "Texte");
+    } else if (choixTypeElement === 2) {
+      fonctionsMiniBoxInfoJson.modifierChoixMiniBox(
+        numeroMiniBox,
+        "Pictogramme"
+      );
+    }
     setSelectionChoixMiniBoxFalse();
     fonctionsMiniBoxInfoJson.modifierIsSelectedMiniBox(numeroMiniBox, false);
   };
@@ -34,12 +42,12 @@ function SelectionChoixMiniBox({
   };
 
   const setTypeMiniBoxTexte = () => {
-    fonctionsMiniBoxInfoJson.modifierChoixMiniBox(numeroMiniBox, "Texte");
+    setChoixTypeElement(1);
     setModificationTextePropsTrue();
     setChoixMiniBoxBooleanFalse();
   };
   const setTypeMiniBoxPictogramme = () => {
-    fonctionsMiniBoxInfoJson.modifierChoixMiniBox(numeroMiniBox, "Pictogramme");
+    setChoixTypeElement(2);
     setModificationPictoPropsTrue();
     setChoixMiniBoxBooleanFalse();
   };
@@ -74,7 +82,12 @@ function SelectionChoixMiniBox({
           />
         ) : null}
       </div>
-      <button className="apply_choix_change_button" onClick={closeSelectMiniBox}>Appliquer</button>
+      <button
+        className="apply_choix_change_button"
+        onClick={closeSelectMiniBox}
+      >
+        Appliquer
+      </button>
     </div>
   );
 }

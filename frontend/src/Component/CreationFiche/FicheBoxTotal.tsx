@@ -36,7 +36,7 @@ function FicheBoxTotal({ onSelectBox, redirection }: any) {
     <div>
       <button
         className="boutton_retour_interaction_edu"
-        onClick={() => redirection(1)}
+        onClick={() => redirection(2)}
       >
         Retour
       </button>
