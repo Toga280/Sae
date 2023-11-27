@@ -21,9 +21,6 @@ function SelectionChoixMiniBox({
   const setModificationTextePropsTrue = () => {
     setModificationTexteProps(true);
   };
-  const setModificationTextePropsFalse = () => {
-    setModificationTexteProps(false);
-  };
 
   const setModificationPictoPropsTrue = () => {
     setModificationPictoProps(true);
@@ -67,10 +64,7 @@ function SelectionChoixMiniBox({
           <p></p>
         )}
         {modificationTexteProps === true ? (
-          <ModificationTexte
-            setModificationTextePropsFalse={setModificationTextePropsFalse}
-            numeroMiniBox={numeroMiniBox}
-          />
+          <ModificationTexte numeroMiniBox={numeroMiniBox} />
         ) : (
           <p></p>
         )}
