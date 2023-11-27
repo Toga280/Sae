@@ -22,7 +22,7 @@ function Pictogramme({ setModificationPictoPropsFalse }: any) {
 */
   return (
     <div id="PictoIndividuel">
-      <img src={require("./imagesTestStuart/1.webp")} alt="Description"></img>
+      <img className="picto_selec_list" src={require("./imagesTestStuart/1.webp")} alt="Description"></img>
     </div>
   );
 }
