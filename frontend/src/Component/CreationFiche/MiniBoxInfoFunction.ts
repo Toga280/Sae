@@ -145,21 +145,32 @@ const fonctionsMiniBoxInfoJson: FonctionsMiniBoxInfoJson = {
 
     return null;
   },
+  modifierNom: (nom) => {
+    MiniBoxInfoJson.info.name = nom;
+  },
+  getNom: () => {
+    for (let key in MiniBoxInfoJson) {
+      const currentBox = MiniBoxInfoJson[key];
+        return currentBox.name
+    }
+    return "Nom de la fiche"
+  },
   getAllJson:() => {
     return MiniBoxInfoJson
   },
-  modifierAllJsonToBase:() => {
-    for (let key in MiniBoxInfoJson) {
-      const currentBox = MiniBoxInfoJson[key];
-      if(currentBox.Position === key) {
-        currentBox.ChoixMiniBox = "Texte"
-        currentBox.CouleurTexte = "Black"
-        currentBox.PoliceTexte = "none"
-        currentBox.Taille = "none"
-        currentBox.CouleurFond = "none"
+    modifierAllJsonToBase: () => {
+      MiniBoxInfoJson.info.name = "";
+      for (let key in MiniBoxInfoJson) {
+        const currentBox = MiniBoxInfoJson[key];
+        currentBox.ChoixMiniBox = "Texte";
+        currentBox.CouleurTexte = "#000000";
+        currentBox.PoliceTexte = "Times New Roman";
+        currentBox.Taille = 18;
+        currentBox.CouleurFond = "none";
+        currentBox.Audio = false;
+        currentBox.isSelected = false;
+        }
       }
-    }
-  }
-};
+  };
 
 export default fonctionsMiniBoxInfoJson;
