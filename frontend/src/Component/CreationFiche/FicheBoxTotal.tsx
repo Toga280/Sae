@@ -9,6 +9,7 @@ import FicheBox7 from "./FicheBox7";
 import FicheBox8 from "./FicheBox8";
 import fonctionsMiniBoxInfoJson from "./MiniBoxInfoFunction";
 import { imprimerPage } from "../FonctionEleve/Imprimer";
+import axios from "axios";
 
 function FicheBoxTotal({ onSelectBox, redirection }: any) {
   const [numBox, setNumBox] = useState(0);
@@ -31,6 +32,20 @@ function FicheBoxTotal({ onSelectBox, redirection }: any) {
       onSelectBox(numBox);
     }
   }, [numBox, onSelectBox]);
+
+  const apiTest = () => {
+    const data = fonctionsMiniBoxInfoJson.getAllJson();
+    console.log(data);
+    axios
+      .post("http://localhost:5000/POST/fiche", data)
+      .then((response) => {
+        console.log("Réponse du serveur :", response.data);
+        // Vous pouvez traiter la réponse ici si nécessaire
+      })
+      .catch((error) => {
+        console.error("Erreur lors de la requête vers le serveur :", error);
+      });
+  };
 
   return (
     <div>
@@ -103,6 +118,7 @@ function FicheBoxTotal({ onSelectBox, redirection }: any) {
       <button className="boutton_brouillon_interaction_edu">Brouillons</button>
       <button className="boutton_sauvegarder_interaction_edu" onClick={imprimerPage}>imprimer</button>
 
+      <button onClick={apiTest}>poiauizehfihb</button>
     </div>
   );
 }
