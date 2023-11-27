@@ -112,11 +112,12 @@ function FicheBoxTotal({ onSelectBox, redirection }: any) {
         />
       </div>
       <button onClick={consoleLogJson}>return log json</button>
-      <button onClick={imprimerPage}>imprimer</button>
       <button className="boutton_sauvegarder_interaction_edu">
         Sauvegarder
       </button>
       <button className="boutton_brouillon_interaction_edu">Brouillons</button>
+      <button className="boutton_sauvegarder_interaction_edu" onClick={imprimerPage}>imprimer</button>
+
       <button onClick={apiTest}>poiauizehfihb</button>
     </div>
   );

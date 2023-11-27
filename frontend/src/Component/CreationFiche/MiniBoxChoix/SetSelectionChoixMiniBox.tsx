@@ -13,7 +13,7 @@ function SetSelectionChoixMiniBox({
     <div className ="choix">
       <div className="container_bouton_choix_elem ">
         <p>Sélection des choix</p>
-        <button className="bouton_choix_elem"onClick={setTypeMiniBoxTexte}>texte</button>
+        <button className="bouton_choix_elem"onClick={setTypeMiniBoxTexte}>Texte</button>
         <button className="bouton_choix_elem"onClick={setTypeMiniBoxPictogramme}>Pictogramme</button>
         <button className="bouton_choix_elem"onClick={setTypeMiniBoxSon}>
           {isAudioEnabled ? "Désactiver le son" : "Activer le son"}
