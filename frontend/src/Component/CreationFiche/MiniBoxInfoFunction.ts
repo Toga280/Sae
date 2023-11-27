@@ -162,10 +162,6 @@ const fonctionsMiniBoxInfoJson: FonctionsMiniBoxInfoJson = {
       MiniBoxInfoJson.info.name = "";
       for (let key in MiniBoxInfoJson) {
         const currentBox = MiniBoxInfoJson[key];
-        console.log("key:", key);
-        console.log("currentBox.Position:", currentBox.Position);
-        
-
         currentBox.ChoixMiniBox = "Texte";
         currentBox.CouleurTexte = "#000000";
         currentBox.PoliceTexte = "Times New Roman";
