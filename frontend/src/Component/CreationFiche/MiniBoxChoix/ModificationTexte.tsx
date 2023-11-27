@@ -5,13 +5,13 @@ import { CompactPicker, ColorResult } from "react-color";
 const policeOptions = [
   { value: "Times New Roman", label: "(défault) Times New Roman" },
   { value: "Arial", label: "Arial" },
+  { value: "Verdana", label: "Verdana" },
+  { value: "Helvetica", label: "Helvetica" },
+  { value: "Courier New", label: "Courier New" },
   // Ajoutez d'autres polices ici
 ];
 
-function ModificationTexte({
-  setModificationTextePropsFalse,
-  numeroMiniBox,
-}: any) {
+function ModificationTexte({ numeroMiniBox }: any) {
   const [selectedColor, setSelectedColor] = useState<string>(
     fonctionsMiniBoxInfoJson.getCouleurTexte(numeroMiniBox)?.toString() ?? ""
   );
@@ -71,12 +71,6 @@ function ModificationTexte({
         style={{ width: "50px" }}
       />
       <br />
-      <button
-        className="bouton_save_modif_texte"
-        onClick={setModificationTextePropsFalse}
-      >
-        Sauvegarder
-      </button>
     </div>
   );
 }

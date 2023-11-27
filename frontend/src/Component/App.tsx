@@ -18,7 +18,10 @@ function App() {
       {redirection === 2 && <Interface redirection={setRedirection} />}
       {redirection === 3 ? (
         selectBox === null ? (
-          <FicheBoxTotal onSelectBox={handleSelectBoxChange} />
+          <FicheBoxTotal
+            onSelectBox={handleSelectBoxChange}
+            redirection={setRedirection}
+          />
         ) : (
           <FicheBoxSelected
             numberFichBox={selectBox}
