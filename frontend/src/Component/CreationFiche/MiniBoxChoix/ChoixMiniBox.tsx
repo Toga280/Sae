@@ -11,6 +11,7 @@ function ChoixMiniBox({
   infoSelectionChoixMiniBox,
 }: any) {
   const setSelectionChoixMiniBoxTrue = () => {
+    fonctionsMiniBoxInfoJson.allIsSelectedMiniBoxFalse();
     infoSelectionChoixMiniBox(true, numeroMiniBox);
     fonctionsMiniBoxInfoJson.modifierIsSelectedMiniBox(numeroMiniBox, true);
   };

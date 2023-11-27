@@ -12,6 +12,7 @@ function FicheBoxTotal({ onSelectBox }: any) {
   const [numBox, setNumBox] = useState(0);
   const handleClick = (numero: number) => {
     setNumBox(numero);
+    fonctionsMiniBoxInfoJson.allIsSelectedMiniBoxFalse();
   };
 
   const consoleLogJson = () => {

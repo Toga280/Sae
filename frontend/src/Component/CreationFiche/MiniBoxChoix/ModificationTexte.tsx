@@ -18,8 +18,8 @@ function ModificationTexte({
   const [selectedPolice, setSelectedPolice] = useState<string>(
     fonctionsMiniBoxInfoJson.getPoliceTexte(numeroMiniBox) ?? "Times New Roman"
   );
-  const [selectedTaille, setSelectedTaille] = useState<string>(
-    fonctionsMiniBoxInfoJson.getTaille(numeroMiniBox)?.toString() ?? ""
+  const [selectedTaille, setSelectedTaille] = useState<number>(
+    fonctionsMiniBoxInfoJson.getTaille(numeroMiniBox) ?? 0
   );
 
   const handleColorChange = (color: ColorResult) => {
@@ -39,7 +39,11 @@ function ModificationTexte({
   return (
     <div className="modif_texte_ficheBox">
       <p>Modification de la police du texte : </p>
-      <select className="choix_selection_police_ficheBox" onChange={handlePoliceChange} value={selectedPolice}>
+      <select
+        className="choix_selection_police_ficheBox"
+        onChange={handlePoliceChange}
+        value={selectedPolice}
+      >
         <option value="null">Sélectionner une police</option>
         {policeOptions.map((police) => (
           <option
@@ -58,11 +62,9 @@ function ModificationTexte({
         type="number"
         value={selectedTaille}
         onChange={(e) => {
-          fonctionsMiniBoxInfoJson.modifierTaille(
-            numeroMiniBox,
-            e.target.value
-          );
-          setSelectedTaille(e.target.value);
+          const tailleValue = parseInt(e.target.value, 10);
+          fonctionsMiniBoxInfoJson.modifierTaille(numeroMiniBox, tailleValue);
+          setSelectedTaille(tailleValue);
         }}
         style={{ width: "50px" }}
       />

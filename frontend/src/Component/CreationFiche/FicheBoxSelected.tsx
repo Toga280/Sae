@@ -8,6 +8,7 @@ import FicheBox6 from "./FicheBox6";
 import FicheBox7 from "./FicheBox7";
 import FicheBox8 from "./FicheBox8";
 import SelectionChoixMiniBox from "./MiniBoxChoix/SelectionChoixMiniBox";
+import fonctionsMiniBoxInfoJson from "./MiniBoxInfoFunction";
 function FicheBoxSelected({ numberFichBox, onSelectBoxChange }: any) {
   const [selectionChoixMiniBox, setSelectionChoixMiniBox] = useState(false);
   const [numeroMiniBox, setnumeroMiniBox] = useState(Number);
@@ -17,6 +18,7 @@ function FicheBoxSelected({ numberFichBox, onSelectBoxChange }: any) {
 
   const boutonRetour = () => {
     onSelectBoxChange(null);
+    fonctionsMiniBoxInfoJson.allIsSelectedMiniBoxFalse();
   };
 
   const infoSelectionChoixMiniBox = (
@@ -85,7 +87,7 @@ function FicheBoxSelected({ numberFichBox, onSelectBoxChange }: any) {
           classNameDiv={"boxSelected"}
         />
       ) : null}
-      
+
       <div>
         {selectionChoixMiniBox === true ? (
           <SelectionChoixMiniBox
@@ -93,7 +95,9 @@ function FicheBoxSelected({ numberFichBox, onSelectBoxChange }: any) {
             numeroMiniBox={numeroMiniBox}
           />
         ) : null}
-        <button className="bouton_choix_elem" onClick={boutonRetour}>Retour</button>
+        <button className="bouton_choix_elem" onClick={boutonRetour}>
+          Retour
+        </button>
       </div>
     </div>
   );

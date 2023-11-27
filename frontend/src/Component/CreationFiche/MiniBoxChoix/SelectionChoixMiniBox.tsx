@@ -14,7 +14,7 @@ function SelectionChoixMiniBox({
 
   const [modificationPictoProps, setModificationPictoProps] = useState(Boolean);
 
-  const ouioui = () => {
+  const closeSelectMiniBox = () => {
     setSelectionChoixMiniBoxFalse();
     fonctionsMiniBoxInfoJson.modifierIsSelectedMiniBox(numeroMiniBox, false);
   };
@@ -81,7 +81,7 @@ function SelectionChoixMiniBox({
           />
         ) : null}
       </div>
-      <button onClick={ouioui}>appliqué</button>
+      <button onClick={closeSelectMiniBox}>appliqué</button>
     </div>
   );
 }
