@@ -1,6 +1,7 @@
 /*CHOIX DE LA MODIFICATION===============================================*/
 
 .container_bouton_choix_elem{
+    border-radius: 10px;
     background-color: white;
     margin: auto;
     margin-top: 1em;
@@ -8,10 +9,20 @@
     display: flex;
     flex-direction: column;
     border: 0.1em solid #355c7d;
-    padding: 0.5em;
+    justify-content: center;
 }
 .bouton_choix_elem{
-    
+    border: 0.1em solid #355c7d;
+    background-color: #f7f1e9;
+    color: #355c7d;
+    font-weight: bold;
+    font-size: 18px;
+    padding: 0.8em;
+    margin: 1em;
+    border-radius: 4px;
+}
+/*CSS BOUTTON RETOUR===============================================*/
+.bouton_choix_elem_retour{
     background-color: #f7f1e9;
     color: #355c7d;
     font-weight: bold;
@@ -20,9 +31,9 @@
     margin: 1em;
     float: right;
     border-radius: 4px;
+
 }
 p{
-    text-align: center;
     color: #355c7d;
     font-size: 20px;
     font-weight: bold;
@@ -40,32 +51,6 @@ p{
     background-color: white;
   }
 /*BOUTON APPLIQUER===============================================*/
-.button_apply_after_modif{
-    background-color: #f7f1e9;
-    color: #355c7d;
-    font-weight: bold;
-    font-size: 18px;
-    padding: 0.8em;
-    margin: 1em;
-    float: right;
-    border-radius: 4px;
-}
-/* CSS MODIF TEXT ===============================================*/
-.modif_texte_ficheBox{
-    margin: 1em;
-    width: 25%;
-    border: 0.1em solid #355c7d;
-    justify-content: center;
-    
-} 
-.choix_selection_police_ficheBox{
-
-    width: 200px;
-    padding: 5px;
-}
-.choix_couleur_modif_fiche{
-    width: 20%;
-}
 .apply_choix_change_button{
     width: 20%;
     background-color: #f7f1e9;
@@ -77,17 +62,24 @@ p{
     float: right;
     border-radius: 4px;
 }
-.bouton_save_modif_texte{
-    width: 20%;
-    background-color: #f7f1e9;
-    color: #355c7d;
-    font-weight: bold;
-    font-size: 18px;
-    padding: 0.8em;
+
+/* CSS MODIF TEXT ===============================================*/
+.modif_texte_ficheBox{
     margin: 1em;
-    float: right;
-    border-radius: 4px;
+    width: 25%;
+    border: 0.1em solid #355c7d;
+    justify-content: center;
+    
+} 
+
+.choix_couleur_modif_fiche{
+    width: 20%;
 }
+
+.choix_taille_modif_fiche{
+    margin-bottom: 0.5em;
+}
+
   @media (max-width: 1100px) {
     .boxSelected {
         border: 0.1em solid #355c7d;
@@ -107,11 +99,9 @@ p{
     }
     .modif_texte_ficheBox{
         margin: 1em;
-        display: flex;
-        flex-direction: column;
-        padding: 0.5em;
-        width: 90%;
+        width: 30%;
         border: 0.1em solid #355c7d;
+        justify-content: center;
         
-      }
+    } 
   }
