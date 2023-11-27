@@ -17,6 +17,7 @@ function App() {
 
       {redirection === 1 && <PageConnection redirection={setRedirection} />}
       {redirection === 2 && <Interface redirection={setRedirection} />}
+      {redirection === 4 && <PageEspaceEleve redirection={setRedirection} />}
       {redirection === 3 ? (
         selectBox === null ? (
           <FicheBoxTotal

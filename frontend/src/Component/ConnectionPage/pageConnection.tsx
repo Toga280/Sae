@@ -20,7 +20,7 @@ function PageConnection({ redirection }: any) {
           Connexion éducateur
         </button>
       )}
-      {!selectBoutton && <ConnectionEleve />}
+      {!selectBoutton && <ConnectionEleve redirection={redirection}/>}
 
       {selectBoutton ? <PageLoginEducateur redirection={redirection} /> : null}
       {selectBoutton && (

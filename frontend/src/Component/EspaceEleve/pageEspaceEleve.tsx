@@ -1,14 +1,18 @@
 import React from "react";
 import ".././EspaceEleve/pageEspaceEleve.css";
 
-function PageEspaceEleve() {
+function PageEspaceEleve({ redirection }: any) {
+  const setRedirectionfour = () => {
+    redirection(4);
+  };
   return (
-    <div id="espaceEleve">
+    <div className="global_bouton_interface_élève">
 
-        <h2>Espace éleve</h2>
-        <div id="content">
-            <input type="button" id="maFiche" value="maFiche" />
-            <input type="button" id="photo" value="voir mes photos" />
+        <p className="txt_espace_élève">Espace élève</p>
+
+        <div className="content_espace_eleve">
+            <input className="bouton_interface_eleve" type="button" id="maFiche" value="maFiche" />
+            <input className="bouton_interface_eleve" type="button" id="photo" value="voir mes photos" />
         </div>
 
     </div>
