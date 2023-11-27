@@ -58,11 +58,6 @@ function SelectionChoixMiniBox({
     );
     setChoixMiniBoxBooleanFalse();
   };
-  // ARNAQUE
-  const setBoolImage = (boolean : boolean) => {
-    SetBoolImage(boolean);
-  };
-
   return (
     <div>
       <div>
@@ -81,18 +76,11 @@ function SelectionChoixMiniBox({
         ) : (
           <p></p>
         )}
-
-      {modificationPictoProps === true ? (
-          <ModificationPicto 
+        {modificationPictoProps === true ? (
+          <ModificationPicto
             setModificationPictoPropsFalse={setModificationPictoPropsFalse}
-            setBoolImage={setBoolImage}
-            BoolImage={BoolImage}
-
           />
-        )  
-        : (
-          <p></p>
-        )}
+        ) : null}
       </div>
       <button
         className="apply_choix_change_button"
