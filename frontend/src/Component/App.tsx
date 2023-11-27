@@ -3,6 +3,7 @@ import FicheBoxTotal from "./CreationFiche/FicheBoxTotal";
 import FicheBoxSelected from "./CreationFiche/FicheBoxSelected";
 import PageConnection from "./ConnectionPage/pageConnection";
 import Interface from "./Interface_Educateur/Interface";
+import PageEspaceEleve from "./EspaceEleve/pageEspaceEleve";
 import Sauvegarder from "./CreationFiche/Sauvegarder";
 
 function App() {
@@ -16,8 +17,10 @@ function App() {
 
   return (
     <div>
+
       {redirection === 1 && <PageConnection redirection={setRedirection} />}
       {redirection === 2 && <Interface redirection={setRedirection} />}
+      {redirection === 4 && <PageEspaceEleve redirection={setRedirection} />}
       {redirection === 3 ? (
         selectBox === null ? (!saveName ? (
           <FicheBoxTotal
@@ -35,6 +38,7 @@ function App() {
           />
         )
       ) : null}
+
     </div>
   );
 }
