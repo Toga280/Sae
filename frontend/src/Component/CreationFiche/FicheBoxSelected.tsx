@@ -95,7 +95,7 @@ function FicheBoxSelected({ numberFichBox, onSelectBoxChange }: any) {
             numeroMiniBox={numeroMiniBox}
           />
         ) : null}
-        <button className="bouton_choix_elem" onClick={boutonRetour}>
+        <button className="bouton_choix_elem_retour" onClick={boutonRetour}>
           Retour
         </button>
       </div>

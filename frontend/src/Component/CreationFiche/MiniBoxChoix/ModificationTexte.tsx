@@ -38,7 +38,7 @@ function ModificationTexte({ numeroMiniBox }: any) {
 
   return (
     <div className="modif_texte_ficheBox">
-      <p>Modification de la police du texte : </p>
+      <p>Police du texte : </p>
       <select
         className="choix_selection_police_ficheBox"
         onChange={handlePoliceChange}
@@ -55,12 +55,13 @@ function ModificationTexte({ numeroMiniBox }: any) {
           </option>
         ))}
       </select>
-      <p>Modification de la couleur du texte : </p>
+      <p>Couleur du texte : </p>
       <div className="choix_couleur_modif_fiche">
         <CompactPicker color={selectedColor} onChange={handleColorChange} />
       </div>
-      <p>Modification de la taille du texte : </p>
+      <p>Taille du texte : </p>
       <input
+        className="choix_taille_modif_fiche"
         type="number"
         value={selectedTaille}
         onChange={(e) => {
@@ -68,7 +69,6 @@ function ModificationTexte({ numeroMiniBox }: any) {
           fonctionsMiniBoxInfoJson.modifierTaille(numeroMiniBox, tailleValue);
           setSelectedTaille(tailleValue);
         }}
-        style={{ width: "50px" }}
       />
       <br />
     </div>
