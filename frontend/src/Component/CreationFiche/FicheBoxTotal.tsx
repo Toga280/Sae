@@ -8,6 +8,8 @@ import FicheBox6 from "./FicheBox6";
 import FicheBox7 from "./FicheBox7";
 import FicheBox8 from "./FicheBox8";
 import fonctionsMiniBoxInfoJson from "./MiniBoxInfoFunction";
+import { imprimerPage } from "../FonctionEleve/Imprimer";
+
 function FicheBoxTotal({ onSelectBox }: any) {
   const [numBox, setNumBox] = useState(0);
   const handleClick = (numero: number) => {
@@ -88,6 +90,7 @@ function FicheBoxTotal({ onSelectBox }: any) {
         />
       </div>
       <button onClick={consoleLogJson}>return log json</button>
+      <button onClick={imprimerPage}>imprimer</button>
     </div>
   );
 }

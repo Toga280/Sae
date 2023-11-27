@@ -40,7 +40,6 @@ function ModificationTexte({
     <div className="modif_texte_ficheBox">
       <p>Modification de la police du texte : </p>
       <select className="choix_selection_police_ficheBox" onChange={handlePoliceChange} value={selectedPolice}>
-        <option value="null">Sélectionner une police</option>
         {policeOptions.map((police) => (
           <option
             key={police.value}
