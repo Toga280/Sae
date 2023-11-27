@@ -1,6 +1,5 @@
-import React, { useState } from "react";
+import React from "react";
 function Pictogramme({ setModificationPictoPropsFalse }: any) {
-  
   /* 
 
  //// FONCTION POUR AFFICHER TOUTES LES IMAGES A MODIFIER ////
