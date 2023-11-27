@@ -2,7 +2,8 @@ import React from 'react';
 import Pictogramme from './Pictogramme';
 function ModificationPicto({ setModificationPictoPropsFalse }: any){
  return (
-    <div>
+    <div className="select_all_choix_picto">
+        <p>Choix du pictogramme : </p>
         <div onClick={setModificationPictoPropsFalse}>
             <Pictogramme />
         </div>

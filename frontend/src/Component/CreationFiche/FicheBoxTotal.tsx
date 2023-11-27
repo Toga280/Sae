@@ -118,6 +118,8 @@ function FicheBoxTotal({ onSelectBox, redirection }: any) {
         Sauvegarder
       </button>
       <button className="boutton_brouillon_interaction_edu">Brouillons</button>
+      <button className="boutton_sauvegarder_interaction_edu" onClick={imprimerPage}>imprimer</button>
+
       <button onClick={apiTest}>poiauizehfihb</button>
     </div>
   );
