@@ -5,6 +5,9 @@ import { CompactPicker, ColorResult } from "react-color";
 const policeOptions = [
   { value: "Times New Roman", label: "(défault) Times New Roman" },
   { value: "Arial", label: "Arial" },
+  { value: "Verdana", label: "Verdana" },
+  { value: "Helvetica", label: "Helvetica" },
+  { value: "Courier New", label: "Courier New" },
   // Ajoutez d'autres polices ici
 ];
 
