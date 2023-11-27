@@ -1,0 +1,33 @@
+body{
+    background-color: #f7f1e9;
+    justify-content: center; 
+
+  }
+  h2 {
+    font-weight: bold;
+    text-align: center;
+    color: #355c7d;
+  }
+  
+  input[type="button"] {
+
+    border: 0.15em solid #355c7d;
+    color: #355c7d;
+    margin: 1em;
+    padding: 0.5em;
+    width: 25%;
+    margin: auto;
+    margin-top: 1em;
+    background-color: #f7f1e9;
+    border-radius: 0.2em;
+  }
+
+  #content{
+    display: flex;
+    justify-content: center; 
+    align-items: center;
+  }
+
+  #maFiche{
+    margin-right: 0%;
+  }

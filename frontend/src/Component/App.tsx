@@ -3,7 +3,7 @@ import FicheBoxTotal from "./CreationFiche/FicheBoxTotal";
 import FicheBoxSelected from "./CreationFiche/FicheBoxSelected";
 import PageConnection from "./ConnectionPage/pageConnection";
 import Interface from "./Interface_Educateur/Interface";
-
+import PageEspaceEleve from "./EspaceEleve/pageEspaceEleve";
 function App() {
   const [selectBox, setSelectBox] = useState(null);
   const [redirection, setRedirection] = useState(1);
@@ -14,6 +14,7 @@ function App() {
 
   return (
     <div>
+
       {redirection === 1 && <PageConnection redirection={setRedirection} />}
       {redirection === 2 && <Interface redirection={setRedirection} />}
       {redirection === 3 ? (
@@ -29,6 +30,7 @@ function App() {
           />
         )
       ) : null}
+
     </div>
   );
 }
