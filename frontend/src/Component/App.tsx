@@ -5,9 +5,12 @@ import PageConnection from "./ConnectionPage/pageConnection";
 import Interface from "./Interface_Educateur/Interface";
 import CreationProfil from "./Interface_Educateur/CreationProfil";
 import PageEspaceEleve from "./EspaceEleve/pageEspaceEleve";
+import Sauvegarder from "./CreationFiche/Sauvegarder";
+
 function App() {
   const [selectBox, setSelectBox] = useState(null);
   const [redirection, setRedirection] = useState(1);
+  const [saveName, setSaveName] = useState(false);
 
   const handleSelectBoxChange = (value: any) => {
     setSelectBox(value);
@@ -21,11 +24,15 @@ function App() {
       {redirection === 4 && <PageEspaceEleve redirection={setRedirection} />}
       {redirection === 5 && <CreationProfil redirection={setRedirection} />}
       {redirection === 3 ? (
-        selectBox === null ? (
+        selectBox === null ? (!saveName ? (
           <FicheBoxTotal
             onSelectBox={handleSelectBoxChange}
             redirection={setRedirection}
-          />
+            setSaveName={setSaveName}
+          />) : (
+            <Sauvegarder redirection={setRedirection}
+            setSaveName={setSaveName} />
+          )
         ) : (
           <FicheBoxSelected
             numberFichBox={selectBox}
