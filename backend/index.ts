@@ -27,11 +27,11 @@ const miniBoxSchema = new mongoose.Schema({
   PoliceTexte: { type: String, required: true },
   Taille: { type: Number, required: true },
   CouleurFond: { type: String, default: 'none' },
-  Audio: { type: Boolean, required: true },
-  isSelected: { type: Boolean, required: true }
+  Audio: { type: Boolean, required: true }
 }, { _id: false });
 
 const ficheSchema = new mongoose.Schema({
+  info: { name: String },
   MiniBox1: { type: miniBoxSchema, required: true },
   MiniBox2: { type: miniBoxSchema, required: true },
   MiniBox3: { type: miniBoxSchema, required: true },
@@ -55,7 +55,7 @@ const ficheSchema = new mongoose.Schema({
   MiniBox21: { type: miniBoxSchema, required: true },
   MiniBox22: { type: miniBoxSchema, required: true },
   MiniBox23: { type: miniBoxSchema, required: true },
-});
+}, { _id: false });
 
 const Fiche = mongoose.model('Fiche', ficheSchema);
 
