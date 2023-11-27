@@ -4,6 +4,9 @@ function Interface({ redirection }: any) {
   const setRedirectionthree = () => {
     redirection(3);
   };
+  const setRedirectionfive = () => {
+    redirection(5);
+  };
 
   return (
     <div>
@@ -34,7 +37,7 @@ function Interface({ redirection }: any) {
           Modifier mots de passe
           </button>
           <button
-          className="bouton_interface_educateur" onClick={setRedirectionthree}>
+          className="bouton_interface_educateur" onClick={setRedirectionfive}>
           Créer un profil
           </button>
           <button

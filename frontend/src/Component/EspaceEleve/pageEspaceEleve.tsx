@@ -11,8 +11,8 @@ function PageEspaceEleve({ redirection }: any) {
         <p className="txt_espace_élève">Espace élève</p>
 
         <div className="content_espace_eleve">
-            <input className="bouton_interface_eleve" type="button" id="maFiche" value="maFiche" />
-            <input className="bouton_interface_eleve" type="button" id="photo" value="voir mes photos" />
+            <input className="bouton_interface_eleve" type="button" id="maFiche" value="ma Fiche" />
+            <input className="bouton_interface_eleve" type="button" id="photo" value="Voir mes photos" />
         </div>
 
     </div>
