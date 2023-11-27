@@ -145,6 +145,19 @@ const fonctionsMiniBoxInfoJson: FonctionsMiniBoxInfoJson = {
 
     return null;
   },
+  modifierNom: (nom) => {
+    for (let key in MiniBoxInfoJson) {
+      const currentBox = MiniBoxInfoJson[key];
+        currentBox.name = nom
+    }
+  },
+  getNom: () => {
+    for (let key in MiniBoxInfoJson) {
+      const currentBox = MiniBoxInfoJson[key];
+        return currentBox.name
+    }
+    return "Nom de la fiche"
+  },
   getAllJson:() => {
     return MiniBoxInfoJson
   },
