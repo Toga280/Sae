@@ -56,7 +56,9 @@ function ModificationTexte({
         ))}
       </select>
       <p>Modification de la couleur du texte : </p>
-      <CompactPicker color={selectedColor} onChange={handleColorChange} />
+      <div className="choix_couleur_modif_fiche">
+        <CompactPicker color={selectedColor} onChange={handleColorChange} />
+      </div>
       <p>Modification de la taille du texte : </p>
       <input
         type="number"
@@ -69,7 +71,12 @@ function ModificationTexte({
         style={{ width: "50px" }}
       />
       <br />
-      <button onClick={setModificationTextePropsFalse}>Sauvegarder</button>
+      <button
+        className="bouton_save_modif_texte"
+        onClick={setModificationTextePropsFalse}
+      >
+        Sauvegarder
+      </button>
     </div>
   );
 }

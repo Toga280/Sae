@@ -13,24 +13,14 @@ p {
 */
 #login-form-wrap {
   border: 1px solid black;
-  background-color: #fff;
+  background-color: #E9E9E9;
   width: 30%;
   margin: 1em auto;
   text-align: center;
   padding: 20px 0 20px 0;
   border-radius: 4px;
 }
-@media (max-width: 1100px) {
-  #login-form-wrap {
-    border: 1px solid black;
-    background-color: #fff;
-    width: 55%;
-    margin: 30px auto;
-    text-align: center;
-    padding: 20px 0 20px 0;
-    border-radius: 4px;
-  }
-}
+
 #login-form {
   padding: 0 60px;
 }
@@ -61,4 +51,41 @@ p {
   padding: 0.8em;
   margin: 1em;
   border-radius: 4px;
+}
+@media (max-width: 1100px) {
+  #login-form-wrap {
+    border: 1px solid black;
+    background-color: #E9E9E9;
+    width: 55%;
+    margin: 30px auto;
+    text-align: center;
+    padding: 20px 0 20px 0;
+    border-radius: 4px;
+  }
+}
+@media (max-width: 700px) {
+  #login-form-wrap {
+    border: 1px solid black;
+    background-color: #E9E9E9;
+    width: 80%;
+    margin: 3em auto;
+    text-align: center;
+    border-radius: 4px;
+  }
+  .bouton_submit_formulaire_edu{
+    background-color: #f7f1e9;
+    color: #355c7d;
+    font-weight: bold;
+    font-size: 12px;
+    padding: 0.8em;
+    margin: 1em;
+    border-radius: 4px;
+  }
+  .form_login_edu {
+    display: block;
+    box-sizing: border-box;
+    width: 100%;
+    height: 30px;
+    border-radius: 4px;
+  }
 }

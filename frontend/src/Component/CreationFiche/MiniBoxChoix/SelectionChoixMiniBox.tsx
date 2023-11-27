@@ -3,8 +3,7 @@ import React, { useState } from "react";
 import ModificationTexte from "./ModificationTexte";
 import SetSelectionChoixMiniBox from "./SetSelectionChoixMiniBox";
 import fonctionsMiniBoxInfoJson from "../MiniBoxInfoFunction";
-import Pictogramme from "./Pictogramme";
-
+import ModificationPicto from "./ModificationPicto";
 function SelectionChoixMiniBox({
   setSelectionChoixMiniBoxFalse,
   numeroMiniBox,
@@ -76,7 +75,7 @@ function SelectionChoixMiniBox({
           <p></p>
         )}
         {modificationPictoProps === true ? (
-          <Pictogramme
+          <ModificationPicto
             setModificationPictoPropsFalse={setModificationPictoPropsFalse}
           />
         ) : null}

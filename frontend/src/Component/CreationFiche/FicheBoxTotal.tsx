@@ -32,6 +32,7 @@ function FicheBoxTotal({ onSelectBox }: any) {
 
   return (
     <div>
+      <button className="boutton_retour_interaction_edu">Retour</button>
       <div onClick={() => handleClick(1)}>
         <FicheBox1
           numeroMiniBox={[0]}
@@ -89,6 +90,8 @@ function FicheBoxTotal({ onSelectBox }: any) {
         />
       </div>
       <button onClick={consoleLogJson}>return log json</button>
+      <button className="boutton_sauvegarder_interaction_edu">Sauvegarder</button>
+      <button className="boutton_brouillon_interaction_edu">Brouillons</button>
     </div>
   );
 }
