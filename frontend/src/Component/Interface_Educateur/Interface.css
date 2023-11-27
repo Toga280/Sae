@@ -43,7 +43,7 @@
     .global_bouton_interface_educateur {
         display: flex;
         flex-wrap: wrap;
-        justify-content: space-around; /* Ajustez selon vos préférences */
+        justify-content: space-around; 
     }
     
     .bouton_interface_educateur {

@@ -31,3 +31,41 @@ input.TextInput {
     box-sizing: border-box;
   }
 }
+.boutton_retour_interaction_edu{
+  background-color: #f7f1e9;
+  max-height: 4em;
+  width: 20%;
+  max-width: 30%;
+  color: #355c7d;
+  font-weight: bold;
+  font-size: 18px;
+  padding: 0.8em;
+  margin: 1em;
+  border-radius: 4px;
+}
+.boutton_sauvegarder_interaction_edu{
+  background-color: #f7f1e9;
+  max-height: 4em;
+  width: 20%;
+  max-width: 30%;
+  color: #355c7d;
+  font-weight: bold;
+  font-size: 18px;
+  padding: 0.8em;
+  margin: 1em;
+  border-radius: 4px;
+  float: right;
+}
+.boutton_brouillon_interaction_edu{
+  background-color: #f7f1e9;
+  max-height: 4em;
+  width: 20%;
+  max-width: 30%;
+  color: #355c7d;
+  font-weight: bold;
+  font-size: 18px;
+  padding: 0.8em;
+  margin: 1em;
+  border-radius: 4px;
+  float: right;
+}
