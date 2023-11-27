@@ -22,7 +22,7 @@ const fonctionsMiniBoxInfoJson: FonctionsMiniBoxInfoJson = {
       }
     }
 
-    return null;
+    return "#FFFFFF";
   },
   modifierChoixMiniBox: (position, nouveauChoix) => {
     for (let key in MiniBoxInfoJson) {
@@ -66,6 +66,12 @@ const fonctionsMiniBoxInfoJson: FonctionsMiniBoxInfoJson = {
 
     return null;
   },
+  allIsSelectedMiniBoxFalse: () => {
+    for (let key in MiniBoxInfoJson) {
+      const currentBox = MiniBoxInfoJson[key];
+      currentBox.isSelected = false
+    }
+  },
   modifierPoliceTexte: (position, nouvellePolice) => {
     for (let key in MiniBoxInfoJson) {
       const currentBox = MiniBoxInfoJson[key];
@@ -85,7 +91,7 @@ const fonctionsMiniBoxInfoJson: FonctionsMiniBoxInfoJson = {
       }
     }
 
-    return null;
+    return undefined;
   },
   modifierTaille: (position, nouvelleTaille) => {
     for (let key in MiniBoxInfoJson) {
@@ -106,7 +112,7 @@ const fonctionsMiniBoxInfoJson: FonctionsMiniBoxInfoJson = {
       }
     }
 
-    return null;
+    return 12;
   },
   modifierCouleurFond: (position, nouvelleCouleurFond) => {
     for (let key in MiniBoxInfoJson) {

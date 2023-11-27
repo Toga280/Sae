@@ -8,10 +8,13 @@ import FicheBox6 from "./FicheBox6";
 import FicheBox7 from "./FicheBox7";
 import FicheBox8 from "./FicheBox8";
 import fonctionsMiniBoxInfoJson from "./MiniBoxInfoFunction";
-function FicheBoxTotal({ onSelectBox }: any) {
+import { imprimerPage } from "../FonctionEleve/Imprimer";
+
+function FicheBoxTotal({ onSelectBox, redirection }: any) {
   const [numBox, setNumBox] = useState(0);
   const handleClick = (numero: number) => {
     setNumBox(numero);
+    fonctionsMiniBoxInfoJson.allIsSelectedMiniBoxFalse();
   };
 
   const consoleLogJson = () => {
@@ -31,6 +34,12 @@ function FicheBoxTotal({ onSelectBox }: any) {
 
   return (
     <div>
+      <button
+        className="boutton_retour_interaction_edu"
+        onClick={() => redirection(2)}
+      >
+        Retour
+      </button>
       <div onClick={() => handleClick(1)}>
         <FicheBox1
           numeroMiniBox={[0]}
@@ -88,6 +97,11 @@ function FicheBoxTotal({ onSelectBox }: any) {
         />
       </div>
       <button onClick={consoleLogJson}>return log json</button>
+      <button onClick={imprimerPage}>imprimer</button>
+      <button className="boutton_sauvegarder_interaction_edu">
+        Sauvegarder
+      </button>
+      <button className="boutton_brouillon_interaction_edu">Brouillons</button>
     </div>
   );
 }

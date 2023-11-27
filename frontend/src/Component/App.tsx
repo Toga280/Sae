@@ -1,5 +1,4 @@
 import React, { useState } from "react";
-import page_connection from "./ConnectionPage/pageConnection";
 import FicheBoxTotal from "./CreationFiche/FicheBoxTotal";
 import FicheBoxSelected from "./CreationFiche/FicheBoxSelected";
 import PageConnection from "./ConnectionPage/pageConnection";
@@ -19,7 +18,10 @@ function App() {
       {redirection === 2 && <Interface redirection={setRedirection} />}
       {redirection === 3 ? (
         selectBox === null ? (
-          <FicheBoxTotal onSelectBox={handleSelectBoxChange} />
+          <FicheBoxTotal
+            onSelectBox={handleSelectBoxChange}
+            redirection={setRedirection}
+          />
         ) : (
           <FicheBoxSelected
             numberFichBox={selectBox}
