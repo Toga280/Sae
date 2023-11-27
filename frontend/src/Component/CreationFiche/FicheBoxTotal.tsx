@@ -9,6 +9,7 @@ import FicheBox7 from "./FicheBox7";
 import FicheBox8 from "./FicheBox8";
 import fonctionsMiniBoxInfoJson from "./MiniBoxInfoFunction";
 import { imprimerPage } from "../FonctionEleve/Imprimer";
+import Sauvegarder from "./Sauvegarder";
 import axios from "axios";
 
 function FicheBoxTotal({ onSelectBox, redirection }: any) {
@@ -113,7 +114,7 @@ function FicheBoxTotal({ onSelectBox, redirection }: any) {
       </div>
       <button onClick={consoleLogJson}>return log json</button>
       <button onClick={imprimerPage}>imprimer</button>
-      <button className="boutton_sauvegarder_interaction_edu">
+      <button onClick={Sauvegarder} className="boutton_sauvegarder_interaction_edu">
         Sauvegarder
       </button>
       <button className="boutton_brouillon_interaction_edu">Brouillons</button>
