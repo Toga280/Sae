@@ -31,12 +31,11 @@ const miniBoxSchema = new Schema<MiniBox>({
   CouleurTexte: { type: String, required: true },
   PoliceTexte: { type: String, required: true },
   Taille: { type: Number, required: true },
-  CouleurFond: { type: String, default: 'none' },
   Audio: { type: Boolean, required: true },
-});
+}, { _id: false }); 
 
 const ficheSchema = new Schema<FicheDocument>({
-  info: { type: { name: String } },
+  info: { type: { name: String }, _id: false },
   MiniBox1: { type: miniBoxSchema, required: true },
   MiniBox2: { type: miniBoxSchema, required: true },
   MiniBox3: { type: miniBoxSchema, required: true },
@@ -87,6 +86,8 @@ app.post('/POST/fiche', (req : any, res : any) => {
 
 /*------------------- GET -------------------*/
 
+
+/*  */
 app.get('/GET/allFicheNames', async (req: any, res: any) => {
   try {
     const ficheNames = await Fiche.find({}, 'info.name').exec();
@@ -99,6 +100,50 @@ app.get('/GET/allFicheNames', async (req: any, res: any) => {
     res.status(200).json(allNames);
   } catch (error) {
     console.error('Erreur lors de la recherche des noms de fiches :', error);
+    res.status(500).send('Erreur interne du serveur');
+  }
+});
+
+/* */
+app.get('/GET/nameFiche', async (req: any, res: any) => {
+  const { name } = req.query;
+
+  if (!name) {
+    return res.status(400).send('Le paramètre "name" est requis.');
+  }
+
+  try {
+    const fiche = await Fiche.findOne({ 'info.name': name }).exec();
+
+    if (!fiche) {
+      return res.status(404).send('Fiche non trouvée');
+    }
+
+    res.status(200).json(fiche);
+  } catch (error) {
+    console.error('Erreur lors de la recherche de la fiche :', error);
+    res.status(500).send('Erreur interne du serveur');
+  }
+});
+
+/* */
+app.get('/GET/nameFicheExiste', async (req: any, res: any) => {
+  const { name } = req.query;
+
+  if (!name) {
+    return res.status(400).send('Le paramètre "name" est requis.');
+  }
+
+  try {
+    const fiche = await Fiche.findOne({ 'info.name': name }).exec();
+
+    if(fiche) {
+      res.status(200).send(true);
+    } else {
+      return res.status(200).send(false);
+    }
+  } catch (error) {
+    console.error('Erreur lors de la recherche de la fiche :', error);
     res.status(500).send('Erreur interne du serveur');
   }
 });

@@ -29,4 +29,5 @@ export interface FonctionsMiniBoxInfoJson {
   modifierNom: (nom: string) => void;
   getNom: () => string;
   getAllJson: () => MiniBox;
+  setNewJson: (newJson : any) => void;
 }
