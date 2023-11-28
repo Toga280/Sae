@@ -1,6 +1,7 @@
 import React, { useState } from "react";
 import fonctionsMiniBoxInfoJson from "./MiniBoxInfoFunction";
 import axios from "axios";
+import "./Sauvegarder.css"
 
 function Sauvegarder({ redirection, setSaveName }: any) {
   const [nomFiche, setNomFiche] = useState("");
@@ -30,7 +31,7 @@ function Sauvegarder({ redirection, setSaveName }: any) {
   };
 
   return (
-    <div>
+    <div className="global_sauvegarder_fiche">
       <input
         className="input_sauvegarder_ficheBox"
         type="text"
