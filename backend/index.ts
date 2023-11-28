@@ -1,3 +1,5 @@
+import { Document, Schema, model, Model } from "mongoose";
+import { MiniBox, FicheDocument } from "./interface";
 const express = require('express');
 const app = express();
 const mongoose = require('mongoose');
@@ -8,6 +10,9 @@ const DB_URL = 'mongodb://0.0.0.0/sae';
 
 app.use(cors());
 app.use(express.json());
+app.listen(PORT, () => {
+  console.log("connection au port 5000 reussi")
+})
 
 mongoose.connect(DB_URL);
 const conn = mongoose.connection;
@@ -20,18 +25,18 @@ conn.on('error', () =>{
   process.exit(1);
 })
 
-const miniBoxSchema = new mongoose.Schema({
+const miniBoxSchema = new Schema<MiniBox>({
   ChoixMiniBox: { type: String, required: true },
   Position: { type: Number, required: true },
   CouleurTexte: { type: String, required: true },
   PoliceTexte: { type: String, required: true },
   Taille: { type: Number, required: true },
   CouleurFond: { type: String, default: 'none' },
-  Audio: { type: Boolean, required: true }
-}, { _id: false });
+  Audio: { type: Boolean, required: true },
+});
 
-const ficheSchema = new mongoose.Schema({
-  info: { name: String },
+const ficheSchema = new Schema<FicheDocument>({
+  info: { type: { name: String } },
   MiniBox1: { type: miniBoxSchema, required: true },
   MiniBox2: { type: miniBoxSchema, required: true },
   MiniBox3: { type: miniBoxSchema, required: true },
@@ -55,9 +60,11 @@ const ficheSchema = new mongoose.Schema({
   MiniBox21: { type: miniBoxSchema, required: true },
   MiniBox22: { type: miniBoxSchema, required: true },
   MiniBox23: { type: miniBoxSchema, required: true },
-}, { _id: false });
+});
 
-const Fiche = mongoose.model('Fiche', ficheSchema);
+const Fiche = model<FicheDocument>('Fiche', ficheSchema);
+
+/*------------------- POST -------------------*/
 
 app.post('/POST/fiche', (req : any, res : any) => {
   const newData = req.body;
@@ -76,9 +83,22 @@ app.post('/POST/fiche', (req : any, res : any) => {
       res.status(500).send('Erreur interne du serveur');
     }
   });
-
 });
 
-app.listen(PORT, () => {
-  console.log("connection au port 5000 reussi")
-})
+/*------------------- GET -------------------*/
+
+app.get('/GET/allFicheNames', async (req: any, res: any) => {
+  try {
+    const ficheNames = await Fiche.find({}, 'info.name').exec();
+
+    if (!ficheNames || ficheNames.length === 0) {
+      return res.status(404).send('Aucune fiche trouvée');
+    }
+
+    const allNames = ficheNames.map((fiche: any) => fiche.info?.name);
+    res.status(200).json(allNames);
+  } catch (error) {
+    console.error('Erreur lors de la recherche des noms de fiches :', error);
+    res.status(500).send('Erreur interne du serveur');
+  }
+});

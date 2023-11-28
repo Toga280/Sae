@@ -1,51 +1,59 @@
 import React from "react";
 import "./Interface.css";
 function Interface({ redirection }: any) {
-  const setRedirectionthree = () => {
-    redirection(3);
-  };
-  const setRedirectionfive = () => {
-    redirection(5);
-  };
-
   return (
     <div>
       <h2 className="txt_espace_prof">Espace Professeur</h2>
       <div className="global_bouton_interface_educateur">
-          <button
-          className="bouton_interface_educateur" onClick={setRedirectionthree}>
+        <button
+          className="bouton_interface_educateur"
+          onClick={() => redirection(3)}
+        >
           Création Fiche
-          </button>
-          <button
-          className="bouton_interface_educateur" onClick={setRedirectionthree}>
+        </button>
+        <button
+          className="bouton_interface_educateur"
+          onClick={() => redirection(3)}
+        >
           Consulter fiches/images
-          </button>
-          <button
-          className="bouton_interface_educateur" onClick={setRedirectionthree}>
+        </button>
+        <button
+          className="bouton_interface_educateur"
+          onClick={() => redirection(3)}
+        >
           Importer un pictogramme
-          </button>
-          <button
-          className="bouton_interface_educateur" onClick={setRedirectionthree}>
+        </button>
+        <button
+          className="bouton_interface_educateur"
+          onClick={() => redirection(3)}
+        >
           Brouillons fiches
-          </button>
-          <button
-          className="bouton_interface_educateur" onClick={setRedirectionthree}>
+        </button>
+        <button
+          className="bouton_interface_educateur"
+          onClick={() => redirection(6)}
+        >
           Fiches crées
-          </button>
-          <button
-          className="bouton_interface_educateur" onClick={setRedirectionthree}>
+        </button>
+        <button
+          className="bouton_interface_educateur"
+          onClick={() => redirection(3)}
+        >
           Modifier mots de passe
-          </button>
-          <button
-          className="bouton_interface_educateur" onClick={setRedirectionfive}>
+        </button>
+        <button
+          className="bouton_interface_educateur"
+          onClick={() => redirection(5)}
+        >
           Créer un profil
-          </button>
-          <button
-          className="bouton_interface_educateur" onClick={setRedirectionthree}>
+        </button>
+        <button
+          className="bouton_interface_educateur"
+          onClick={() => redirection(3)}
+        >
           Archiver un profil
-          </button>
-
-        </div>
+        </button>
+      </div>
     </div>
   );
 }
