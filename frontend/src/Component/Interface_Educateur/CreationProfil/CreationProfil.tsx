@@ -25,6 +25,8 @@ function CreationFiche({ redirection }: any) {
         </div>
       </form>
       <button className="bouton_retour_creation_profil_edu" onClick={setRedirectionTwo}> Retour</button>
+      <button className="bouton_sauvegarder_creation_profil_edu" > Sauvegarder</button>
+
     </div>
   );
 }
