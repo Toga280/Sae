@@ -1,9 +1,24 @@
-.global_bouton_interface_educateur{
+.global_bouton_interface_educateur {
     border: 1px solid black;
     width: 80%;
-    display: wrap;
+    display: flex; 
+    flex-wrap: wrap; 
     margin: 1em auto;
-
+    justify-content: center;
+    align-items: center; 
+}
+.bouton_sauvegarder_creation_profil_edu{
+    background-color: #f7f1e9;
+    max-height: 4em;
+    width: 10%;
+    max-width: 20%;
+    color: #355c7d;
+    font-weight: bold;
+    font-size: 18px;
+    padding: 0.8em;
+    margin: 1em;
+    border-radius: 4px;
+    float: right;
 }
 .bouton_interface_educateur{
     

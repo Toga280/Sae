@@ -3,7 +3,7 @@ import FicheBoxTotal from "./CreationFiche/FicheBoxTotal";
 import FicheBoxSelected from "./CreationFiche/FicheBoxSelected";
 import PageConnection from "./ConnectionPage/pageConnection";
 import Interface from "./Interface_Educateur/Interface";
-import CreationProfil from "./Interface_Educateur/CreationProfil";
+import CreationProfil from "./Interface_Educateur/CreationProfil/CreationProfil";
 import PageEspaceEleve from "./EspaceEleve/pageEspaceEleve";
 import Sauvegarder from "./CreationFiche/Sauvegarder";
 import ListeFiches from "./FicheCreer/ListeFiches";
