@@ -1,5 +1,5 @@
 import React from "react";
-import ".././EspaceEleve/pageEspaceEleve.css";
+import "./pageEspaceEleve.css";
 
 function PageEspaceEleve({ redirection }: any) {
   const setRedirectionfour = () => {
@@ -7,7 +7,11 @@ function PageEspaceEleve({ redirection }: any) {
   };
   return (
     <div className="global_bouton_interface_élève">
-
+        <button
+          className="bouton_deconnection_eleve"
+          onClick={() => redirection(1)}
+        >Se déconnecter
+        </button>
         <p className="txt_espace_élève">Espace élève</p>
 
         <div className="content_espace_eleve">
