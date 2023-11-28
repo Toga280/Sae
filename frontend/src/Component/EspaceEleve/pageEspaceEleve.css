@@ -31,3 +31,55 @@
     justify-content: center; 
     align-items: center;
   }
+  .bouton_deconnection_eleve{
+    border: 1px solid red;
+    background-color: #f7f1e9;
+    max-height: 4em;
+    width: 15%;
+    max-width: 20%;
+    color: red;
+    font-weight: bold;
+    font-size: 18px;
+    padding: 0.8em;
+    margin: 1em;
+    border-radius: 4px;
+}
+@media (max-width: 850px) {
+  .bouton_deconnection_eleve{
+      border: 1px solid red;
+      background-color: #f7f1e9;
+      max-height: 4em;
+      width: 15%;
+      max-width: 20%;
+      color: red;
+      font-weight: bold;
+      font-size: 18px;
+      padding: 0.8em;
+      margin: 1em;
+      border-radius: 4px;
+      overflow: hidden;
+      white-space: nowrap;
+      text-overflow: ellipsis;
+  }
+
+}
+/* REVOIR LE CSS RESPONSIVE +++++++++++++++++++++++++++++++++++++++++++++++*/
+@media (max-width: 720px) {
+  .content_espace_eleve {
+    display: flex;
+    justify-content: space-around; 
+  }
+  .bouton_interface_eleve {
+
+    background-color: #f7f1e9;
+    max-height: 4em;
+    width: 30%;
+    max-width: 30%;
+    color: #355c7d;
+    font-weight: bold;
+    font-size: 18px;
+    padding: 0.8em;
+    margin: 1em;
+    border-radius: 4px;
+  }
+}

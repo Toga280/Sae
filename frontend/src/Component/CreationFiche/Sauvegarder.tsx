@@ -37,6 +37,7 @@ function Sauvegarder({ redirection, setSaveName }: any) {
         type="text"
         placeholder="Nom de la fiche"
         value={nomFiche}
+        required
         onChange={handleInputChange}
       />
       <button className="boutton_sauvegarder_ficheBox" onClick={sauvegarde}>
