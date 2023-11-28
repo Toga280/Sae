@@ -1,3 +1,4 @@
+import { Json } from "sequelize/types/utils";
 import { FonctionsMiniBoxInfoJson } from "./interface";
 
 const MiniBoxInfoJson = require("./MiniBoxInfo.json");
@@ -158,19 +159,28 @@ const fonctionsMiniBoxInfoJson: FonctionsMiniBoxInfoJson = {
   getAllJson:() => {
     return MiniBoxInfoJson
   },
-    modifierAllJsonToBase: () => {
-      MiniBoxInfoJson.info.name = "";
-      for (let key in MiniBoxInfoJson) {
-        const currentBox = MiniBoxInfoJson[key];
-        currentBox.ChoixMiniBox = "Texte";
-        currentBox.CouleurTexte = "#000000";
-        currentBox.PoliceTexte = "Times New Roman";
-        currentBox.Taille = 18;
-        currentBox.CouleurFond = "none";
-        currentBox.Audio = false;
-        currentBox.isSelected = false;
-        }
-      }
+  modifierAllJsonToBase: () => {
+    MiniBoxInfoJson.info.name = "";
+    for (let key in MiniBoxInfoJson) {
+      const currentBox = MiniBoxInfoJson[key];
+      currentBox.ChoixMiniBox = "Texte";
+      currentBox.CouleurTexte = "#000000";
+      currentBox.PoliceTexte = "Times New Roman";
+      currentBox.Taille = 18;
+      currentBox.CouleurFond = "none";
+      currentBox.Audio = false;
+      currentBox.isSelected = false;
+    }
+  },
+  setNewJson: (newJson: any) => {
+    if (typeof newJson === 'object' && newJson !== null) {
+      Object.keys(MiniBoxInfoJson).forEach((key) => {
+        MiniBoxInfoJson[key] = newJson[key];
+      });
+    } else {
+      console.error('Le paramètre newJson doit être un objet JSON valide.');
+    }
+  }
   };
 
 export default fonctionsMiniBoxInfoJson;

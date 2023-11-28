@@ -29,6 +29,21 @@ function Sauvegarder({ redirection, setSaveName }: any) {
       });
   };
 
+  const testNameFiche = (nomFiche: string) => {
+    axios
+      .get(
+        `http://localhost:5000/GET/nameFicheExiste?name=${encodeURIComponent(
+          nomFiche
+        )}`
+      )
+      .then((response) => {
+        console.log("Réponse du serveur :", response.data);
+      })
+      .catch((error) => {
+        console.error("Erreur lors de la requête vers le serveur :", error);
+      });
+  };
+
   return (
     <div>
       <input
@@ -40,6 +55,12 @@ function Sauvegarder({ redirection, setSaveName }: any) {
       />
       <button className="boutton_sauvegarder_ficheBox" onClick={sauvegarde}>
         Sauvegarder
+      </button>
+      <button
+        className="boutton_sauvegarder_ficheBox"
+        onClick={() => testNameFiche(nomFiche)}
+      >
+        teste fiche name existe
       </button>
     </div>
   );
