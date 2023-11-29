@@ -1,10 +1,12 @@
 import React, { useState } from "react";
 import fonctionsMiniBoxInfoJson from "./MiniBoxInfoFunction";
+import PopUpSauvegarder from "./PopUpSauvegarder";
 import axios from "axios";
-import "./Sauvegarder.css"
+import "./Sauvegarder.css";
 
 function Sauvegarder({ redirection, setSaveName }: any) {
   const [nomFiche, setNomFiche] = useState("");
+  const [upPopUpSauvegarder, setUpPopUpSauvegarder] = useState(false);
 
   const handleInputChange = (event: any) => {
     setNomFiche(event.target.value);
@@ -30,19 +32,23 @@ function Sauvegarder({ redirection, setSaveName }: any) {
       });
   };
 
-  const testNameFiche = (nomFiche: string) => {
-    axios
-      .get(
+  const testNameFiche = async (nomFiche: string) => {
+    try {
+      const response = await axios.get(
         `http://localhost:5000/GET/nameFicheExiste?name=${encodeURIComponent(
           nomFiche
         )}`
-      )
-      .then((response) => {
-        console.log("Réponse du serveur :", response.data);
-      })
-      .catch((error) => {
-        console.error("Erreur lors de la requête vers le serveur :", error);
-      });
+      );
+
+      if (response.data) {
+        setUpPopUpSauvegarder(true);
+      } else {
+        sauvegarde();
+      }
+    } catch (error) {
+      console.error("Erreur lors de la requête vers le serveur :", error);
+      throw error;
+    }
   };
 
   return (
@@ -55,15 +61,19 @@ function Sauvegarder({ redirection, setSaveName }: any) {
         required
         onChange={handleInputChange}
       />
-      <button className="boutton_sauvegarder_ficheBox" onClick={sauvegarde}>
-        Sauvegarder
-      </button>
       <button
         className="boutton_sauvegarder_ficheBox"
         onClick={() => testNameFiche(nomFiche)}
       >
-        teste fiche name existe
+        Sauvegarder
       </button>
+      {upPopUpSauvegarder ? (
+        <PopUpSauvegarder
+          setUpPopUpSauvegarder={setUpPopUpSauvegarder}
+          nomFiche={nomFiche}
+          sauvegarde={sauvegarde}
+        />
+      ) : null}
     </div>
   );
 }

@@ -147,3 +147,27 @@ app.get('/GET/nameFicheExiste', async (req: any, res: any) => {
     res.status(500).send('Erreur interne du serveur');
   }
 });
+
+/*------------------- DELETE -------------------*/
+
+app.get('/DELETE/ficheName', async (req: any, res: any) => {
+  const { name } = req.query;
+  console.log("oui")
+  if (!name) {
+    return res.status(400).send('Le paramètre "name" est requis.');
+  }
+
+  try {
+    const deletedFiche = await Fiche.findOneAndDelete({ 'info.name': name }).exec();
+
+    if (!deletedFiche) {
+      return res.status(404).send('Fiche non trouvée');
+    }
+
+    console.log('Fiche supprimée avec succès:', deletedFiche);
+    res.status(200).send(true);
+  } catch (error) {
+    console.error('Erreur lors de la suppression de la fiche :', error);
+    res.status(500).send('Erreur interne du serveur');
+  }
+});
