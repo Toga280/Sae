@@ -1,7 +1,6 @@
 import React, { useState } from "react";
 import PageLoginEducateur from "./pageLoginEducateur";
 import ConnectionEleve from "./connectionEleve";
-import DupliquerEleves from "./DupliquerEleves";
 import "./pageConnection.css";
 
 function PageConnection({ redirection }: any) {
@@ -21,12 +20,8 @@ function PageConnection({ redirection }: any) {
           Connexion éducateur
         </button>
       )}
-      
-      {!selectBoutton &&
-        Array.from({ length: 8 }).map((_, index) => (
-          <DupliquerEleves key={index} redirection={redirection} />
-        ))}
-      
+      {!selectBoutton && <ConnectionEleve redirection={redirection}/>}
+
       {selectBoutton ? <PageLoginEducateur redirection={redirection} /> : null}
       {selectBoutton && (
         <button
