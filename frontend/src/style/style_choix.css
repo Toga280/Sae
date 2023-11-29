@@ -13,7 +13,7 @@
 }
 .bouton_choix_elem{
     border: 0.1em solid #355c7d;
-    background-color: #f7f1e9;
+    background-color: #ffffff;
     color: #355c7d;
     font-weight: bold;
     font-size: 18px;
@@ -23,7 +23,7 @@
 }
 /*CSS BOUTTON RETOUR===============================================*/
 .bouton_choix_elem_retour{
-    background-color: #f7f1e9;
+    background-color: #ffffff;
     color: #355c7d;
     font-weight: bold;
     font-size: 18px;
@@ -31,6 +31,7 @@
     margin: 1em;
     float: right;
     border-radius: 4px;
+    border: none;
 
 }
 /*CSS Text===============================================*/
@@ -54,7 +55,7 @@ p{
 /*BOUTON APPLIQUER===============================================*/
 .apply_choix_change_button{
     width: 20%;
-    background-color: #f7f1e9;
+    background-color: #ffffff;
     color: #355c7d;
     font-weight: bold;
     font-size: 18px;
@@ -62,6 +63,7 @@ p{
     margin: 1em;
     float: right;
     border-radius: 4px;
+    border: none;
 }
 
 /* CSS MODIF TEXT ===============================================*/

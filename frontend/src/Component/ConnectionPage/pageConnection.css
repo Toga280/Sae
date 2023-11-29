@@ -1,9 +1,4 @@
 
-body{
-    background-color: #d7e1ec;
-  }
-
-
 .general_login {
     width: 75%;
     margin: 1em auto; /* Ajout de 'auto' pour centrer horizontalement */
@@ -16,7 +11,6 @@ body{
 
 
 .login-container {
-    border: 1px solid #355c7d;
     width: 20%;
     margin: 1em;
     background-color: #fff;
@@ -48,14 +42,14 @@ body{
     cursor: pointer;
     font-size: 16px;
 }
-/*BOUTON LOGIN EDUCATEUR ++++++++++++++++++++++++++++++++++++*/
 .button_connection_edu{
-    border: 1px solid #355c7d;
-    background-color: white;
+    
+    background-color: #fff;
     color: #355c7d;
     font-weight: bold;
     font-size: 18px;
     padding: 0.8em;
     margin: 1em;
     border-radius: 4px;
+    border:none;
 }
