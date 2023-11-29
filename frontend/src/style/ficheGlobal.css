@@ -9,9 +9,8 @@
   border-radius: 4px;
 }
 body {
-  background-color: #d7e1ec;
-	/*background-image: linear-gradient(315deg, #ffffff 0%, #d7e1ec 74%);*/
-
+  background-color: #f7f1e9;
+  padding-bottom: 1em;
 }
 select {
   color: #355c7d;

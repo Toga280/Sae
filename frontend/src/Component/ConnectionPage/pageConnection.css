@@ -1,4 +1,9 @@
 
+body{
+    background-color: #d7e1ec;
+  }
+
+
 .general_login {
     width: 75%;
     margin: 1em auto; /* Ajout de 'auto' pour centrer horizontalement */
