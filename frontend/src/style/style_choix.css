@@ -8,13 +8,13 @@
     width: 30%;
     display: flex;
     flex-direction: column;
-    border: 0.1em solid #355c7d;
+    border: none;
     justify-content: center;
 }
 .bouton_choix_elem{
-    border: 0.1em solid #355c7d;
-    background-color: #f7f1e9;
-    color: #355c7d;
+    border: none;
+    background-color: #3498db;
+    color: white;
     font-weight: bold;
     font-size: 18px;
     padding: 0.8em;
@@ -23,7 +23,7 @@
 }
 /*CSS BOUTTON RETOUR===============================================*/
 .bouton_choix_elem_retour{
-    background-color: #f7f1e9;
+    background-color: #ffffff;
     color: #355c7d;
     font-weight: bold;
     font-size: 18px;
@@ -31,6 +31,7 @@
     margin: 1em;
     float: right;
     border-radius: 4px;
+    border: none;
 
 }
 /*CSS Text===============================================*/
@@ -45,7 +46,7 @@ p{
 
     margin: auto;
     margin-top: 1em;
-    border: 0.1em solid #355c7d;
+    border: none;
     color: #355c7d;
     padding: 0.5em;
     width: 90%;
@@ -54,7 +55,7 @@ p{
 /*BOUTON APPLIQUER===============================================*/
 .apply_choix_change_button{
     width: 20%;
-    background-color: #f7f1e9;
+    background-color: #ffffff;
     color: #355c7d;
     font-weight: bold;
     font-size: 18px;
@@ -62,6 +63,7 @@ p{
     margin: 1em;
     float: right;
     border-radius: 4px;
+    border: none;
 }
 
 /* CSS MODIF TEXT ===============================================*/
@@ -96,7 +98,7 @@ p{
 /* CSS RESPONSIVE ===============================================*/
   @media (max-width: 1100px) {
     .boxSelected {
-        border: 0.1em solid #355c7d;
+        border:none;
         color: #355c7d;
         padding: 0.5em;
         width: 90%;
@@ -108,7 +110,7 @@ p{
         width: 40%;
         display: flex;
         flex-direction: column;
-        border: 0.1em solid #355c7d;
+        border: none;
         justify-content: center;
     }
     .modif_texte_ficheBox{

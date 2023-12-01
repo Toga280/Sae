@@ -105,8 +105,12 @@ function FicheBoxTotal({ onSelectBox, redirection, setSaveName }: any) {
           classNameDiv={"Box"}
         />
       </div>
-      <button onClick={consoleLogJson}>return log json</button>
-      <button onClick={imprimerPage}>imprimer</button>
+      {/* RETURN JSON MIS EN COMMENTAIRE POUR LA DEMO 
+      
+      <button onClick={consoleLogJson}>return log json</button> 
+      
+      */}
+
       <button
         onClick={Sauvegarder}
         className="boutton_sauvegarder_interaction_edu"

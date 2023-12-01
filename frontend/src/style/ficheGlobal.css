@@ -1,11 +1,12 @@
 .Box {
-  border: 0.1em solid #355c7d;
+  border: none;
   color: #355c7d;
   padding: 0.5em;
   width: 90%;
   margin: auto;
   margin-top: 1em;
   background-color: white;
+  border-radius: 4px;
 }
 body {
   background-color: #f7f1e9;
@@ -13,7 +14,14 @@ body {
 }
 select {
   color: #355c7d;
+ 
+  border-radius: 4px;
+  background-color: #ffffff;  
+  margin : 4px;
+  
 }
+
+
 input.TextInput {
   width: 100%;
   max-width: 15em;
@@ -32,7 +40,7 @@ input.TextInput {
   }
 }
 .boutton_retour_interaction_edu{
-  background-color: #f7f1e9;
+  background-color: #ffffff;
   max-height: 4em;
   width: 20%;
   max-width: 30%;
@@ -42,9 +50,10 @@ input.TextInput {
   padding: 0.8em;
   margin: 1em;
   border-radius: 4px;
+  border: none;
 }
 .boutton_sauvegarder_interaction_edu{
-  background-color: #f7f1e9;
+  background-color: #ffffff;
   max-height: 4em;
   width: 20%;
   max-width: 30%;
@@ -55,9 +64,10 @@ input.TextInput {
   margin: 1em;
   border-radius: 4px;
   float: right;
+  border: none;
 }
 .boutton_brouillon_interaction_edu{
-  background-color: #f7f1e9;
+  background-color: #ffffff;
   max-height: 4em;
   width: 20%;
   max-width: 30%;
@@ -68,4 +78,5 @@ input.TextInput {
   margin: 1em;
   border-radius: 4px;
   float: right;
+  border: none;
 }

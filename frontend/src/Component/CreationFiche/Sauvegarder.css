@@ -4,10 +4,11 @@
     margin: 1em auto;
 }
 .boutton_sauvegarder_ficheBox{
-    background-color: #f7f1e9;
+    background-color: #ffffff;
     color: #355c7d;
     font-weight: bold;
     padding: 0.8em;
     margin: 1em;
     border-radius: 4px;
+    border: none;
 }

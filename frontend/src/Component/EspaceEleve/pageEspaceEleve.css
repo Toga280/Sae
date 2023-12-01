@@ -16,6 +16,7 @@
     padding: 0.8em;
     margin: 1em;
     border-radius: 4px;
+    border: none;
   }
 .txt_espace_élève{
     margin-top: 3em;
@@ -32,17 +33,17 @@
     align-items: center;
   }
   .bouton_deconnection_eleve{
-    border: 1px solid red;
-    background-color: white;
+    color: #ffffff;
+    cursor: pointer;
+    border: none;
+    border-radius: 5px;
+    box-shadow: 1px 1px 3px rgba(0,0,0,0.15);
+    background: #e62222;
     max-height: 4em;
-    width: 15%;
-    max-width: 20%;
-    color: red;
     font-weight: bold;
     font-size: 18px;
     padding: 0.8em;
     margin: 1em;
-    border-radius: 4px;
 }
 @media (max-width: 850px) {
   .bouton_deconnection_eleve{

@@ -1,4 +1,15 @@
 .bouton_retour_creation_profil_edu{
+    border: none;
+    background-color: white;
+    color: #355c7d;
+    font-weight: bold;
+    font-size: 18px;
+    padding: 0.8em;
+    margin: 1em;
+    border-radius: 4px;
+}
+.bouton_sauvegarder_creation_profil_edu{
+    border: none;
     background-color: white;
     color: #355c7d;
     font-weight: bold;
@@ -10,7 +21,6 @@
 .form_creation_profil_eleve{
     width: 50%;
     margin:0 auto;
-    border: 1px solid #355c7d;
     align-items: center;
     justify-content: center;
 }

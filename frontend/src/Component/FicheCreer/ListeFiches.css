@@ -1,5 +1,6 @@
 .bouton_retour_liste_fiche_crée_edu{
-    background-color: #f7f1e9;
+    border: none;
+    background-color: #ffffff;
     max-height: 4em;
     width: 10%;
     max-width: 20%;
@@ -12,11 +13,13 @@
     float: left;
 }
 .titre_h1_fiche_crée{
+    margin: 1em;
     color:#355c7d;
     font-weight: bold;
     font-size: 30px;
 }
 .global_liste_nom_fiches_crée{
+    margin: 1em;
     display: flex;
     flex-wrap: wrap;
 }
