@@ -19,19 +19,19 @@ function Interface({ redirection }: any) {
         </button>
         <button
           className="bouton_interface_educateur"
-          onClick={() => redirection(3)}
+          //onClick={() => redirection(3)}
         >
           Consulter fiches/images
         </button>
         <button
           className="bouton_interface_educateur"
-          onClick={() => redirection(3)}
+          //onClick={() => redirection(3)}
         >
           Importer un pictogramme
         </button>
         <button
           className="bouton_interface_educateur"
-          onClick={() => redirection(3)}
+          //onClick={() => redirection(3)}
         >
           Brouillons fiches
         </button>
@@ -43,7 +43,7 @@ function Interface({ redirection }: any) {
         </button>
         <button
           className="bouton_interface_educateur"
-          onClick={() => redirection(3)}
+         // onClick={() => redirection(3)}
         >
           Modifier mots de passe
         </button>
@@ -55,7 +55,7 @@ function Interface({ redirection }: any) {
         </button>
         <button
           className="bouton_interface_educateur"
-          onClick={() => redirection(3)}
+         // onClick={() => redirection(3)}
         >
           Archiver un profil
         </button>

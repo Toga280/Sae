@@ -1,5 +1,7 @@
 
-
+.nom_login_edu{
+  color: #355c7d;
+}
 #login-form-wrap {
   border: 1px solid #355c7d;
   background-color: white;
@@ -15,6 +17,7 @@
   padding: 0 60px;
 }
 .form_login_edu {
+  border: 1px solid #355c7d;
   display: block;
   box-sizing: border-box;
   width: 100%;
@@ -49,7 +52,7 @@
 /*CSS RESPONSIVE===============================================*/
 @media (max-width: 1100px) {
   #login-form-wrap {
-    border: 1px solid #355c7d;
+    border:none;
     background-color: white;
     width: 55%;
     margin: 30px auto;
@@ -60,7 +63,7 @@
 }
 @media (max-width: 700px) {
   #login-form-wrap {
-    border: 1px solid #355c7d;
+    border: none;
     background-color: white;
     width: 80%;
     margin: 3em auto;
