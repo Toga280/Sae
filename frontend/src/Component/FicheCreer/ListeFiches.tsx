@@ -64,7 +64,6 @@ function ListeFiches({ redirection }: any) {
         className="bouton_retour_liste_fiche_crée_edu"
         onClick={setRedirectionTwo}
       >
-        {" "}
         Retour
       </button>
     </div>

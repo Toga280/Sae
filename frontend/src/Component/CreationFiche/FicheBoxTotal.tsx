@@ -12,6 +12,7 @@ import { imprimerPage } from "../FonctionEleve/Imprimer";
 
 function FicheBoxTotal({ onSelectBox, redirection, setSaveName }: any) {
   const [numBox, setNumBox] = useState(0);
+  const [forceRefresh, setForceRefresh] = useState(false);
   const handleClick = (numero: number) => {
     setNumBox(numero);
     fonctionsMiniBoxInfoJson.allIsSelectedMiniBoxFalse();
@@ -35,6 +36,10 @@ function FicheBoxTotal({ onSelectBox, redirection, setSaveName }: any) {
       onSelectBox(numBox);
     }
   }, [numBox, onSelectBox]);
+
+  useEffect(() => {
+    setForceRefresh(true);
+  }, [forceRefresh]);
 
   return (
     <div>
@@ -102,11 +107,19 @@ function FicheBoxTotal({ onSelectBox, redirection, setSaveName }: any) {
       </div>
       <button onClick={consoleLogJson}>return log json</button>
       <button onClick={imprimerPage}>imprimer</button>
-      <button onClick={Sauvegarder} className="boutton_sauvegarder_interaction_edu">
+      <button
+        onClick={Sauvegarder}
+        className="boutton_sauvegarder_interaction_edu"
+      >
         Sauvegarder
       </button>
       <button className="boutton_brouillon_interaction_edu">Brouillons</button>
-      <button className="boutton_sauvegarder_interaction_edu" onClick={imprimerPage}>imprimer</button>
+      <button
+        className="boutton_sauvegarder_interaction_edu"
+        onClick={imprimerPage}
+      >
+        imprimer
+      </button>
     </div>
   );
 }
