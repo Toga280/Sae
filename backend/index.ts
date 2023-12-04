@@ -1,11 +1,7 @@
 import { Document, Schema, model, Model } from "mongoose";
-<<<<<<< HEAD
 import { MiniBox, FicheDocument, Picto } from "./interface";
 import sharp from 'sharp';
-=======
-import { MiniBox, FicheDocument } from "./interface";
 import { CreationEleve, Admin } from "./interface";
->>>>>>> 2cd2465451e1538071fa35e52380a6740377194e
 const express = require('express');
 const app = express();
 const mongoose = require('mongoose');
@@ -70,8 +66,6 @@ const ficheSchema = new Schema<FicheDocument>({
   MiniBox23: { type: miniBoxSchema, required: true },
 });
 
-<<<<<<< HEAD
-=======
 const admin = new Schema<Admin>({
   nom: {type: String},
   prenom: {type: String},
@@ -80,7 +74,6 @@ const admin = new Schema<Admin>({
 
 const Admin = model<Admin>('Admin', admin)
 
->>>>>>> 2cd2465451e1538071fa35e52380a6740377194e
 const Fiche = model<FicheDocument>('Fiche', ficheSchema);
 
 const pictoSchema = new Schema<Picto>({
