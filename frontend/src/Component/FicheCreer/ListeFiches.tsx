@@ -2,8 +2,28 @@ import axios from "axios";
 import React, { useEffect, useState } from "react";
 import "./ListeFiches.css";
 import fonctionsMiniBoxInfoJson from "../CreationFiche/MiniBoxInfoFunction";
+
 function ListeFiches({ redirection }: any) {
   const [FichesNames, setFichesNames] = useState([]);
+
+  const deleteFiche = (nomFiche: string) => {
+    axios
+      .get(
+        `http://localhost:5000/DELETE/ficheName?name=${encodeURIComponent(
+          nomFiche
+        )}`
+      )
+      .then((response) => {
+        if (response.data) {
+          console.log("fiche supprimé avec succer");
+          // Actualiser la liste après la suppression
+          allFicheNames();
+        }
+      })
+      .catch((error) => {
+        console.error("Erreur lors de la requête vers le serveur :", error);
+      });
+  };
 
   const elements = FichesNames.map((item, index) => (
     <div className="global_liste_nom_fiches_crée">
@@ -14,6 +34,12 @@ function ListeFiches({ redirection }: any) {
       >
         {item}
       </div>
+      <img
+        src={require("./delete-icon.png")}
+        alt="zea rae"
+        style={{ width: "30px", height: "40px" }}
+        onClick={() => deleteFiche(item)}
+      />
     </div>
   ));
 

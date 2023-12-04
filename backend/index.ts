@@ -1,4 +1,5 @@
 import { Document, Schema, model, Model } from "mongoose";
+import { MiniBox, FicheDocument, Admin } from "./interface";
 import { MiniBox, FicheDocument } from "./interface";
 import { CreationEleve } from "./interface";
 const express = require('express');
@@ -62,17 +63,13 @@ const ficheSchema = new Schema<FicheDocument>({
   MiniBox23: { type: miniBoxSchema, required: true },
 });
 
-const Fiche = model<FicheDocument>('Fiche', ficheSchema);
-
-const EleveSchema = new Schema<CreationEleve>({
-  nom: { type: String, required: true },
-  prenom: { type: String, required: true },
-  image: { type: String, required: true },
-  mdp: { type: Number, required: true }
+const admin = new Schema<Admin>({
+  nom: {type: String},
+  prenom: {type: String},
+  mdp: {type: Number},
 });
 
-const EleveModel = model<CreationEleve>('Eleve', EleveSchema);
-
+const Fiche = model<FicheDocument>('Fiche', ficheSchema);
 
 /*------------------- POST -------------------*/
 
@@ -94,27 +91,6 @@ app.post('/POST/fiche', (req : any, res : any) => {
     }
   });
 });
-
-
-app.post('/POST/eleve', (req: any, res: any) => {
-  const newData = req.body;
-  const newEleve = new EleveModel(newData);
-  newEleve.save()
-    .then(() => {
-      console.log('Élève enregistré avec succès dans la base de données');
-      res.status(200).send('Élève enregistré avec succès');
-    })
-    .catch((err: any) => {
-      if (err.name === 'ValidationError') {
-        console.error('Erreur de validation des données :', err.message);
-        res.status(400).send('Données de requête invalides');
-      } else {
-        console.error('Erreur lors de l\'enregistrement de l\'élève dans la base de données :', err);
-        res.status(500).send('Erreur interne du serveur');
-      }
-    });
-});
-
 
 /*------------------- GET -------------------*/
 
