@@ -1,6 +1,5 @@
 import { Document, Schema, model, Model } from "mongoose";
 import { MiniBox, FicheDocument, Admin } from "./interface";
-import { MiniBox, FicheDocument } from "./interface";
 import { CreationEleve } from "./interface";
 const express = require('express');
 const app = express();
