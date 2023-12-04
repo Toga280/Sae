@@ -39,7 +39,7 @@ export interface FicheDocument extends Document {
   MiniBox23: MiniBox;
 }
 
-export interface picto {
+export interface Picto {
   name: string;
   url: string;
 }

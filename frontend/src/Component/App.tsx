@@ -7,6 +7,7 @@ import CreationProfil from "./Interface_Educateur/CreationProfil/CreationProfil"
 import PageEspaceEleve from "./EspaceEleve/pageEspaceEleve";
 import Sauvegarder from "./CreationFiche/Sauvegarder";
 import ListeFiches from "./FicheCreer/ListeFiches";
+import ImportPicto from "./Interface_Educateur/importpicto/importpicto";
 
 function App() {
   const [selectBox, setSelectBox] = useState(null);
@@ -24,6 +25,7 @@ function App() {
       {redirection === 4 && <PageEspaceEleve redirection={setRedirection} />}
       {redirection === 5 && <CreationProfil redirection={setRedirection} />}
       {redirection === 6 && <ListeFiches redirection={setRedirection} />}
+      {redirection === 7 && <ImportPicto redirection={setRedirection} />}
       {redirection === 3 ? (
         selectBox === null ? (
           !saveName ? (
