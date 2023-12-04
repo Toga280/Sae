@@ -1,6 +1,6 @@
 import { Document, Schema, model, Model } from "mongoose";
 import { MiniBox, FicheDocument } from "./interface";
-import { CreationEleve } from "./interface";
+import { CreationEleve, Admin } from "./interface";
 const express = require('express');
 const app = express();
 const mongoose = require('mongoose');
@@ -67,6 +67,8 @@ const admin = new Schema<Admin>({
   prenom: {type: String},
   mdp: {type: String},
 });
+
+const Admin = model<Admin>('Admin', admin)
 
 const Fiche = model<FicheDocument>('Fiche', ficheSchema);
 

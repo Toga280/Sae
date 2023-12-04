@@ -50,14 +50,17 @@ function CreationProfil({ redirection, setSaveName }: any) {
   };
 
   return (
-    <CreationProfilEleves
-      setRedirectionTwo={setRedirectionTwo}
-      handleInputChangeNom={handleInputChangeNom}
-      handleInputChangePrenom={handleInputChangePrenom}
-      handleInputChangeMdp={handleInputChangeMdp}
-      handleInputChangeImage={handleInputChangeImage}
-      sauvegarde={sauvegarde}
-    />
+    <div>
+      <CreationProfilEleves
+        setRedirectionTwo={setRedirectionTwo}
+        handleInputChangeNom={handleInputChangeNom}
+        handleInputChangePrenom={handleInputChangePrenom}
+        handleInputChangeMdp={handleInputChangeMdp}
+        handleInputChangeImage={handleInputChangeImage}
+        sauvegarde={sauvegarde}
+      />
+      <CreationProfilProf />
+    </div>
   );
 }
 
