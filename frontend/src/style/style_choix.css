@@ -46,7 +46,8 @@ p{
 
     margin: auto;
     margin-top: 1em;
-    border: 0.1em solid #355c7d;
+    border: none;
+    border-radius: 0.3em;
     color: #355c7d;
     padding: 0.5em;
     width: 90%;
@@ -98,7 +99,7 @@ p{
 /* CSS RESPONSIVE ===============================================*/
   @media (max-width: 1100px) {
     .boxSelected {
-        border: 0.1em solid #355c7d;
+        border: none;
         color: #355c7d;
         padding: 0.5em;
         width: 90%;
