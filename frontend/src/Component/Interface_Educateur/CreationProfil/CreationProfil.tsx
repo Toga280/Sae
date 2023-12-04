@@ -5,6 +5,8 @@ function CreationFiche({ redirection }: any) {
     redirection(2);
   };
 
+  
+
   return (
     <div>
       <p className="txt_espace_élève">Création de profil</p>
