@@ -14,7 +14,8 @@ function CreationProfilEleves({
   handleInputChangePrenom,
   handleInputChangeMdp,
   handleInputChangeImage,
-  sauvegarde
+  sauvegarde,
+  getEleve  
   
 }: any) {
   return (
@@ -83,6 +84,9 @@ function CreationProfilEleves({
       </button>
       <button className="bouton_sauvegarder_creation_profil_edu" onClick={sauvegarde}>
         Sauvegarder
+      </button>
+      <button className="bouton_sauvegarder_creation_profil_edu" onClick={getEleve}>
+        getEleve
       </button>
     </div>
   );

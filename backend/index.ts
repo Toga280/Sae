@@ -157,6 +157,22 @@ app.get('/GET/nameFiche', async (req: any, res: any) => {
     res.status(500).send('Erreur interne du serveur');
   }
 });
+/* GET ELEVES =============================================*/
+
+app.get('/GET/allEleve', async (req: any, res: any) => {
+  try {
+    const eleve = await EleveModel.find({}, "nom prenom image ",).exec();
+    
+    if (!eleve) {
+      return res.status(404).json({ message: 'Élève non trouvé' });
+    }
+
+    res.json(eleve);
+  } catch (error) {
+    console.error(error);
+    res.status(500).json({ message: 'Erreur serveur' });
+  }
+});
 
 /* */
 app.get('/GET/nameFicheExiste', async (req: any, res: any) => {

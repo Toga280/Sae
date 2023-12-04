@@ -2,6 +2,7 @@ import React, { useState } from "react";
 import axios from "axios";
 import CreationProfilEleves from "./CreationProfilEleves";
 import "./CreationProfil.css";
+import { response } from "express";
 
 function CreationProfil({ redirection, setSaveName }: any) {
   const setRedirectionTwo = () => {
@@ -37,6 +38,8 @@ function CreationProfil({ redirection, setSaveName }: any) {
     redirection(2);
   };
 
+
+/*METHODE POST =====================================================*/
   const postEleve = (eleveData: any) => {
     axios
       .post("http://localhost:5000/POST/eleves", eleveData)
@@ -47,6 +50,19 @@ function CreationProfil({ redirection, setSaveName }: any) {
         console.error("Erreur lors de la requête vers le serveur :", error);
       });
   };
+/*METHODE GET =====================================================*/
+const getEleve = () => {
+    axios
+    .get(`http://localhost:5000/GET/allEleve`)
+    .then((response) => {
+      console.log(response);
+    })
+    .catch((error) => {
+      console.error("erreur : ", error);
+    })
+};
+
+
 
   return (
     <CreationProfilEleves
@@ -56,6 +72,7 @@ function CreationProfil({ redirection, setSaveName }: any) {
       handleInputChangeMdp={handleInputChangeMdp}
       handleInputChangeImage={handleInputChangeImage}
       sauvegarde={sauvegarde}
+      getEleve={getEleve}
     />
   );
 }
