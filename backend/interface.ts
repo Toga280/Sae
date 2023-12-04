@@ -47,5 +47,5 @@ export interface picto {
 export interface Admin{
   nom: string;
   prenom: string;
-  mdp: number;
+  mdp: string;
 }

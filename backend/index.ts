@@ -64,7 +64,7 @@ const ficheSchema = new Schema<FicheDocument>({
 const admin = new Schema<Admin>({
   nom: {type: String},
   prenom: {type: String},
-  mdp: {type: Number},
+  mdp: {type: String},
 });
 
 const Fiche = model<FicheDocument>('Fiche', ficheSchema);

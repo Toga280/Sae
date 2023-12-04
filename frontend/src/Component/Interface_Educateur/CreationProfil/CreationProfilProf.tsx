@@ -1,8 +1,38 @@
-import React from "react";
+import React, { useState } from "react";
 import "./CreationProfil.css";
+import axios from "axios";
 function CreationProfilProf({ redirection }: any) {
+  const [nom, setNom] = useState(String);
+  const [prenom, setPrenom] = useState(String);
+  const [mdp, setMdp] = useState(String);
+
   const setRedirectionTwo = () => {
     redirection(2);
+  };
+
+  const createProfil = () => {
+    const data = JSON.stringify({ nom, prenom, mdp });
+    axios
+      .post("http://localhost:5000/POST/admin", data)
+      .then((response) => {
+        console.log(data);
+        console.log("Réponse du serveur :", response.data);
+      })
+      .catch((error) => {
+        console.error("Erreur lors de la requête vers le serveur :", error);
+      });
+  };
+
+  const handleInputChangeNom = (event: any) => {
+    setNom(event.target.value);
+  };
+
+  const handleInputChangePrenom = (event: any) => {
+    setPrenom(event.target.value);
+  };
+
+  const handleInputChangeMdp = (event: any) => {
+    setMdp(event.target.value);
   };
 
   return (
@@ -17,13 +47,28 @@ function CreationProfilProf({ redirection }: any) {
       >
         <div className="form_nom_creation_profil">
           <p> Nom </p>
-          <input type="text" className="TextInput" />
+          <input
+            type="text"
+            className="TextInput"
+            onChange={handleInputChangeNom}
+          />
         </div>
         <div className="form_prenom_creation_profil">
           <p> Prenom </p>
-          <input type="text" className="TextInput" />
+          <input
+            type="text"
+            className="TextInput"
+            onChange={handleInputChangePrenom}
+          />
         </div>
-        <div></div>
+        <div>
+          <p> mdp </p>
+          <input
+            type="text"
+            className="TextInput"
+            onChange={handleInputChangeMdp}
+          />
+        </div>
       </form>
       <button
         className="bouton_retour_creation_profil_edu"
@@ -31,8 +76,11 @@ function CreationProfilProf({ redirection }: any) {
       >
         Retour
       </button>
-      <button className="bouton_sauvegarder_creation_profil_edu">
-        "" Sauvegarder
+      <button
+        className="bouton_sauvegarder_creation_profil_edu"
+        onClick={createProfil}
+      >
+        Sauvegarder
       </button>
     </div>
   );
