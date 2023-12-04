@@ -1,5 +1,6 @@
 import { Document, Schema, model, Model } from "mongoose";
 import { MiniBox, FicheDocument, Picto } from "./interface";
+import sharp from 'sharp';
 const express = require('express');
 const app = express();
 const mongoose = require('mongoose');
@@ -96,6 +97,7 @@ app.post('/POST/fiche', (req : any, res : any) => {
 });
 
 
+
 app.post('/POST/uploadpicto', upload.single('file'), async (req: any, res: any) => {
   try {
     const { name } = req.query;
@@ -106,15 +108,18 @@ app.post('/POST/uploadpicto', upload.single('file'), async (req: any, res: any) 
 
     const fileBuffer = req.file.buffer;
 
-    const filePath = `./src/picto/${req.file.originalname}`;
-    require('fs').writeFileSync(filePath, fileBuffer);
+    const originalFileName = req.file.originalname;
+    const fileExtension = originalFileName.split('.').pop();
+    const newFileName = `${originalFileName}.webp`; // Change the file extension to webp
+    if (name !== null) {
+      const newFileName = `${name}.webp`; // Change the file extension to webp
+    }
+    const filePath = `./src/picto/${newFileName}`;
 
-    const newImage = new Picto({
-      name,
-      url: filePath,
-    });
-
-    await newImage.save();
+    // Use sharp to convert the image to WebP format
+    await sharp(fileBuffer)
+      .toFormat('webp')
+      .toFile(filePath);
 
     res.status(200).json({ message: 'Image téléchargée avec succès' });
   } catch (error) {
