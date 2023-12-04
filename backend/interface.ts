@@ -49,3 +49,10 @@ export interface Admin{
   prenom: string;
   mdp: string;
 }
+
+export interface CreationEleve{
+  nom: string,
+  prenom: string,
+  image: string,
+  mdp: number
+}
