@@ -38,3 +38,9 @@ export interface FicheDocument extends Document {
   MiniBox22: MiniBox;
   MiniBox23: MiniBox;
 }
+
+export interface Admin{
+  nom: string;
+  prenom: string;
+  mdp: number;
+}

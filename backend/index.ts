@@ -1,5 +1,5 @@
 import { Document, Schema, model, Model } from "mongoose";
-import { MiniBox, FicheDocument } from "./interface";
+import { MiniBox, FicheDocument, Admin } from "./interface";
 const express = require('express');
 const app = express();
 const mongoose = require('mongoose');
@@ -61,7 +61,14 @@ const ficheSchema = new Schema<FicheDocument>({
   MiniBox23: { type: miniBoxSchema, required: true },
 });
 
+const admin = new Schema<Admin>({
+  nom: {type: String},
+  prenom: {type: String},
+  mdp: {type: Number},
+});
+
 const Fiche = model<FicheDocument>('Fiche', ficheSchema);
+const Admin = model<Admin>('Admin', admin)
 
 /*------------------- POST -------------------*/
 
@@ -79,6 +86,25 @@ app.post('/POST/fiche', (req : any, res : any) => {
       res.status(400).send('Données de requête invalides');
     } else {
       console.error('Erreur lors de l\'enregistrement du document dans la base de données :', err);
+      res.status(500).send('Erreur interne du serveur');
+    }
+  });
+});
+
+app.post('/POST/admin', (req : any, res : any) => {
+  const newData = req.body;
+  const newAdmin = new Admin(newData);
+  newAdmin.save()
+  .then(() => {
+    console.log('Admin enregistré avec succès dans la base de données');
+    res.status(200).send('Admin enregistré avec succès');
+  })
+  .catch((err : any) => {
+    if (err.name === 'ValidationError') {
+      console.error('Erreur de validation des données :', err.message);
+      res.status(400).send('Données de requête invalides');
+    } else {
+      console.error('Erreur lors de l\'enregistrement de l\'Admin dans la base de données :', err);
       res.status(500).send('Erreur interne du serveur');
     }
   });
