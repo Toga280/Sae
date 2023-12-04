@@ -52,29 +52,35 @@ function Sauvegarder({ redirection, setSaveName }: any) {
   };
 
   return (
-    <div className="global_sauvegarder_fiche">
-      <input
-        className="input_sauvegarder_ficheBox"
-        type="text"
-        placeholder="Nom de la fiche"
-        value={nomFiche}
-        required
-        onChange={handleInputChange}
-      />
-      <button
-        className="boutton_sauvegarder_ficheBox"
-        onClick={() => testNameFiche(nomFiche)}
-      >
-        Sauvegarder
-      </button>
-      {upPopUpSauvegarder ? (
-        <PopUpSauvegarder
-          setUpPopUpSauvegarder={setUpPopUpSauvegarder}
-          nomFiche={nomFiche}
-          sauvegarde={sauvegarde}
-        />
-      ) : null}
-    </div>
+<div className="global_sauvegarder_fiche">
+  <input
+    className="input_sauvegarder_ficheBox"
+    type="text"
+    placeholder="Nom de la fiche"
+    value={nomFiche}
+    required
+    onChange={handleInputChange}
+  />
+  <input
+    type="button"
+    className="boutton_sauvegarder_ficheBox"
+    value="Sauvegarder"
+    onClick={() => {
+      if (nomFiche.trim() !== "") {
+        testNameFiche(nomFiche);
+      } else {
+        alert("Veuillez saisir un nom pour votre fiche avant de sauvegarder.");
+      }
+    }}
+  />
+  {upPopUpSauvegarder ? (
+    <PopUpSauvegarder
+      setUpPopUpSauvegarder={setUpPopUpSauvegarder}
+      nomFiche={nomFiche}
+      sauvegarde={sauvegarde}
+    />
+  ) : null}
+</div>
   );
 }
 
