@@ -1,10 +1,22 @@
 import React from "react";
 import "./CreationProfil.css";
-function CreationProfilEleves({ redirection }: any) {
-  const setRedirectionTwo = () => {
-    redirection(2);
-  };
+import "./CreationProfilEleves";
 
+interface CreationProfilElevesProps {
+  setRedirectionTwo: () => void;
+  handleInputChange: (event: React.ChangeEvent<HTMLInputElement>) => void;
+  sauvegarde: () => void;
+}
+
+function CreationProfilEleves({
+  setRedirectionTwo,
+  handleInputChangeNom,
+  handleInputChangePrenom,
+  handleInputChangeMdp,
+  handleInputChangeImage,
+  sauvegarde
+  
+}: any) {
   return (
     <div>
       <p className="txt_espace_élève">Création de profil</p>
@@ -17,33 +29,59 @@ function CreationProfilEleves({ redirection }: any) {
       >
         <div className="form_nom_creation_profil">
           <p> Nom </p>
-          <input type="text" className="TextInput" />
+          <input
+            type="text"
+            className="TextInput"
+            name="nomEleve"
+            onChange={handleInputChangeNom}
+          />
         </div>
+
         <div className="form_prenom_creation_profil">
           <p> Prenom </p>
-          <input type="text" className="TextInput" />
+          <input
+            type="text"
+            className="TextInput"
+            name="prenomEleve"
+            onChange={handleInputChangePrenom}
+          />
         </div>
-        <div className="form_image_creation_profil">
+        <div className="form_prenom_creation_profil">
+          <p> Mdp </p>
+          <input
+            type="text"
+            className="TextInput"
+            name="prenomEleve"
+            onChange={handleInputChangeMdp}
+          />
+        </div>
+        <div className="form_prenom_creation_profil">
+          <p> IMAGE TEST </p>
+          <input
+            type="text"
+            className="TextInput"
+            name="prenomEleve"
+            onChange={handleInputChangeImage}
+          />
+        </div>
+        {/* <div className="form_image_creation_profil">
           <p> Image </p>
           <input
             type="file"
             id="fileInput"
-            name="fileInput"
+            name="imageEleve"
             accept="image/*"
             multiple
+            onChange={handleInputChangeImage}
           />
           <div id="fileList"></div>
-        </div>
+        </div> */}
+        */
       </form>
-      <button
-        className="bouton_retour_creation_profil_edu"
-        onClick={setRedirectionTwo}
-      >
-        {" "}
+      <button className="bouton_retour_creation_profil_edu" onClick={setRedirectionTwo}>
         Retour
       </button>
-      <button className="bouton_sauvegarder_creation_profil_edu">
-        {" "}
+      <button className="bouton_sauvegarder_creation_profil_edu" onClick={sauvegarde}>
         Sauvegarder
       </button>
     </div>
