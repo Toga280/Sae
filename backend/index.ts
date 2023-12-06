@@ -1,11 +1,16 @@
 import { Document, Schema, model, Model } from "mongoose";
-import { MiniBox, FicheDocument } from "./interface";
+import { MiniBox, FicheDocument, Picto } from "./interface";
+import sharp from 'sharp';
+import fs from 'fs';
 import { CreationEleve, Admin } from "./interface";
 const express = require('express');
 const app = express();
 const mongoose = require('mongoose');
 const cors = require('cors');
 const PORT = 5000;
+const multer = require('multer');
+const storage = multer.memoryStorage();
+const upload = multer({ storage: storage });
 
 const DB_URL = 'mongodb://0.0.0.0/sae';
 
@@ -73,14 +78,12 @@ const Admin = model<Admin>('Admin', admin)
 
 const Fiche = model<FicheDocument>('Fiche', ficheSchema);
 
-const EleveSchema = new Schema<CreationEleve>({
-  nom: { type: String, required: true },
-  prenom: { type: String, required: true },
-  image: { type: String, required: true },
-  mdp: { type: Number, required: true }
+const pictoSchema = new Schema<Picto>({
+  name: { type: String, required: true },
+  url: { type: String, required: true },
 });
 
-const EleveModel = model<CreationEleve>('Eleve', EleveSchema);
+const Picto = model<Picto>('Picto', pictoSchema);
 
 
 /*------------------- POST -------------------*/
@@ -105,42 +108,35 @@ app.post('/POST/fiche', (req : any, res : any) => {
 });
 
 
-app.post('/POST/eleves', (req: any, res: any) => {
-  const newData = req.body;
-  const newEleve = new EleveModel(newData);
-  newEleve.save()
-    .then(() => {
-      console.log('Élève enregistré avec succès dans la base de données');
-      res.status(200).send('Élève enregistré avec succès');
-    })
-    .catch((err: any) => {
-      if (err.name === 'ValidationError') {
-        console.error('Erreur de validation des données :', err.message);
-        res.status(400).send('Données de requête invalides');
-      } else {
-        console.error('Erreur lors de l\'enregistrement de l\'élève dans la base de données :', err);
-        res.status(500).send('Erreur interne du serveur');
-      }
-    });
-});
 
-app.post('/POST/admin', (req : any, res : any) => {
-  const newData = req.body;
-  const newAdmin = new Admin(newData);
-  newAdmin.save()
-  .then(() => {
-    console.log('Admin enregistré avec succès dans la base de données');
-    res.status(200).send('Admin enregistré avec succès');
-  })
-  .catch((err : any) => {
-    if (err.name === 'ValidationError') {
-      console.error('Erreur de validation des données :', err.message);
-      res.status(400).send('Données de requête invalides');
-    } else {
-      console.error('Erreur lors de l\'enregistrement de l\'Admin dans la base de données :', err);
-      res.status(500).send('Erreur interne du serveur');
+app.post('/POST/uploadpicto', upload.single('file'), async (req: any, res: any) => {
+  try {
+    const { name } = req.query;
+
+    if (!req.file) {
+      return res.status(400).json({ error: 'Aucun fichier n\'a été téléchargé.' });
     }
-  });
+
+    const fileBuffer = req.file.buffer;
+
+    const originalFileName = req.file.originalname;
+    const fileExtension = originalFileName.split('.').pop();
+    const newFileName = `${name}.webp`; // Change the file extension to webp
+    const filePath = `./src/picto/${newFileName}`;
+    if (fs.existsSync(filePath)) {
+      res.status(409).json({ message: 'Le fichier existe déjà' });
+    } else {
+      // Use sharp to convert the image to WebP format
+      await sharp(fileBuffer)
+        .toFormat('webp')
+        .toFile(filePath);
+      
+      res.status(200).json({ message: 'Image téléchargée avec succès' });
+    }
+  } catch (error) {
+    console.error('Erreur lors du téléchargement du fichier:', error);
+    res.status(500).json({ error: 'Erreur interne du serveur' });
+  }
 });
 
 
