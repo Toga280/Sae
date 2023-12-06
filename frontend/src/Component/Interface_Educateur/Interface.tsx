@@ -43,7 +43,7 @@ function Interface({ redirection }: any) {
         </button>
         <button
           className="bouton_interface_educateur"
-         // onClick={() => redirection(3)}
+          onClick={() => redirection(9)}
         >
           Modifier mots de passe
         </button>
@@ -55,7 +55,7 @@ function Interface({ redirection }: any) {
         </button>
         <button
           className="bouton_interface_educateur"
-         // onClick={() => redirection(3)}
+          onClick={() => redirection(8)}
         >
           Archiver un profil
         </button>
