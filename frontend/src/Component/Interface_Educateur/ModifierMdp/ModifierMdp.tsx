@@ -51,7 +51,6 @@ function ModifierMdp({ redirection }: any) {
 
   const sauvegarde = () => {
     if (profilSelectionne) {
-      console.log("Mot de passe avant validation:", mdpEleve);
       const confirmation = window.confirm(
         `Êtes-vous sûr de vouloir modifier le mot de passe de ${profilSelectionne.prenom} ${profilSelectionne.nom} ?`
       );

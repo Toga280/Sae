@@ -2,6 +2,7 @@ import { Document, Schema, model, Model } from "mongoose";
 import { MiniBox, FicheDocument, Picto, CreationEleve, Admin } from "./interface";
 import sharp from 'sharp';
 import fs from 'fs';
+import path from 'path';
 const express = require('express');
 const app = express();
 const mongoose = require('mongoose');
@@ -147,7 +148,24 @@ app.post('/POST/uploadpicto', upload.single('file'), async (req: any, res: any) 
   }
 });
 
-
+app.post('/POST/eleves', (req: any, res: any) => {
+  const newData = req.body;
+  const newEleve = new EleveModel(newData);
+  newEleve.save()
+    .then(() => {
+      console.log('Élève enregistré avec succès dans la base de données');
+      res.status(200).send('Élève enregistré avec succès');
+    })
+    .catch((err: any) => {
+      if (err.name === 'ValidationError') {
+        console.error('Erreur de validation des données :', err.message);
+        res.status(400).send('Données de requête invalides');
+      } else {
+        console.error('Erreur lors de l\'enregistrement de l\'élève dans la base de données :', err);
+        res.status(500).send('Erreur interne du serveur');
+      }
+    });
+});
 /*------------------- GET -------------------*/
 
 
@@ -263,11 +281,38 @@ app.get('/GET/admin/authentification', async (req: any, res : any) => {
   }
 });
 
+
+app.get('/GET/getpicto', async (req: any, res: any) => {
+  const pictoDirectory = path.join(__dirname, './src/picto');
+  const { name } = req.query;
+
+  try {
+    const files = fs.readdirSync(pictoDirectory);
+    let images = [];
+
+    if (name) {
+      images = files.filter(file => {
+        const extension = path.extname(file).toLowerCase();
+        return extension === '.webp' && file.includes(name);
+      });
+    } else {
+      images = files.filter(file => {
+        const extension = path.extname(file).toLowerCase();
+        return extension === '.webp';
+      });
+    }
+
+    res.status(200).json(images);
+  } catch (error) {
+    console.error('Erreur lors de la lecture du répertoire des images :', error);
+    res.status(500).send('Erreur interne du serveur');
+  }
+});
+
 /*------------------- DELETE -------------------*/
 
 app.get('/DELETE/ficheName', async (req: any, res: any) => {
   const { name } = req.query;
-  console.log("oui")
   if (!name) {
     return res.status(400).send('Le paramètre "name" est requis.');
   }

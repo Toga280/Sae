@@ -25,7 +25,7 @@ function Interface({ redirection }: any) {
         </button>
         <button
           className="bouton_interface_educateur"
-          onClick={() => redirection(7)}
+          onClick={() => redirection(10)}
         >
           Importer un pictogramme
         </button>
@@ -58,6 +58,12 @@ function Interface({ redirection }: any) {
           onClick={() => redirection(8)}
         >
           Archiver un profil
+        </button>
+        <button
+          className="bouton_interface_educateur"
+          //onClick={() => redirection(7)}
+        >
+          Profil Archiver
         </button>
       </div>
     </div>
