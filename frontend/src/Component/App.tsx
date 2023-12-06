@@ -28,10 +28,6 @@ function App() {
       {redirection === 4 && <PageEspaceEleve redirection={setRedirection} />}
       {redirection === 5 && <CreationProfil redirection={setRedirection} />}
       {redirection === 6 && <ListeFiches redirection={setRedirection} />}
-      {redirection === 7 && <AffecterListe redirection={setRedirection} />}
-      {redirection === 8 && <ArchiverProfil redirection={setRedirection} />}
-      {redirection === 9 && <ModifierMdp redirection={setRedirection} />}
-      {redirection === 10 && <ImportPicto redirection={setRedirection} />}
       {redirection === 3 ? (
         selectBox === null ? (
           !saveName ? (

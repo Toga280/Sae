@@ -1,0 +1,61 @@
+body {
+  background-color: #d7e1ec;
+  font-family: Arial, sans-serif;
+  margin: 0;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 100vh;
+}
+
+.container {
+  display: flex;
+  flex-direction: column;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 1em; /* Adjust gap as needed */
+  background-color: #d7e1ec;
+  border-radius: 1em;
+  padding: 2em;
+  width: 80%;
+  max-width: 20em; /* Adjust max-width as needed */
+  margin: auto;
+}
+
+.bouton {
+  cursor: pointer;
+  background-color: #d7e1ec;
+  border: none;
+  color: black;
+  padding: 1.5em 3em;
+  text-align: center;
+  text-decoration: none;
+  
+  font-size: 1.5em;
+  width: 100%;
+}
+
+.boutonsChiffre {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 1em;
+}
+
+
+.affichageMDP {
+  background-color: #d7e1ec;
+  border: none;
+  padding: 1.5em 3em;
+  text-align: center;
+  letter-spacing: 1em;
+  text-decoration: none;
+  font-weight: bold;
+  font-size: 2em;
+  width: 100%;
+}
+
+
+@media (max-width: 37.5em) {
+  .container {
+    width: 90%;
+  }
+}
