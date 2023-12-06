@@ -1,10 +1,40 @@
-import React from "react";
+import React, { useState } from "react";
 import "./PageLoginEducateurStyle.css";
+import axios from "axios";
 
 function PageLoginEducateur({ redirection }: any) {
+  const [id, setId] = useState(String);
+  const [mdp, setMdp] = useState(String);
+
+  const handleInputId = (event: any) => {
+    setId(event.target.value);
+  };
+
+  const handleInputMdp = (event: any) => {
+    setMdp(event.target.value);
+  };
+
   const redirectionTwo = () => {
     redirection(2);
   };
+
+  const configConnexion = {
+    headers: {
+      "Content-Type": "application/json",
+    },
+  };
+
+  const Connexion = () => {
+    const data = JSON.stringify({ id, mdp });
+    axios
+      .post("http://localhost:5000/GET/admin/azeazr", data, configConnexion)
+      .then((response) => {
+        console.log("Réponse du serveur :", response.data);
+        if (response.data) {
+        }
+      });
+  };
+
   return (
     <div id="login-form-wrap">
       <h2 className="nom_login_edu">Connexion</h2>
@@ -17,6 +47,7 @@ function PageLoginEducateur({ redirection }: any) {
             name="username"
             placeholder="Nom"
             required
+            onChange={handleInputId}
           />
         </p>
         <p>
@@ -27,6 +58,7 @@ function PageLoginEducateur({ redirection }: any) {
             name="password"
             placeholder="Mots de passe"
             required
+            onChange={handleInputMdp}
           />
         </p>
         <p>

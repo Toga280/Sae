@@ -5,17 +5,23 @@ function CreationProfilProf({ redirection }: any) {
   const [nom, setNom] = useState(String);
   const [prenom, setPrenom] = useState(String);
   const [mdp, setMdp] = useState(String);
+  const [id, setId] = useState(String);
 
   const setRedirectionTwo = () => {
     redirection(2);
   };
 
+  const configCreateProfil = {
+    headers: {
+      "Content-Type": "application/json",
+    },
+  };
+
   const createProfil = () => {
-    const data = JSON.stringify({ nom, prenom, mdp });
+    const data = JSON.stringify({ nom, prenom, mdp, id });
     axios
-      .post("http://localhost:5000/POST/admin", data)
+      .post("http://localhost:5000/POST/admin", data, configCreateProfil)
       .then((response) => {
-        console.log(data);
         console.log("Réponse du serveur :", response.data);
       })
       .catch((error) => {
@@ -33,6 +39,10 @@ function CreationProfilProf({ redirection }: any) {
 
   const handleInputChangeMdp = (event: any) => {
     setMdp(event.target.value);
+  };
+
+  const handleInputChangeId = (event: any) => {
+    setId(event.target.value);
   };
 
   return (
@@ -59,6 +69,14 @@ function CreationProfilProf({ redirection }: any) {
             type="text"
             className="TextInput"
             onChange={handleInputChangePrenom}
+          />
+        </div>
+        <div className="form_prenom_creation_profil">
+          <p> id </p>
+          <input
+            type="text"
+            className="TextInput"
+            onChange={handleInputChangeId}
           />
         </div>
         <div>

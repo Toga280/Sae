@@ -66,6 +66,7 @@ const admin = new Schema<Admin>({
   nom: {type: String},
   prenom: {type: String},
   mdp: {type: String},
+  id: {type: String}
 });
 
 const Admin = model<Admin>('Admin', admin)
@@ -204,6 +205,21 @@ app.get('/GET/nameFicheExiste', async (req: any, res: any) => {
   } catch (error) {
     console.error('Erreur lors de la recherche de la fiche :', error);
     res.status(500).send('Erreur interne du serveur');
+  }
+});
+
+app.get('/GET/admin/authentification', async (req: any, res : any) => {
+  const { nom, prenom, mdp} = req.body;
+  try{
+    const admin = await Admin.findOne({nom, prenom, mdp}).exec();
+    if (admin) {
+      res.status(200).send(true);
+    }else{
+      res.status(401).send(false);
+    }
+  } catch (error){
+    console.error('Error during authentication:', error);
+    res.status(500).json({ success: false, message: 'Internal server error' });
   }
 });
 
