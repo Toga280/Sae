@@ -34,6 +34,11 @@
   dependencies:
     sparse-bitfield "^3.0.3"
 
+"@phenax/pattern-lock-js@^0.1.2":
+  version "0.1.2"
+  resolved "https://registry.yarnpkg.com/@phenax/pattern-lock-js/-/pattern-lock-js-0.1.2.tgz#56760f661ed509d8a29062629a0349617ff45364"
+  integrity sha512-azp2JCvV10Njh6YzTCZ6paCQvqbi/gBnPXe2himaCiLukradkwK7yskdzOW9ITRCBx0CFtL/+N0g0NW3O5Sy0w==
+
 "@tsconfig/node10@^1.0.7":
   version "1.0.9"
   resolved "https://registry.yarnpkg.com/@tsconfig/node10/-/node10-1.0.9.tgz#df4907fc07a886922637b15e02d4cebc4c0021b2"
