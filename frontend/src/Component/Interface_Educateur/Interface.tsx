@@ -25,7 +25,7 @@ function Interface({ redirection }: any) {
         </button>
         <button
           className="bouton_interface_educateur"
-          //onClick={() => redirection(3)}
+          onClick={() => redirection(7)}
         >
           Importer un pictogramme
         </button>

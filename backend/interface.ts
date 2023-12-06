@@ -39,7 +39,7 @@ export interface FicheDocument extends Document {
   MiniBox23: MiniBox;
 }
 
-export interface picto {
+export interface Picto {
   name: string;
   url: string;
 }
@@ -47,7 +47,8 @@ export interface picto {
 export interface Admin{
   nom: string;
   prenom: string;
-  mdp: number;
+  mdp: string;
+  id: string;
 }
 
 export interface CreationEleve{

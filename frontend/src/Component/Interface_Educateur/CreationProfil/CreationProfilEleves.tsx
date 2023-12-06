@@ -14,7 +14,7 @@ function CreationProfilEleves({
   handleInputChangePrenom,
   handleInputChangeMdp,
   handleInputChangeImage,
-  sauvegarde,
+  sauvegarde
   
 }: any) {
   return (
@@ -76,12 +76,18 @@ function CreationProfilEleves({
           />
           <div id="fileList"></div>
         </div> */}
-        
+        */
       </form>
-      <button className="bouton_retour_creation_profil_edu" onClick={setRedirectionTwo}>
+      <button
+        className="bouton_retour_creation_profil_edu"
+        onClick={setRedirectionTwo}
+      >
         Retour
       </button>
-      <button className="bouton_sauvegarder_creation_profil_edu" onClick={sauvegarde}>
+      <button
+        className="bouton_sauvegarder_creation_profil_edu"
+        onClick={sauvegarde}
+      >
         Sauvegarder
       </button>
     </div>

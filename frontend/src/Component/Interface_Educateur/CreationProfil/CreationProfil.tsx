@@ -1,5 +1,6 @@
 import React, { useState } from "react";
 import axios from "axios";
+import CreationProfilProf from "./CreationProfilProf";
 import CreationProfilEleves from "./CreationProfilEleves";
 import "./CreationProfil.css";
 import { response } from "express";
@@ -14,16 +15,16 @@ function CreationProfil({ redirection, setSaveName }: any) {
   const [imageEleve, setImageEleve] = useState(String);
   const [mdpEleve, setMdpEleve] = useState(Number);
 
-  const handleInputChangeNom = (event:any) => {
+  const handleInputChangeNom = (event: any) => {
     setNomEleve(event.target.value);
   };
-  const handleInputChangePrenom = (event:any) => {
+  const handleInputChangePrenom = (event: any) => {
     setPrenomEleve(event.target.value);
   };
-  const handleInputChangeMdp = (event:any) => {
+  const handleInputChangeMdp = (event: any) => {
     setMdpEleve(event.target.value);
   };
-  const handleInputChangeImage = (event:any) => {
+  const handleInputChangeImage = (event: any) => {
     setImageEleve(event.target.value);
   };
 
@@ -66,14 +67,17 @@ const getEleve = () => {
 
 
   return (
-    <CreationProfilEleves
-      setRedirectionTwo={setRedirectionTwo}
-      handleInputChangeNom={handleInputChangeNom}
-      handleInputChangePrenom={handleInputChangePrenom}
-      handleInputChangeMdp={handleInputChangeMdp}
-      handleInputChangeImage={handleInputChangeImage}
-      sauvegarde={sauvegarde}
-    />
+    <div>
+      <CreationProfilEleves
+        setRedirectionTwo={setRedirectionTwo}
+        handleInputChangeNom={handleInputChangeNom}
+        handleInputChangePrenom={handleInputChangePrenom}
+        handleInputChangeMdp={handleInputChangeMdp}
+        handleInputChangeImage={handleInputChangeImage}
+        sauvegarde={sauvegarde}
+      />
+      <CreationProfilProf />
+    </div>
   );
 }
 
