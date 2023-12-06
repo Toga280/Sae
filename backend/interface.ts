@@ -48,6 +48,7 @@ export interface Admin{
   nom: string;
   prenom: string;
   mdp: string;
+  id: string;
 }
 
 export interface CreationEleve{
