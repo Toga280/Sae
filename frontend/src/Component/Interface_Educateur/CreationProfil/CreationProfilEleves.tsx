@@ -14,7 +14,8 @@ function CreationProfilEleves({
   handleInputChangePrenom,
   handleInputChangeMdp,
   handleInputChangeImage,
-  sauvegarde,
+  sauvegarde
+  
 }: any) {
   return (
     <div>
@@ -75,6 +76,7 @@ function CreationProfilEleves({
           />
           <div id="fileList"></div>
         </div> */}
+        */
       </form>
       <button
         className="bouton_retour_creation_profil_edu"

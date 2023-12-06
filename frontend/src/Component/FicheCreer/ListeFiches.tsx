@@ -5,7 +5,9 @@ import fonctionsMiniBoxInfoJson from "../CreationFiche/MiniBoxInfoFunction";
 
 function ListeFiches({ redirection }: any) {
   const [FichesNames, setFichesNames] = useState([]);
-
+  const setRedirectionSeven = () => {
+    redirection(7);
+  };
   const deleteFiche = (nomFiche: string) => {
     axios
       .get(
@@ -37,9 +39,12 @@ function ListeFiches({ redirection }: any) {
       <img
         src={require("./delete-icon.png")}
         alt="zea rae"
-        style={{ width: "30px", height: "40px" }}
+        style={{ width: "30px", height: "40px",cursor: "pointer" }}
         onClick={() => deleteFiche(item)}
       />
+      <button className="afecter_fiche_crée" onClick={setRedirectionSeven}>
+        Affecter
+      </button>
     </div>
   ));
 
