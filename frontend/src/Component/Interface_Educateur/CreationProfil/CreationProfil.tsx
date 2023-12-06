@@ -1,34 +1,67 @@
-import React from "react";
+import React, { useState } from "react";
+import axios from "axios";
+import CreationProfilProf from "./CreationProfilProf";
+import CreationProfilEleves from "./CreationProfilEleves";
 import "./CreationProfil.css";
-function CreationFiche({ redirection }: any) {
+
+function CreationProfil({ redirection, setSaveName }: any) {
   const setRedirectionTwo = () => {
     redirection(2);
   };
 
+  const [nomEleve, setNomEleve] = useState("");
+  const [prenomEleve, setPrenomEleve] = useState("");
+  const [imageEleve, setImageEleve] = useState("");
+  const [mdpEleve, setMdpEleve] = useState("");
+
+  const handleInputChangeNom = (event: any) => {
+    setNomEleve(event.target.value);
+  };
+  const handleInputChangePrenom = (event: any) => {
+    setPrenomEleve(event.target.value);
+  };
+  const handleInputChangeMdp = (event: any) => {
+    setMdpEleve(event.target.value);
+  };
+  const handleInputChangeImage = (event: any) => {
+    setImageEleve(event.target.value);
+  };
+
+  const sauvegarde = () => {
+    const eleveData = {
+      nom: nomEleve,
+      prenom: prenomEleve,
+      image: imageEleve,
+      mdp: mdpEleve,
+    };
+    postEleve(eleveData);
+    redirection(2);
+  };
+
+  const postEleve = (eleveData: any) => {
+    axios
+      .post("http://localhost:5000/POST/eleves", eleveData)
+      .then((response) => {
+        console.log("Réponse du serveur :", response.data);
+      })
+      .catch((error) => {
+        console.error("Erreur lors de la requête vers le serveur :", error);
+      });
+  };
+
   return (
     <div>
-      <p className="txt_espace_élève">Création de profil</p>
-
-      <form action="#" method="post" encType="multipart/form-data" className="form_creation_profil_eleve">
-        <div className="form_nom_creation_profil">
-          <p> Nom </p>
-          <input type="text" className="TextInput" />
-        </div>
-        <div className="form_prenom_creation_profil">
-          <p> Prenom </p>
-          <input type="text" className="TextInput" />
-        </div>
-        <div className="form_image_creation_profil">
-          <p> Image </p>
-          <input type="file" id="fileInput" name="fileInput" accept="image/*" multiple />
-          <div id="fileList"></div>
-        </div>
-      </form>
-      <button className="bouton_retour_creation_profil_edu" onClick={setRedirectionTwo}> Retour</button>
-      <button className="bouton_sauvegarder_creation_profil_edu" > Sauvegarder</button>
-
+      <CreationProfilEleves
+        setRedirectionTwo={setRedirectionTwo}
+        handleInputChangeNom={handleInputChangeNom}
+        handleInputChangePrenom={handleInputChangePrenom}
+        handleInputChangeMdp={handleInputChangeMdp}
+        handleInputChangeImage={handleInputChangeImage}
+        sauvegarde={sauvegarde}
+      />
+      <CreationProfilProf />
     </div>
   );
 }
 
-export default CreationFiche;
+export default CreationProfil;

@@ -1,10 +1,15 @@
 import { Document, Schema, model, Model } from "mongoose";
-import { MiniBox, FicheDocument } from "./interface";
+import { MiniBox, FicheDocument, Picto } from "./interface";
+import sharp from 'sharp';
+import { CreationEleve, Admin } from "./interface";
 const express = require('express');
 const app = express();
 const mongoose = require('mongoose');
 const cors = require('cors');
 const PORT = 5000;
+const multer = require('multer');
+const storage = multer.memoryStorage();
+const upload = multer({ storage: storage });
 
 const DB_URL = 'mongodb://0.0.0.0/sae';
 
@@ -61,7 +66,23 @@ const ficheSchema = new Schema<FicheDocument>({
   MiniBox23: { type: miniBoxSchema, required: true },
 });
 
+const admin = new Schema<Admin>({
+  nom: {type: String},
+  prenom: {type: String},
+  mdp: {type: String},
+});
+
+const Admin = model<Admin>('Admin', admin)
+
 const Fiche = model<FicheDocument>('Fiche', ficheSchema);
+
+const pictoSchema = new Schema<Picto>({
+  name: { type: String, required: true },
+  url: { type: String, required: true },
+});
+
+const Picto = model<Picto>('Picto', pictoSchema);
+
 
 /*------------------- POST -------------------*/
 
@@ -83,6 +104,39 @@ app.post('/POST/fiche', (req : any, res : any) => {
     }
   });
 });
+
+
+
+app.post('/POST/uploadpicto', upload.single('file'), async (req: any, res: any) => {
+  try {
+    const { name } = req.query;
+
+    if (!req.file) {
+      return res.status(400).json({ error: 'Aucun fichier n\'a été téléchargé.' });
+    }
+
+    const fileBuffer = req.file.buffer;
+
+    const originalFileName = req.file.originalname;
+    const fileExtension = originalFileName.split('.').pop();
+    const newFileName = `${originalFileName}.webp`; // Change the file extension to webp
+    if (name !== null) {
+      const newFileName = `${name}.webp`; // Change the file extension to webp
+    }
+    const filePath = `./src/picto/${newFileName}`;
+
+    // Use sharp to convert the image to WebP format
+    await sharp(fileBuffer)
+      .toFormat('webp')
+      .toFile(filePath);
+
+    res.status(200).json({ message: 'Image téléchargée avec succès' });
+  } catch (error) {
+    console.error('Erreur lors du téléchargement du fichier:', error);
+    res.status(500).json({ error: 'Erreur interne du serveur' });
+  }
+});
+
 
 /*------------------- GET -------------------*/
 
