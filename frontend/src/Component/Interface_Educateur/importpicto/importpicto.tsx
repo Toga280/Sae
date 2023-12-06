@@ -1,5 +1,6 @@
 import React, { useState } from 'react';
 import axios from 'axios';
+import './importpicto.css';
 
 const ImportPicto = ({ redirection }: any): JSX.Element => {
   const [selectedFile, setSelectedFile] = useState<File | null>(null);
@@ -53,12 +54,17 @@ const ImportPicto = ({ redirection }: any): JSX.Element => {
   };
 
   return (
-    <div>
-      {fileExists && <p>un pictogramme avec ce nom existe déjà</p>}
-      {nameError && <p>Veuiller donner un nom au pictogramme</p>}
-      <input type="file" accept="image/*" onChange={handleFileChange} />
-      <input type="text" value={pictoName} onChange={handleNameChange} placeholder="Enter picto name" />
-      <button onClick={handleUpload}>Upload</button>
+    <div className="upload-container">
+      {fileExists && <p className="error-message">Un pictogramme avec ce nom existe déjà.</p>}
+      {nameError && <p className="error-message">Veuillez donner un nom au pictogramme.</p>}
+      <label className="file-input-label">
+        Choisir un fichier
+        <input className="file-input" type="file" accept="image/*" onChange={handleFileChange} />
+      </label>
+      {selectedFile && <p className="selected-file">Fichier sélectionné : {selectedFile.name}</p>}
+      <input className="text-input" type="text" value={pictoName} onChange={handleNameChange} placeholder="Entrer le nom du pictogramme" />
+      <button className="upload-button" onClick={handleUpload}>Télécharger</button>
+      <button className="back-button" onClick={() => redirection(2)}>Retour</button>
     </div>
   );
 };
