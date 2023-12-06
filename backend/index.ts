@@ -1,8 +1,7 @@
 import { Document, Schema, model, Model } from "mongoose";
-import { MiniBox, FicheDocument, Picto } from "./interface";
+import { MiniBox, FicheDocument, Picto, CreationEleve, Admin } from "./interface";
 import sharp from 'sharp';
 import fs from 'fs';
-import { CreationEleve, Admin } from "./interface";
 const express = require('express');
 const app = express();
 const mongoose = require('mongoose');
@@ -86,6 +85,15 @@ const pictoSchema = new Schema<Picto>({
 const Picto = model<Picto>('Picto', pictoSchema);
 
 
+
+const Eleve = new Schema<CreationEleve>({
+  nom: {type: String},
+  prenom: {type: String},
+  image: {type: String},
+  mdp: {type: Number}
+});
+
+const EleveModel = model<CreationEleve>('Eleve', Eleve);
 /*------------------- POST -------------------*/
 
 app.post('/POST/fiche', (req : any, res : any) => {
