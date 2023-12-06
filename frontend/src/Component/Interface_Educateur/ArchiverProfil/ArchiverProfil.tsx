@@ -1,9 +1,10 @@
 import React, { useEffect, useState } from "react";
 import axios from "axios";
+import "./ArchiverProfil.css";
 
 function ConnectionEleve({ redirection }: any){
-  const redirectionFour = () => {
-    redirection(4);
+  const redirectionTwo = () => {
+    redirection(2);
   };
   const [eleves, setEleves] = useState<any[]>([]);
 
@@ -32,15 +33,17 @@ function ConnectionEleve({ redirection }: any){
           alt="Photo de l'utilisateur"
         />
         <div className="user-name">{`${eleve.prenom} ${eleve.nom}`}</div>
-        <button  className="login-button" onClick={redirectionFour}>
-          Se connecter
+        <button  className="archiver-button" >
+          Archiver
         </button>
       </div>
     ))}
 
     {redirection}
+    <button className="button_retour" onClick={redirectionTwo}>
+        Retour
+    </button>
   </div>
-    
   );
 };
 

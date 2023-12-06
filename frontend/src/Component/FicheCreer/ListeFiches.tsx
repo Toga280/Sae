@@ -5,24 +5,32 @@ import fonctionsMiniBoxInfoJson from "../CreationFiche/MiniBoxInfoFunction";
 
 function ListeFiches({ redirection }: any) {
   const [FichesNames, setFichesNames] = useState([]);
-
+  const setRedirectionSeven = () => {
+    redirection(7);
+  };
   const deleteFiche = (nomFiche: string) => {
-    axios
-      .get(
-        `http://localhost:5000/DELETE/ficheName?name=${encodeURIComponent(
-          nomFiche
-        )}`
-      )
-      .then((response) => {
-        if (response.data) {
-          console.log("fiche supprimé avec succer");
-          // Actualiser la liste après la suppression
-          allFicheNames();
-        }
-      })
-      .catch((error) => {
-        console.error("Erreur lors de la requête vers le serveur :", error);
-      });
+    const confirmation = window.confirm(
+      `Êtes-vous sûr de vouloir supprimer cette fiche ${nomFiche} ?`
+    );
+
+    if (confirmation) {
+      axios
+        .get(
+          `http://localhost:5000/DELETE/ficheName?name=${encodeURIComponent(
+            nomFiche
+          )}`
+        )
+        .then((response) => {
+          if (response.data) {
+            console.log("fiche supprimée avec succès");
+            // Actualiser la liste après la suppression
+            allFicheNames();
+          }
+        })
+        .catch((error) => {
+          console.error("Erreur lors de la requête vers le serveur :", error);
+        });
+    }
   };
 
   const elements = FichesNames.map((item, index) => (
@@ -36,10 +44,14 @@ function ListeFiches({ redirection }: any) {
       </div>
       <img
         src={require("./delete-icon.png")}
-        alt="zea rae"
-        style={{ width: "30px", height: "40px" }}
+        alt="delete-icon"
+        className="delete-icon"
+        style={{ width: "30px", height: "40px",cursor: "pointer" }}
         onClick={() => deleteFiche(item)}
       />
+      <button className="affecter_fiche_crée" onClick={setRedirectionSeven}>
+        Affecter
+      </button>
     </div>
   ));
 

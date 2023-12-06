@@ -1,8 +1,8 @@
 import { Document, Schema, model, Model } from "mongoose";
-import { MiniBox, FicheDocument, Picto } from "./interface";
+import { MiniBox, FicheDocument, Picto, CreationEleve, Admin } from "./interface";
 import sharp from 'sharp';
 import fs from 'fs';
-import { CreationEleve, Admin } from "./interface";
+import path from 'path';
 const express = require('express');
 const app = express();
 const mongoose = require('mongoose');
@@ -86,6 +86,15 @@ const pictoSchema = new Schema<Picto>({
 const Picto = model<Picto>('Picto', pictoSchema);
 
 
+
+const Eleve = new Schema<CreationEleve>({
+  nom: {type: String},
+  prenom: {type: String},
+  image: {type: String},
+  mdp: {type: Number}
+});
+
+const EleveModel = model<CreationEleve>('Eleve', Eleve);
 /*------------------- POST -------------------*/
 
 app.post('/POST/fiche', (req : any, res : any) => {
@@ -182,7 +191,8 @@ app.get('/GET/nameFiche', async (req: any, res: any) => {
   }
 });
 
-/* */
+
+/* GET NAME FICHES EXISTE =============================================*/
 app.get('/GET/nameFicheExiste', async (req: any, res: any) => {
   const { name } = req.query;
 
@@ -203,6 +213,41 @@ app.get('/GET/nameFicheExiste', async (req: any, res: any) => {
     res.status(500).send('Erreur interne du serveur');
   }
 });
+/* GET ELEVES =============================================*/
+
+app.get('/GET/allEleve', async (req: any, res: any) => {
+  try {
+    const eleve = await EleveModel.find({}, "nom prenom image ",).exec();
+    
+    if (!eleve) {
+      return res.status(404).json({ message: 'Élève non trouvé' });
+    }
+
+    res.json(eleve);
+  } catch (error) {
+    console.error(error);
+    res.status(500).json({ message: 'Erreur serveur' });
+  }
+});
+/*------------------- MODFIER MDP ELEVE -------------------*/
+app.post('/POST/updatePassword', async (req: any, res: any) => {
+  const { nom, prenom, mdp } = req.body;
+
+  try {
+    const eleve = await EleveModel.findOne({ nom, prenom });
+
+    if (!eleve) {
+      return res.status(404).json({ message: 'Élève non trouvé' });
+    }
+    eleve.mdp = mdp;
+    await eleve.save();
+    res.json({ message: 'Mot de passe mis à jour avec succès' });
+    
+  } catch (error) {
+    console.error(error);
+    res.status(500).json({ message: 'Erreur serveur' });
+  }
+});
 
 app.get('/GET/admin/authentification', async (req: any, res : any) => {
   const { nom, prenom, mdp} = req.body;
@@ -219,11 +264,38 @@ app.get('/GET/admin/authentification', async (req: any, res : any) => {
   }
 });
 
+
+app.get('/GET/getpicto', async (req: any, res: any) => {
+  const pictoDirectory = path.join(__dirname, './src/picto');
+  const { name } = req.query;
+
+  try {
+    const files = fs.readdirSync(pictoDirectory);
+    let images = [];
+
+    if (name) {
+      images = files.filter(file => {
+        const extension = path.extname(file).toLowerCase();
+        return extension === '.webp' && file.includes(name);
+      });
+    } else {
+      images = files.filter(file => {
+        const extension = path.extname(file).toLowerCase();
+        return extension === '.webp';
+      });
+    }
+
+    res.status(200).json(images);
+  } catch (error) {
+    console.error('Erreur lors de la lecture du répertoire des images :', error);
+    res.status(500).send('Erreur interne du serveur');
+  }
+});
+
 /*------------------- DELETE -------------------*/
 
 app.get('/DELETE/ficheName', async (req: any, res: any) => {
   const { name } = req.query;
-  console.log("oui")
   if (!name) {
     return res.status(400).send('Le paramètre "name" est requis.');
   }
@@ -242,3 +314,4 @@ app.get('/DELETE/ficheName', async (req: any, res: any) => {
     res.status(500).send('Erreur interne du serveur');
   }
 });
+
