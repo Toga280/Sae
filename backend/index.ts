@@ -3,6 +3,7 @@ import { MiniBox, FicheDocument, Picto } from "./interface";
 import sharp from 'sharp';
 import fs from 'fs';
 import { CreationEleve, Admin } from "./interface";
+import path from 'path';
 const express = require('express');
 const app = express();
 const mongoose = require('mongoose');
@@ -219,11 +220,38 @@ app.get('/GET/admin/authentification', async (req: any, res : any) => {
   }
 });
 
+
+app.get('/GET/getpicto', async (req: any, res: any) => {
+  const pictoDirectory = path.join(__dirname, './src/picto');
+  const { name } = req.query;
+
+  try {
+    const files = fs.readdirSync(pictoDirectory);
+    let images = [];
+
+    if (name) {
+      images = files.filter(file => {
+        const extension = path.extname(file).toLowerCase();
+        return extension === '.webp' && file.includes(name);
+      });
+    } else {
+      images = files.filter(file => {
+        const extension = path.extname(file).toLowerCase();
+        return extension === '.webp';
+      });
+    }
+
+    res.status(200).json(images);
+  } catch (error) {
+    console.error('Erreur lors de la lecture du répertoire des images :', error);
+    res.status(500).send('Erreur interne du serveur');
+  }
+});
+
 /*------------------- DELETE -------------------*/
 
 app.get('/DELETE/ficheName', async (req: any, res: any) => {
   const { name } = req.query;
-  console.log("oui")
   if (!name) {
     return res.status(400).send('Le paramètre "name" est requis.');
   }
