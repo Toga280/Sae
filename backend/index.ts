@@ -148,7 +148,24 @@ app.post('/POST/uploadpicto', upload.single('file'), async (req: any, res: any) 
   }
 });
 
-
+app.post('/POST/eleves', (req: any, res: any) => {
+  const newData = req.body;
+  const newEleve = new EleveModel(newData);
+  newEleve.save()
+    .then(() => {
+      console.log('Élève enregistré avec succès dans la base de données');
+      res.status(200).send('Élève enregistré avec succès');
+    })
+    .catch((err: any) => {
+      if (err.name === 'ValidationError') {
+        console.error('Erreur de validation des données :', err.message);
+        res.status(400).send('Données de requête invalides');
+      } else {
+        console.error('Erreur lors de l\'enregistrement de l\'élève dans la base de données :', err);
+        res.status(500).send('Erreur interne du serveur');
+      }
+    });
+});
 /*------------------- GET -------------------*/
 
 
