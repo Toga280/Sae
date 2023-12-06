@@ -11,6 +11,7 @@ import AffecterListe from "./FicheCreer/AffecterListe";
 import ArchiverProfil from "./Interface_Educateur/ArchiverProfil/ArchiverProfil";
 import ModifierMdp from "./Interface_Educateur/ModifierMdp/ModifierMdp";
 import ImportPicto from "./Interface_Educateur/importpicto/importpicto";
+import PageMdpEleve from "./ConnectionPage/ConnectionEleveShema";
 
 function App() {
   const [selectBox, setSelectBox] = useState(null);
@@ -32,6 +33,7 @@ function App() {
       {redirection === 8 && <ArchiverProfil redirection={setRedirection} />}
       {redirection === 9 && <ModifierMdp redirection={setRedirection} />}
       {redirection === 10 && <ImportPicto redirection={setRedirection} />}
+      {redirection === 11 && <PageMdpEleve redirection={setRedirection}/>}
       {redirection === 3 ? (
         selectBox === null ? (
           !saveName ? (

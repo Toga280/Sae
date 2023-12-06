@@ -2,8 +2,8 @@ import React, { useEffect, useState } from "react";
 import axios from "axios";
 
 function ConnectionEleve({ redirection }: any){
-  const redirectionFour = () => {
-    redirection(4);
+  const redirectionTwelve = () => {
+    redirection(11);
   };
   const [eleves, setEleves] = useState<any[]>([]);
 
@@ -32,7 +32,7 @@ function ConnectionEleve({ redirection }: any){
           alt="Photo de l'utilisateur"
         />
         <div className="user-name">{`${eleve.prenom} ${eleve.nom}`}</div>
-        <button  className="login-button" onClick={redirectionFour}>
+        <button  className="login-button" onClick={redirectionTwelve}>
           Se connecter
         </button>
       </div>
