@@ -157,24 +157,9 @@ app.get('/GET/nameFiche', async (req: any, res: any) => {
     res.status(500).send('Erreur interne du serveur');
   }
 });
-/* GET ELEVES =============================================*/
 
-app.get('/GET/allEleve', async (req: any, res: any) => {
-  try {
-    const eleve = await EleveModel.find({}, "nom prenom image ",).exec();
-    
-    if (!eleve) {
-      return res.status(404).json({ message: 'Élève non trouvé' });
-    }
 
-    res.json(eleve);
-  } catch (error) {
-    console.error(error);
-    res.status(500).json({ message: 'Erreur serveur' });
-  }
-});
-
-/* */
+/* GET NAME FICHES EXISTE =============================================*/
 app.get('/GET/nameFicheExiste', async (req: any, res: any) => {
   const { name } = req.query;
 
@@ -193,6 +178,41 @@ app.get('/GET/nameFicheExiste', async (req: any, res: any) => {
   } catch (error) {
     console.error('Erreur lors de la recherche de la fiche :', error);
     res.status(500).send('Erreur interne du serveur');
+  }
+});
+/* GET ELEVES =============================================*/
+
+app.get('/GET/allEleve', async (req: any, res: any) => {
+  try {
+    const eleve = await EleveModel.find({}, "nom prenom image ",).exec();
+    
+    if (!eleve) {
+      return res.status(404).json({ message: 'Élève non trouvé' });
+    }
+
+    res.json(eleve);
+  } catch (error) {
+    console.error(error);
+    res.status(500).json({ message: 'Erreur serveur' });
+  }
+});
+/*------------------- MODFIER MDP ELEVE -------------------*/
+app.post('/POST/updatePassword', async (req: any, res: any) => {
+  const { nom, prenom, mdp } = req.body;
+
+  try {
+    const eleve = await EleveModel.findOne({ nom, prenom });
+
+    if (!eleve) {
+      return res.status(404).json({ message: 'Élève non trouvé' });
+    }
+    eleve.mdp = mdp;
+    await eleve.save();
+    res.json({ message: 'Mot de passe mis à jour avec succès' });
+    
+  } catch (error) {
+    console.error(error);
+    res.status(500).json({ message: 'Erreur serveur' });
   }
 });
 
@@ -219,3 +239,4 @@ app.get('/DELETE/ficheName', async (req: any, res: any) => {
     res.status(500).send('Erreur interne du serveur');
   }
 });
+

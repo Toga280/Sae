@@ -9,10 +9,10 @@ function CreationProfil({ redirection, setSaveName }: any) {
     redirection(2);
   };
 
-  const [nomEleve, setNomEleve] = useState("");
-  const [prenomEleve, setPrenomEleve] = useState("");
-  const [imageEleve, setImageEleve] = useState("");
-  const [mdpEleve, setMdpEleve] = useState("");
+  const [nomEleve, setNomEleve] = useState(String);
+  const [prenomEleve, setPrenomEleve] = useState(String);
+  const [imageEleve, setImageEleve] = useState(String);
+  const [mdpEleve, setMdpEleve] = useState(Number);
 
   const handleInputChangeNom = (event:any) => {
     setNomEleve(event.target.value);
@@ -41,6 +41,7 @@ function CreationProfil({ redirection, setSaveName }: any) {
 
 /*METHODE POST =====================================================*/
   const postEleve = (eleveData: any) => {
+    console.log(eleveData)
     axios
       .post("http://localhost:5000/POST/eleves", eleveData)
       .then((response) => {
@@ -72,7 +73,6 @@ const getEleve = () => {
       handleInputChangeMdp={handleInputChangeMdp}
       handleInputChangeImage={handleInputChangeImage}
       sauvegarde={sauvegarde}
-      getEleve={getEleve}
     />
   );
 }
