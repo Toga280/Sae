@@ -1,6 +1,7 @@
 import { Document, Schema, model, Model } from "mongoose";
 import { MiniBox, FicheDocument, Picto } from "./interface";
 import sharp from 'sharp';
+import fs from 'fs';
 import { CreationEleve, Admin } from "./interface";
 const express = require('express');
 const app = express();
@@ -119,18 +120,18 @@ app.post('/POST/uploadpicto', upload.single('file'), async (req: any, res: any) 
 
     const originalFileName = req.file.originalname;
     const fileExtension = originalFileName.split('.').pop();
-    const newFileName = `${originalFileName}.webp`; // Change the file extension to webp
-    if (name !== null) {
-      const newFileName = `${name}.webp`; // Change the file extension to webp
-    }
+    const newFileName = `${name}.webp`; // Change the file extension to webp
     const filePath = `./src/picto/${newFileName}`;
-
-    // Use sharp to convert the image to WebP format
-    await sharp(fileBuffer)
-      .toFormat('webp')
-      .toFile(filePath);
-
-    res.status(200).json({ message: 'Image téléchargée avec succès' });
+    if (fs.existsSync(filePath)) {
+      res.status(409).json({ message: 'Le fichier existe déjà' });
+    } else {
+      // Use sharp to convert the image to WebP format
+      await sharp(fileBuffer)
+        .toFormat('webp')
+        .toFile(filePath);
+      
+      res.status(200).json({ message: 'Image téléchargée avec succès' });
+    }
   } catch (error) {
     console.error('Erreur lors du téléchargement du fichier:', error);
     res.status(500).json({ error: 'Erreur interne du serveur' });
