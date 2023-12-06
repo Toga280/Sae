@@ -273,19 +273,15 @@ app.get('/GET/getpicto', async (req: any, res: any) => {
     const files = fs.readdirSync(pictoDirectory);
     let images = [];
 
-    if (name) {
-      images = files.filter(file => {
-        const extension = path.extname(file).toLowerCase();
-        return extension === '.webp' && file.includes(name);
-      });
-    } else {
       images = files.filter(file => {
         const extension = path.extname(file).toLowerCase();
         return extension === '.webp';
       });
-    }
 
-    res.status(200).json(images);
+    // Envoyer les fichiers au lieu des noms de fichiers
+    const imagePaths = images.map(image => path.join(pictoDirectory, image));
+    res.status(200).sendFile(imagePaths[0]); // Vous pouvez ajuster cela en fonction de vos besoins
+
   } catch (error) {
     console.error('Erreur lors de la lecture du répertoire des images :', error);
     res.status(500).send('Erreur interne du serveur');
