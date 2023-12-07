@@ -1,5 +1,5 @@
 import { Document, Schema, model, Model } from "mongoose";
-import { MiniBox, FicheDocument, Picto, CreationEleve, Admin } from "./interface";
+import { MiniBox, FicheDocument, Picto, Eleve, Admin } from "./interface";
 import sharp from 'sharp';
 import fs from 'fs';
 import path from 'path';
@@ -87,14 +87,15 @@ const Picto = model<Picto>('Picto', pictoSchema);
 
 
 
-const Eleve = new Schema<CreationEleve>({
+const Eleve = new Schema<Eleve>({
   nom: {type: String},
   prenom: {type: String},
   image: {type: String},
-  mdp: {type: Number}
+  mdp: {type: Number},
+  archiver: {type: Boolean, default: false}
 });
 
-const EleveModel = model<CreationEleve>('Eleve', Eleve);
+const EleveModel = model<Eleve>('Eleve', Eleve);
 /*------------------- POST -------------------*/
 
 app.post('/POST/fiche', (req : any, res : any) => {
@@ -166,6 +167,61 @@ app.post('/POST/eleves', (req: any, res: any) => {
       }
     });
 });
+
+/* MODFIER MDP ELEVE */
+app.post('/POST/updatePassword', async (req: any, res: any) => {
+  const { nom, prenom, mdp } = req.body;
+
+  try {
+    const eleve = await EleveModel.findOne({ nom, prenom });
+
+    if (!eleve) {
+      return res.status(404).json({ message: 'Élève non trouvé' });
+    }
+    eleve.mdp = mdp;
+    await eleve.save();
+    res.status(200).json({ message: 'Mot de passe mis à jour avec succès' });
+    
+  } catch (error) {
+    console.error(error);
+    res.status(500).json({ message: 'Erreur serveur' });
+  }
+});
+
+app.post('/POST/archiverEleve', async (req: any, res: any) => {
+  const {nom, prenom} = req.body;
+
+  try {
+    const eleve = await EleveModel.findOne({nom, prenom});
+    if (!eleve) {
+      return res.status(404).json({ message: 'Élève non trouvé' });
+    }
+    eleve.archiver = true;
+    await eleve.save();
+    res.status(200).json({ message : 'Eleve archiver'});
+  } catch (error) {
+    console.error(error);
+    res.status(500).json({ message: 'Erreur serveur' });
+  }
+})
+
+app.post('/POST/restorerEleve', async (req: any, res: any) => {
+  const {nom, prenom} = req.body;
+
+  try {
+    const eleve = await EleveModel.findOne({nom, prenom});
+    if (!eleve) {
+      return res.status(404).json({ message: 'Élève non trouvé' });
+    }
+    eleve.archiver = false;
+    await eleve.save();
+    res.status(200).json({ message : 'Eleve restorer'});
+  } catch (error) {
+    console.error(error);
+    res.status(500).json({ message: 'Erreur serveur' });
+  }
+})
+
 /*------------------- GET -------------------*/
 
 
@@ -234,32 +290,18 @@ app.get('/GET/nameFicheExiste', async (req: any, res: any) => {
 
 app.get('/GET/allEleve', async (req: any, res: any) => {
   try {
-    const eleve = await EleveModel.find({}, "nom prenom image ",).exec();
-    
-    if (!eleve) {
-      return res.status(404).json({ message: 'Élève non trouvé' });
-    }
-
+    const eleve = await EleveModel.find({ archiver: { $ne: true } }, "nom prenom image ").exec();
     res.json(eleve);
   } catch (error) {
     console.error(error);
     res.status(500).json({ message: 'Erreur serveur' });
   }
 });
-/*------------------- MODFIER MDP ELEVE -------------------*/
-app.post('/POST/updatePassword', async (req: any, res: any) => {
-  const { nom, prenom, mdp } = req.body;
 
+app.get('/GET/allEleveArchiver', async (req: any, res: any) => {
   try {
-    const eleve = await EleveModel.findOne({ nom, prenom });
-
-    if (!eleve) {
-      return res.status(404).json({ message: 'Élève non trouvé' });
-    }
-    eleve.mdp = mdp;
-    await eleve.save();
-    res.json({ message: 'Mot de passe mis à jour avec succès' });
-    
+    const eleve = await EleveModel.find({ archiver: { $ne: false } }, "nom prenom image ").exec();
+    res.json(eleve);
   } catch (error) {
     console.error(error);
     res.status(500).json({ message: 'Erreur serveur' });
@@ -267,9 +309,9 @@ app.post('/POST/updatePassword', async (req: any, res: any) => {
 });
 
 app.get('/GET/admin/authentification', async (req: any, res : any) => {
-  const { nom, prenom, mdp} = req.body;
+  const { id, mdp} = req.query;
   try{
-    const admin = await Admin.findOne({nom, prenom, mdp}).exec();
+    const admin = await Admin.findOne({id, mdp}).exec();
     if (admin) {
       res.status(200).send(true);
     }else{
