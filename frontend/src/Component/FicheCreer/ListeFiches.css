@@ -66,6 +66,7 @@
 .affecter_fiche_crée:hover,
 .bouton_retour_liste_fiche_crée_edu:hover {
   background-color: #f0f0f0;
+  text-align: center;
 }
 
 .titre_h1_fiche_crée {
