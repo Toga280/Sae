@@ -18,8 +18,8 @@ function CreationProfilEleves({
   
 }: any) {
   return (
-    <div>
-      <p className="txt_espace_élève">Création de profil</p>
+    <div className="global_creation_profil_eleve">
+      <p className="txt_creation_espace_élève">Création de profil Eleves</p>
 
       <form
         action="#"
@@ -76,7 +76,6 @@ function CreationProfilEleves({
           />
           <div id="fileList"></div>
         </div> */}
-        */
       </form>
       <button
         className="bouton_retour_creation_profil_edu"

@@ -1,44 +1,72 @@
-.bouton_retour_creation_profil_edu{
+.global_creation_profil_eleve {
+    border: 1px solid #ccc;
+    background-color: #406788;
+    border-radius: 8px;
+    padding: 20px;
+    margin: 20px;
+}
+.global_creation_profil_prof {
+    border: 1px solid #ccc;
+    background-color: #406788;
+    border-radius: 8px;
+    padding: 20px;
+    margin: 20px;
+}
+.txt_creation_espace_élève {
+    text-align: center;
+    color: white;
+    font-size: 24px;
+    font-weight: bold;
+    margin-bottom: 20px;
+}
+
+.form_creation_profil_eleve {
+    color: white;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.form_nom_creation_profil,
+.form_prenom_creation_profil,
+.form_mdp_creation_profil,
+.form_image_creation_profil {
+    color: white;
+    margin: 10px;
+    display: flex;
+    align-items: center;
+}
+
+.form_nom_creation_profil p,
+.form_prenom_creation_profil p,
+.form_mdp_creation_profil p,
+.form_image_creation_profil p {
+    color: white;
+    margin-right: 10px;
+}
+
+.TextInput {
+    padding: 8px;
+    margin: 5px;
+    flex: 1;
+}
+
+.bouton_retour_creation_profil_edu,
+.bouton_sauvegarder_creation_profil_edu {
     border: none;
-    background-color: white;
-    color: #355c7d;
+    background-color: #007bff;
+    color: white;
     font-weight: bold;
     font-size: 18px;
-    padding: 0.8em;
-    margin: 1em;
+    padding: 10px 20px;
+    margin: 10px;
     border-radius: 4px;
+    cursor: pointer;
 }
-.bouton_sauvegarder_creation_profil_edu{
-    border: none;
-    background-color: white;
-    color: #355c7d;
-    font-weight: bold;
-    font-size: 18px;
-    padding: 0.8em;
-    margin: 1em;
-    border-radius: 4px;
-}
-.form_creation_profil_eleve{
-    width: 50%;
-    margin:0 auto;
-    align-items: center;
-    justify-content: center;
-}
-.form_nom_creation_profil{
-    margin:0 auto;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-}
-.form_prenom_creation_profil{
-    margin:0 auto;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-}
-.form_image_creation_profil{
-    margin:0 auto;
-    display: flex;
-    align-items: center;
-    justify-content: center;
+
+.bouton_sauvegarder_creation_profil_edu {
+    background-color: #28a745;
+    overflow: hidden;
+    white-space: nowrap;
+    text-overflow: ellipsis;
 }

@@ -5,6 +5,9 @@ function ConnectionEleveShema({ redirection }: any){
   const redirectionFour = () => {
       redirection(4);
   };
+  const redirectionOne = () => {
+    redirection(1);
+  };
 
   const [password, setPassword] = useState(Number);
   const [numberPos, setNumberPos] = useState(Number);
@@ -63,6 +66,8 @@ function ConnectionEleveShema({ redirection }: any){
       <p className="affichageMDP">{password !== 0 ? (password) : null }</p> 
       </div>
       <button className="bouton" onClick={() => submbitPassword()}>Suivant</button>
+      <button className="bouton_retour_login_eleve" onClick={redirectionOne}>Retour</button>
+
     </div>
   );
 

@@ -46,8 +46,8 @@ function CreationProfilProf({ redirection }: any) {
   };
 
   return (
-    <div>
-      <p className="txt_espace_élève">Création de profil</p>
+    <div className="global_creation_profil_prof">
+      <p className="txt_creation_espace_élève">Création de profil Professeur</p>
 
       <form
         action="#"
@@ -63,6 +63,7 @@ function CreationProfilProf({ redirection }: any) {
             onChange={handleInputChangeNom}
           />
         </div>
+
         <div className="form_prenom_creation_profil">
           <p> Prenom </p>
           <input
@@ -71,6 +72,7 @@ function CreationProfilProf({ redirection }: any) {
             onChange={handleInputChangePrenom}
           />
         </div>
+
         <div className="form_prenom_creation_profil">
           <p> id </p>
           <input
@@ -79,7 +81,8 @@ function CreationProfilProf({ redirection }: any) {
             onChange={handleInputChangeId}
           />
         </div>
-        <div>
+
+        <div className="form_prenom_creation_profil">
           <p> mdp </p>
           <input
             type="text"
@@ -90,7 +93,7 @@ function CreationProfilProf({ redirection }: any) {
       </form>
       <button
         className="bouton_retour_creation_profil_edu"
-        onClick={setRedirectionTwo}
+        onClick={() => redirection(2)}
       >
         Retour
       </button>
