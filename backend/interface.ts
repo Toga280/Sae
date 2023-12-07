@@ -51,9 +51,10 @@ export interface Admin{
   id: string;
 }
 
-export interface CreationEleve{
+export interface Eleve{
   nom: string,
   prenom: string,
   image: string,
-  mdp: number
+  mdp: number,
+  archiver: boolean
 }
