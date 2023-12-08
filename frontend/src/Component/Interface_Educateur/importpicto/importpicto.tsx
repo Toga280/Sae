@@ -6,30 +6,8 @@ const ImportPicto = ({ redirection }: any): JSX.Element => {
   const [selectedFile, setSelectedFile] = useState<File | null>(null);
   const [pictoName, setPictoName] = useState<string>('');
   const [fileExists, setFileExists] = useState<boolean>(false);
-  const [nameError, setNameError] = useState<boolean>(false);
-  const [imageUrls, setImageUrls] = useState<string[]>([]);
-
-  useEffect(() => {
-    const fetchData = async () => {
-      try {
-        // Fetch and display the images
-        const response = await axios.get('/GET/getpicto', {
-          responseType: 'arraybuffer',
-        });
-
-        const images = response.data.map((imageData: ArrayBuffer) => {
-          const blob = new Blob([imageData], { type: 'image/webp' });
-          return URL.createObjectURL(blob);
-        });
-
-        setImageUrls(images);
-      } catch (error) {
-        console.error('Erreur lors de la récupération des images :', error);
-      }
-    };
-
-    fetchData(); // Call the function to fetch data on component mount
-  }, []); // Empty dependency array to run this effect only once when the component mounts
+  const [images, setImages] = useState<ArrayBuffer[]>([]);
+  const [imageError, setImageError] = useState<string>('');
 
   const handleFileChange = (event: React.ChangeEvent<HTMLInputElement>) => {
     if (event.target.files && event.target.files.length > 0) {
@@ -39,7 +17,7 @@ const ImportPicto = ({ redirection }: any): JSX.Element => {
 
   const handleNameChange = (event: React.ChangeEvent<HTMLInputElement>) => {
     setPictoName(event.target.value);
-    setNameError(false);
+    setFileExists(false);
   };
 
   const handleUpload = async () => {
@@ -69,31 +47,71 @@ const ImportPicto = ({ redirection }: any): JSX.Element => {
           console.error('Failed to upload file');
         }
       } else {
-        setNameError(true);
+        setFileExists(false);
       }
     } catch (error) {
       console.error('Error in handleUpload:', error);
     }
   };
 
+  useEffect(() => {
+    const getPictoInfo = async () => {
+      try {
+        const response = await axios.get('http://localhost:5000/GET/getpicto-info');
+        const { numFiles, imageNames } = response.data;
+
+        // Afficher les informations
+        console.log(`Nombre de fichiers: ${numFiles}`);
+        console.log('Liste des noms de fichiers:', imageNames);
+
+        // Demander chaque fichier individuellement
+        const imagePromises = imageNames.map(async (imageName: string) => {
+          const imagePath = `http://localhost:5000/GET/getpicto-file?name=${encodeURIComponent(imageName)}`;
+          const imageResponse = await axios.get(imagePath, {
+            responseType: 'arraybuffer',
+          });
+
+          // Stocker les données binaires de l'image
+          return imageResponse.data;
+        });
+
+        // Attendre que toutes les promesses soient résolues
+        const images = await Promise.all(imagePromises);
+
+        // Mettre à jour l'état avec les données binaires des images
+        setImages(images);
+      } catch (error) {
+        console.error('Erreur lors de la récupération des informations sur les images :', error);
+      }
+    };
+
+    getPictoInfo();
+  }, []);
+
   return (
     <div className="upload-container">
-      {fileExists && <p className="error-message">Un pictogramme avec ce nom existe déjà.</p>}
-      {nameError && <p className="error-message">Veuillez donner un nom au pictogramme.</p>}
-
-      {/* Display the images using the state */}
-      {imageUrls.map((imageUrl, index) => (
-        <img key={index} src={imageUrl} alt={`Uploaded Pictogram ${index + 1}`} />
-      ))}
-
-      <label className="file-input-label">
-        Choisir un fichier
-        <input className="file-input" type="file" accept="image/*" onChange={handleFileChange} />
-      </label>
-      {selectedFile && <p className="selected-file">Fichier sélectionné : {selectedFile.name}</p>}
-      <input className="text-input" type="text" value={pictoName} onChange={handleNameChange} placeholder="Entrer le nom du pictogramme" />
-      <button className="upload-button" onClick={handleUpload}>Télécharger</button>
-      <button className="back-button" onClick={() => redirection(2)}>Retour</button>
+      <div>
+        {fileExists && <p className="error-message">Un pictogramme avec ce nom existe déjà.</p>}
+        <label className="file-input-label">
+          Choisir un fichier
+          <input className="file-input" type="file" accept="image/*" onChange={handleFileChange} />
+        </label>
+        {selectedFile && <p className="selected-file">Fichier sélectionné : {selectedFile.name}</p>}
+        <input className="text-input" type="text" value={pictoName} onChange={handleNameChange} placeholder="Entrer le nom du pictogramme" />
+        <button className="upload-button" onClick={handleUpload}>Télécharger</button>
+        <button className="back-button" onClick={() => redirection(2)}>Retour</button>
+      </div>
+      <div>
+        {imageError && <p className="error-message">{imageError}</p>}
+        {images.map((imageData, index) => (
+          <img
+          key={index}
+          src={`data:image/webp;base64,${btoa(new Uint8Array(imageData).reduce((data, byte) => data + String.fromCharCode(byte), ''))}`}
+          alt={`Pictogramme ${index}`}
+          style={{ maxWidth: '200px', maxHeight: '200px' }}
+        />
+        ))}
+      </div>
     </div>
   );
 };

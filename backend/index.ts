@@ -339,28 +339,41 @@ app.get('/GET/admin/authentification', async (req: any, res : any) => {
 });
 
 
-app.get('/GET/getpicto', async (req: any, res: any) => {
+/* GET PICTO ===================================================================*/
+app.get('/GET/getpicto-info', async (req: any, res: any) => {
   const pictoDirectory = path.join(__dirname, './src/picto');
-  const { name } = req.query;
 
   try {
     const files = fs.readdirSync(pictoDirectory);
-    let images = [];
 
-      images = files.filter(file => {
-        const extension = path.extname(file).toLowerCase();
-        return extension === '.webp';
-      });
+    // Construction des noms des fichiers d'images
+    const imageNames = files.map(file => file);
 
-    // Envoyer les fichiers au lieu des noms de fichiers
-    const imagePaths = images.map(image => path.join(pictoDirectory, image));
-    res.status(200).sendFile(imagePaths[0]); // Vous pouvez ajuster cela en fonction de vos besoins
-
+    // Envoi du nombre de fichiers et de la liste des noms de fichiers en réponse à la requête
+    res.status(200).json({ numFiles: imageNames.length, imageNames });
   } catch (error) {
     console.error('Erreur lors de la lecture du répertoire des images :', error);
     res.status(500).send('Erreur interne du serveur');
   }
 });
+
+app.get('/GET/getpicto-file', async (req: any, res: any) => {
+  const pictoDirectory = path.join(__dirname, './src/picto');
+  const { name } = req.query;
+
+  try {
+    // Construction du chemin complet du fichier image
+    const imagePath = path.join(pictoDirectory, name);
+
+    // Envoi du fichier image en réponse à la requête
+    res.status(200).sendFile(imagePath);
+  } catch (error) {
+    console.error('Erreur lors de la récupération du fichier image :', error);
+    res.status(500).send('Erreur interne du serveur');
+  }
+});
+
+
 
 /*------------------- DELETE -------------------*/
 
