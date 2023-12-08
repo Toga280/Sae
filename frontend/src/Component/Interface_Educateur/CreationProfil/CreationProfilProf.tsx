@@ -91,18 +91,14 @@ function CreationProfilProf({ redirection }: any) {
           />
         </div>
       </form>
-      <button
-        className="bouton_retour_creation_profil_edu"
-        onClick={() => redirection(2)}
-      >
-        Retour
-      </button>
+
       <button
         className="bouton_sauvegarder_creation_profil_edu"
         onClick={createProfil}
       >
         Sauvegarder
       </button>
+
     </div>
   );
 }

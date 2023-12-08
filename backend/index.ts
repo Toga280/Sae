@@ -117,7 +117,7 @@ app.post('/POST/fiche', (req : any, res : any) => {
   });
 });
 
-
+/*UPLOAD PICTO */
 
 app.post('/POST/uploadpicto', upload.single('file'), async (req: any, res: any) => {
   try {
@@ -307,7 +307,22 @@ app.get('/GET/allEleveArchiver', async (req: any, res: any) => {
     res.status(500).json({ message: 'Erreur serveur' });
   }
 });
-
+/*GET ELEVE*/
+app.get('/GET/eleve/authentification', async (req: any, res : any) => {
+  const { nom, prenom , mdp} = req.query;
+  try{
+    const admin = await EleveModel.findOne({nom,prenom,mdp}).exec();
+    if (admin) {
+      res.status(200).send(true);
+    }else{
+      res.status(401).send(false);
+    }
+  } catch (error){
+    console.error('Error during authentication:', error);
+    res.status(500).json({ success: false, message: 'Internal server error' });
+  }
+});
+/*GET ADMIN*/
 app.get('/GET/admin/authentification', async (req: any, res : any) => {
   const { id, mdp} = req.query;
   try{

@@ -1,11 +1,19 @@
 import React, { useEffect, useState } from "react";
 import axios from "axios";
+import ConnectionEleveShema from "./ConnectionEleveShema";
 
 function ConnectionEleve({ redirection }: any) {
-  const redirectionTwelve = () => {
-    redirection(11);
-  };
+
+  const [c, setC] = useState(Boolean);
   const [eleves, setEleves] = useState<any[]>([]);
+  const [nomEleveActuelle, setNomEleveActuelle] = useState(String);
+  const [prenomEleveActuelle, setPrenomEleveActuelle] = useState(String);
+
+  const connection = (nom : string, prenom : string) => {
+    setNomEleveActuelle(nom);
+    setPrenomEleveActuelle(prenom);
+    setC(true);
+  }
 
   useEffect(() => {
     const getEleve = () => {
@@ -23,8 +31,8 @@ function ConnectionEleve({ redirection }: any) {
   }, []);
 
   return (
-    <div className="general_login">
-      {eleves.map((eleve, index) => (
+    <div className="general_login">  
+      {!c ? (eleves.map((eleve, index) => (
         <div className="login-container" key={index}>
           <img
             className="user-photo"
@@ -32,13 +40,11 @@ function ConnectionEleve({ redirection }: any) {
             alt="Portrait de l'utilisateur"
           />
           <div className="user-name">{`${eleve.prenom} ${eleve.nom}`}</div>
-          <button className="login-button" onClick={redirectionTwelve}>
+          <button className="login-button" onClick={() => connection(eleve.nom, eleve.prenom)}>
             Se connecter
           </button>
         </div>
-      ))}
-
-      {redirection}
+      ))) : <ConnectionEleveShema setC={setC} prenomEleveActuelle={prenomEleveActuelle} nomEleveActuelle={nomEleveActuelle} redirection={redirection}/>}
     </div>
   );
 }

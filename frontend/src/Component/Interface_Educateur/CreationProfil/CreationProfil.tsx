@@ -62,6 +62,12 @@ function CreationProfil({ redirection, setSaveName }: any) {
         sauvegarde={sauvegarde}
       />
       <CreationProfilProf />
+      <button
+        className="bouton_retour_creation_profil_edu"
+        onClick={setRedirectionTwo}
+      >
+        Retour
+      </button>
     </div>
   );
 }

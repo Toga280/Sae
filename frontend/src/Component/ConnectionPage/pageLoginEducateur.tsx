@@ -44,7 +44,7 @@ function PageLoginEducateur({ redirection }: any) {
   return (
     <div id="login-form-wrap">
       <h2 className="nom_login_edu">Connexion</h2>
-      {mdpFaut ? <p>mdp incorrect</p> : null}
+      {mdpFaut ? <p>Mots de passe incorrect</p> : null}
       <form id="login-form">
         <p>
           <input
