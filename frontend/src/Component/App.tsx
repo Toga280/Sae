@@ -32,6 +32,7 @@ function App() {
       {redirection === 8 && <ArchiverProfil redirection={setRedirection} />}
       {redirection === 9 && <ModifierMdp redirection={setRedirection} />}
       {redirection === 10 && <ImportPicto redirection={setRedirection} />}
+      {/* {redirection === 12 &&} */}
       {redirection === 3 ? (
         selectBox === null ? (
           !saveName ? (

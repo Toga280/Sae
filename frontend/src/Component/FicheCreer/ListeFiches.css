@@ -1,35 +1,77 @@
-.bouton_retour_liste_fiche_crée_edu{
-    border: none;
-    background-color: #ffffff;
-    max-height: 4em;
-    width: 10%;
-    max-width: 20%;
-    color: #355c7d;
-    font-weight: bold;
-    font-size: 18px;
-    padding: 0.8em;
-    margin: 1em;
-    border-radius: 4px;
-    float: left;
+/* ListeFiches.css */
+
+.global_liste_nom_fiches_crée {
+  display: flex;
+  flex-wrap: wrap;
+  margin-top: 2em;
+  margin-left: 2em;
 }
-.titre_h1_fiche_crée{
-    margin: 1em;
-    color:#355c7d;
-    font-weight: bold;
-    font-size: 30px;
+
+.liste_nom_fiches_crée {
+  border: none;
+  width: 20%;
+  background-color: #fff;
+  border-radius: 8px;
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+  text-align: center;
+  box-sizing: border-box;
+  padding: 1em;
+  margin: 1em;
+  cursor: pointer;
+  color: #355c7d;
+  font-weight: bold;
+  font-size: 18px;
+  transition: background-color 0.3s ease;
 }
-.global_liste_nom_fiches_crée{
-    margin: 1em;
-    display: flex;
-    flex-wrap: wrap;
+
+.liste_nom_fiches_crée:hover {
+  background-color: #f0f0f0;
 }
-.liste_nom_fiches_crée{
-    width: 20%;
-    margin: 1em;
-    background-color: #fff;
-    padding: 20px;
-    border-radius: 8px;
-    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
-    text-align: center;
-    box-sizing: border-box;
+
+.delete-icon {
+  background-color: #e74c3c;
+  color: white;
+  border: none;
+  border-radius: 50%;
+  padding: 0.5em;
+  cursor: pointer;
+  margin-left: 5em; /* Ajustez cette ligne */
+  margin-right: 2em; /* Ajoutez cette ligne */
+  margin-top: 20px;
+  transition: background-color 0.3s ease;
+}
+
+.delete-icon:hover {
+  background-color: #c0392b;
+}
+
+.affecter_fiche_crée,
+.bouton_retour_liste_fiche_crée_edu {
+  border: none;
+  width: 10%;
+  background-color: #ffffff;
+  border-radius: 8px;
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+  text-align: center;
+  box-sizing: border-box;
+  padding: 1em;
+  margin: 1em 0 1em 1em; /* Ajoutez cette ligne */
+  cursor: pointer;
+  color: #355c7d;
+  font-weight: bold;
+  font-size: 18px;
+  transition: background-color 0.3s ease;
+}
+
+.affecter_fiche_crée:hover,
+.bouton_retour_liste_fiche_crée_edu:hover {
+  background-color: #f0f0f0;
+  text-align: center;
+}
+
+.titre_h1_fiche_crée {
+  margin: 1em;
+  color: #355c7d;
+  font-weight: bold;
+  font-size: 30px;
 }

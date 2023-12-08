@@ -5,6 +5,7 @@ import axios from "axios";
 function PageLoginEducateur({ redirection }: any) {
   const [id, setId] = useState(String);
   const [mdp, setMdp] = useState(String);
+  const [mdpFaut, setMdpFaut] = useState(Boolean);
 
   const handleInputId = (event: any) => {
     setId(event.target.value);
@@ -14,23 +15,28 @@ function PageLoginEducateur({ redirection }: any) {
     setMdp(event.target.value);
   };
 
-  const redirectionTwo = () => {
-    redirection(2);
-  };
+  const Connexion = (event: React.FormEvent) => {
+    event.preventDefault(); // Empêche le comportement par défaut du formulaire (rafraîchissement de la page)
 
-  const configConnexion = {
-    headers: {
-      "Content-Type": "application/json",
-    },
-  };
+    setMdpFaut(false);
 
-  const Connexion = () => {
-    const data = JSON.stringify({ id, mdp });
     axios
-      .post("http://localhost:5000/GET/admin/azeazr", data, configConnexion)
+      .get(
+        `http://localhost:5000/GET/admin/authentification?id=${encodeURIComponent(
+          id
+        )}&mdp=${encodeURIComponent(mdp)}`
+      )
       .then((response) => {
         console.log("Réponse du serveur :", response.data);
         if (response.data) {
+          redirection(2);
+        }
+      })
+      .catch((error) => {
+        if (error.response && error.response.status === 401) {
+          setMdpFaut(true);
+        } else {
+          console.error("Erreur lors de la requête :", error);
         }
       });
   };
@@ -38,6 +44,7 @@ function PageLoginEducateur({ redirection }: any) {
   return (
     <div id="login-form-wrap">
       <h2 className="nom_login_edu">Connexion</h2>
+      {mdpFaut ? <p>Mots de passe incorrect</p> : null}
       <form id="login-form">
         <p>
           <input
@@ -67,7 +74,7 @@ function PageLoginEducateur({ redirection }: any) {
             type="submit"
             id="login"
             value="Connexion"
-            onClick={redirectionTwo}
+            onClick={(e) => Connexion(e)}
           >
             Se connecter
           </button>

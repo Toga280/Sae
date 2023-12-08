@@ -18,8 +18,8 @@ function CreationProfilEleves({
   
 }: any) {
   return (
-    <div>
-      <p className="txt_espace_élève">Création de profil</p>
+    <div className="global_creation_profil_eleve">
+      <p className="txt_creation_espace_élève">Création de profil Eleves</p>
 
       <form
         action="#"
@@ -64,26 +64,8 @@ function CreationProfilEleves({
             onChange={handleInputChangeImage}
           />
         </div>
-        {/* <div className="form_image_creation_profil">
-          <p> Image </p>
-          <input
-            type="file"
-            id="fileInput"
-            name="imageEleve"
-            accept="image/*"
-            multiple
-            onChange={handleInputChangeImage}
-          />
-          <div id="fileList"></div>
-        </div> */}
-        */
+        {}
       </form>
-      <button
-        className="bouton_retour_creation_profil_edu"
-        onClick={setRedirectionTwo}
-      >
-        Retour
-      </button>
       <button
         className="bouton_sauvegarder_creation_profil_edu"
         onClick={sauvegarde}
@@ -95,3 +77,20 @@ function CreationProfilEleves({
 }
 
 export default CreationProfilEleves;
+
+
+
+
+
+/* <div className="form_image_creation_profil">
+          <p> Image </p>
+          <input
+            type="file"
+            id="fileInput"
+            name="imageEleve"
+            accept="image/*"
+            multiple
+            onChange={handleInputChangeImage}
+          />
+          <div id="fileList"></div>
+        </div> */
