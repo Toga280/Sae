@@ -1,29 +1,15 @@
-
-
 .container {
   display: flex;
   flex-direction: column;
-  grid-template-columns: repeat(3, 1fr);
-  gap: 1em; /* Adjust gap as needed */
-  background-color: #d7e1ec;
-  border-radius: 1em;
-  padding: 2em;
-  width: 80%;
-  max-width: 20em; /* Adjust max-width as needed */
-  margin: auto;
+  align-items: center;
+  margin: 20px;
 }
 
-.bouton {
-  cursor: pointer;
-  background-color: #d7e1ec;
-  border: none;
-  color: black;
-  padding: 1.5em 3em;
-  text-align: center;
-  text-decoration: none;
-  
-  font-size: 1.5em;
-  width: 100%;
+.boutons {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  margin-bottom: 20px;
 }
 
 .bouton:disabled {
@@ -34,25 +20,69 @@
 .boutonsChiffre {
   display: grid;
   grid-template-columns: repeat(3, 1fr);
-  gap: 1em;
+  gap: 10px;
 }
 
+.bouton {
+  width: 100px;
+  height: 100px;
+  font-size: 32px;
+  border: 1px solid #ccc;
+  border-radius: 5px;
+  cursor: pointer;
+}
+
+.affichage {
+  background-color: white;
+  text-align: center;
+  margin-bottom: 20px;
+}
 
 .affichageMDP {
-  background-color: #d7e1ec;
-  border: none;
-  padding: 1.5em 3em;
-  text-align: center;
-  letter-spacing: 1em;
-  text-decoration: none;
+  font-size: 32px;
   font-weight: bold;
-  font-size: 2em;
-  width: 100%;
 }
 
+.boutonSuivant {
+  background-color: #4caf50;
+  color: white;
+  padding: 10px 20px;
+  font-size: 18px;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+}
 
-@media (max-width: 37.5em) {
-  .container {
-    width: 90%;
-  }
+/* Style pour l'image dans le bouton de suppression */
+.bouton img {
+  width: 20px;
+  height: 20px;
+}
+.bouton_supprimer_connection_eleve{
+  width: 100px;
+  height: 100px;
+  font-size: 32px;
+  border: 1px solid #ccc;
+  border-radius: 5px;
+  cursor: pointer;
+}
+/* Style pour le bouton de suppression */
+.boutonSupprimer {
+  background-color: #f44336;
+  color: white;
+}
+.bouton_suivant_connection_eleve {
+
+  background-color: #28a745;
+  border: none;
+  color: white;
+  font-weight: bold;
+  font-size: 18px;
+  padding: 10px 20px;
+  margin: 10px;
+  border-radius: 4px;
+  cursor: pointer;
+  overflow: hidden;
+  white-space: nowrap;
+  text-overflow: ellipsis;
 }

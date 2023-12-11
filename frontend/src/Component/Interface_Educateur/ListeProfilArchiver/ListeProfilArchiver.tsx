@@ -2,7 +2,7 @@ import React, { useEffect, useState } from "react";
 import axios from "axios";
 import "./ArchiverProfil.css";
 
-function ConnectionEleve({ redirection }: any) {
+function ListeProfilArchiver({ redirection }: any) {
   const redirectionTwo = () => {
     redirection(2);
   };
@@ -10,7 +10,7 @@ function ConnectionEleve({ redirection }: any) {
 
   const getEleve = () => {
     axios
-      .get(`http://localhost:5000/GET/allEleve`)
+      .get(`http://localhost:5000/GET/allEleveArchiver`)
       .then((response) => {
         setEleves(response.data);
       })
@@ -19,13 +19,13 @@ function ConnectionEleve({ redirection }: any) {
       });
   };
 
-  const archiverEleve = (nom: String, prenom: String) => {
+  const restorerEleve = (nom: String, prenom: String) => {
     const confirmation = window.confirm(
       `Êtes-vous sûr de vouloir archiver ${prenom} ?`
     );
     if (confirmation) {
       axios
-        .post("http://localhost:5000/POST/archiverEleve", { nom, prenom })
+        .post("http://localhost:5000/POST/restorerEleve", { nom, prenom })
         .then((response) => {
           console.log(response.data);
           getEleve();
@@ -52,7 +52,7 @@ function ConnectionEleve({ redirection }: any) {
           <div className="user-name">{`${eleve.prenom} ${eleve.nom}`}</div>
           <button
             className="archiver-button"
-            onClick={() => archiverEleve(eleve.nom, eleve.prenom)}
+            onClick={() => restorerEleve(eleve.nom, eleve.prenom)}
           >
             Archiver
           </button>
@@ -67,4 +67,4 @@ function ConnectionEleve({ redirection }: any) {
   );
 }
 
-export default ConnectionEleve;
+export default ListeProfilArchiver;

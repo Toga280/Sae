@@ -46,7 +46,7 @@ function ListeFiches({ redirection }: any) {
         src={require("./delete-icon.png")}
         alt="delete-icon"
         className="delete-icon"
-        style={{ width: "30px", height: "40px",cursor: "pointer" }}
+        style={{ width: "30px", height: "40px", cursor: "pointer" }}
         onClick={() => deleteFiche(item)}
       />
       <button className="affecter_fiche_crée" onClick={setRedirectionSeven}>
