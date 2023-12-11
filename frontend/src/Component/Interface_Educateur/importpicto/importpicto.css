@@ -70,4 +70,12 @@
     cursor: pointer;
     opacity: 0;
   }
+
+  .txt_picto_present {
+    margin-top: 3em;
+    margin-bottom: 2em;
+    text-align: center;
+    color: #355c7d;
+    font-family: Arial, sans-serif;
+  }
   
