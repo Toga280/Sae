@@ -52,7 +52,7 @@ function PageLoginEducateur({ redirection }: any) {
             className="form_login_edu"
             id="username"
             name="username"
-            placeholder="Nom"
+            placeholder="Identifiant"
             required
             onChange={handleInputId}
           />
