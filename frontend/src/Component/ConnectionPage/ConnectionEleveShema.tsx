@@ -9,7 +9,7 @@ function ConnectionEleveShema({ redirection }: any){
   const [password, setPassword] = useState(Number);
   const [numberPos, setNumberPos] = useState(Number);
   const addNumber = (Int: number) => {
-    if (numberPos < 9){
+    if (numberPos < 6){
       setPassword(password * 10 + (Int));
       setNumberPos(numberPos + 1);
     }

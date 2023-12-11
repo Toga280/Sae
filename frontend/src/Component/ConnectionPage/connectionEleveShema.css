@@ -31,12 +31,6 @@
   gap: 1em;
 }
 
-.affichage {
-  background-color: white ;
-  text-align: center;
-  margin-bottom: 20px;
-}
-
 .affichageMDP {
   background-color: #d7e1ec;
   border: none;
