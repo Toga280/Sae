@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import "./connectionEleveShema.css";
 function ConnectionEleveShema({ redirection }: any){
   
@@ -8,6 +8,11 @@ function ConnectionEleveShema({ redirection }: any){
 
   const [password, setPassword] = useState(Number);
   const [numberPos, setNumberPos] = useState(Number);
+  const [nombreEssais, setnombreEssais] = useState(Number);
+  const [boutonDesactive, setBoutonDesactive] = useState(false);
+  const [message, setMessage] = useState(String);
+  const [timeOut, setTimeOut] = useState(Number);
+  
   const addNumber = (Int: number) => {
     if (numberPos < 9){
       setPassword(password * 10 + (Int));
@@ -40,8 +45,32 @@ function ConnectionEleveShema({ redirection }: any){
       alert("Mot de passe incorrect");
       setPassword(0);
       setNumberPos(0);
+      setnombreEssais(nombreEssais + 1);
+    }
+    //// BELEK LOUPE INFINI ////
+
+    /// BELEK LOUPE INFINI ///
+
+    if (nombreEssais === 2){
+      setBoutonDesactive(false);
+      setTimeOut(30);
+      while (timeOut > 0) {
+        setTimeout(() => {
+          
+          }, 1000);
+          setTimeOut(timeOut - 1);
+          setMessage("Trop d'éssais, patientez" + timeOut + "secondes");
+          console.log(timeOut);
+      }
+      setBoutonDesactive(true);
+      setnombreEssais(0);
     }
   }
+
+  useEffect(() => {
+
+  }, [timeOut]);
+  
   return (
     <div className="container">
       <div className="boutons">
@@ -61,8 +90,10 @@ function ConnectionEleveShema({ redirection }: any){
       </div>
       <div className="affichage">
       <p className="affichageMDP">{password !== 0 ? (password) : null }</p> 
+
       </div>
-      <button className="bouton" onClick={() => submbitPassword()}>Suivant</button>
+      <button className="bouton" onClick={() => submbitPassword()} disabled = {boutonDesactive}> OK </button>
+      <p className="message">{message !== '' ? (message) : null }</p> 
     </div>
   );
 

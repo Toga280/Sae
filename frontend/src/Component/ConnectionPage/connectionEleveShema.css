@@ -26,6 +26,11 @@
   width: 100%;
 }
 
+.bouton:disabled {
+  color: #b3b3b3;
+  cursor: not-allowed;
+}
+
 .boutonsChiffre {
   display: grid;
   grid-template-columns: repeat(3, 1fr);
