@@ -26,6 +26,8 @@ export interface FonctionsMiniBoxInfoJson {
   modifierAllJsonToBase: () => void;
   modificationAudio: (position: number, audio: boolean) => void;
   getAudio: (position: number) => boolean | null;
+  getNomPicto: (position: number) => string | null;
+  setNomPicto: (position: number, nom: string) => void;
   modifierNom: (nom: string) => void;
   getNom: () => string;
   getAllJson: () => MiniBox;

@@ -3,6 +3,7 @@ import Texte from "./Texte";
 import Pictogramme from "./Pictogramme";
 import Son from "./Son";
 import fonctionsMiniBoxInfoJson from "../MiniBoxInfoFunction";
+import PictoChoisi from "./PictoChoisi";
 function ChoixMiniBox({
   TexteInfo,
   Balise,
@@ -30,7 +31,7 @@ function ChoixMiniBox({
         )}
         {fonctionsMiniBoxInfoJson.getChoixMiniBox(numeroMiniBox) ===
         "Pictogramme" ? (
-          <Pictogramme />
+          <PictoChoisi numeroMiniBox={numeroMiniBox} />
         ) : (
           <p></p>
         )}

@@ -77,8 +77,7 @@ function SelectionChoixMiniBox({
           <p></p>
         )}
         {modificationPictoProps === true ? (
-          <ModificationPicto
-            setModificationPictoPropsFalse={setModificationPictoPropsFalse}
+          <ModificationPicto numeroMiniBox={numeroMiniBox}
           />
         ) : null}
       </div>
