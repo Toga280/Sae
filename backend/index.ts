@@ -373,6 +373,15 @@ app.get('/GET/getpicto-file', async (req: any, res: any) => {
   }
 });
 
+/* GET MDP ELEVE ===================================================================
+
+app.get('/GET/getMdpEleve', async (req: any, res: number) => {
+  
+
+
+}
+
+*/
 
 
 /*------------------- DELETE -------------------*/
