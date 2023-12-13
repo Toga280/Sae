@@ -17,6 +17,8 @@
   margin: 1em;
   border-radius: 4px;
   border: none;
+  cursor: pointer;
+
 }
 .txt_espace_élève{
   margin-top: 3em;
@@ -80,6 +82,7 @@
     margin: 1em;
     border-radius: 4px;
     border: none;
+    cursor: pointer;
   }
 }
 /* REVOIR LE CSS RESPONSIVE +++++++++++++++++++++++++++++++++++++++++++++++*/
@@ -100,5 +103,7 @@
     padding: 0.8em;
     margin: 1em;
     border-radius: 4px;
+    cursor: pointer;
+
   }
 }

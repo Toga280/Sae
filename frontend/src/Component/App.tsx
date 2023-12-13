@@ -12,6 +12,7 @@ import ArchiverProfil from "./Interface_Educateur/ArchiverProfil/ArchiverProfil"
 import ImportPicto from "./Interface_Educateur/importpicto/importpicto";
 import ConnectionEleveShema from "./ConnectionPage/ConnectionEleveShema";
 import ModifierMdp from "./Interface_Educateur/ModifierMdp/ModifierMdp";
+import PhotoEleve from "./EspaceEleve/PhotoEleve/PhotoEleve";
 function App() {
   const [selectBox, setSelectBox] = useState(null);
   const [redirection, setRedirection] = useState(1);
@@ -34,6 +35,7 @@ function App() {
       {redirection === 10 && <ImportPicto redirection={setRedirection} />}
       {redirection === 11 && <ConnectionEleveShema redirection={setRedirection} />}
       {/* {redirection === 12 &&} */}
+      {redirection === 13 && <PhotoEleve redirection={setRedirection} />}
       {redirection === 3 ? (
         selectBox === null ? (
           !saveName ? (
