@@ -40,6 +40,9 @@ function SelectionChoixMiniBox({
   const setChoixMiniBoxBooleanFalse = () => {
     setChoixMiniBoxBoolean(false);
   };
+  const setSelectionChoixMiniBoxTrue = () => {
+    setChoixMiniBoxBoolean(true);
+  };
 
   const setTypeMiniBoxTexte = () => {
     setChoixTypeElement(1);

@@ -1,9 +1,9 @@
 import React from "react";
 import Texte from "./Texte";
-import Pictogramme from "./Pictogramme";
 import Son from "./Son";
 import fonctionsMiniBoxInfoJson from "../MiniBoxInfoFunction";
 import PictoChoisi from "./PictoChoisi";
+
 function ChoixMiniBox({
   TexteInfo,
   Balise,
@@ -15,7 +15,9 @@ function ChoixMiniBox({
     fonctionsMiniBoxInfoJson.allIsSelectedMiniBoxFalse();
     infoSelectionChoixMiniBox(true, numeroMiniBox);
     fonctionsMiniBoxInfoJson.modifierIsSelectedMiniBox(numeroMiniBox, true);
+    fonctionsMiniBoxInfoJson.modifierChoixMiniBox(numeroMiniBox, "Texte");
   };
+
   return (
     <div>
       <div onClick={setSelectionChoixMiniBoxTrue}>
@@ -30,11 +32,11 @@ function ChoixMiniBox({
           <p></p>
         )}
         {fonctionsMiniBoxInfoJson.getChoixMiniBox(numeroMiniBox) ===
-        "Pictogramme" ? (
-          <PictoChoisi numeroMiniBox={numeroMiniBox} />
-        ) : (
-          <p></p>
-        )}
+          "Pictogramme" ? (
+            <PictoChoisi numeroMiniBox={numeroMiniBox} />
+          ) : (
+            <p></p>
+          )}
       </div>
       {fonctionsMiniBoxInfoJson.getAudio(numeroMiniBox) === true ? (
         <Son Texte={TexteInfo} Balise={Balise} ClassName={ClassName} />

@@ -2,7 +2,7 @@ import React, { useEffect, useState } from "react";
 import axios from 'axios';
 import fonctionsMiniBoxInfoJson from "../MiniBoxInfoFunction";
 
-function PictoChoisi({ numeroMiniBox }: any) {
+function PictoChoisi({ numeroMiniBox, setpastouche }: any) {
     const [imagePath, setImagePath] = useState<string | null>(null);
     useEffect(() => {
         const getPictoFile = async () => {
@@ -32,7 +32,7 @@ function PictoChoisi({ numeroMiniBox }: any) {
                 <img
                     src={imagePath}
                     alt="pictogramme"
-                    style={{ maxWidth: '200px', maxHeight: '200px' }}
+                    style={{ maxWidth: '100px', maxHeight: '100px' }}
                 />
             )}
         </div>

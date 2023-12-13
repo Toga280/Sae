@@ -64,8 +64,8 @@ function Pictogramme({ onSelect }: { onSelect: (selectedImage: string) => void }
           )}`}
           alt={`Pictogramme ${index}`}
           style={{
-            maxWidth: '200px',
-            maxHeight: '200px',
+            maxWidth: '100px',
+            maxHeight: '100px',
             border: selectedImage === String(index) ? '2px solid blue' : 'none', // Mettre en surbrillance la sélection
           }}
           onClick={() => handleImageClick(index)}
