@@ -4,24 +4,24 @@ import axios from "axios";
 function ConnectionEleveShema({ redirection, setC, nomEleveActuelle, prenomEleveActuelle }: any) {
   
   const TAILLE_MAX_MDP = 6;
-  const [mdpFaux, setMdpFaux] = useState(false);
-/*
+  const [mdpFaux, setMdpFaux] = useState(true);
+
   const Connexion = (event: React.FormEvent) => {
     event.preventDefault();
-    setMdpFaux(false);
+    setMdpFaux(true);
 
     axios
       .get(
         `http://localhost:5000/GET/eleve/authentification?prenom=${encodeURIComponent(
           prenomEleveActuelle
-        )}&nom=${encodeURIComponent(nomEleveActuelle)}&mdp=${encodeURIComponent(password)}`
+        )}&nom=${encodeURIComponent(nomEleveActuelle)}&mdp=${encodeURIComponent(password.toString())}`
       )
       .then((response) => {
         console.log("Réponse du serveur :", response.data);
         if (response.data) {
           redirection(4);
         } else {
-          setMdpFaux(true);
+          setMdpFaux(false);
         }
       })
       .catch((error) => {
@@ -40,17 +40,17 @@ function ConnectionEleveShema({ redirection, setC, nomEleveActuelle, prenomEleve
         setPassword([]);
       }
   };
-*/
+
   const [password, setPassword] = useState<Number[]>([]);
 
   const addNumber = (Int: number) => {
 
     if (password.length < TAILLE_MAX_MDP){
       setPassword([...password, Int]);
-
+      console.log("password" + password.toString());
     }
 
-    console.log("password" + password);
+    
   }
 
   const removeNumber = () => {
@@ -67,8 +67,6 @@ function ConnectionEleveShema({ redirection, setC, nomEleveActuelle, prenomEleve
 
     console.log("password" + password);
   }
-
-
 
   return (
     <div className="container">
@@ -88,10 +86,11 @@ function ConnectionEleveShema({ redirection, setC, nomEleveActuelle, prenomEleve
                     <button className="bouton" onClick={() => addNumber(7)}>7</button>
                     <button className="bouton" onClick={() => addNumber(8)}>8</button>
                     <button className="bouton" onClick={() => addNumber(9)}>9</button>
-                    <button className="bouton" onClick={() => removeNumber()}> <img src = {require("../CreationFiche/MiniBoxChoix/imagesTestStuart/retour.png")} alt="suprimmer chiffre" className="btn-retour-pin"></img> </button>
+                    <button className="bouton" onClick={() => removeNumber()}>
+                       <img src = {require("../CreationFiche/MiniBoxChoix/imagesTestStuart/retour.png")} alt="suprimmer chiffre" className="btn-retour-pin"></img> </button>
                     <button className="bouton" onClick={() => addNumber(0)}>0</button>
-                  {/*  <button className="bouton" onClick={(e) => Connexion(e)}>Connexion</button>*/}
-                  
+                    <button className="bouton" onClick={(e) => Connexion(e)}>Connexion</button>
+                 
                 </div>  
             </div>
     </div>
