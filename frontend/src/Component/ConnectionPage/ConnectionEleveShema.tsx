@@ -2,8 +2,10 @@ import React, { useState } from "react";
 import "./connectionEleveShema.css";
 import axios from "axios";
 function ConnectionEleveShema({ redirection, setC, nomEleveActuelle, prenomEleveActuelle }: any) {
+  
+  const TAILLE_MAX_MDP = 6;
   const [mdpFaux, setMdpFaux] = useState(false);
-
+/*
   const Connexion = (event: React.FormEvent) => {
     event.preventDefault();
     setMdpFaux(false);
@@ -29,59 +31,51 @@ function ConnectionEleveShema({ redirection, setC, nomEleveActuelle, prenomEleve
           console.error("Erreur lors de la requête :", error);
         }
       });
+
+      if (!mdpFaux){
+        redirection(4);
+      } else { 
+        alert("Mot de passe incorrect");
+        // remettre le mdp a 0
+        setPassword([]);
+      }
   };
+*/
+  const [password, setPassword] = useState<Number[]>([]);
 
-
-  const [password, setPassword] = useState(Number);
-  const [numberPos, setNumberPos] = useState(Number);
   const addNumber = (Int: number) => {
-    if (numberPos < 6){
-      setPassword(password * 10 + (Int));
-      setNumberPos(numberPos + 1);
+
+    if (password.length < TAILLE_MAX_MDP){
+      setPassword([...password, Int]);
+
     }
 
     console.log("password" + password);
-    console.log("numpos" + numberPos);
   }
 
   const removeNumber = () => {
 
-    if(numberPos <= 0){
-      setPassword(0);
-      setNumberPos(0);
+    if(password.length <= 0){
+      setPassword([]);
+
     } else {
-      setPassword((password - password % 10) / 10);
-      setNumberPos(numberPos - 1);
+      
+      const updatedPassword = password.slice(0, -1);
+      setPassword(updatedPassword);
+
     }
 
     console.log("password" + password);
-    console.log("numpos" + numberPos);
   }
 
-  const submbitPassword = () => {
 
-    if (checkPassword()){
-      redirection(4);
-    } else { 
-      alert("Mot de passe incorrect");
-      setPassword(0);
-      setNumberPos(0);
-    }
-  }
-
-  const checkPassword = () => {
-    if (password === 1234){
-        return true;
-    } else { 
-        return false;
-    }
-  }
 
   return (
     <div className="container">
-        <p className="affichageMDP">{mdpFaux ? "Mot de passe incorrect" : null}</p>
+        
+    <button className="bouton_deconnection_eleve" onClick={() => setC(false)}> Se déconnecter</button>
         <div className="affichage">
-        <p className="affichageMDP">{password !== 0 ? (password) : null }</p> 
+        <p className="affichageMDP">{password.map(num => num).join('')}</p> 
         </div>
             <div className="boutons">
                 <div className="boutonsChiffre">
@@ -96,10 +90,8 @@ function ConnectionEleveShema({ redirection, setC, nomEleveActuelle, prenomEleve
                     <button className="bouton" onClick={() => addNumber(9)}>9</button>
                     <button className="bouton" onClick={() => removeNumber()}> <img src = {require("../CreationFiche/MiniBoxChoix/imagesTestStuart/retour.png")} alt="suprimmer chiffre" className="btn-retour-pin"></img> </button>
                     <button className="bouton" onClick={() => addNumber(0)}>0</button>
-                    <button className="bouton" onClick={(e) => Connexion(e)}>Connexion</button>
-                    <button className="bouton_retour_connection_eleve" onClick={() => setC(false)}>
-                    Retour
-                  </button>
+                  {/*  <button className="bouton" onClick={(e) => Connexion(e)}>Connexion</button>*/}
+                  
                 </div>  
             </div>
     </div>
