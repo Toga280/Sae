@@ -9,10 +9,10 @@ import Sauvegarder from "./CreationFiche/Sauvegarder";
 import ListeFiches from "./FicheCreer/ListeFiches";
 import AffecterListe from "./FicheCreer/AffecterListe";
 import ArchiverProfil from "./Interface_Educateur/ArchiverProfil/ArchiverProfil";
-import ModifierMdp from "./Interface_Educateur/ModifierMdp/ModifierMdp";
 import ImportPicto from "./Interface_Educateur/importpicto/importpicto";
 import ConnectionEleveShema from "./ConnectionPage/ConnectionEleveShema";
 import ListeProfilArchiver from "./Interface_Educateur/ListeProfilArchiver/ListeProfilArchiver";
+import ModifierMdp from "./Interface_Educateur/ModifierMdp/ModifierMdp";
 function App() {
   const [selectBox, setSelectBox] = useState(null);
   const [redirection, setRedirection] = useState(1);

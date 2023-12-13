@@ -169,7 +169,7 @@ app.post('/POST/eleves', (req: any, res: any) => {
 });
 
 /* MODFIER MDP ELEVE */
-app.post('/POST/updatePassword', async (req: any, res: any) => {
+app.post('/POST/eleveUpdatePassword', async (req: any, res: any) => {
   const { nom, prenom, mdp } = req.body;
 
   try {
@@ -187,7 +187,27 @@ app.post('/POST/updatePassword', async (req: any, res: any) => {
     res.status(500).json({ message: 'Erreur serveur' });
   }
 });
+/*MODIFIER MDP PROF */
+app.post('/POST/profUpdatePassword', async (req: any, res: any) => {
+  const { mdp ,nom,prenom} = req.body;
 
+  try {
+    const admin = await Admin.findOne({ nom,prenom });
+
+    if (!admin) {
+      return res.status(404).json({ message: 'Prof non trouvé' });
+    }
+    admin.mdp = mdp;
+    await admin.save();
+    res.status(200).json({ message: 'Mot de passe mis à jour avec succès' });
+    
+  } catch (error) {
+    console.error(error);
+    res.status(500).json({ message: 'Erreur serveur' });
+  }
+});
+
+/*ARCHIVER ELEVE */
 app.post('/POST/archiverEleve', async (req: any, res: any) => {
   const {nom, prenom} = req.body;
 
@@ -297,7 +317,7 @@ app.get('/GET/allEleve', async (req: any, res: any) => {
     res.status(500).json({ message: 'Erreur serveur' });
   }
 });
-
+/* GET ELEVES ARCHIVER=============================================*/
 app.get('/GET/allEleveArchiver', async (req: any, res: any) => {
   try {
     const eleve = await EleveModel.find({ archiver: { $ne: false } }, "nom prenom image ").exec();
@@ -307,7 +327,8 @@ app.get('/GET/allEleveArchiver', async (req: any, res: any) => {
     res.status(500).json({ message: 'Erreur serveur' });
   }
 });
-/*GET ELEVE*/
+
+/*GET ELEVE AUTHENTIFICATION ============================================*/
 app.get('/GET/eleve/authentification', async (req: any, res : any) => {
   const { nom, prenom , mdp} = req.query;
   try{
@@ -322,6 +343,7 @@ app.get('/GET/eleve/authentification', async (req: any, res : any) => {
     res.status(500).json({ success: false, message: 'Internal server error' });
   }
 });
+
 /*GET ADMIN*/
 app.get('/GET/admin/authentification', async (req: any, res : any) => {
   const { id, mdp} = req.query;
@@ -337,7 +359,16 @@ app.get('/GET/admin/authentification', async (req: any, res : any) => {
     res.status(500).json({ success: false, message: 'Internal server error' });
   }
 });
-
+/*GET ALL PROF ============================================*/
+app.get('/GET/allProf', async (req: any, res: any) => {
+  try {
+    const admin = await Admin.find({}, "nom prenom").exec();
+    res.json(admin);
+  } catch (error) {
+    console.error(error);
+    res.status(500).json({ message: 'Erreur serveur' });
+  }
+});
 
 /* GET PICTO ===================================================================*/
 app.get('/GET/getpicto-info', async (req: any, res: any) => {
@@ -373,15 +404,6 @@ app.get('/GET/getpicto-file', async (req: any, res: any) => {
   }
 });
 
-/* GET MDP ELEVE ===================================================================
-
-app.get('/GET/getMdpEleve', async (req: any, res: number) => {
-  
-
-
-}
-
-*/
 
 
 /*------------------- DELETE -------------------*/
