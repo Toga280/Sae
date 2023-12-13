@@ -65,13 +65,15 @@ function CreationProfilEleves({
           />
         </div>
         {}
-      </form>
-      <button
+        
+        <button
         className="bouton_sauvegarder_creation_profil_edu"
         onClick={sauvegarde}
       >
         Sauvegarder
       </button>
+      </form>
+
     </div>
   );
 }

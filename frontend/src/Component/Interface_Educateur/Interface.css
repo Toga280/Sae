@@ -31,8 +31,6 @@
 	box-shadow: 1px 1px 3px rgba(0,0,0,0.15);
 	background: #e62222;
     max-height: 4em;
-
-    
     font-weight: bold;
     font-size: 18px;
     padding: 0.8em;
@@ -52,6 +50,8 @@
     margin: 1em;
     border-radius: 0.2em;
     border: none;
+    cursor: pointer;
+
 }
 .txt_espace_prof{
     margin-top: 3em;

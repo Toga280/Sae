@@ -26,10 +26,10 @@ function PopUpSauvegarder({
   };
 
   return (
-    <div>
-      <p>il existe deja une fiche avec ce nom, voulez vous l'écrasez ?</p>
-      <button onClick={() => setUpPopUpSauvegarder(false)}>annuler</button>
-      <button onClick={() => deleteFiche(nomFiche)}>écrasez</button>
+    <div className="Sauevgarder_global_fiche_ecraser">
+      <p>Il existe déjà une fiche avec ce nom, voulez vous l'écrasez ?</p>
+      <button className="bouton_annuler_ecraser"onClick={() => setUpPopUpSauvegarder(false)}>annuler</button>
+      <button  className="bouton_delete_ecraser"onClick={() => deleteFiche(nomFiche)}>écrasez</button>
     </div>
   );
 }

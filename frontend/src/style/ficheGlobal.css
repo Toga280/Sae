@@ -55,8 +55,8 @@ input.TextInput {
 .boutton_sauvegarder_interaction_edu{
   background-color: #ffffff;
   max-height: 4em;
-  width: 20%;
-  max-width: 30%;
+  width: 15%;
+  max-width: 20%;
   color: #355c7d;
   font-weight: bold;
   font-size: 18px;
@@ -69,8 +69,8 @@ input.TextInput {
 .boutton_brouillon_interaction_edu{
   background-color: #ffffff;
   max-height: 4em;
-  width: 20%;
-  max-width: 30%;
+  width: 15%;
+  max-width: 20%;
   color: #355c7d;
   font-weight: bold;
   font-size: 18px;
