@@ -1,9 +1,9 @@
 .global_modif_mdp_eleve{
     border: 1px solid #ccc;
-    background-color: #406788;
+    background-color: #f5f5f5;
     border-radius: 8px;
     padding: 20px;
-    margin: 20px;
+    margin: 3em;
 }
 .bouton_retour_modif_mdp_eleve{
     background-color: white;
@@ -20,9 +20,9 @@
     cursor: pointer;
 }
 .titre_modif_mdp_eleve{
-    justify-content: center;
+    text-align: center;
     font-size: 30px;
     font-weight: bold;
-    color: white;
+    color: #355c7d;
     margin: 1em;
 }

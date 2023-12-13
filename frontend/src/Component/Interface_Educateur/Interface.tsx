@@ -1,11 +1,22 @@
 import React from "react";
 import "./Interface.css";
 function Interface({ redirection }: any) {
+  
+  const handleBoutonClic = () => {
+    const confirmation = window.confirm("Êtes-vous sûr de vouloir vous déconnecter ?");
+    if (confirmation) {
+      console.log("Action effectuée !");
+      redirection(1)
+    } else {
+      console.log("Action annulée.");
+    }
+  };
+
   return (
     <div>
       <button
         className="bouton_deconnection_educateur"
-        onClick={() => redirection(1)}
+        onClick={handleBoutonClic}
       >
         Se déconnecter
       </button>

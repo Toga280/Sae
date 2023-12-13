@@ -1,6 +1,6 @@
 import axios from "axios";
 import React, { useEffect, useState } from "react";
-
+import "./AffecterListe.css";
 function AffecterListe({ redirection }: any) {
   const setRedirectionSix = () => {
     redirection(6);
@@ -29,9 +29,9 @@ function AffecterListe({ redirection }: any) {
   };
 
   return (
-    <div>
-      <h1>Affecter une fiche</h1>
-      <h2>Liste des élèves</h2>
+    <div className="global_affecter_fiche">
+      <h1 className="titleh1">Affecter une fiche</h1>
+      <h2 className="title">Liste des élèves</h2>
       <ul>
         {eleves.map((eleve) => (
           <li

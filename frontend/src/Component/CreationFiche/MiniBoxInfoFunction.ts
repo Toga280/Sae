@@ -146,6 +146,23 @@ const fonctionsMiniBoxInfoJson: FonctionsMiniBoxInfoJson = {
 
     return null;
   },
+  getNomPicto: (position) => {
+    for (let key in MiniBoxInfoJson) {
+      const currentBox = MiniBoxInfoJson[key];
+      if (currentBox.Position === position) {
+        return currentBox.NomPicto
+      }
+    }
+    return null
+  },
+  setNomPicto: (position, nom) => {
+    for (let key in MiniBoxInfoJson) {
+      const currentBox = MiniBoxInfoJson[key];
+      if (currentBox.Position === position) {
+        currentBox.NomPicto = nom
+      }
+    }
+  },
   modifierNom: (nom) => {
     MiniBoxInfoJson.info.name = nom;
   },
