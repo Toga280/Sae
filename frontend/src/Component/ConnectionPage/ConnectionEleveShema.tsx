@@ -5,6 +5,10 @@ function ConnectionEleveShema({ redirection, setC, nomEleveActuelle, prenomEleve
   
   const TAILLE_MAX_MDP = 6;
   const [mdpFaux, setMdpFaux] = useState(true);
+  const [nombreEssais, setnombreEssais] = useState(Number);
+  const [boutonDesactive, setBoutonDesactive] = useState(false);
+  const [message, setMessage] = useState(String);
+  const [timeOut, setTimeOut] = useState(Number);
 
   const Connexion = (event: React.FormEvent) => {
     event.preventDefault();
@@ -37,8 +41,31 @@ function ConnectionEleveShema({ redirection, setC, nomEleveActuelle, prenomEleve
       } else { 
         alert("Mot de passe incorrect");
         // remettre le mdp a 0
+        
+        alert("Mot de passe incorrect");
         setPassword([]);
+    
+        setnombreEssais(nombreEssais + 1);
       }
+      //// BELEK LOUPE INFINI ////
+
+      /// BELEK LOUPE INFINI ///
+
+      if (nombreEssais === 2){
+        setBoutonDesactive(false);
+        setTimeOut(30);
+        while (timeOut > 0) {
+          setTimeout(() => {
+            
+            }, 1000);
+            setTimeOut(timeOut - 1);
+            setMessage("Trop d'éssais, patientez" + timeOut + "secondes");
+            console.log(timeOut);
+        }
+        setBoutonDesactive(true);
+        setnombreEssais(0);
+      }
+    }
   };
 
   const [password, setPassword] = useState<Number[]>([]);
@@ -59,10 +86,8 @@ function ConnectionEleveShema({ redirection, setC, nomEleveActuelle, prenomEleve
       setPassword([]);
 
     } else {
-      
       const updatedPassword = password.slice(0, -1);
       setPassword(updatedPassword);
-
     }
 
     console.log("password" + password);
