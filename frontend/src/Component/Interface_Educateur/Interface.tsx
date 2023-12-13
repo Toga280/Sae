@@ -3,11 +3,12 @@ import "./Interface.css";
 function Interface({ redirection }: any) {
   return (
     <div>
-        <button
-          className="bouton_deconnection_educateur"
-          onClick={() => redirection(1)}
-        >Se déconnecter
-        </button>
+      <button
+        className="bouton_deconnection_educateur"
+        onClick={() => redirection(1)}
+      >
+        Se déconnecter
+      </button>
       <h2 className="txt_espace_prof">Espace Professeur</h2>
 
       <div className="global_bouton_interface_educateur">
@@ -61,7 +62,7 @@ function Interface({ redirection }: any) {
         </button>
         <button
           className="bouton_interface_educateur"
-          //onClick={() => redirection(7)}
+          onClick={() => redirection(12)}
         >
           Profil Archiver
         </button>

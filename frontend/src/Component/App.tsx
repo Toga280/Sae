@@ -11,6 +11,7 @@ import AffecterListe from "./FicheCreer/AffecterListe";
 import ArchiverProfil from "./Interface_Educateur/ArchiverProfil/ArchiverProfil";
 import ImportPicto from "./Interface_Educateur/importpicto/importpicto";
 import ConnectionEleveShema from "./ConnectionPage/ConnectionEleveShema";
+import ListeProfilArchiver from "./Interface_Educateur/ListeProfilArchiver/ListeProfilArchiver";
 import ModifierMdp from "./Interface_Educateur/ModifierMdp/ModifierMdp";
 import PhotoEleve from "./EspaceEleve/PhotoEleve/PhotoEleve";
 function App() {
@@ -34,7 +35,7 @@ function App() {
       {redirection === 9 && <ModifierMdp redirection={setRedirection} />}
       {redirection === 10 && <ImportPicto redirection={setRedirection} />}
       {redirection === 11 && <ConnectionEleveShema redirection={setRedirection} />}
-      {/* {redirection === 12 &&} */}
+      {redirection === 12 && (<ListeProfilArchiver redirection={setRedirection} />)}
       {redirection === 13 && <PhotoEleve redirection={setRedirection} />}
       {redirection === 3 ? (
         selectBox === null ? (
