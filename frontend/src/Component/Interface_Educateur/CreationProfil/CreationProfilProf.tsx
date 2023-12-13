@@ -90,15 +90,13 @@ function CreationProfilProf({ redirection }: any) {
             onChange={handleInputChangeMdp}
           />
         </div>
-      </form>
-
-      <button
+        <button
         className="bouton_sauvegarder_creation_profil_edu"
         onClick={createProfil}
       >
         Sauvegarder
       </button>
-
+      </form>
     </div>
   );
 }

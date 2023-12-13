@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from "react";
 import axios from "axios";
-import "./ArchiverProfil.css";
+//import "./ArchiverProfil.css";
 
 function ListeProfilArchiver({ redirection }: any) {
   const redirectionTwo = () => {
@@ -54,7 +54,7 @@ function ListeProfilArchiver({ redirection }: any) {
             className="archiver-button"
             onClick={() => restorerEleve(eleve.nom, eleve.prenom)}
           >
-            Archiver
+            Restaurer
           </button>
         </div>
       ))}
