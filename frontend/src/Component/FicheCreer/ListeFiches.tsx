@@ -96,14 +96,17 @@ function ListeFiches({ redirection }: any) {
 
   return (
     <div>
-      <h1 className="titre_h1_fiche_crée">Liste Fiches :</h1>
-      {elements}
+      <div className="fiche_global_liste_fiche">
+        <h1 className="titre_h1_fiche_crée">Liste Fiches :</h1>
+        {elements}
+
+      </div>
       <button
-        className="bouton_retour_liste_fiche_crée_edu"
-        onClick={setRedirectionTwo}
-      >
-        Retour
-      </button>
+          className="bouton_retour_liste_fiche_crée_edu"
+          onClick={setRedirectionTwo}
+        >
+          Retour
+        </button>
     </div>
   );
 }

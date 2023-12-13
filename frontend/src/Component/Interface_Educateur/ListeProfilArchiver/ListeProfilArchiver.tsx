@@ -54,7 +54,7 @@ function ListeProfilArchiver({ redirection }: any) {
             className="archiver-button"
             onClick={() => restorerEleve(eleve.nom, eleve.prenom)}
           >
-            Archiver
+            Restaurer
           </button>
         </div>
       ))}

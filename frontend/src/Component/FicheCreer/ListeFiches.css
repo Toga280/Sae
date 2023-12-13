@@ -1,5 +1,14 @@
 /* ListeFiches.css */
-
+.fiche_global_liste_fiche{
+  justify-content: center;
+  color: #355c7d;
+  max-width: 600px;
+  margin: 2em auto;
+  padding: 20px;
+  background-color: #f5f5f5;
+  border-radius: 8px;
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+}
 .global_liste_nom_fiches_crée {
   display: flex;
   flex-wrap: wrap;
@@ -45,24 +54,38 @@
   background-color: #c0392b;
 }
 
-.affecter_fiche_crée,
-.bouton_retour_liste_fiche_crée_edu {
+.affecter_fiche_crée{
   border: none;
-  width: 10%;
+  width: 25%;
   background-color: #ffffff;
   border-radius: 8px;
   box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
   text-align: center;
   box-sizing: border-box;
   padding: 1em;
-  margin: 1em 0 1em 1em; /* Ajoutez cette ligne */
+  margin: 1em 0 1em 3em; /* Ajoutez cette ligne */
   cursor: pointer;
   color: #355c7d;
   font-weight: bold;
   font-size: 18px;
   transition: background-color 0.3s ease;
 }
-
+.bouton_retour_liste_fiche_crée_edu {
+  border: none;
+  width: 15%;
+  background-color: #ffffff;
+  border-radius: 8px;
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+  text-align: center;
+  box-sizing: border-box;
+  padding: 1em;
+  margin: 2em 0 1em 1em; /* Ajoutez cette ligne */
+  cursor: pointer;
+  color: #355c7d;
+  font-weight: bold;
+  font-size: 18px;
+  transition: background-color 0.3s ease;
+}
 .affecter_fiche_crée:hover,
 .bouton_retour_liste_fiche_crée_edu:hover {
   background-color: #f0f0f0;
@@ -70,6 +93,7 @@
 }
 
 .titre_h1_fiche_crée {
+  text-align: center;
   margin: 1em;
   color: #355c7d;
   font-weight: bold;
