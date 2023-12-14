@@ -90,6 +90,12 @@ function CreationProfilProf({ redirection }: any) {
             onChange={handleInputChangeMdp}
           />
         </div>
+        <label htmlFor="choix">Sélectionnez une option :</label>
+        <select id="choix" name="choix">
+            <option value="option1">Professeur</option>
+            <option value="option2">Professeur Admin</option>
+            <option value="option3">Admin</option>
+        </select>
         <button
         className="bouton_sauvegarder_creation_profil_edu"
         onClick={createProfil}

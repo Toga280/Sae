@@ -41,30 +41,30 @@ function ConnectionEleveShema({ redirection, setC, nomEleveActuelle, prenomEleve
       if (!mdpFaux){
         redirection(4);
       } else { 
-        alert("Mot de passe incorrect");
+        //alert("Mot de passe incorrect");
  
         setPassword([]);
     
         setnombreEssais(nombreEssais + 1);
       }
 
-      if (nombreEssais >= 2){
-        setBoutonDesactive(false);
-        console.log(time);
-        setTime(30);
-        console.log(time);
-        while (time > 0) {
-          setTimeout(() => {
+      // if (nombreEssais >= 2){
+      //   setBoutonDesactive(false);
+      //   console.log(time);
+      //   setTime(30);
+      //   console.log(time);
+      //   while (time > 0) {
+      //     setTimeout(() => {
             
-            }, 1000);
-            setTime(time - 1);
-            setMessage("Trop d'éssais, patientez" + time + "secondes");
-            console.log(time);
-        }
-        setBoutonDesactive(true);
-        setnombreEssais(0);
-        setMessage("");
-      }
+      //       }, 1000);
+      //       setTime(time - 1);
+      //       setMessage("Trop d'éssais, patientez" + time + "secondes");
+      //       console.log(time);
+      //   }
+      //   setBoutonDesactive(true);
+      //   setnombreEssais(0);
+      //   setMessage("");
+      // }
    };
   
 

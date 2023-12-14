@@ -91,7 +91,7 @@ const Eleve = new Schema<Eleve>({
   nom: {type: String},
   prenom: {type: String},
   image: {type: String},
-  mdp: {type: Number},
+  mdp: {type: String},
   archiver: {type: Boolean, default: false}
 });
 

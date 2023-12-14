@@ -19,8 +19,9 @@
 }
 
 .form_creation_profil_eleve {
-    color: white;
     display: flex;
+    color: #355c7d;
+    font-size: 1.5em;
     flex-direction: column;
     align-items: center;
 }

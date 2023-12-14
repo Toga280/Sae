@@ -12,7 +12,7 @@ function CreationProfil({ redirection, setSaveName }: any) {
   const [nomEleve, setNomEleve] = useState(String);
   const [prenomEleve, setPrenomEleve] = useState(String);
   const [imageEleve, setImageEleve] = useState(String);
-  const [mdpEleve, setMdpEleve] = useState(Number);
+  const [mdpEleve, setMdpEleve] = useState(String);
 
   const handleInputChangeNom = (event: any) => {
     setNomEleve(event.target.value);

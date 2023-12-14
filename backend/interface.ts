@@ -49,12 +49,13 @@ export interface Admin{
   prenom: string;
   mdp: string;
   id: string;
+  
 }
 
 export interface Eleve{
   nom: string,
   prenom: string,
   image: string,
-  mdp: number,
+  mdp: string,
   archiver: boolean
 }
