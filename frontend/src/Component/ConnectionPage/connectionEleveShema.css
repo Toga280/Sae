@@ -25,6 +25,11 @@
   width: 100%;
 }
 
+.bouton:disabled {
+  background-color: #d7e1ec;
+  color: #b3b3b3;
+  cursor: not-allowed;
+}
 .boutonsChiffre {
   display: grid;
   grid-template-columns: repeat(3, 10em);
@@ -68,4 +73,10 @@ background: #e62222;
   .container {
     width: 90%;
   }
+}
+
+.countdown:disabled{
+  background-color: #d7e1ec;
+  border: none;
+  color: #e62222;
 }
