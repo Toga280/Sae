@@ -3,12 +3,13 @@ import "./connectionEleveShema.css";
 import axios from "axios";
 function ConnectionEleveShema({ redirection, setC, nomEleveActuelle, prenomEleveActuelle }: any) {
   
-  const TAILLE_MAX_MDP = 6;
+  
   const [mdpFaux, setMdpFaux] = useState(true);
   const [nombreEssais, setnombreEssais] = useState(Number);
   const [boutonDesactive, setBoutonDesactive] = useState(false);
   const [message, setMessage] = useState(String);
   const [timeOut, setTimeOut] = useState(Number);
+  const TAILLE_MAX_MDP = 6;
 
   const Connexion = (event: React.FormEvent) => {
     event.preventDefault();
@@ -51,33 +52,30 @@ function ConnectionEleveShema({ redirection, setC, nomEleveActuelle, prenomEleve
 
       /// BELEK LOUPE INFINI ///
 
-      if (nombreEssais === 2){
-        setBoutonDesactive(false);
-        setTimeOut(30);
-        while (timeOut > 0) {
-          setTimeout(() => {
+    //   if (nombreEssais === 2){
+    //     setBoutonDesactive(false);
+    //     setTimeOut(30);
+    //     while (timeOut > 0) {
+    //       setTimeout(() => {
             
-            }, 1000);
-            setTimeOut(timeOut - 1);
-            setMessage("Trop d'éssais, patientez" + timeOut + "secondes");
-            console.log(timeOut);
-        }
-        setBoutonDesactive(true);
-        setnombreEssais(0);
-      }
-    }
-  };
+    //         }, 1000);
+    //         setTimeOut(timeOut - 1);
+    //         setMessage("Trop d'éssais, patientez" + timeOut + "secondes");
+    //         console.log(timeOut);
+    //     }
+    //     setBoutonDesactive(true);
+    //     setnombreEssais(0);
+    //   }
+   };
+  
 
   const [password, setPassword] = useState<Number[]>([]);
 
   const addNumber = (Int: number) => {
-
     if (password.length < TAILLE_MAX_MDP){
       setPassword([...password, Int]);
       console.log("password" + password.toString());
     }
-
-    
   }
 
   const removeNumber = () => {
