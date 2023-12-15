@@ -1,8 +1,8 @@
 import React from "react";
 import ChoixMiniBox from "./MiniBoxChoix/ChoixMiniBox";
-import DupliquerSelect from "./DupliquerSelect";
 import "../../style/fiche8.css";
 import "../../style/ficheGlobal.css";
+import PageSelect from "./PageSelect";
 function FicheBox8({ numeroMiniBox, infoSelectionChoixMiniBox,classNameDiv }: any) {
   return (
     <div className={classNameDiv}>
@@ -14,16 +14,8 @@ function FicheBox8({ numeroMiniBox, infoSelectionChoixMiniBox,classNameDiv }: an
         infoSelectionChoixMiniBox={infoSelectionChoixMiniBox}
       />
       <div className="SelectMateriaux">
-        <DupliquerSelect />
-        <DupliquerSelect />
-        <DupliquerSelect />
-        <DupliquerSelect />
-        <DupliquerSelect />
-        <DupliquerSelect />
-        <DupliquerSelect />
-        <DupliquerSelect />
-        <DupliquerSelect />
-        <DupliquerSelect />
+        <PageSelect />
+
       </div>
     </div>
   );
