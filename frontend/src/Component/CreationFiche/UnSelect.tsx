@@ -2,17 +2,22 @@ import React , { useState } from "react";
 import PageSelect from "./PageSelect";
 import "../../style/ficheGlobal.css";
 import "./select.css";
+import fonctionsMiniBoxInfoJson from "./MiniBoxInfoFunction";
+import UnMat from "./UnMat";
 
-function UnSelect({setSelect} : any) {
-  const [materiaux, setMateriaux] = useState("");
+function UnSelect({setSelect} : any, {numMat} : any) {
+  const [Mat, setMat] = useState("");
+  
   const returnMat = () => {
-    setMateriaux("Materiaux2Fou");
+    fonctionsMiniBoxInfoJson.setMateriel(Mat, {numMat});
     setSelect(false) ;
   }
   return (
 
-    <div className="unSelect" onClick={() => returnMat()}>
-        Materiaux2Fou
+    <div className="unSelect">
+        <UnMat mat={"a"} setMat={setMat} />
+        <UnMat mat={"b"} setMat={setMat} />
+        <UnMat mat={"c"} setMat={setMat} />
     </div>
   );
 }

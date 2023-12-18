@@ -197,7 +197,16 @@ const fonctionsMiniBoxInfoJson: FonctionsMiniBoxInfoJson = {
     } else {
       console.error('Le paramètre newJson doit être un objet JSON valide.');
     }
-  }
-  };
-
+  },
+  setMateriel: (Materiel: string, nMateriel: any) => {
+    if (typeof nMateriel === 'object' && nMateriel !== null) {
+      Object.keys(MiniBoxInfoJson.Materiel).forEach((key) => {
+        if(MiniBoxInfoJson.Materiel[key] === nMateriel){
+          MiniBoxInfoJson.Materiel[key] = Materiel;
+        }
+      });
+    } else {
+      console.error('Le paramètre nMateriel doit être un objet JSON valide.');
+    }
+  }};
 export default fonctionsMiniBoxInfoJson;
