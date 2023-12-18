@@ -3,22 +3,16 @@ import PageSelect from "./PageSelect";
 import "../../style/ficheGlobal.css";
 import "./select.css";
 
-
-function UnSelect({name , image, num} : any ) {
-  
-  const [select, setSelect] = useState(false);
-  const [numSelect, setNumSelect] = useState(0);
-  const handleClick = (numero: number) => {
-      setNumSelect(numero);
-  };
-
-
+function UnSelect({setSelect} : any) {
+  const [materiaux, setMateriaux] = useState("");
+  const returnMat = () => {
+    setMateriaux("Materiaux2Fou");
+    setSelect(false) ;
+  }
   return (
 
-    <div className="unSelect">
-        <div onClick={() => handleClick(num)}>
-          {name} , {image}
-        </div>
+    <div className="unSelect" onClick={() => returnMat()}>
+        Materiaux2Fou
     </div>
   );
 }

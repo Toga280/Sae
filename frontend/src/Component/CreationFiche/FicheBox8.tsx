@@ -1,10 +1,13 @@
-import React from "react";
+import React, {useState} from "react";
 import ChoixMiniBox from "./MiniBoxChoix/ChoixMiniBox";
 import "../../style/fiche8.css";
 import "../../style/ficheGlobal.css";
 import PageSelect from "./PageSelect";
+import SelectsAffichage from "./SelectsAffichage";
 function FicheBox8({ numeroMiniBox, infoSelectionChoixMiniBox,classNameDiv }: any) {
-  return (
+  const [select, setSelect] = useState(false);
+
+  return (  
     <div className={classNameDiv}>
       <ChoixMiniBox
         TexteInfo={"Matériaux Utilisés"}
@@ -13,10 +16,9 @@ function FicheBox8({ numeroMiniBox, infoSelectionChoixMiniBox,classNameDiv }: an
         numeroMiniBox={numeroMiniBox[1]}
         infoSelectionChoixMiniBox={infoSelectionChoixMiniBox}
       />
-      <div className="SelectMateriaux">
-        <PageSelect />
 
-      </div>
+      {select ? <PageSelect setSelect={setSelect}/>: <SelectsAffichage setSelect={setSelect}/>}
+
     </div>
   );
 }

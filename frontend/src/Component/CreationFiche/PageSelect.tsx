@@ -3,23 +3,19 @@ import UnSelect from "./UnSelect";
 import "../../style/fiche1.css";
 import "../../style/ficheGlobal.css";
 
-function ajouterSelect(){
-    return( <UnSelect name={"any"} image={"any"}/>);
-}
+function PageSelect({setSelect} : any){
 
-function PageSelect(){
-
-const [numSelect, setNumSelect] = useState(Number);
-
-const handleClick = (numero: number) => {
-  setNumSelect(numero);
-};
-
+  const setSelectFalse = () => setSelect(false);
   return (
     <div>
-            <UnSelect name={"any"} image={"any"} numero={1}/>
-
-            <button onClick={ajouterSelect()}></button>
+      <button onClick={() => setSelectFalse()}> Retour </button> 
+            
+            Séléctionnez le materiel à ajouter :
+            
+            <UnSelect setSelect={setSelect}/>
+            <UnSelect setSelect={setSelect}/>
+            <UnSelect setSelect={setSelect}/>
+            <UnSelect setSelect={setSelect}/>
     </div>
   );
 }
