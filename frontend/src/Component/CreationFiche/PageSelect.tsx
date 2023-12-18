@@ -2,6 +2,7 @@ import React, {useState} from "react";
 import UnSelect from "./UnSelect";
 import "../../style/fiche1.css";
 import "../../style/ficheGlobal.css";
+import fonctionsMiniBoxInfoJson from "./MiniBoxInfoFunction";
 
 function ajouterSelect(){
     return( <UnSelect name={"any"} image={"any"}/>);
@@ -23,5 +24,4 @@ const handleClick = (numero: number) => {
     </div>
   );
 }
-
 export default PageSelect;

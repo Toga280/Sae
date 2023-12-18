@@ -9,7 +9,12 @@ function SelectsAffichage({setSelect} : any) {
   return (
 
     <div className="unSelect">
-        <button onClick={() => setSelectTrue()}>Sélectionner Matériel</button>
+        <div onClick={() => setSelectTrue()}> MAT1 </div>
+        <div onClick={() => setSelectTrue()}> MAT2 </div>
+        <div onClick={() => setSelectTrue()}> MAT3 </div>
+        <div onClick={() => setSelectTrue()}> MAT4 </div>
+        <div onClick={() => setSelectTrue()}> MAT5 </div>
+        
     </div>
   );
 }
