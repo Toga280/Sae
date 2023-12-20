@@ -6,6 +6,7 @@ import PageSelect from "./PageSelect";
 import SelectsAffichage from "./SelectsAffichage";
 function FicheBox8({ numeroMiniBox, infoSelectionChoixMiniBox,classNameDiv }: any) {
   const [select, setSelect] = useState(false);
+  const [numMat, setNumMat] = useState(String);
 
   return (  
     <div className={classNameDiv}>
@@ -17,7 +18,7 @@ function FicheBox8({ numeroMiniBox, infoSelectionChoixMiniBox,classNameDiv }: an
         infoSelectionChoixMiniBox={infoSelectionChoixMiniBox}
       />
 
-      {select ? <PageSelect setSelect={setSelect}/>: <SelectsAffichage setSelect={setSelect}/>}
+      {select ? <PageSelect setSelect={setSelect} numMat={numMat} />: <SelectsAffichage setSelect={setSelect} setNumMat={setNumMat}/>}
 
     </div>
   );
