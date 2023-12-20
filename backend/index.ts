@@ -71,7 +71,8 @@ const admin = new Schema<Admin>({
   nom: {type: String},
   prenom: {type: String},
   mdp: {type: String},
-  id: {type: String}
+  id: {type: String},
+  role: {type: String}
 });
 
 const Admin = model<Admin>('Admin', admin)
@@ -242,6 +243,27 @@ app.post('/POST/restorerEleve', async (req: any, res: any) => {
   }
 })
 
+app.post('/POST/admin', (req : any, res : any) => {
+  const newData = req.body;
+  const newAdmin = new Admin(newData);
+  newAdmin.save()
+  .then(() => {
+    console.log('Admin enregistré avec succès dans la base de données');
+    console.log(newAdmin);
+
+    res.status(200).send('Admin enregistré avec succès');
+  })
+  .catch((err : any) => {
+    if (err.name === 'ValidationError') {
+      console.error('Erreur de validation des données :', err.message);
+      res.status(400).send('Données de requête invalides');
+    } else {
+      console.error('Erreur lors de l\'enregistrement de l\'Admin dans la base de données :', err);
+      res.status(500).send('Erreur interne du serveur');
+    }
+  });
+});
+
 /*------------------- GET -------------------*/
 
 
@@ -350,6 +372,8 @@ app.get('/GET/admin/authentification', async (req: any, res : any) => {
   try{
     const admin = await Admin.findOne({id, mdp}).exec();
     if (admin) {
+      //console.log("Admin trouvé :", admin);
+
       res.status(200).send(true);
     }else{
       res.status(401).send(false);
@@ -359,6 +383,28 @@ app.get('/GET/admin/authentification', async (req: any, res : any) => {
     res.status(500).json({ success: false, message: 'Internal server error' });
   }
 });
+
+/*GET ROLE PROF ============================================*/
+app.get('/GET/roleProf', async (req: any, res: any) => {
+  const { id } = req.query;
+  try {
+    const admin = await Admin.findOne({ id: id }).exec();
+
+    if (admin) {
+      res.status(200).json({role: admin.role });
+    } else {
+      res.status(401).json({ success: false, message: 'Admin not found' });
+    }
+  } catch (error) {
+    console.error('Error during get role:', error);
+    res.status(500).json({ success: false, message: 'Internal server error' });
+  }
+});
+
+
+
+
+
 /*GET ALL PROF ============================================*/
 app.get('/GET/allProf', async (req: any, res: any) => {
   try {

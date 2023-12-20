@@ -18,6 +18,7 @@ function App() {
   const [selectBox, setSelectBox] = useState(null);
   const [redirection, setRedirection] = useState(1);
   const [saveName, setSaveName] = useState(false);
+  const [role, setRole] = useState(String);
 
   const handleSelectBoxChange = (value: any) => {
     setSelectBox(value);
@@ -25,8 +26,8 @@ function App() {
 
   return (
     <div>
-      {redirection === 1 && <PageConnection redirection={setRedirection} />}
-      {redirection === 2 && <Interface redirection={setRedirection} />}
+      {redirection === 1 && <PageConnection redirection={setRedirection}  setRole={setRole}/>}
+      {redirection === 2 && <Interface redirection={setRedirection} role={role}/>}
       {redirection === 4 && <PageEspaceEleve redirection={setRedirection} />}
       {redirection === 5 && <CreationProfil redirection={setRedirection} />}
       {redirection === 6 && <ListeFiches redirection={setRedirection} />}

@@ -49,6 +49,7 @@ export interface Admin{
   prenom: string;
   mdp: string;
   id: string;
+  role: string;
   
 }
 
