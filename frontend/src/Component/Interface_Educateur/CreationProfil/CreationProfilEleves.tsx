@@ -64,7 +64,6 @@ function CreationProfilEleves({
             onChange={handleInputChangeImage}
           />
         </div>
-        {}
         
         <button
         className="bouton_sauvegarder_creation_profil_edu"

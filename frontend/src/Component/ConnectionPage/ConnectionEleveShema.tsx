@@ -93,30 +93,30 @@ function ConnectionEleveShema({ redirection, setC, nomEleveActuelle, prenomEleve
   return (
     <div className="container">
         
-    <button className="bouton_deconnection_eleve" onClick={() => setC(false)}> Se déconnecter</button>
-        <div className="affichage">
-        <p className="affichageMDP">{password.map(num => num).join('')}</p> 
-        </div>
-            <div className="boutons">
-                <div className="boutonsChiffre">
-                    <button className="bouton" onClick={() => addNumber(1)}>1</button>
-                    <button className="bouton" onClick={() => addNumber(2)}>2</button>
-                    <button className="bouton" onClick={() => addNumber(3)}>3</button>
-                    <button className="bouton" onClick={() => addNumber(4)}>4</button>
-                    <button className="bouton" onClick={() => addNumber(5)}>5</button>
-                    <button className="bouton" onClick={() => addNumber(6)}>6</button>
-                    <button className="bouton" onClick={() => addNumber(7)}>7</button>
-                    <button className="bouton" onClick={() => addNumber(8)}>8</button>
-                    <button className="bouton" onClick={() => addNumber(9)}>9</button>
-                    <button className="bouton" onClick={() => removeNumber()}>
-                       <img src = {require("../CreationFiche/MiniBoxChoix/imagesTestStuart/retour.png")} alt="suprimmer chiffre" className="btn-retour-pin"></img> </button>
-                    <button className="bouton" onClick={() => addNumber(0)}>0</button>
-                    <button className="bouton" onClick={(e) => Connexion(e) } disabled={boutonDesactive}>Connexion</button>
-                    <input type="text" className="countdown" disabled={true} value={message}/>
-                 
-                </div>  
-            </div>
-    </div>
+    {/* <button className="bouton_deconnection_eleve" onClick={() => setC(false)}> Se déconnecter</button> */}
+      <div className="affichage">
+      <p className="affichageMDP">{password.map(num => num).join('')}</p> 
+      </div>
+      
+      <div className="boutons">
+        <div className="boutonsChiffre">
+            <button className="bouton" onClick={() => addNumber(1)}>1</button>
+            <button className="bouton" onClick={() => addNumber(2)}>2</button>
+            <button className="bouton" onClick={() => addNumber(3)}>3</button>
+            <button className="bouton" onClick={() => addNumber(4)}>4</button>
+            <button className="bouton" onClick={() => addNumber(5)}>5</button>
+            <button className="bouton" onClick={() => addNumber(6)}>6</button>
+            <button className="bouton" onClick={() => addNumber(7)}>7</button>
+            <button className="bouton" onClick={() => addNumber(8)}>8</button>
+            <button className="bouton" onClick={() => addNumber(9)}>9</button>
+            <button className="bouton" onClick={() => removeNumber()}>
+                <img src = {require("../CreationFiche/MiniBoxChoix/imagesTestStuart/retour.png")} alt="suprimmer chiffre" className="btn-retour-pin"></img> </button>
+            <button className="bouton" onClick={() => addNumber(0)}>0</button>
+            <button className="bouton" onClick={(e) => Connexion(e) } disabled={boutonDesactive}>Connexion</button>
+            <input type="text" className="countdown" disabled={true} value={message}/>
+          </div>  
+      </div>
+  </div>
   );
 
 };

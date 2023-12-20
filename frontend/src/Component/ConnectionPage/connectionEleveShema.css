@@ -7,8 +7,7 @@
   background-color: #d7e1ec;
   border-radius: 1em;
   padding: 2em;
-  width: 80%;
-  max-width: 20em; /* Adjust max-width as needed */
+  justify-content: center;
   margin: auto;
 }
 
@@ -45,7 +44,6 @@
   text-decoration: none;
   font-weight: bold;
   font-size: 2em;
-  width: 100%;
 }
 
 .btn-retour-pin { 
