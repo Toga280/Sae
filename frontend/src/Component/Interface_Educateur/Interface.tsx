@@ -9,6 +9,7 @@ function Interface({ redirection, role }: any) {
       redirection(1)
     }
   };
+  console.log("role interface", role);
 
   return (
     <div>
