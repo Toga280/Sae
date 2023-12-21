@@ -1,3 +1,5 @@
+import e from "express";
+
 export interface MiniBox {
   ChoixMiniBox: string;
   Position: number;
@@ -60,4 +62,12 @@ export interface Eleve{
   image: string,
   mdp: string,
   archiver: boolean,
+}
+
+export interface Materiel {
+  Mat1: string,
+  Mat2: string,
+  Mat3: string,
+  Mat4: string,
+  Mat5: string
 }

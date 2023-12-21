@@ -65,6 +65,13 @@ const ficheSchema = new Schema<FicheDocument>({
   MiniBox21: { type: miniBoxSchema, required: true },
   MiniBox22: { type: miniBoxSchema, required: true },
   MiniBox23: { type: miniBoxSchema, required: true },
+  // Materiel: {
+  //   Mat1: { type: String, required: true },
+  //   Mat2: { type: String, required: true },
+  //   Mat3: { type: String, required: true },
+  //   Mat4: { type: String, required: true },
+  //   Mat5: { type: String, required: true }
+  // }
 });
 
 const admin = new Schema<Admin>({
