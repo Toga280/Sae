@@ -204,5 +204,23 @@ const fonctionsMiniBoxInfoJson: FonctionsMiniBoxInfoJson = {
         MiniBoxInfoJson.Materiel[key] = Materiel;
       }
     });
-  }};
+  },
+
+  
+    getMateriel: (nMateriel: String): string => {
+      // Initialize the result to null
+      let result: string = "null";
+  
+      // Iterate over the keys of MiniBoxInfoJson.Materiel
+      Object.keys(MiniBoxInfoJson.Materiel).forEach((key) => {
+        if (key === nMateriel) {
+          // Assign the corresponding value to the result
+          result = MiniBoxInfoJson.Materiel[key];
+        }
+      });
+  
+      // Return the result
+      return result;
+    }
+  };
 export default fonctionsMiniBoxInfoJson;

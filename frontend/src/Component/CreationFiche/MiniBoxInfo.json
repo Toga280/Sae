@@ -256,10 +256,10 @@
     "NomPicto" : "none"
   },
   "Materiel": {
-    "Mat1" : "none",
-    "Mat2" : "none",
-    "Mat3" : "none",
-    "Mat4" : "none",
-    "Mat5" : "none"
+    "Mat1" : "null",
+    "Mat2" : "null",
+    "Mat3" : "null",
+    "Mat4" : "null",
+    "Mat5" : "null"
   }
 }
