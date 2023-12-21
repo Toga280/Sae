@@ -10,7 +10,7 @@ function PageSelect({setSelect, numMat} : any){
     <div>
       <button onClick={() => setSelectFalse()}> Retour </button> 
           Séléctionnez un materiel à ajouter :
-            <UnMat mat={"Bonde à grille pour lave-mains"}  numMat={numMat} setSelect={setSelect} image={"./imagesFiche/bondelavemain.png"}/>
+            <UnMat mat={"Bonde à grille pour lave-mains"}  numMat={numMat} setSelect={setSelect} image={'./imagesFiche/bondelavemain.png'}/>
             <UnMat mat={"Bouchon laiton à visser F 1/2"} numMat={numMat} setSelect={setSelect} image={""}/>
             <UnMat mat={"Chevilles à expansion avec patte à vis"} numMat={numMat} setSelect={setSelect} image={""}/>
             <UnMat mat={"Chevilles à frapper"} numMat={numMat} setSelect={setSelect} image={""}/>
