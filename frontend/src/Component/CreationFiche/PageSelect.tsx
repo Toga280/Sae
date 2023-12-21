@@ -1,7 +1,6 @@
 import React, {useState} from "react";
 import "../../style/fiche1.css";
 import "../../style/ficheGlobal.css";
-import fonctionsMiniBoxInfoJson from "./MiniBoxInfoFunction";
 import UnMat from "./UnMat";
 
 function PageSelect({setSelect} : any){
