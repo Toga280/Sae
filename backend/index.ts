@@ -41,7 +41,7 @@ const miniBoxSchema = new Schema<MiniBox>({
 }, { _id: false }); 
 
 const ficheSchema = new Schema<FicheDocument>({
-  info: { type: { name: String }, _id: false },
+  info: { type: { name: String }, _id: false, nomEleveAttribuer:{type: String}, prenomEleveAttribuer:{type: String}},
   MiniBox1: { type: miniBoxSchema, required: true },
   MiniBox2: { type: miniBoxSchema, required: true },
   MiniBox3: { type: miniBoxSchema, required: true },
@@ -250,6 +250,25 @@ app.post('/POST/restorerEleve', async (req: any, res: any) => {
   }
 })
 
+/*---------- affecter eleve a une fiche ----------*/
+
+app.post('/POST/affectereleve', async (req : any, res : any) => {
+  const {nom, prenom, ficheName} = req.body;
+
+  try{
+    const fiche = await Fiche.findOne({ficheName});
+    if (!fiche) {
+      return res.status(404).json({ message: 'Fiche non trouvé' });
+    }
+    fiche.info.nomEleveAttribuer = nom;
+    fiche.info.prenomEleveAttribuer = prenom;
+    await fiche.save();
+    res.status(200).json({ message : 'fiche bien attribuer'});
+  } catch(error) {
+    console.error(error);
+    res.status(500).json({ message: 'Erreur serveur' });
+  }
+})
 app.post('/POST/admin', (req : any, res : any) => {
   const newData = req.body;
   const newAdmin = new Admin(newData);
@@ -379,8 +398,6 @@ app.get('/GET/admin/authentification', async (req: any, res : any) => {
   try{
     const admin = await Admin.findOne({id, mdp}).exec();
     if (admin) {
-      //console.log("Admin trouvé :", admin);
-
       res.status(200).send(true);
     }else{
       res.status(401).send(false);

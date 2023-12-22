@@ -1,4 +1,3 @@
-import { Json } from "sequelize/types/utils";
 import { FonctionsMiniBoxInfoJson } from "./interface";
 
 const MiniBoxInfoJson = require("./MiniBoxInfo.json");

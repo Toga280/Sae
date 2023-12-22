@@ -1,11 +1,10 @@
 import axios from "axios";
 import React, { useEffect, useState } from "react";
-import "./AffecterListe.css";
-function AffecterListe({ redirection }: any) {
-  const setRedirectionSix = () => {
-    redirection(6);
-  };
 
+function AffecterListe({
+  setAffichageAffecterListeFalse,
+  nomFicheSelectionner,
+}: any) {
   const [eleves, setEleves] = useState<any[]>([]);
   const [eleveSelectionne, setEleveSelectionne] = useState<any | null>(null);
 
@@ -28,10 +27,23 @@ function AffecterListe({ redirection }: any) {
     setEleveSelectionne(eleve);
   };
 
+  const affecterFiche = (nom: string, prenom: string) => {
+    console.log(nom, prenom);
+    axios
+      .post(`http://localhost:5000/POST/affectereleve`, { nom, prenom })
+      .then((response) => {
+        setEleves(response.data);
+      })
+      .catch((error) => {
+        console.error("erreur : ", error);
+      });
+  };
+
   return (
     <div className="global_affecter_fiche">
       <h1 className="titleh1">Affecter une fiche</h1>
       <h2 className="title">Liste des élèves</h2>
+      <h3>Fiche sélectionné : {nomFicheSelectionner}</h3>
       <ul>
         {eleves.map((eleve) => (
           <li
@@ -53,11 +65,21 @@ function AffecterListe({ redirection }: any) {
             <p>
               {eleveSelectionne.nom} {eleveSelectionne.prenom}
             </p>
-            <button className="affecter_fiche_eleve">Affecter</button>
+            <button
+              className="affecter_fiche_eleve"
+              onClick={() =>
+                affecterFiche(eleveSelectionne.nom, eleveSelectionne.prenom)
+              }
+            >
+              Affecter
+            </button>
           </div>
         )}
       </div>
-      <button className="retour_liste_fiches" onClick={setRedirectionSix}>
+      <button
+        className="retour_liste_fiches"
+        onClick={setAffichageAffecterListeFalse}
+      >
         Retour
       </button>
     </div>
