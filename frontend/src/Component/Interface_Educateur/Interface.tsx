@@ -9,7 +9,7 @@ function Interface({ redirection, role }: any) {
       redirection(1)
     }
   };
-  console.log("role interface", role);
+
 
   return (
     <div>
@@ -20,9 +20,10 @@ function Interface({ redirection, role }: any) {
           <div className="global_bouton_interface_educateur">
             <button className="bouton_interface_educateur" onClick={() => redirection(3)}>Création Fiche</button>
             <button className="bouton_interface_educateur" onClick={() => redirection(14)} >Consulter fiches/images</button>
+            <button className="bouton_interface_educateur" onClick={() => redirection(14)} >Consulter fiches/images</button>
             <button className="bouton_interface_educateur" onClick={() => redirection(10)} > Importer un pictogramme</button>
             {/* <button className="bouton_interface_educateur" onClick={() => redirection(3)}>Brouillons fiches </button> */}
-            <button className="bouton_interface_educateur" onClick={() => redirection(6)}>Fiches créées</button>
+            <button className="bouton_interface_educateur" onClick={() => redirection(6)}>Fiches crées</button>
             <button className="bouton_interface_educateur" onClick={() => redirection(9)}>Modifier mots de passe</button>
             <button className="bouton_interface_educateur" onClick={() => redirection(5)}>Créer un profil</button>
             <button className="bouton_interface_educateur" onClick={() => redirection(8)}>Archiver un profil</button>
@@ -49,8 +50,9 @@ function Interface({ redirection, role }: any) {
           <div className="global_bouton_interface_educateur">
             <button className="bouton_interface_educateur" onClick={() => redirection(3)}>Création Fiche</button>
             <button className="bouton_interface_educateur" onClick={() => redirection(14)} >Consulter fiches/images</button>
+            <button className="bouton_interface_educateur" onClick={() => redirection(14)} >Consulter fiches/images</button>
             <button className="bouton_interface_educateur" onClick={() => redirection(10)} > Importer un pictogramme</button>
-            {/* <button className="bouton_interface_educateur" onClick={() => redirection(3)}>Brouillons fiches </button> */}
+            {/* {/* <button className="bouton_interface_educateur" onClick={() => redirection(3)}>Brouillons fiches </button> */}
             <button className="bouton_interface_educateur" onClick={() => redirection(6)}>Fiches crées</button>
             <button className="bouton_interface_educateur" onClick={() => redirection(9)}>Modifier mots de passe</button>
           </div>
