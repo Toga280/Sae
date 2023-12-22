@@ -1,0 +1,27 @@
+.button_retour{
+    
+    background-color: #fff;
+    color: #355c7d;
+    font-weight: bold;
+    font-size: 18px;
+    padding: 0.8em;
+    margin: 1em;
+    border-radius: 4px;
+    border:none;
+}
+/* .button_retour:hover{
+    background-color: #355c7d;
+    color: #fff;
+    cursor: pointer;
+} */
+.archiver-button{
+    
+    background: #e62222;
+    color: white;
+    font-weight: bold;
+    font-size: 18px;
+    padding: 0.8em;
+    margin: 1em;
+    border-radius: 4px;
+    border:none;
+}
