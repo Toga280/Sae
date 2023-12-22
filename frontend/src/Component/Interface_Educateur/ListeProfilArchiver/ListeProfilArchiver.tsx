@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from "react";
 import axios from "axios";
-//import "./ArchiverProfil.css";
+import "./ListeProfilArchiver.css";
 
 function ListeProfilArchiver({ redirection }: any) {
   const redirectionTwo = () => {
