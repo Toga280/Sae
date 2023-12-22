@@ -2,16 +2,15 @@ import React, { useEffect, useState } from "react";
 import axios from "axios";
 import "./ModifierMdp.css";
 
-
-function ModifierMdpProf({redirection}:any){
-/* GET PROF=====================================================*/
+function ModifierMdpProf({ redirection }: any) {
+  /* GET PROF=====================================================*/
   const [admin, setAdmin] = useState<any[]>([]);
   useEffect(() => {
     const getProf = () => {
       axios
-        .get(`http://localhost:5000/GET/AllProf`)
+        .get(`http://localhost:5000/GET/allProf`)
         .then((response) => {
-            setAdmin(response.data);
+          setAdmin(response.data);
         })
         .catch((error) => {
           console.error("erreur : ", error);
@@ -20,32 +19,32 @@ function ModifierMdpProf({redirection}:any){
 
     getProf();
   }, []);
-/*------------------- MODIFIER MDP PROF -------------------*/
-const [mdpProf, ModifMdpProf] = useState("");
-const handleInputModifMdp = (event: any) => {
+  /*------------------- MODIFIER MDP PROF -------------------*/
+  const [mdpProf, ModifMdpProf] = useState("");
+  const handleInputModifMdp = (event: any) => {
     ModifMdpProf(event.target.value);
   };
-const postProfChangeMdp = (ProfData: any) => {
+  const postProfChangeMdp = (ProfData: any) => {
     console.log("ProfData", ProfData);
     axios
-        .post("http://localhost:5000/POST/profUpdatePassword", ProfData)
-        .then((response) => {
+      .post("http://localhost:5000/POST/profUpdatePassword", ProfData)
+      .then((response) => {
         console.log("Réponse du serveur :", response.data);
-        })
-        .catch((error) => {
+      })
+      .catch((error) => {
         console.error("Erreur lors de la requête vers le serveur :", error);
-        });
-    };
-/*SAUVEGARDE=====================================================*/
-const [profilSelectionne, setProfilSelectionne] = useState<any>(null);
-const [inputActive, setInputActive] = useState(false);
+      });
+  };
+  /*SAUVEGARDE=====================================================*/
+  const [profilSelectionne, setProfilSelectionne] = useState<any>(null);
+  const [inputActive, setInputActive] = useState(false);
 
-interface Admin {
+  interface Admin {
     nom: string;
     prenom: string;
     mdp: string;
   }
-const sauvegarde = () => {
+  const sauvegarde = () => {
     if (profilSelectionne) {
       const confirmation = window.confirm(
         `Êtes-vous sûr de vouloir modifier le mot de passe de ${profilSelectionne.prenom} ${profilSelectionne.nom} ?`
@@ -68,40 +67,42 @@ const sauvegarde = () => {
     setInputActive(true);
     setProfilSelectionne(eleve);
   };
-    return(
+  return (
+    <div>
+      <div className="global_modif_mdp_eleve">
+        <h1 className="titre_modif_mdp_eleve">
+          Modifier le mot de passe d'un professeur
+        </h1>
+        <div className="general_login">
+          {admin.map((admin, index) => (
+            <div
+              className="login-container"
+              key={index}
+              onClick={() => selectionnerProfil(admin)}
+            >
+              <div className="user-name">{`${admin.prenom} ${admin.nom}`}</div>
 
-        <div>
-        <div className="global_modif_mdp_eleve">
-          <h1 className="titre_modif_mdp_eleve">Modifier le mot de passe d'un professeur</h1>
-          <div className="general_login">
-            {admin.map((admin, index) => (
-              <div className="login-container" key={index} onClick={() => selectionnerProfil(admin)}
-              >
-                <div className="user-name">{`${admin.prenom} ${admin.nom}`}</div>
-  
-                {profilSelectionne === admin && inputActive && (
-                  <>
-                    <p>Nouveau Mot de passe :</p>
-                    <input
-                      type="password"
-                      className="input_login"
-                      onChange={handleInputModifMdp}
-                    />
-                    <button className="bouton_valider" onClick={sauvegarde}>
-                      Valider
-                    </button>
-                  </>
-                )}
-              </div>
-            ))}
-  
-            {redirection}
-  
-          </div>
+              {profilSelectionne === admin && inputActive && (
+                <>
+                  <p>Nouveau Mot de passe :</p>
+                  <input
+                    type="password"
+                    className="input_login"
+                    onChange={handleInputModifMdp}
+                  />
+                  <button className="bouton_valider" onClick={sauvegarde}>
+                    Valider
+                  </button>
+                </>
+              )}
+            </div>
+          ))}
+
+          {redirection}
         </div>
       </div>
-
-    )
+    </div>
+  );
 }
 
 export default ModifierMdpProf;

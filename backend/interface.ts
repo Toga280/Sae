@@ -10,6 +10,8 @@ export interface MiniBox {
 
 export interface FicheInfo {
   name: string;
+  nomEleveAttribuer: string;
+  prenomEleveAttribuer: string;
 }
 
 export interface FicheDocument extends Document {
