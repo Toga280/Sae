@@ -507,6 +507,7 @@ app.get('/GET/admin/authentification', async (req: any, res : any) => {
   try{
     const admin = await Admin.findOne({id, mdp}).exec();
     if (admin) {
+      console.log("Admin trouvé :", admin);
       res.status(200).send(true);
     }else{
       res.status(401).send(false);
