@@ -8,13 +8,13 @@ export interface MiniBox{
   Audio : boolean
 }
 
-type ChoixMiniBoxType = "Texte" | "Pictogramme";
+type ChoixMiniBoxType = "Texte" | "Pictogramme" | "Rayanair";
 
 export interface FonctionsMiniBoxInfoJson {
   modifierCouleurTexte: (position: number, nouvelleCouleurTexte: string) => void;
   getCouleurTexte: (position: number) => string;
   modifierChoixMiniBox: (position: number, nouveauChoix: ChoixMiniBoxType) => void;
-  getChoixMiniBox: (position: number) => string | null;
+  getChoixMiniBox: (position: number) => string;
   modifierIsSelectedMiniBox: (position : number, boolean : boolean) => void;
   getIsSelectedMiniBox: (position : number) => boolean | null;
   allIsSelectedMiniBoxFalse: () => void;
@@ -26,8 +26,12 @@ export interface FonctionsMiniBoxInfoJson {
   modifierAllJsonToBase: () => void;
   modificationAudio: (position: number, audio: boolean) => void;
   getAudio: (position: number) => boolean | null;
+  getNomPicto: (position: number) => string | null;
+  setNomPicto: (position: number, nom: string) => void;
   modifierNom: (nom: string) => void;
   getNom: () => string;
   getAllJson: () => MiniBox;
   setNewJson: (newJson : any) => void;
+  setMateriel: (Materiel: string, nMateriel: string) => void;
+  getMateriel: (nMateriel : String) => string;
 }

@@ -7,8 +7,7 @@
   background-color: #d7e1ec;
   border-radius: 1em;
   padding: 2em;
-  width: 80%;
-  max-width: 20em; /* Adjust max-width as needed */
+  justify-content: center;
   margin: auto;
 }
 
@@ -25,11 +24,16 @@
   width: 100%;
 }
 
+.bouton:disabled {
+  background-color: #d7e1ec;
+  color: #b3b3b3;
+  cursor: not-allowed;
+}
 .boutonsChiffre {
   display: grid;
   grid-template-columns: repeat(3, 10em);
   gap: 1em;
-}
+} 
 
 .affichageMDP {
   background-color: #d7e1ec;
@@ -40,15 +44,37 @@
   text-decoration: none;
   font-weight: bold;
   font-size: 2em;
-  width: 100%;
 }
 
 .btn-retour-pin { 
  max-width: 2.5em;
 
 }
+
+.bouton_deconnection_eleve{
+  color: #ffffff;
+  cursor: pointer;
+  border: none;
+border-radius: 5px;
+box-shadow: 1px 1px 3px rgba(0,0,0,0.15);
+background: #e62222;
+  max-height: 4em;
+
+  
+  font-weight: bold;
+  font-size: 18px;
+  padding: 0.8em;
+  margin: 1em;
+
+}
 @media (max-width: 37.5em) {
   .container {
     width: 90%;
   }
+}
+
+.countdown:disabled{
+  background-color: #d7e1ec;
+  border: none;
+  color: #e62222;
 }

@@ -40,6 +40,9 @@ function SelectionChoixMiniBox({
   const setChoixMiniBoxBooleanFalse = () => {
     setChoixMiniBoxBoolean(false);
   };
+  const setSelectionChoixMiniBoxTrue = () => {
+    setChoixMiniBoxBoolean(true);
+  };
 
   const setTypeMiniBoxTexte = () => {
     setChoixTypeElement(1);
@@ -77,8 +80,7 @@ function SelectionChoixMiniBox({
           <p></p>
         )}
         {modificationPictoProps === true ? (
-          <ModificationPicto
-            setModificationPictoPropsFalse={setModificationPictoPropsFalse}
+          <ModificationPicto numeroMiniBox={numeroMiniBox}
           />
         ) : null}
       </div>

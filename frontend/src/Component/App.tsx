@@ -12,10 +12,12 @@ import ImportPicto from "./Interface_Educateur/importpicto/importpicto";
 import ConnectionEleveShema from "./ConnectionPage/ConnectionEleveShema";
 import ListeProfilArchiver from "./Interface_Educateur/ListeProfilArchiver/ListeProfilArchiver";
 import ModifierMdp from "./Interface_Educateur/ModifierMdp/ModifierMdp";
+import PhotoEleve from "./EspaceEleve/PhotoEleve/PhotoEleve";
 function App() {
   const [selectBox, setSelectBox] = useState(null);
   const [redirection, setRedirection] = useState(1);
   const [saveName, setSaveName] = useState(false);
+  const [role, setRole] = useState(String);
 
   const handleSelectBoxChange = (value: any) => {
     setSelectBox(value);
@@ -23,20 +25,17 @@ function App() {
 
   return (
     <div>
-      {redirection === 1 && <PageConnection redirection={setRedirection} />}
-      {redirection === 2 && <Interface redirection={setRedirection} />}
+      {redirection === 1 && <PageConnection redirection={setRedirection}  setRole={setRole}/>}
+      {redirection === 2 && <Interface redirection={setRedirection} role={role}/>}
       {redirection === 4 && <PageEspaceEleve redirection={setRedirection} />}
       {redirection === 5 && <CreationProfil redirection={setRedirection} />}
       {redirection === 6 && <ListeFiches redirection={setRedirection} />}
       {redirection === 8 && <ArchiverProfil redirection={setRedirection} />}
       {redirection === 9 && <ModifierMdp redirection={setRedirection} />}
       {redirection === 10 && <ImportPicto redirection={setRedirection} />}
-      {redirection === 11 && (
-        <ConnectionEleveShema redirection={setRedirection} />
-      )}
-      {redirection === 12 && (
-        <ListeProfilArchiver redirection={setRedirection} />
-      )}
+      {redirection === 11 && <ConnectionEleveShema redirection={setRedirection} />}
+      {redirection === 12 && (<ListeProfilArchiver redirection={setRedirection} />)}
+      {redirection === 13 && <PhotoEleve redirection={setRedirection} />}
       {redirection === 3 ? (
         selectBox === null ? (
           !saveName ? (

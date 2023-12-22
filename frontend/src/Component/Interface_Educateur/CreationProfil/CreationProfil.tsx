@@ -12,7 +12,7 @@ function CreationProfil({ redirection, setSaveName }: any) {
   const [nomEleve, setNomEleve] = useState(String);
   const [prenomEleve, setPrenomEleve] = useState(String);
   const [imageEleve, setImageEleve] = useState(String);
-  const [mdpEleve, setMdpEleve] = useState(Number);
+  const [mdpEleve, setMdpEleve] = useState(String);
 
   const handleInputChangeNom = (event: any) => {
     setNomEleve(event.target.value);
@@ -61,7 +61,9 @@ function CreationProfil({ redirection, setSaveName }: any) {
         handleInputChangeImage={handleInputChangeImage}
         sauvegarde={sauvegarde}
       />
-      <CreationProfilProf />
+      <CreationProfilProf 
+        setRedirectionTwo={setRedirectionTwo}
+      />
       <button
         className="bouton_retour_creation_profil_edu"
         onClick={setRedirectionTwo}

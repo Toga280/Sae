@@ -40,9 +40,9 @@ function AffecterListe({
   };
 
   return (
-    <div>
-      <h1>Affecter une fiche</h1>
-      <h2>Liste des élèves</h2>
+    <div className="global_affecter_fiche">
+      <h1 className="titleh1">Affecter une fiche</h1>
+      <h2 className="title">Liste des élèves</h2>
       <h3>Fiche sélectionné : {nomFicheSelectionner}</h3>
       <ul>
         {eleves.map((eleve) => (

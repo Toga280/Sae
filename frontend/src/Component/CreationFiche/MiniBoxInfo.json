@@ -10,7 +10,8 @@
     "Taille": 18,
     "CouleurFond": "none",
     "Audio": false,
-    "isSelected": false
+    "isSelected": false,
+    "NomPicto" : "none"
   },
   "MiniBox2": {
     "ChoixMiniBox": "Texte",
@@ -20,7 +21,8 @@
     "Taille": 18,
     "CouleurFond": "none",
     "Audio": false,
-    "isSelected": false
+    "isSelected": false,
+    "NomPicto" : "none"
   },
   "MiniBox3": {
     "ChoixMiniBox": "Texte",
@@ -30,7 +32,8 @@
     "Taille": 18,
     "CouleurFond": "none",
     "Audio": false,
-    "isSelected": false
+    "isSelected": false,
+    "NomPicto" : "none"
   },
   "MiniBox4": {
     "ChoixMiniBox": "Texte",
@@ -40,7 +43,8 @@
     "Taille": 18,
     "CouleurFond": "none",
     "Audio": false,
-    "isSelected": false
+    "isSelected": false,
+    "NomPicto" : "none"
   },
   "MiniBox5": {
     "ChoixMiniBox": "Texte",
@@ -50,7 +54,8 @@
     "Taille": 18,
     "CouleurFond": "none",
     "Audio": false,
-    "isSelected": false
+    "isSelected": false,
+    "NomPicto" : "none"
   },
   "MiniBox6": {
     "ChoixMiniBox": "Texte",
@@ -60,7 +65,8 @@
     "Taille": 18,
     "CouleurFond": "none",
     "Audio": false,
-    "isSelected": false
+    "isSelected": false,
+    "NomPicto" : "none"
   },
   "MiniBox7": {
     "ChoixMiniBox": "Texte",
@@ -70,7 +76,8 @@
     "Taille": 18,
     "CouleurFond": "none",
     "Audio": false,
-    "isSelected": false
+    "isSelected": false,
+    "NomPicto" : "none"
   },
   "MiniBox8": {
     "ChoixMiniBox": "Texte",
@@ -80,7 +87,8 @@
     "Taille": 18,
     "CouleurFond": "none",
     "Audio": false,
-    "isSelected": false
+    "isSelected": false,
+    "NomPicto" : "none"
   },
   "MiniBox9": {
     "ChoixMiniBox": "Texte",
@@ -90,7 +98,8 @@
     "Taille": 18,
     "CouleurFond": "none",
     "Audio": false,
-    "isSelected": false
+    "isSelected": false,
+    "NomPicto" : "none"
   },
   "MiniBox10": {
     "ChoixMiniBox": "Texte",
@@ -100,7 +109,8 @@
     "Taille": 18,
     "CouleurFond": "none",
     "Audio": false,
-    "isSelected": false
+    "isSelected": false,
+    "NomPicto" : "none"
   },
   "MiniBox11": {
     "ChoixMiniBox": "Texte",
@@ -110,7 +120,8 @@
     "Taille": 18,
     "CouleurFond": "none",
     "Audio": false,
-    "isSelected": false
+    "isSelected": false,
+    "NomPicto" : "none"
   },
   "MiniBox12": {
     "ChoixMiniBox": "Texte",
@@ -120,7 +131,8 @@
     "Taille": 18,
     "CouleurFond": "none",
     "Audio": false,
-    "isSelected": false
+    "isSelected": false,
+    "NomPicto" : "none"
   },
   "MiniBox13": {
     "ChoixMiniBox": "Texte",
@@ -130,7 +142,8 @@
     "Taille": 18,
     "CouleurFond": "none",
     "Audio": false,
-    "isSelected": false
+    "isSelected": false,
+    "NomPicto" : "none"
   },
   "MiniBox14": {
     "ChoixMiniBox": "Texte",
@@ -140,7 +153,8 @@
     "Taille": 18,
     "CouleurFond": "none",
     "Audio": false,
-    "isSelected": false
+    "isSelected": false,
+    "NomPicto" : "none"
   },
   "MiniBox15": {
     "ChoixMiniBox": "Texte",
@@ -150,7 +164,8 @@
     "Taille": 18,
     "CouleurFond": "none",
     "Audio": false,
-    "isSelected": false
+    "isSelected": false,
+    "NomPicto" : "none"
   },
   "MiniBox16": {
     "ChoixMiniBox": "Texte",
@@ -160,7 +175,8 @@
     "Taille": 18,
     "CouleurFond": "none",
     "Audio": false,
-    "isSelected": false
+    "isSelected": false,
+    "NomPicto" : "none"
   },
   "MiniBox17": {
     "ChoixMiniBox": "Texte",
@@ -170,7 +186,8 @@
     "Taille": 18,
     "CouleurFond": "none",
     "Audio": false,
-    "isSelected": false
+    "isSelected": false,
+    "NomPicto" : "none"
   },
   "MiniBox18": {
     "ChoixMiniBox": "Texte",
@@ -180,7 +197,8 @@
     "Taille": 18,
     "CouleurFond": "none",
     "Audio": false,
-    "isSelected": false
+    "isSelected": false,
+    "NomPicto" : "none"
   },
   "MiniBox19": {
     "ChoixMiniBox": "Texte",
@@ -190,7 +208,8 @@
     "Taille": 18,
     "CouleurFond": "none",
     "Audio": false,
-    "isSelected": false
+    "isSelected": false,
+    "NomPicto" : "none"
   },
   "MiniBox20": {
     "ChoixMiniBox": "Texte",
@@ -200,7 +219,8 @@
     "Taille": 18,
     "CouleurFond": "none",
     "Audio": false,
-    "isSelected": false
+    "isSelected": false,
+    "NomPicto" : "none"
   },
   "MiniBox21": {
     "ChoixMiniBox": "Texte",
@@ -210,7 +230,8 @@
     "Taille": 18,
     "CouleurFond": "none",
     "Audio": false,
-    "isSelected": false
+    "isSelected": false,
+    "NomPicto" : "none"
   },
   "MiniBox22": {
     "ChoixMiniBox": "Texte",
@@ -220,7 +241,8 @@
     "Taille": 18,
     "CouleurFond": "none",
     "Audio": false,
-    "isSelected": false
+    "isSelected": false,
+    "NomPicto" : "none"
   },
   "MiniBox23": {
     "ChoixMiniBox": "Texte",
@@ -230,6 +252,14 @@
     "Taille": 18,
     "CouleurFond": "none",
     "Audio": false,
-    "isSelected": false
+    "isSelected": false,
+    "NomPicto" : "none"
+  },
+  "Materiel": {
+    "Mat1" : "null",
+    "Mat2" : "null",
+    "Mat3" : "null",
+    "Mat4" : "null",
+    "Mat5" : "null"
   }
 }

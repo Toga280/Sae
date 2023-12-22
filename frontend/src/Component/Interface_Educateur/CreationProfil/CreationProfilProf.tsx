@@ -1,15 +1,13 @@
 import React, { useState } from "react";
 import "./CreationProfil.css";
 import axios from "axios";
-function CreationProfilProf({ redirection }: any) {
+function CreationProfilProf({ setRedirectionTwo }: any) {
   const [nom, setNom] = useState(String);
   const [prenom, setPrenom] = useState(String);
   const [mdp, setMdp] = useState(String);
   const [id, setId] = useState(String);
+  const [role, setRole] = useState(String);
 
-  const setRedirectionTwo = () => {
-    redirection(2);
-  };
 
   const configCreateProfil = {
     headers: {
@@ -17,12 +15,14 @@ function CreationProfilProf({ redirection }: any) {
     },
   };
 
-  const createProfil = () => {
-    const data = JSON.stringify({ nom, prenom, mdp, id });
+  const createProfil = (event: React.MouseEvent<HTMLButtonElement>) => {
+    event.preventDefault();
+    const data = JSON.stringify({ nom, prenom, mdp, id ,role});
     axios
       .post("http://localhost:5000/POST/admin", data, configCreateProfil)
       .then((response) => {
         console.log("Réponse du serveur :", response.data);
+        setRedirectionTwo();
       })
       .catch((error) => {
         console.error("Erreur lors de la requête vers le serveur :", error);
@@ -44,6 +44,10 @@ function CreationProfilProf({ redirection }: any) {
   const handleInputChangeId = (event: any) => {
     setId(event.target.value);
   };
+
+  const handleInputChangeRole = (event: any) => {
+    setRole(event.target.value);
+  }
 
   return (
     <div className="global_creation_profil_prof">
@@ -90,6 +94,14 @@ function CreationProfilProf({ redirection }: any) {
             onChange={handleInputChangeMdp}
           />
         </div>
+        <label htmlFor="choix">Sélectionnez une option :</label>
+        <select id="choix" name="choix" onChange={handleInputChangeRole}>
+            <option value="">Rôle</option>
+            <option value="Professeur">Professeur</option>
+            <option value="ProfesseurAdmin">Professeur Admin</option>
+            <option value="Admin">Admin</option>
+        </select>
+
         <button
         className="bouton_sauvegarder_creation_profil_edu"
         onClick={createProfil}

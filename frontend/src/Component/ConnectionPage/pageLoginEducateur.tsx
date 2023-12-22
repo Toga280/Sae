@@ -2,7 +2,7 @@ import React, { useState } from "react";
 import "./PageLoginEducateurStyle.css";
 import axios from "axios";
 
-function PageLoginEducateur({ redirection }: any) {
+function PageLoginEducateur({ redirection , setRole}: any) {
   const [id, setId] = useState(String);
   const [mdp, setMdp] = useState(String);
   const [mdpFaut, setMdpFaut] = useState(Boolean);
@@ -20,6 +20,20 @@ function PageLoginEducateur({ redirection }: any) {
 
     setMdpFaut(false);
 
+
+  function getRole(id: string) {
+    axios
+      .get(`http://localhost:5000/GET/roleProf?id=${encodeURIComponent(id)}`)
+      .then((response) => {
+        let role = response.data.role;
+        setRole(role);
+      })
+      .catch((error) => {
+        console.error("Erreur lors de la requête :", error);
+      });
+  }
+
+
     axios
       .get(
         `http://localhost:5000/GET/admin/authentification?id=${encodeURIComponent(
@@ -29,6 +43,7 @@ function PageLoginEducateur({ redirection }: any) {
       .then((response) => {
         console.log("Réponse du serveur :", response.data);
         if (response.data) {
+          getRole(id);
           redirection(2);
         }
       })

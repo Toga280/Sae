@@ -63,46 +63,17 @@
 }
 
 @media (max-width: 950px) {
-    .bouton_interface_educateur {
-        background-color: white;
-        color: #355c7d;
-        font-weight: bold;
-        font-size: 12px;
-        padding: 0.8em;
-        margin: 1em;
-        border-radius: 4px;
-    }
-
-  }
-  @media (max-width: 850px) {
-    .bouton_deconnection_educateur{
-        border: 1px solid red;
-        background-color: white;
-        max-height: 4em;
-        width: 15%;
-        max-width: 20%;
-        color: red;
-        font-weight: bold;
-        font-size: 18px;
-        padding: 0.8em;
-        margin: 1em;
-        border-radius: 4px;
-        overflow: hidden;
-        white-space: nowrap;
-        text-overflow: ellipsis;
-    }
-
-  }
-
-  @media (max-width: 720px) {
     .global_bouton_interface_educateur {
         display: flex;
         flex-wrap: wrap;
+        width: 100%;
+
         justify-content: space-around; 
     }
     
     .bouton_interface_educateur {
         flex: 0 0 45%;
+        width: 100%;
         background-color: white;
         height: 4em;
         color: #355c7d;
@@ -115,5 +86,53 @@
         white-space: nowrap;
         text-overflow: ellipsis;
     }
-    
+
   }
+  /*
+  @media (max-width: 850px) {
+    .bouton_deconnection_educateur{
+        border: 1px solid red;
+        background-color: red;
+        max-height: 4em;
+        width: 15%;
+        max-width: 20%;
+        color: white;
+        font-weight: bold;
+        font-size: 18px;
+        padding: 0.8em;
+        margin: 1em;
+        border-radius: 4px;
+        overflow: hidden;
+        white-space: nowrap;
+        text-overflow: ellipsis;
+    }
+    .global_bouton_interface_educateur {
+        display: flex;
+        flex-wrap: wrap;
+        justify-content: space-around; 
+    }
+
+  }
+*/
+@media (max-width: 720px) {
+    .global_bouton_interface_educateur {
+        display: flex;
+        width: 100%;
+        flex-direction: column; /* Ajout de cette ligne pour aligner les boutons en colonne */
+    }
+    
+    .bouton_interface_educateur {
+        width: 100%;
+        background-color: white;
+        height: 4em;
+        color: #355c7d;
+        font-weight: bold;
+        font-size: 18px;
+        padding: 0.8em;
+        margin: 1em;
+        border-radius: 4px;
+        overflow: hidden;
+        white-space: nowrap;
+        text-overflow: ellipsis;
+    }
+}
