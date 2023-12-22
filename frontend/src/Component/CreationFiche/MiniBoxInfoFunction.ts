@@ -189,7 +189,7 @@ const fonctionsMiniBoxInfoJson: FonctionsMiniBoxInfoJson = {
       currentBox.isSelected = false;
     }
   },
-  setNewJson: (newJson: any) => {
+  setNewJson: (newJson) => {
     if (typeof newJson === 'object' && newJson !== null) {
       Object.keys(MiniBoxInfoJson).forEach((key) => {
         MiniBoxInfoJson[key] = newJson[key];
@@ -197,7 +197,30 @@ const fonctionsMiniBoxInfoJson: FonctionsMiniBoxInfoJson = {
     } else {
       console.error('Le paramètre newJson doit être un objet JSON valide.');
     }
-  }
-  };
+  },
+  setMateriel: (Materiel, nMateriel) => {
+    Object.keys(MiniBoxInfoJson.Materiel).forEach((key) => {
+      if(key === nMateriel){
+        MiniBoxInfoJson.Materiel[key] = Materiel;
+      }
+    });
+  },
 
+  
+    getMateriel: (nMateriel: String): string => {
+      // Initialize the result to null
+      let result: string = "null";
+  
+      // Iterate over the keys of MiniBoxInfoJson.Materiel
+      Object.keys(MiniBoxInfoJson.Materiel).forEach((key) => {
+        if (key === nMateriel) {
+          // Assign the corresponding value to the result
+          result = MiniBoxInfoJson.Materiel[key];
+        }
+      });
+  
+      // Return the result
+      return result;
+    }
+  };
 export default fonctionsMiniBoxInfoJson;
