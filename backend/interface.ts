@@ -62,7 +62,8 @@ export interface Eleve{
   prenom: string,
   image: string,
   mdp: string,
-  archiver: boolean
+  archiver: boolean,
+  wallpaper: string
 }
 
 export interface Materiel {

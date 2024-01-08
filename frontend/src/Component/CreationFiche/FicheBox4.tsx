@@ -22,8 +22,8 @@ function FicheBox4({ numeroMiniBox, infoSelectionChoixMiniBox,classNameDiv }: an
           numeroMiniBox={numeroMiniBox[1]}
           infoSelectionChoixMiniBox={infoSelectionChoixMiniBox}
         />
-        <div className="selecteur_duree">
-          <select>
+        <div >
+          <select className="selecteur_duree">
             <option>-- Choisir une durée --</option>
             <option>00h15</option>
             <option>00h30</option>
