@@ -157,6 +157,7 @@ app.post('/POST/uploadpicto', upload.single('file'), async (req: any, res: any) 
   }
 });
 
+/* upload image eleve */
 app.post('/POST/uploadpictoEleve', upload.single('file'), async (req: any, res: any) => {
   try {
     const { name } = req.query;

@@ -28,6 +28,7 @@ const ImportPicto = ({ redirection }: any): JSX.Element => {
         const formData = new FormData();
         formData.append('file', selectedFile);
 
+        console.log(formData)
         const response = await axios.post('http://localhost:5000/POST/uploadpicto', formData, {
           params: {
             name: pictoName,

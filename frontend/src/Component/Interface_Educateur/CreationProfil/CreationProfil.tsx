@@ -3,6 +3,7 @@ import axios from "axios";
 import CreationProfilProf from "./CreationProfilProf";
 import CreationProfilEleves from "./CreationProfilEleves";
 import "./CreationProfil.css";
+import "./test.jpg";
 
 function CreationProfil({ redirection, setSaveName }: any) {
   const setRedirectionTwo = () => {
@@ -11,7 +12,7 @@ function CreationProfil({ redirection, setSaveName }: any) {
 
   const [nomEleve, setNomEleve] = useState(String);
   const [prenomEleve, setPrenomEleve] = useState(String);
-  const [imageEleve, setImageEleve] = useState(String);
+  const [imageEleve, setImageEleve] = useState<File | null>(null);
   const [mdpEleve, setMdpEleve] = useState(String);
 
   const handleInputChangeNom = (event: any) => {
@@ -23,18 +24,22 @@ function CreationProfil({ redirection, setSaveName }: any) {
   const handleInputChangeMdp = (event: any) => {
     setMdpEleve(event.target.value);
   };
-  const handleInputChangeImage = (event: any) => {
-    setImageEleve(event.target.value);
+  const handleInputChangeImage = (event: React.ChangeEvent<HTMLInputElement>) => {
+    if (event.target.files && event.target.files.length > 0) {
+      setImageEleve(event.target.files[0]);
+    }
   };
+  
 
   const sauvegarde = () => {
     const eleveData = {
       nom: nomEleve,
       prenom: prenomEleve,
-      image: imageEleve,
+      image: nomEleve+prenomEleve,
       mdp: mdpEleve,
     };
     postEleve(eleveData);
+    postphotoeleve(imageEleve,nomEleve,prenomEleve);
     redirection(2);
   };
 
@@ -49,6 +54,23 @@ function CreationProfil({ redirection, setSaveName }: any) {
       .catch((error) => {
         console.error("Erreur lors de la requête vers le serveur :", error);
       });
+  };
+
+  const postphotoeleve = async (imageEleve: any , nomEleve: any , prenomEleve: any) => {
+    const formData = new FormData();
+        formData.append('file', imageEleve);
+    axios
+    .post("http://localhost:5000/POST/uploadpictoEleve", formData, {
+      params: {
+        name: nomEleve+prenomEleve,
+      },
+    })
+    .then((response) => {
+      console.log("Réponse du serveur :", response.data);
+    })
+    .catch((error) => {
+      console.error("Erreur lors de la requête vers le serveur :", error);
+    });
   };
 
   return (
