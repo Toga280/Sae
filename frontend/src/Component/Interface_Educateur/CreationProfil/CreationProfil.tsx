@@ -3,6 +3,7 @@ import axios from "axios";
 import CreationProfilProf from "./CreationProfilProf";
 import CreationProfilEleves from "./CreationProfilEleves";
 import "./CreationProfil.css";
+import "./test.jpg";
 
 function CreationProfil({ redirection, setSaveName }: any) {
   const setRedirectionTwo = () => {
