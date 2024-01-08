@@ -1,15 +1,13 @@
 import React, { useState } from "react";
 import "./CreationProfil.css";
 import axios from "axios";
-function CreationProfilProf({ redirection }: any) {
+function CreationProfilProf({ setRedirectionTwo }: any) {
   const [nom, setNom] = useState(String);
   const [prenom, setPrenom] = useState(String);
   const [mdp, setMdp] = useState(String);
   const [id, setId] = useState(String);
+  const [role, setRole] = useState(String);
 
-  const setRedirectionTwo = () => {
-    redirection(2);
-  };
 
   const configCreateProfil = {
     headers: {
@@ -17,12 +15,14 @@ function CreationProfilProf({ redirection }: any) {
     },
   };
 
-  const createProfil = () => {
-    const data = JSON.stringify({ nom, prenom, mdp, id });
+  const createProfil = (event: React.MouseEvent<HTMLButtonElement>) => {
+    event.preventDefault();
+    const data = JSON.stringify({ nom, prenom, mdp, id ,role});
     axios
       .post("http://localhost:5000/POST/admin", data, configCreateProfil)
       .then((response) => {
         console.log("Réponse du serveur :", response.data);
+        setRedirectionTwo();
       })
       .catch((error) => {
         console.error("Erreur lors de la requête vers le serveur :", error);
@@ -44,6 +44,10 @@ function CreationProfilProf({ redirection }: any) {
   const handleInputChangeId = (event: any) => {
     setId(event.target.value);
   };
+
+  const handleInputChangeRole = (event: any) => {
+    setRole(event.target.value);
+  }
 
   return (
     <div className="global_creation_profil_prof">
@@ -74,7 +78,7 @@ function CreationProfilProf({ redirection }: any) {
         </div>
 
         <div className="form_prenom_creation_profil">
-          <p> id </p>
+          <p> Identifiant </p>
           <input
             type="text"
             className="TextInput"
@@ -83,13 +87,28 @@ function CreationProfilProf({ redirection }: any) {
         </div>
 
         <div className="form_prenom_creation_profil">
-          <p> mdp </p>
+          <p> Mots de passe </p>
           <input
             type="text"
             className="TextInput"
             onChange={handleInputChangeMdp}
           />
         </div>
+        <div className="select_creation_profil_prof">
+          <label htmlFor="choix">Sélectionnez un rôle :</label>
+          <select id="choix" name="choix" onChange={handleInputChangeRole}>
+              <option value="">Rôle</option>
+              <option value="Professeur">Professeur</option>
+              <option value="ProfesseurAdmin">Éducateur</option>
+              <option value="Admin">Éducateur intervenant</option>
+          </select>
+        </div>
+        <br></br>
+        <br></br>
+
+        <br></br>
+        <br></br>
+
         <button
         className="bouton_sauvegarder_creation_profil_edu"
         onClick={createProfil}

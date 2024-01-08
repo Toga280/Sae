@@ -1,0 +1,19 @@
+@media print {
+    body {
+      margin: 0;
+      padding: 0;
+    }
+    @page {
+        size: auto;
+        margin: 0mm;
+        orientation: portrait;
+      }
+    .boutton_sauvegarder_interaction_edu {
+      display: none; 
+    }
+  
+    .boutton_retour_interaction_edu{
+        display: none; 
+    }
+  }
+  

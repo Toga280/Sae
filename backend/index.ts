@@ -41,7 +41,7 @@ const miniBoxSchema = new Schema<MiniBox>({
 }, { _id: false }); 
 
 const ficheSchema = new Schema<FicheDocument>({
-  info: { type: { name: String }, _id: false },
+  info: { type: { name: String }, _id: false, nomEleveAttribuer:{type: String}, prenomEleveAttribuer:{type: String}},
   MiniBox1: { type: miniBoxSchema, required: true },
   MiniBox2: { type: miniBoxSchema, required: true },
   MiniBox3: { type: miniBoxSchema, required: true },
@@ -65,13 +65,21 @@ const ficheSchema = new Schema<FicheDocument>({
   MiniBox21: { type: miniBoxSchema, required: true },
   MiniBox22: { type: miniBoxSchema, required: true },
   MiniBox23: { type: miniBoxSchema, required: true },
+  // Materiel: {
+  //   Mat1: { type: String, required: true },
+  //   Mat2: { type: String, required: true },
+  //   Mat3: { type: String, required: true },
+  //   Mat4: { type: String, required: true },
+  //   Mat5: { type: String, required: true }
+  // }
 });
 
 const admin = new Schema<Admin>({
   nom: {type: String},
   prenom: {type: String},
   mdp: {type: String},
-  id: {type: String}
+  id: {type: String},
+  role: {type: String}
 });
 
 const Admin = model<Admin>('Admin', admin)
@@ -91,7 +99,7 @@ const Eleve = new Schema<Eleve>({
   nom: {type: String},
   prenom: {type: String},
   image: {type: String},
-  mdp: {type: Number},
+  mdp: {type: String},
   archiver: {type: Boolean, default: false}
 });
 
@@ -272,6 +280,46 @@ app.post('/POST/restorerEleve', async (req: any, res: any) => {
   }
 })
 
+/*---------- affecter eleve a une fiche ----------*/
+
+app.post('/POST/affectereleve', async (req : any, res : any) => {
+  const {nom, prenom, ficheName} = req.body;
+
+  try{
+    const fiche = await Fiche.findOne({ficheName});
+    if (!fiche) {
+      return res.status(404).json({ message: 'Fiche non trouvé' });
+    }
+    fiche.info.nomEleveAttribuer = nom;
+    fiche.info.prenomEleveAttribuer = prenom;
+    await fiche.save();
+    res.status(200).json({ message : 'fiche bien attribuer'});
+  } catch(error) {
+    console.error(error);
+    res.status(500).json({ message: 'Erreur serveur' });
+  }
+})
+app.post('/POST/admin', (req : any, res : any) => {
+  const newData = req.body;
+  const newAdmin = new Admin(newData);
+  newAdmin.save()
+  .then(() => {
+    console.log('Admin enregistré avec succès dans la base de données');
+    console.log(newAdmin);
+
+    res.status(200).send('Admin enregistré avec succès');
+  })
+  .catch((err : any) => {
+    if (err.name === 'ValidationError') {
+      console.error('Erreur de validation des données :', err.message);
+      res.status(400).send('Données de requête invalides');
+    } else {
+      console.error('Erreur lors de l\'enregistrement de l\'Admin dans la base de données :', err);
+      res.status(500).send('Erreur interne du serveur');
+    }
+  });
+});
+
 /*------------------- GET -------------------*/
 
 
@@ -389,6 +437,28 @@ app.get('/GET/admin/authentification', async (req: any, res : any) => {
     res.status(500).json({ success: false, message: 'Internal server error' });
   }
 });
+
+/*GET ROLE PROF ============================================*/
+app.get('/GET/roleProf', async (req: any, res: any) => {
+  const { id } = req.query;
+  try {
+    const admin = await Admin.findOne({ id: id }).exec();
+
+    if (admin) {
+      res.status(200).json({role: admin.role });
+    } else {
+      res.status(401).json({ success: false, message: 'Admin not found' });
+    }
+  } catch (error) {
+    console.error('Error during get role:', error);
+    res.status(500).json({ success: false, message: 'Internal server error' });
+  }
+});
+
+
+
+
+
 /*GET ALL PROF ============================================*/
 app.get('/GET/allProf', async (req: any, res: any) => {
   try {

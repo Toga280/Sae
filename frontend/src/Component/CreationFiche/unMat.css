@@ -1,0 +1,18 @@
+.UnMat {
+    display: flex;
+    border: 1px solid black;
+    margin: 1em;
+    padding:1em ;
+  }
+  .matname{
+    margin-right: auto;
+  }
+  .imageMat {
+    margin: auto;
+    
+    img:hover{
+      -ms-transform: scale(3) translate(30px); /* IE 9 /
+      -webkit-transform: scale(3) translate(30px); / Safari 3-8 */
+      transform: scale(3) translate(30px);
+    } 
+  }

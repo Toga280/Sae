@@ -1,14 +1,10 @@
-/*CHOIX DE LA MODIFICATION===============================================*/
-.choix{
-    display: flex;
-    justify-content: space-between;
-}
+
 .container_bouton_choix_elem{
     border-radius: 10px;
     background-color: white;
-    margin-top: 2em;
-    margin-left: 5em;
-    width: 65%;
+    margin: auto;
+    margin-top: 1em;
+    width: 30%;
     display: flex;
     flex-direction: column;
     border: none;
@@ -45,15 +41,14 @@ p{
     margin: 0.5em;
 }
 /*CSS BOX SELECTIONNER===============================================*/
-
 .boxSelected {
-    float: right;
-    margin-right: 5em;
-    margin-top: 2em;
+    float: none;
+    margin: auto;
+    margin-top: 1em;
     border: none;
     color: #355c7d;
     padding: 0.5em;
-    width: 1200px;
+    width: 90%;
     background-color: white;
   }
 /*BOUTON APPLIQUER===============================================*/
@@ -74,10 +69,9 @@ p{
 .modif_texte_ficheBox{
     border-radius: 10px;
     background-color: white;
-    margin-left: 5em;
-    margin-top: 2em;
+    margin: 1em;
     width: 25%;
-    border: none;
+    border: 0.1em solid #355c7d;
     justify-content: center;
     
 } 
@@ -90,14 +84,10 @@ p{
     margin-bottom: 0.5em;
 }
 /* CSS MODIF PICTO ===============================================*/
-
 .select_all_choix_picto{
-    border-radius: 10px;
-    width: 20%;
-    background-color: white;
-    border: none;
-    margin-top: 2em;
-    margin-left: 5em;
+    width: 90%;
+    border: 1px solid #355c7d;
+    margin: auto;
 }
 .picto_selec_list{
     margin: 5px;
@@ -202,3 +192,114 @@ p{
         height: 100px;
     }
   }
+
+
+
+
+
+  /* /*CHOIX DE LA MODIFICATION===============================================
+.choix{
+    display: flex;
+    justify-content: space-between;
+}
+.container_bouton_choix_elem{
+    border-radius: 10px;
+    background-color: white;
+    margin-top: 2em;
+    margin-left: 5em;
+    width: 65%;
+    display: flex;
+    flex-direction: column;
+    border: none;
+    justify-content: center;
+}
+.bouton_choix_elem{
+    border: none;
+    background-color: #3498db;
+    color: white;
+    font-weight: bold;
+    font-size: 18px;
+    padding: 0.8em;
+    margin: 1em;
+    border-radius: 4px;
+}
+/*CSS BOUTTON RETOUR===============================================
+.bouton_choix_elem_retour{
+    background-color: #ffffff;
+    color: #355c7d;
+    font-weight: bold;
+    font-size: 18px;
+    padding: 0.8em;
+    margin: 1em;
+    float: right;
+    border-radius: 4px;
+    border: none;
+
+}
+/*CSS Text===============================================
+p{
+    color: #355c7d;
+    font-size: 20px;
+    font-weight: bold;
+    margin: 0.5em;
+}
+/*CSS BOX SELECTIONNER===============================================
+
+.boxSelected {
+    float: right;
+    margin-right: 5em;
+    margin-top: 2em;
+    border: none;
+    color: #355c7d;
+    padding: 0.5em;
+    width: 1200px;
+    background-color: white;
+  }
+/*BOUTON APPLIQUER===============================================
+.apply_choix_change_button{
+    width: 20%;
+    background-color: #28a745;
+    color: white;
+    font-weight: bold;
+    font-size: 18px;
+    padding: 0.8em;
+    margin: 1em;
+    float: right;
+    border-radius: 4px;
+    border: none;
+}
+
+/* CSS MODIF TEXT ===============================================
+.modif_texte_ficheBox{
+    border-radius: 10px;
+    background-color: white;
+    margin-left: 5em;
+    margin-top: 2em;
+    width: 25%;
+    border: none;
+    justify-content: center;
+    
+} 
+
+.choix_couleur_modif_fiche{
+    width: 20%;
+}
+
+.choix_taille_modif_fiche{
+    margin-bottom: 0.5em;
+}
+/* CSS MODIF PICTO ===============================================
+
+.select_all_choix_picto{
+    border-radius: 10px;
+    width: 20%;
+    background-color: white;
+    border: none;
+    margin-top: 2em;
+    margin-left: 5em;
+}
+.picto_selec_list{
+    margin: 5px;
+    width: 100px;
+    height: 100px;
+} */

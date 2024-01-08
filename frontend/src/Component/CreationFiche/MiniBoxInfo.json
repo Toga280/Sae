@@ -254,5 +254,12 @@
     "Audio": false,
     "isSelected": false,
     "NomPicto" : "none"
+  },
+  "Materiel": {
+    "Mat1" : "null",
+    "Mat2" : "null",
+    "Mat3" : "null",
+    "Mat4" : "null",
+    "Mat5" : "null"
   }
 }

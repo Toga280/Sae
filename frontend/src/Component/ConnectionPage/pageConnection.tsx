@@ -3,9 +3,8 @@ import PageLoginEducateur from "./pageLoginEducateur";
 import ConnectionEleve from "./connectionEleve";
 import "./pageConnection.css";
 
-function PageConnection({ redirection }: any) {
+function PageConnection({ redirection , setRole}: any) {
   const [selectBoutton, setSelectBoutton] = useState(false);
-
   const BoutonCliquezConnection = (etat: boolean) => {
     setSelectBoutton(etat);
   };
@@ -22,7 +21,7 @@ function PageConnection({ redirection }: any) {
       )}
       {!selectBoutton && <ConnectionEleve redirection={redirection}/>}
 
-      {selectBoutton ? <PageLoginEducateur redirection={redirection} /> : null}
+      {selectBoutton ? <PageLoginEducateur redirection={redirection} setRole={setRole}/> : null}
       {selectBoutton && (
         <button
           className="bouton_retour_connection_edu"
@@ -31,6 +30,8 @@ function PageConnection({ redirection }: any) {
           Retour
         </button>
       )}
+
+      
     </div>
   );
 }

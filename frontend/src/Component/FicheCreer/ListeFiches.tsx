@@ -2,11 +2,14 @@ import axios from "axios";
 import React, { useEffect, useState } from "react";
 import "./ListeFiches.css";
 import fonctionsMiniBoxInfoJson from "../CreationFiche/MiniBoxInfoFunction";
+import AffecterListe from "./AffecterListe";
 
 function ListeFiches({ redirection }: any) {
   const [FichesNames, setFichesNames] = useState([]);
-  const setRedirectionSeven = () => {
-    redirection(7);
+  const [affichageAffecterListe, setAffichageAffecterListe] = useState(Boolean);
+  const [nomFicheSelectionner, setNomFicheSelectionner] = useState(String);
+  const setAffichageAffecterListeFalse = () => {
+    setAffichageAffecterListe(false);
   };
   const deleteFiche = (nomFiche: string) => {
     const confirmation = window.confirm(
@@ -33,6 +36,11 @@ function ListeFiches({ redirection }: any) {
     }
   };
 
+  const affecterFiche = (item: string) => {
+    setAffichageAffecterListe(true);
+    setNomFicheSelectionner(item);
+  };
+
   const elements = FichesNames.map((item, index) => (
     <div className="global_liste_nom_fiches_crée">
       <div
@@ -49,7 +57,10 @@ function ListeFiches({ redirection }: any) {
         style={{ width: "30px", height: "40px", cursor: "pointer" }}
         onClick={() => deleteFiche(item)}
       />
-      <button className="affecter_fiche_crée" onClick={setRedirectionSeven}>
+      <button
+        className="affecter_fiche_crée"
+        onClick={() => affecterFiche(item)}
+      >
         Affecter
       </button>
     </div>
@@ -96,17 +107,23 @@ function ListeFiches({ redirection }: any) {
 
   return (
     <div>
-      <div className="fiche_global_liste_fiche">
-        <h1 className="titre_h1_fiche_crée">Liste Fiches :</h1>
-        {elements}
-
-      </div>
+      {affichageAffecterListe === true ? (
+        <AffecterListe
+          setAffichageAffecterListeFalse={setAffichageAffecterListeFalse}
+          nomFicheSelectionner={nomFicheSelectionner}
+        />
+      ) : (
+        <div className="global_all_fiche">
+          <h1 className="titre_h1_fiche_crée">Liste de vos fiches :</h1>
+          {elements}
+        </div>
+      )}
       <button
-          className="bouton_retour_liste_fiche_crée_edu"
-          onClick={setRedirectionTwo}
-        >
-          Retour
-        </button>
+        className="bouton_retour_liste_fiche_crée_edu"
+        onClick={setRedirectionTwo}
+      >
+        Retour
+      </button>
     </div>
   );
 }

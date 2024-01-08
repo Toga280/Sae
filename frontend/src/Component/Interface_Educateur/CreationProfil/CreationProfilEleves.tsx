@@ -47,7 +47,7 @@ function CreationProfilEleves({
           />
         </div>
         <div className="form_prenom_creation_profil">
-          <p> Mdp </p>
+          <p> Mots de passe </p>
           <input
             type="text"
             className="TextInput"
@@ -67,7 +67,6 @@ function CreationProfilEleves({
           />
           <div id="fileList"></div>
         </div>
-        {}
         
         <button
         className="bouton_sauvegarder_creation_profil_edu"

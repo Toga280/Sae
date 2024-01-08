@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from "react";
 import axios from "axios";
 import "../../ConnectionPage/pageConnection.css";
-
+import "./ArchiverProfil.css";
 function ConnectionEleve({ redirection }: any) {
   const redirectionTwo = () => {
     redirection(2);
