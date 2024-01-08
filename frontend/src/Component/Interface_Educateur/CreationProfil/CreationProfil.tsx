@@ -45,7 +45,6 @@ function CreationProfil({ redirection, setSaveName }: any) {
 
   /*METHODE POST =====================================================*/
   const postEleve = (eleveData: any) => {
-    console.log(eleveData);
     axios
       .post("http://localhost:5000/POST/eleves", eleveData)
       .then((response) => {
