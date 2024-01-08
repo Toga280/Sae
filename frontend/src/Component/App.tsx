@@ -33,7 +33,7 @@ function App() {
       {redirection === 5 && <CreationProfil redirection={setRedirection} />}
       {redirection === 6 && <ListeFiches redirection={setRedirection} />}
       {redirection === 8 && <ArchiverProfil redirection={setRedirection} />}
-      {redirection === 9 && <ModifierMdp redirection={setRedirection} />}
+      {redirection === 9 && <ModifierMdp redirection={setRedirection} role={role}/>}
       {redirection === 10 && <ImportPicto redirection={setRedirection} />}
       {redirection === 11 && <ConnectionEleveShema redirection={setRedirection} />}
       {redirection === 12 && (<ListeProfilArchiver redirection={setRedirection} />)}

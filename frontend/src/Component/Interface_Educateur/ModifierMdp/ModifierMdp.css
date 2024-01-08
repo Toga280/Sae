@@ -26,3 +26,40 @@
     color: #355c7d;
     margin: 1em;
 }
+/* Style pour le conteneur parent (peut-être le formulaire ou un autre élément) */
+.container {
+    text-align: center;
+  }
+  
+  /* Style pour le paragraphe "Nouveau Mot de passe" */
+  p {
+    font-size: 16px;
+    margin-bottom: 10px;
+  }
+  
+  /* Style pour le champ de mot de passe */
+  .input_login {
+    width: 100%;
+    padding: 8px;
+    margin-bottom: 15px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+  }
+  
+  /* Style pour le bouton "Valider" */
+  .bouton_valider {
+    background-color: #4caf50;
+    color: #fff;
+    padding: 10px 15px;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    font-size: 16px;
+  }
+  
+  /* Hover effect sur le bouton */
+  .bouton_valider:hover {
+    background-color: #45a049;
+  }
+  
+  

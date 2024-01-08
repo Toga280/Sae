@@ -113,8 +113,8 @@ function ListeFiches({ redirection }: any) {
           nomFicheSelectionner={nomFicheSelectionner}
         />
       ) : (
-        <div>
-          <h1 className="titre_h1_fiche_crée">Liste Fiches :</h1>
+        <div className="global_all_fiche">
+          <h1 className="titre_h1_fiche_crée">Liste de vos fiches :</h1>
           {elements}
         </div>
       )}

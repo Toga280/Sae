@@ -78,7 +78,7 @@ function CreationProfilProf({ setRedirectionTwo }: any) {
         </div>
 
         <div className="form_prenom_creation_profil">
-          <p> id </p>
+          <p> Identifiant </p>
           <input
             type="text"
             className="TextInput"
@@ -87,20 +87,27 @@ function CreationProfilProf({ setRedirectionTwo }: any) {
         </div>
 
         <div className="form_prenom_creation_profil">
-          <p> mdp </p>
+          <p> Mots de passe </p>
           <input
             type="text"
             className="TextInput"
             onChange={handleInputChangeMdp}
           />
         </div>
-        <label htmlFor="choix">Sélectionnez une option :</label>
-        <select id="choix" name="choix" onChange={handleInputChangeRole}>
-            <option value="">Rôle</option>
-            <option value="Professeur">Professeur</option>
-            <option value="ProfesseurAdmin">Professeur Admin</option>
-            <option value="Admin">Admin</option>
-        </select>
+        <div className="select_creation_profil_prof">
+          <label htmlFor="choix">Sélectionnez un rôle :</label>
+          <select id="choix" name="choix" onChange={handleInputChangeRole}>
+              <option value="">Rôle</option>
+              <option value="Professeur">Professeur</option>
+              <option value="ProfesseurAdmin">Éducateur</option>
+              <option value="Admin">Éducateur intervenant</option>
+          </select>
+        </div>
+        <br></br>
+        <br></br>
+
+        <br></br>
+        <br></br>
 
         <button
         className="bouton_sauvegarder_creation_profil_edu"

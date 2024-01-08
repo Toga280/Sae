@@ -1,57 +1,140 @@
+/* Eleve */
 .global_creation_profil_eleve {
-    background-color: #f5f5f5;
-    border-radius: 8px;
+    max-width: 1200px;
+    margin: 20px auto; 
     padding: 20px;
-    margin: 20px;
-}
-.global_creation_profil_prof {
-    background-color: #f5f5f5;
-    border-radius: 8px;
-    padding: 20px;
-    margin: 20px;
-}
-.txt_creation_espace_élève {
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    background-color: #f9f9f9;
+    display: flex;
+    flex-direction: column;
     text-align: center;
-    color: #355c7d;
+  }
+  
+  .txt_creation_espace_élève {
     font-size: 24px;
     font-weight: bold;
-    margin-bottom: 20px;
-}
-
-.form_creation_profil_eleve {
+  }
+  
+  .form_creation_profil_eleve {
+    margin-top: 20px;
+    width: 100%;
+  }
+  
+  .form_nom_creation_profil,
+  .form_prenom_creation_profil,
+  .form_mdp_creation_profil,
+  .form_image_creation_profil {
     display: flex;
-    color: #355c7d;
-    font-size: 1.5em;
+    flex-direction: row;
+    align-items: center;
+    justify-content: center; 
+    margin-bottom: 15px;
+  }
+  
+  .form_nom_creation_profil p,
+  .form_prenom_creation_profil p,
+  .form_mdp_creation_profil p,
+  .form_image_creation_profil p {
+    margin-right: 10px;
+    flex-basis: 100px;
+  }
+  
+  .TextInput {
+    flex: 1;
+    padding: 8px;
+    box-sizing: border-box;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+    margin-top: 5px;
+  }
+  
+  .bouton_sauvegarder_creation_profil_edu {
+    background-color: #4caf50;
+    width: 50%;
+    color: white;
+    padding: 10px 15px;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+    margin-top: 10px;
+  }
+  
+  .bouton_sauvegarder_creation_profil_edu:hover {
+    background-color: #45a049;
+  }
+  
+/* Professeur */
+.global_creation_profil_prof {
+  text-align: center;
+    max-width: 1200px;
+    margin: 20px auto;
+    padding: 20px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    background-color: #f9f9f9;
+    display: flex;
     flex-direction: column;
     align-items: center;
-}
-
-.form_nom_creation_profil,
-.form_prenom_creation_profil,
-.form_mdp_creation_profil,
-.form_image_creation_profil {
-    color: #355c7d;
-    margin: 10px;
+    justify-content: center; 
+  }
+  
+  .form_creation_profil_prof {
+    margin-top: 20px;
+    width: 100%;
+  }
+  
+  .form_nom_creation_profil,
+  .form_prenom_creation_profil,
+  .form_id_creation_profil,
+  .form_mdp_creation_profil,
+  .form_role_creation_profil {
     display: flex;
+    flex-direction: row;
     align-items: center;
-}
-
-.form_nom_creation_profil p,
-.form_prenom_creation_profil p,
-.form_mdp_creation_profil p,
-.form_image_creation_profil p {
-    color: #355c7d;
+    margin-bottom: 15px;
+  }
+  
+  .form_nom_creation_profil p,
+  .form_prenom_creation_profil p,
+  .form_id_creation_profil p,
+  .form_mdp_creation_profil p,
+  .form_role_creation_profil p {
     margin-right: 10px;
-}
-
-.TextInput {
-    padding: 8px;
-    margin: 5px;
+    flex-basis: 100px; 
+  }
+  
+  .TextInput,
+  select {
     flex: 1;
-}
-
-.bouton_retour_creation_profil_edu,
-.bouton_sauvegarder_creation_profil_edu {
+    padding: 8px;
+    box-sizing: border-box;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+    margin-top: 5px;
+  }
+  
+  .form_role_creation_profil label {
+    flex-basis: 100%; 
+    text-align: center; 
+  }
+  
+  .bouton_sauvegarder_creation_profil_edu {
+    background-color: #4caf50;
+    width: 50%;
+    color: white;
+    padding: 10px 15px;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+    margin-top: 10px;
+  }
+  
+  .bouton_sauvegarder_creation_profil_edu:hover {
+    background-color: #45a049;
+  }
+  
+  .bouton_retour_creation_profil_edu {
     border: none;
     background-color: #007bff;
     color: white;
@@ -61,11 +144,149 @@
     margin: 10px;
     border-radius: 4px;
     cursor: pointer;
-}
-
-.bouton_sauvegarder_creation_profil_edu {
-    background-color: #28a745;
-    overflow: hidden;
-    white-space: nowrap;
-    text-overflow: ellipsis;
-}
+  }
+  label{
+    color: #355c7d;
+    font-size: 20px;
+    font-weight: bold;
+    margin: 0.5em;
+  }
+  
+  @media(max-width: 1200px) {
+    .global_creation_profil_prof {
+      max-width: 1000px;
+    }
+  }
+  
+  @media(max-width: 1000px) {
+    .global_creation_profil_prof {
+      max-width: 800px;
+    }
+  }
+  
+  @media(max-width: 800px) {
+    .global_creation_profil_prof {
+      max-width: 600px;
+    }
+  }
+  
+  @media(max-width: 600px) {
+    .global_creation_profil_prof {
+      max-width: 400px;
+    }
+  }
+    /* Professeur */
+.global_creation_profil_prof {
+    max-width: 1200px;
+    margin: 20px auto; /* Ajoute de l'espace entre les formulaires */
+    padding: 20px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    background-color: #f9f9f9;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center; 
+  }
+  
+  .form_creation_profil_prof {
+    margin-top: 20px;
+    width: 100%; /* Ajuste la largeur du formulaire */
+  }
+  
+  .form_nom_creation_profil,
+  .form_prenom_creation_profil,
+  .form_id_creation_profil,
+  .form_mdp_creation_profil,
+  .form_role_creation_profil {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    margin-bottom: 15px;
+  }
+  
+  .form_nom_creation_profil p,
+  .form_prenom_creation_profil p,
+  .form_id_creation_profil p,
+  .form_mdp_creation_profil p,
+  .form_role_creation_profil p {
+    margin-right: 10px;
+    flex-basis: 100px; /* Ajuste la largeur en conséquence */
+  }
+  
+  .form_role_creation_profil {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    margin-bottom: 15px;
+  }
+  
+  .form_role_creation_profil label {
+    text-align: center;
+    margin-bottom: 5px;
+  }
+  
+  .select_creation_profil_prof{
+    text-align: center;
+  }
+  .TextInput,
+  select {
+    width: 30%;
+    padding: 8px;
+    box-sizing: border-box;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+    margin-top: 5px;
+  }
+  
+  .bouton_sauvegarder_creation_profil_edu {
+    background-color: #4caf50;
+    width: 50%;
+    color: white;
+    padding: 10px 15px;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+    margin-top: 10px; /* Ajuste la marge supérieure du bouton */
+  }
+  
+  .bouton_sauvegarder_creation_profil_edu:hover {
+    background-color: #45a049;
+  }
+  
+  .bouton_retour_creation_profil_edu {
+    border: none;
+    background-color: #007bff;
+    color: white;
+    font-weight: bold;
+    font-size: 18px;
+    padding: 10px 20px;
+    margin: 10px;
+    border-radius: 4px;
+    cursor: pointer;
+  }
+  
+  @media(max-width: 1200px) {
+    .global_creation_profil_prof {
+      max-width: 1000px;
+    }
+  }
+  
+  @media(max-width: 1000px) {
+    .global_creation_profil_prof {
+      max-width: 800px;
+    }
+  }
+  
+  @media(max-width: 800px) {
+    .global_creation_profil_prof {
+      max-width: 600px;
+    }
+  }
+  
+  @media(max-width: 600px) {
+    .global_creation_profil_prof {
+      max-width: 400px;
+    }
+  }
+  

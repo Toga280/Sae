@@ -76,3 +76,14 @@ button.retour_liste_fiches {
 button.retour_liste_fiches:hover {
   background-color: #2980b9;
 }
+.global_all_fiche{
+  text-align: center;
+  max-width: 1200px;
+  margin: 20px auto;
+  padding: 20px;
+  border: 1px solid #ccc;
+  border-radius: 5px;
+  background-color: #f9f9f9;
+  align-items: center;
+
+}

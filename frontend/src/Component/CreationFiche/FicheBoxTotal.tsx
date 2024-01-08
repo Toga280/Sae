@@ -9,6 +9,7 @@ import FicheBox7 from "./FicheBox7";
 import FicheBox8 from "./FicheBox8";
 import fonctionsMiniBoxInfoJson from "./MiniBoxInfoFunction";
 import { imprimerPage } from "../FonctionEleve/Imprimer";
+import "./imprimerFiche.css";
 
 function FicheBoxTotal({ onSelectBox, redirection, setSaveName }: any) {
   const [numBox, setNumBox] = useState(0);
@@ -117,7 +118,7 @@ function FicheBoxTotal({ onSelectBox, redirection, setSaveName }: any) {
       >
         Sauvegarder
       </button>
-      <button className="boutton_brouillon_interaction_edu">Brouillons</button>
+      {/* <button className="boutton_brouillon_interaction_edu">Brouillons</button> */}
       <button
         className="boutton_sauvegarder_interaction_edu"
         onClick={imprimerPage}
