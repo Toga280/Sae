@@ -2,9 +2,11 @@ import React, { useState } from "react";
 import "./connectionEleveShema.css";
 import axios from "axios";
 import { toBeDisabled } from "@testing-library/jest-dom/matchers";
-function ConnectionEleveShema({ redirection, setC, nomEleveActuelle, prenomEleveActuelle }: any) {
+
+
+function ConnectionEleveShema({ redirection, setC, nomEleveActuelle, prenomEleveActuelle, set1Eleve }: any) {
   
-  
+
   const [mdpFaux, setMdpFaux] = useState(true);
   const [nombreEssais, setnombreEssais] = useState(Number);
   const [boutonDesactive, setBoutonDesactive] = useState(false);
@@ -15,6 +17,8 @@ function ConnectionEleveShema({ redirection, setC, nomEleveActuelle, prenomEleve
   const Connexion = (event: React.FormEvent) => {
     event.preventDefault();
     setMdpFaux(true);
+
+    set1Eleve(nomEleveActuelle+prenomEleveActuelle);
 
     axios
       .get(

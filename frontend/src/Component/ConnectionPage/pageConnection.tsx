@@ -3,7 +3,7 @@ import PageLoginEducateur from "./pageLoginEducateur";
 import ConnectionEleve from "./connectionEleve";
 import "./pageConnection.css";
 
-function PageConnection({ redirection , setRole}: any) {
+function PageConnection({ redirection , setRole, set1Eleve}: any) {
   const [selectBoutton, setSelectBoutton] = useState(false);
   const BoutonCliquezConnection = (etat: boolean) => {
     setSelectBoutton(etat);
@@ -19,7 +19,7 @@ function PageConnection({ redirection , setRole}: any) {
           Connexion éducateur
         </button>
       )}
-      {!selectBoutton && <ConnectionEleve redirection={redirection}/>}
+      {!selectBoutton && <ConnectionEleve redirection={redirection} set1Eleve={set1Eleve}/>}
 
       {selectBoutton ? <PageLoginEducateur redirection={redirection} setRole={setRole}/> : null}
       {selectBoutton && (

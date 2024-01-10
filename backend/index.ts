@@ -118,7 +118,7 @@ app.post('/POST/fiche', (req : any, res : any) => {
   });
 });
 
-/*UPLOAD PICTO */
+/*UPLOAD PICTO==============================================*/
 
 app.post('/POST/uploadpicto', upload.single('file'), async (req: any, res: any) => {
   try {
@@ -150,7 +150,8 @@ app.post('/POST/uploadpicto', upload.single('file'), async (req: any, res: any) 
   }
 });
 
-/* upload image eleve */
+/* upload photo profil eleve======================================================*/
+
 app.post('/POST/uploadpictoEleve', upload.single('file'), async (req: any, res: any) => {
   try {
     const { name } = req.query;
@@ -181,6 +182,8 @@ app.post('/POST/uploadpictoEleve', upload.single('file'), async (req: any, res: 
   }
 });
 
+/* AJOUT ELEVE=========================================================*/
+
 app.post('/POST/eleves', (req: any, res: any) => {
   const newData = req.body;
   const newEleve = new EleveModel(newData);
@@ -200,7 +203,8 @@ app.post('/POST/eleves', (req: any, res: any) => {
     });
 });
 
-/* MODFIER MDP ELEVE */
+/* MODFIER MDP ELEVE======================================================*/
+
 app.post('/POST/eleveUpdatePassword', async (req: any, res: any) => {
   const { nom, prenom, mdp } = req.body;
 
@@ -219,7 +223,9 @@ app.post('/POST/eleveUpdatePassword', async (req: any, res: any) => {
     res.status(500).json({ message: 'Erreur serveur' });
   }
 });
-/*MODIFIER MDP PROF */
+
+/*MODIFIER MDP PROF=====================================================*/
+
 app.post('/POST/profUpdatePassword', async (req: any, res: any) => {
   const { mdp ,nom,prenom} = req.body;
 
@@ -239,7 +245,8 @@ app.post('/POST/profUpdatePassword', async (req: any, res: any) => {
   }
 });
 
-/*ARCHIVER ELEVE */
+/*ARCHIVER ELEVE================================================================*/
+
 app.post('/POST/archiverEleve', async (req: any, res: any) => {
   const {nom, prenom} = req.body;
 
@@ -256,6 +263,8 @@ app.post('/POST/archiverEleve', async (req: any, res: any) => {
     res.status(500).json({ message: 'Erreur serveur' });
   }
 })
+
+/*RESTORER ELEVE=================================================================*/
 
 app.post('/POST/restorerEleve', async (req: any, res: any) => {
   const {nom, prenom} = req.body;
@@ -274,7 +283,7 @@ app.post('/POST/restorerEleve', async (req: any, res: any) => {
   }
 })
 
-/*---------- affecter eleve a une fiche ----------*/
+/*AFFECTER UN ELEVE A UNE FICHE=====================================================*/
 
 app.post('/POST/affectereleve', async (req : any, res : any) => {
   const {nom, prenom, ficheName} = req.body;
@@ -293,6 +302,9 @@ app.post('/POST/affectereleve', async (req : any, res : any) => {
     res.status(500).json({ message: 'Erreur serveur' });
   }
 })
+
+/*AJOUTER UN ADMIN===============================================================*/
+
 app.post('/POST/admin', (req : any, res : any) => {
   const newData = req.body;
   const newAdmin = new Admin(newData);
@@ -314,6 +326,8 @@ app.post('/POST/admin', (req : any, res : any) => {
   });
 });
 
+/*MODIFIER ROLE PROF================================================================*/
+
 app.post('/POST/ProfUpdateRole', async (req: any, res: any) => {
   const { nom, prenom, role } = req.body;
 
@@ -332,10 +346,49 @@ app.post('/POST/ProfUpdateRole', async (req: any, res: any) => {
     res.status(500).json({ message: 'Erreur serveur' });
   }
 });
+
+/* UPLOAD IMAGE ELEVES ===========================================================*/
+
+app.post('/POST/uploadImageEleve', upload.single('file'), async (req: any, res: any) => {
+  try {
+    const { name } = req.query;
+
+    if (!req.file) {
+      return res.status(400).json({ error: 'Aucun fichier n\'a été téléchargé.' });
+    }
+
+    const fileBuffer = req.file.buffer;
+    const newFileName = `${Date.now()}.webp`;
+    const filePath = `./src/photo/${name}/${newFileName}`;
+  
+    // Créer récursivement le répertoire parent si nécessaire
+    const directoryPath = `./src/photo/${name}/`;
+    if (!fs.existsSync(directoryPath)) {
+      fs.mkdirSync(directoryPath, { recursive: true });
+    }
+
+    if (fs.existsSync(filePath)) {
+      res.status(409).json({ message: 'Le fichier existe déjà' });
+    } else {
+      // Utiliser sharp pour convertir l'image au format WebP
+      await sharp(fileBuffer)
+        .toFormat('webp')
+        .toFile(filePath);
+      
+      res.status(200).json({ message: 'Image téléchargée avec succès' });
+    }
+  } catch (error) {
+    console.error('Erreur lors du téléchargement du fichier:', error);
+    res.status(500).json({ error: 'Erreur interne du serveur' });
+  }
+});
+
+
 /*------------------- GET -------------------*/
 
 
-/*  */
+/* GET ALL FICHES ===========================================================*/
+
 app.get('/GET/allFicheNames', async (req: any, res: any) => {
   try {
     const ficheNames = await Fiche.find({}, 'info.name').exec();
@@ -352,7 +405,8 @@ app.get('/GET/allFicheNames', async (req: any, res: any) => {
   }
 });
 
-/* */
+/* GET FICHE =============================================*/
+
 app.get('/GET/nameFiche', async (req: any, res: any) => {
   const { name } = req.query;
 
@@ -376,6 +430,7 @@ app.get('/GET/nameFiche', async (req: any, res: any) => {
 
 
 /* GET NAME FICHES EXISTE =============================================*/
+
 app.get('/GET/nameFicheExiste', async (req: any, res: any) => {
   const { name } = req.query;
 
@@ -396,7 +451,8 @@ app.get('/GET/nameFicheExiste', async (req: any, res: any) => {
     res.status(500).send('Erreur interne du serveur');
   }
 });
-/* GET ELEVES =============================================*/
+
+/* GET ELEVES ============================================================*/
 
 app.get('/GET/allEleve', async (req: any, res: any) => {
   try {
@@ -407,7 +463,9 @@ app.get('/GET/allEleve', async (req: any, res: any) => {
     res.status(500).json({ message: 'Erreur serveur' });
   }
 });
-/* GET ELEVES ARCHIVER=============================================*/
+
+/* GET ELEVES ARCHIVER=======================================================*/
+
 app.get('/GET/allEleveArchiver', async (req: any, res: any) => {
   try {
     const eleve = await EleveModel.find({ archiver: { $ne: false } }, "nom prenom image ").exec();
@@ -418,7 +476,8 @@ app.get('/GET/allEleveArchiver', async (req: any, res: any) => {
   }
 });
 
-/*GET ELEVE AUTHENTIFICATION ============================================*/
+/*GET ELEVE AUTHENTIFICATION =================================================*/
+
 app.get('/GET/eleve/authentification', async (req: any, res : any) => {
   const { nom, prenom , mdp} = req.query;
   try{
@@ -434,7 +493,8 @@ app.get('/GET/eleve/authentification', async (req: any, res : any) => {
   }
 });
 
-/*GET ADMIN*/
+/*GET ADMIN======================================================================*/
+
 app.get('/GET/admin/authentification', async (req: any, res : any) => {
   const { id, mdp} = req.query;
   try{
@@ -450,7 +510,8 @@ app.get('/GET/admin/authentification', async (req: any, res : any) => {
   }
 });
 
-/*GET ROLE PROF ============================================*/
+/*GET ROLE PROF ====================================================================*/
+
 app.get('/GET/roleProf', async (req: any, res: any) => {
   const { id } = req.query;
   try {
@@ -467,11 +528,8 @@ app.get('/GET/roleProf', async (req: any, res: any) => {
   }
 });
 
+/*GET ALL PROF =====================================================================*/
 
-
-
-
-/*GET ALL PROF ============================================*/
 app.get('/GET/allProf', async (req: any, res: any) => {
   try {
     const admin = await Admin.find({}, "nom prenom").exec();
@@ -483,6 +541,7 @@ app.get('/GET/allProf', async (req: any, res: any) => {
 });
 
 /* GET PICTO ===================================================================*/
+
 app.get('/GET/getpicto-info', async (req: any, res: any) => {
   const pictoDirectory = path.join(__dirname, './src/picto');
 
@@ -500,6 +559,8 @@ app.get('/GET/getpicto-info', async (req: any, res: any) => {
   }
 });
 
+/* GET PICTO FILE ===============================================================*/
+
 app.get('/GET/getpicto-file', async (req: any, res: any) => {
   const pictoDirectory = path.join(__dirname, './src/picto');
   const { name } = req.query;
@@ -515,6 +576,8 @@ app.get('/GET/getpicto-file', async (req: any, res: any) => {
     res.status(500).send('Erreur interne du serveur');
   }
 });
+
+/* GET PICTO ELEVE ===============================================================*/
 
 app.get('/GET/piceleve', async (req: any, res: any) => {
   const pictoDirectory = path.join(__dirname, './src/piceleve');
@@ -544,6 +607,8 @@ app.get('/GET/piceleve', async (req: any, res: any) => {
 
 
 /*------------------- DELETE -------------------*/
+
+/* DELETE FICHE ===============================================================*/
 
 app.get('/DELETE/ficheName', async (req: any, res: any) => {
   const { name } = req.query;
