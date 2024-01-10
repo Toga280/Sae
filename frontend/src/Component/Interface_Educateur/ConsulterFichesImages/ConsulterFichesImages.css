@@ -47,7 +47,8 @@ li:hover {
 }
 
 button.custom_affecter_fiche_eleve,
-button.custom_retour_liste_fiches {
+button.custom_retour_liste_fiches,
+button.custom_retour {
   margin-top: 1em;
   padding: 10px 15px;
   border: none;
