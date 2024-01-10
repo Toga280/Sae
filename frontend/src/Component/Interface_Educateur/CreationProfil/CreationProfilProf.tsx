@@ -95,7 +95,7 @@ function CreationProfilProf({ setRedirectionTwo }: any) {
           />
         </div>
         <div className="select_creation_profil_prof">
-          <label htmlFor="choix">Sélectionnez un rôle :</label>
+          <label htmlFor="choix" className="select_role">Sélectionnez un rôle :</label>
           <select id="choix" name="choix" onChange={handleInputChangeRole}>
               <option value="">Rôle</option>
               <option value="Professeur">Professeur</option>

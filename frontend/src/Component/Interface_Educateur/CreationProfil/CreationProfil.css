@@ -145,7 +145,7 @@
     border-radius: 4px;
     cursor: pointer;
   }
-  label{
+  .select_role{
     color: #355c7d;
     font-size: 20px;
     font-weight: bold;

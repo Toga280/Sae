@@ -26,7 +26,6 @@ function ListeFiches({ redirection }: any) {
         .then((response) => {
           if (response.data) {
             console.log("fiche supprimée avec succès");
-            // Actualiser la liste après la suppression
             allFicheNames();
           }
         })

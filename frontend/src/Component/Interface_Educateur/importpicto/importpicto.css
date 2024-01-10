@@ -32,12 +32,12 @@
   
   .back-button {
     border: none;
-    background-color: white;
-    color: #355c7d;
+    background-color: #007bff;
+    color: white;
     font-weight: bold;
     font-size: 18px;
-    padding: 0.8em;
-    margin: 1em;
+    padding: 10px 20px;
+    margin: 10px;
     border-radius: 4px;
     cursor: pointer;
   }
@@ -79,3 +79,15 @@
     font-family: Arial, sans-serif;
   }
   
+  .picto-container{
+    text-align: center;
+    max-width: 1200px;
+    margin: 20px auto;
+    padding: 20px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    background-color: #f9f9f9;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center; 
+  }

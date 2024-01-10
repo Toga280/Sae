@@ -8,7 +8,7 @@
 .bouton_retour_modif_mdp_eleve{
     background-color: white;
     height: 3em;
-    width: 10%;
+    width: 5%;
     max-width: 30%;
     color: #355c7d;
     font-weight: bold;
@@ -26,18 +26,14 @@
     color: #355c7d;
     margin: 1em;
 }
-/* Style pour le conteneur parent (peut-être le formulaire ou un autre élément) */
 .container {
     text-align: center;
   }
-  
-  /* Style pour le paragraphe "Nouveau Mot de passe" */
-  p {
+    p {
     font-size: 16px;
     margin-bottom: 10px;
   }
   
-  /* Style pour le champ de mot de passe */
   .input_login {
     width: 100%;
     padding: 8px;
@@ -46,7 +42,6 @@
     border-radius: 5px;
   }
   
-  /* Style pour le bouton "Valider" */
   .bouton_valider {
     background-color: #4caf50;
     color: #fff;
@@ -57,7 +52,6 @@
     font-size: 16px;
   }
   
-  /* Hover effect sur le bouton */
   .bouton_valider:hover {
     background-color: #45a049;
   }

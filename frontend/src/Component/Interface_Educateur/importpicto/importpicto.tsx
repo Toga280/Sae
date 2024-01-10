@@ -102,7 +102,8 @@ const ImportPicto = ({ redirection }: any): JSX.Element => {
         <button className="back-button" onClick={() => redirection(2)}>Retour</button>
       </div>
       <div>
-        <h2 className='txt_picto_present'>liste des pictogrammes</h2>
+        <h2 className='txt_picto_present'>Liste des pictogrammes :</h2>
+        <div className="picto-container">
         {imageError && <p className="error-message">{imageError}</p>}
         {images.map((imageData, index) => (
           <img
@@ -112,6 +113,7 @@ const ImportPicto = ({ redirection }: any): JSX.Element => {
           style={{ maxWidth: '200px', maxHeight: '200px' }}
         />
         ))}
+        </div>
       </div>
     </div>
   );
