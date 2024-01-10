@@ -26,9 +26,8 @@ function PageConnection({ redirection , setRole}: any) {
         <button
           className="bouton_retour_connection_edu"
           onClick={() => BoutonCliquezConnection(false)}
-        >
-          Retour
-        </button>
+        >Retour</button>
+        
       )}
 
       
