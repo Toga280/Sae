@@ -5,24 +5,25 @@ import UnMat from "./UnMat";
 function PageSelect({setSelect, numMat} : any){
   
   const setSelectFalse = () => setSelect(false);
+
   return (
     <div>
       <button onClick={() => setSelectFalse()}> Retour </button> 
           Séléctionnez un materiel à ajouter :
-            <UnMat mat={"Bonde à grille pour lave-mains"}  numMat={numMat} setSelect={setSelect} image={""}/>
-            <UnMat mat={"Bouchon laiton à visser F 1/2"} numMat={numMat} setSelect={setSelect} image={""}/>
-            <UnMat mat={"Chevilles à expansion avec patte à vis"} numMat={numMat} setSelect={setSelect} image={""}/>
-            <UnMat mat={"Chevilles à frapper"} numMat={numMat} setSelect={setSelect} image={""}/>
-            <UnMat mat={"Chevilles autoforeuses - Fixation plaque de plâtre"} numMat={numMat} setSelect={setSelect} image={""}/>
-            <UnMat mat={"Chiffons"} numMat={numMat} setSelect={setSelect} image={""}/>
-            <UnMat mat={"Colle acrylique de fixation pour plinthe"} numMat={numMat} setSelect={setSelect} image={""}/>
-            <UnMat mat={"Colle PVC"} numMat={numMat} setSelect={setSelect} image={""}/>
-            <UnMat mat={"Collier PVC Ø 40"} numMat={numMat} setSelect={setSelect} image={""}/>
-            <UnMat mat={"Colliers PVC Ø 32"} numMat={numMat} setSelect={setSelect} image={""}/>
-            <UnMat mat={"Colliers PVC Ø 100"} numMat={numMat} setSelect={setSelect} image={""}/>
-            <UnMat mat={"Colliers type Atlas double Ø12"} numMat={numMat} setSelect={setSelect} image={""}/>
-            <UnMat mat={"Colliers type Atlas Simple Ø12"} numMat={numMat} setSelect={setSelect} image={""}/>
-            <UnMat mat={"Coude cuivre 90° à souder FF Ø 12"} numMat={numMat} setSelect={setSelect} image={""}/>
+            <UnMat mat={"Bonde à grille pour lave-mains"}  numMat={numMat} setSelect={setSelect} image={0}/>
+            <UnMat mat={"Bouchon laiton à visser F 1/2"} numMat={numMat} setSelect={setSelect} image={1}/>
+             <UnMat mat={"Chevilles à expansion avec patte à vis"} numMat={numMat} setSelect={setSelect} image={2}/>
+            <UnMat mat={"Chevilles à frapper"} numMat={numMat} setSelect={setSelect} image={3}/>
+            <UnMat mat={"Chevilles autoforeuses - Fixation plaque de plâtre"} numMat={numMat} setSelect={setSelect} image={4}/>
+            <UnMat mat={"Chiffons"} numMat={numMat} setSelect={setSelect} image={5}/>
+            <UnMat mat={"Colle acrylique de fixation pour plinthe"} numMat={numMat} setSelect={setSelect} image={6}/>
+            <UnMat mat={"Colle PVC"} numMat={numMat} setSelect={setSelect} image={7}/>
+            <UnMat mat={"Collier PVC Ø 40"} numMat={numMat} setSelect={setSelect} image={8}/>
+            <UnMat mat={"Colliers PVC Ø 32"} numMat={numMat} setSelect={setSelect} image={9}/>
+            <UnMat mat={"Colliers PVC Ø 100"} numMat={numMat} setSelect={setSelect} image={10}/>
+            <UnMat mat={"Colliers type Atlas double Ø12"} numMat={numMat} setSelect={setSelect} image={11}/>
+            <UnMat mat={"Colliers type Atlas Simple Ø12"} numMat={numMat} setSelect={setSelect} image={12}/>
+            <UnMat mat={"Coude cuivre 90° à souder FF Ø 12"} numMat={numMat} setSelect={setSelect} image={13}/>
             <UnMat mat={"Coude PVC 87°30° FF Ø 100"} numMat={numMat} setSelect={setSelect} image={""}/>
             <UnMat mat={"Coude PVC 87°30° FF Ø 32"} numMat={numMat} setSelect={setSelect} image={""}/>
             <UnMat mat={"Coude PVC 87°30° FF Ø 40"} numMat={numMat} setSelect={setSelect} image={""}/>
