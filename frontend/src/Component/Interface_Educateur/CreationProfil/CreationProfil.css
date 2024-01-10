@@ -197,7 +197,18 @@
   .bouton_sauvegarder_creation_profil_edu:hover {
     background-color: #45a049;
   }
-
+  
+  .bouton_retour_creation_profil_edu {
+    border: none;
+    background-color: #007bff;
+    color: white;
+    font-weight: bold;
+    font-size: 18px;
+    padding: 10px 20px;
+    margin: 10px;
+    border-radius: 4px;
+    cursor: pointer;
+  }
   .select_role{
     color: #355c7d;
     font-size: 20px;

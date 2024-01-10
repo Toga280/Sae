@@ -42,7 +42,6 @@
     border-radius: 5px;
   }
   
-  /* Style pour le bouton "Valider" */
   .bouton_valider {
     background-color: #4caf50;
     color: #fff;
@@ -59,6 +58,7 @@
     border: 1px solid #ccc;
     border-radius: 5px;
   }
+  
   .bouton_valider:hover {
     background-color: #45a049;
   }
