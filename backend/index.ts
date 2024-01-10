@@ -314,6 +314,24 @@ app.post('/POST/admin', (req : any, res : any) => {
   });
 });
 
+app.post('/POST/ProfUpdateRole', async (req: any, res: any) => {
+  const { nom, prenom, role } = req.body;
+
+  try {
+    const admin = await Admin.findOne({ nom, prenom });
+
+    if (!admin) {
+      return res.status(404).json({ message: 'Prof non trouvé' });
+    }
+    admin.role = role;
+    await admin.save();
+    res.status(200).json({ message: 'Mot de passe mis à jour avec succès' });
+    
+  } catch (error) {
+    console.error(error);
+    res.status(500).json({ message: 'Erreur serveur' });
+  }
+});
 /*------------------- GET -------------------*/
 
 

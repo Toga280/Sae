@@ -26,6 +26,7 @@ function Interface({ redirection, role }: any) {
             <button className="bouton_interface_educateur" onClick={() => redirection(5)}>Créer un profil</button>
             <button className="bouton_interface_educateur" onClick={() => redirection(8)}>Archiver un profil</button>
             <button className="bouton_interface_educateur" onClick={() => redirection(12)}>Profil Archivé(s)</button>
+            <button className="bouton_interface_educateur" onClick={() => redirection(15)}>Modifier les rôles</button>
           </div>
         </div>
       )}
