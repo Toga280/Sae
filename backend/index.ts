@@ -65,13 +65,6 @@ const ficheSchema = new Schema<FicheDocument>({
   MiniBox21: { type: miniBoxSchema, required: true },
   MiniBox22: { type: miniBoxSchema, required: true },
   MiniBox23: { type: miniBoxSchema, required: true },
-  // Materiel: {
-  //   Mat1: { type: String, required: true },
-  //   Mat2: { type: String, required: true },
-  //   Mat3: { type: String, required: true },
-  //   Mat4: { type: String, required: true },
-  //   Mat5: { type: String, required: true }
-  // }
 });
 
 const admin = new Schema<Admin>({
@@ -141,6 +134,37 @@ app.post('/POST/uploadpicto', upload.single('file'), async (req: any, res: any) 
     const fileExtension = originalFileName.split('.').pop();
     const newFileName = `${name}.webp`; // Change the file extension to webp
     const filePath = `./src/picto/${newFileName}`;
+    if (fs.existsSync(filePath)) {
+      res.status(409).json({ message: 'Le fichier existe déjà' });
+    } else {
+      // Use sharp to convert the image to WebP format
+      await sharp(fileBuffer)
+        .toFormat('webp')
+        .toFile(filePath);
+      
+      res.status(200).json({ message: 'Image téléchargée avec succès' });
+    }
+  } catch (error) {
+    console.error('Erreur lors du téléchargement du fichier:', error);
+    res.status(500).json({ error: 'Erreur interne du serveur' });
+  }
+});
+
+/* upload image eleve */
+app.post('/POST/uploadpictoEleve', upload.single('file'), async (req: any, res: any) => {
+  try {
+    const { name } = req.query;
+
+    if (!req.file) {
+      return res.status(400).json({ error: 'Aucun fichier n\'a été téléchargé.' });
+    }
+
+    const fileBuffer = req.file.buffer;
+
+    const originalFileName = req.file.originalname;
+    const fileExtension = originalFileName.split('.').pop();
+    const newFileName = `${name}.webp`; // Change the file extension to webp
+    const filePath = `./src/piceleve/${newFileName}`;
     if (fs.existsSync(filePath)) {
       res.status(409).json({ message: 'Le fichier existe déjà' });
     } else {
@@ -460,6 +484,22 @@ app.get('/GET/getpicto-info', async (req: any, res: any) => {
 
 app.get('/GET/getpicto-file', async (req: any, res: any) => {
   const pictoDirectory = path.join(__dirname, './src/picto');
+  const { name } = req.query;
+
+  try {
+    // Construction du chemin complet du fichier image
+    const imagePath = path.join(pictoDirectory, name);
+
+    // Envoi du fichier image en réponse à la requête
+    res.status(200).sendFile(imagePath);
+  } catch (error) {
+    console.error('Erreur lors de la récupération du fichier image :', error);
+    res.status(500).send('Erreur interne du serveur');
+  }
+});
+
+app.get('/GET/piceleve', async (req: any, res: any) => {
+  const pictoDirectory = path.join(__dirname, './src/piceleve');
   const { name } = req.query;
 
   try {

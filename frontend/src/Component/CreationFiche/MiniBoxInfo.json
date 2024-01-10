@@ -256,10 +256,15 @@
     "NomPicto" : "none"
   },
   "Materiel": {
-    "Mat1" : "null",
-    "Mat2" : "null",
-    "Mat3" : "null",
-    "Mat4" : "null",
-    "Mat5" : "null"
+    "Mat1" : "Matériel n°1",
+    "Mat2" : "Matériel n°2",
+    "Mat3" : "Matériel n°3",
+    "Mat4" : "Matériel n°4",
+    "Mat5" : "Matériel n°5",
+    "Mat6" : "Matériel n°6",
+    "Mat7" : "Matériel n°7",
+    "Mat8" : "Matériel n°8",
+    "Mat9" : "Matériel n°9",
+    "Mat10" : "Matériel n°10"
   }
 }

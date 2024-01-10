@@ -55,14 +55,17 @@ function CreationProfilEleves({
             onChange={handleInputChangeMdp}
           />
         </div>
-        <div className="form_prenom_creation_profil">
-          <p> IMAGE TEST </p>
+        <div className="form_image_creation_profil">
+          <p> Image </p>
           <input
-            type="text"
-            className="TextInput"
-            name="prenomEleve"
+            type="file"
+            id="fileInput"
+            name="imageEleve"
+            accept="image/*"
+            multiple
             onChange={handleInputChangeImage}
           />
+          <div id="fileList"></div>
         </div>
         
         <button
