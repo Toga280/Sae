@@ -3,26 +3,28 @@ import axios from "axios";
 import ConnectionEleveShema from "./ConnectionEleveShema";
 
 function ConnectionEleve({ redirection }: any) {
-  const [c, setC] = useState(Boolean);
-  const [eleves, setEleves] = useState<any[]>([]);
-  const [nomEleveActuelle, setNomEleveActuelle] = useState(String);
-  const [prenomEleveActuelle, setPrenomEleveActuelle] = useState(String);
-  const [loading, setLoading] = useState(false);
-  const [studentImages, setStudentImages] = useState<string[]>([]);
+  const [c, setC] = useState(Boolean); // État pour suivre si une connexion est active
+  const [eleves, setEleves] = useState<any[]>([]); // État pour stocker la liste des étudiants
+  const [nomEleveActuelle, setNomEleveActuelle] = useState(String); // État pour stocker le nom de famille de l'étudiant actuel
+  const [prenomEleveActuelle, setPrenomEleveActuelle] = useState(String); // État pour stocker le prénom de l'étudiant actuel
+  const [loading, setLoading] = useState(false); // État pour suivre si les images sont en cours de chargement
+  const [studentImages, setStudentImages] = useState<string[]>([]); // État pour stocker les images des étudiants récupérées
 
+  // Fonction pour gérer la connexion d'un étudiant
   const connection = (nom: string, prenom: string) => {
     setNomEleveActuelle(nom);
     setPrenomEleveActuelle(prenom);
     setC(true);
   };
 
+  // Fonction pour récupérer les images des étudiants
   const getStudentImages = async () => {
     try {
       setLoading(true);
       const responses = await Promise.all(
         eleves.map(async (eleve: any) => {
           const imageName = `${eleve.nom}${eleve.prenom}.webp`;
-          console.log('Searching for image:', imageName);
+          console.log('Recherche de l\'image :', imageName);
           try {
             const imagePath = `http://localhost:5000/GET/piceleve?name=${encodeURIComponent(imageName)}`;
             const response = await axios.get(imagePath, {
@@ -35,38 +37,40 @@ function ConnectionEleve({ redirection }: any) {
 
             return imageData;
           } catch (error) {
-            console.error(`Error fetching image for ${eleve.prenom} ${eleve.nom}:`, error);
-            return ''; // You can provide a default image or handle the error accordingly
+            console.error(`Erreur lors de la récupération de l'image pour ${eleve.prenom} ${eleve.nom} :`, error);
+            return ''; // Vous pouvez fournir une image par défaut ou gérer l'erreur en conséquence
           }
         })
       );
 
-      setStudentImages(responses.filter(image => !!image)); // Filter out empty responses
+      setStudentImages(responses.filter(image => !!image)); // Filtrer les réponses vides
     } catch (error) {
-      console.error('Error fetching student images:', error);
-      setStudentImages([]); // Set an empty array in case of an error
+      console.error('Erreur lors de la récupération des images des étudiants :', error);
+      setStudentImages([]); // Définir un tableau vide en cas d'erreur
     } finally {
       setLoading(false);
     }
   };
 
+  // Récupérer la liste des étudiants lors du montage du composant
   useEffect(() => {
     const getEleve = async () => {
       try {
         const response = await axios.get(`http://localhost:5000/GET/allEleve`);
         setEleves(response.data);
       } catch (error) {
-        console.error('Error fetching students:', error);
+        console.error('Erreur lors de la récupération des étudiants :', error);
       }
     };
 
     getEleve();
   }, []);
 
+  // Récupérer les images des étudiants lorsque la liste des étudiants change
   useEffect(() => {
     const loadStudentImages = async () => {
-      await getStudentImages(); // Wait for images to be fetched
-      // Now you have the images, you can do something with them if needed
+      await getStudentImages(); // Attendre que les images soient récupérées
+      // Maintenant que vous avez les images, vous pouvez en faire quelque chose si nécessaire
     };
 
     if (eleves.length > 0) {
@@ -79,9 +83,8 @@ function ConnectionEleve({ redirection }: any) {
       {!c ? (
         eleves.map((eleve: any, index: number) => (
           <div className="login-container" key={index}>
-            {/* Replace static image with dynamic image */}
             {loading ? (
-              <div className="loading-spinner">Loading...</div>
+              <div className="loading-spinner">Chargement...</div>
             ) : (
               studentImages[index] ? (
                 <img
@@ -90,7 +93,7 @@ function ConnectionEleve({ redirection }: any) {
                   alt={`Portrait de ${eleve.prenom} ${eleve.nom}`}
                 />
               ) : (
-                <div className="error-message">Image not available</div>
+                <div className="error-message">image non présente</div>
               )
             )}
             <div className="user-name">{`${eleve.prenom} ${eleve.nom}`}</div>

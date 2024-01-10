@@ -524,8 +524,17 @@ app.get('/GET/piceleve', async (req: any, res: any) => {
     // Construction du chemin complet du fichier image
     const imagePath = path.join(pictoDirectory, name);
 
-    // Envoi du fichier image en réponse à la requête
-    res.status(200).sendFile(imagePath);
+    // Vérification si le fichier image existe
+    if (fs.existsSync(imagePath)) {
+      // Envoi du fichier image en réponse à la requête
+      res.status(200).sendFile(imagePath);
+    } else {
+      // Chemin de l'image par défaut
+      
+      const defaultImagePath = path.join(pictoDirectory, '/image_default/iapasdimge.webp');
+      // Envoi de l'image par défaut en réponse à la requête
+      res.status(200).sendFile(defaultImagePath);
+    }
   } catch (error) {
     console.error('Erreur lors de la récupération du fichier image :', error);
     res.status(500).send('Erreur interne du serveur');
