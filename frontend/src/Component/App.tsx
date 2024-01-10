@@ -14,7 +14,7 @@ import ListeProfilArchiver from "./Interface_Educateur/ListeProfilArchiver/Liste
 import ModifierMdp from "./Interface_Educateur/ModifierMdp/ModifierMdp";
 import PhotoEleve from "./EspaceEleve/PhotoEleve/PhotoEleve";
 import ConsulterFichesImages from "./Interface_Educateur/ConsulterFichesImages/ConsulterFichesImages";
-
+import ModifierRole from "./Interface_Educateur/ModifierRole/ModifierRole";
 function App() {
   const [selectBox, setSelectBox] = useState(null);
   const [redirection, setRedirection] = useState(1);
@@ -39,6 +39,7 @@ function App() {
       {redirection === 12 && (<ListeProfilArchiver redirection={setRedirection} />)}
       {redirection === 13 && <PhotoEleve redirection={setRedirection} />}
       {redirection === 14 && <ConsulterFichesImages redirection={setRedirection} />}
+      {redirection === 15 && <ModifierRole redirection={setRedirection} />}
       {redirection === 3 ? (
         selectBox === null ? (
           !saveName ? (

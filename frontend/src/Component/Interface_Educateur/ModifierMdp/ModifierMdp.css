@@ -51,7 +51,13 @@
     cursor: pointer;
     font-size: 16px;
   }
-  
+  #choix{
+    width: 100%;
+    padding: 8px;
+    margin-bottom: 15px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+  }
   .bouton_valider:hover {
     background-color: #45a049;
   }
