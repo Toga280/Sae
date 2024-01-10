@@ -383,7 +383,6 @@ app.post('/POST/ProfUpdateRole', async (req: any, res: any) => {
   }
 });
 
-
 /*------------------- GET -------------------*/
 
 
