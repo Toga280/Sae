@@ -59,11 +59,7 @@ const ImportPicto = ({ redirection }: any): JSX.Element => {
     const getPictoInfo = async () => {
       try {
         const response = await axios.get('http://localhost:5000/GET/getpicto-info');
-        const { numFiles, imageNames } = response.data;
-
-        // Afficher les informations
-        console.log(`Nombre de fichiers: ${numFiles}`);
-        console.log('Liste des noms de fichiers:', imageNames);
+        const { imageNames } = response.data;
 
         // Demander chaque fichier individuellement
         const imagePromises = imageNames.map(async (imageName: string) => {

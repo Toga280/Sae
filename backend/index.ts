@@ -118,6 +118,42 @@ app.post('/POST/fiche', (req : any, res : any) => {
   });
 });
 
+/* UPLOAD IMAGE ELEVES ===========================================================*/
+
+app.post('/POST/uploadImageEleve', upload.single('file'), async (req: any, res: any) => {
+  try {
+    const { name } = req.query;
+
+    if (!req.file) {
+      return res.status(400).json({ error: 'Aucun fichier n\'a été téléchargé.' });
+    }
+
+    const fileBuffer = req.file.buffer;
+    const newFileName = `${Date.now()}.webp`;
+    const filePath = `./src/photo/${name}/${newFileName}`;
+  
+    // Créer récursivement le répertoire parent si nécessaire
+    const directoryPath = `./src/photo/${name}/`;
+    if (!fs.existsSync(directoryPath)) {
+      fs.mkdirSync(directoryPath, { recursive: true });
+    }
+
+    if (fs.existsSync(filePath)) {
+      res.status(409).json({ message: 'Le fichier existe déjà' });
+    } else {
+      // Utiliser sharp pour convertir l'image au format WebP
+      await sharp(fileBuffer)
+        .toFormat('webp')
+        .toFile(filePath);
+      
+      res.status(200).json({ message: 'Image téléchargée avec succès' });
+    }
+  } catch (error) {
+    console.error('Erreur lors du téléchargement du fichier:', error);
+    res.status(500).json({ error: 'Erreur interne du serveur' });
+  }
+});
+
 /*UPLOAD PICTO==============================================*/
 
 app.post('/POST/uploadpicto', upload.single('file'), async (req: any, res: any) => {
@@ -347,42 +383,6 @@ app.post('/POST/ProfUpdateRole', async (req: any, res: any) => {
   }
 });
 
-/* UPLOAD IMAGE ELEVES ===========================================================*/
-
-app.post('/POST/uploadImageEleve', upload.single('file'), async (req: any, res: any) => {
-  try {
-    const { name } = req.query;
-
-    if (!req.file) {
-      return res.status(400).json({ error: 'Aucun fichier n\'a été téléchargé.' });
-    }
-
-    const fileBuffer = req.file.buffer;
-    const newFileName = `${Date.now()}.webp`;
-    const filePath = `./src/photo/${name}/${newFileName}`;
-  
-    // Créer récursivement le répertoire parent si nécessaire
-    const directoryPath = `./src/photo/${name}/`;
-    if (!fs.existsSync(directoryPath)) {
-      fs.mkdirSync(directoryPath, { recursive: true });
-    }
-
-    if (fs.existsSync(filePath)) {
-      res.status(409).json({ message: 'Le fichier existe déjà' });
-    } else {
-      // Utiliser sharp pour convertir l'image au format WebP
-      await sharp(fileBuffer)
-        .toFormat('webp')
-        .toFile(filePath);
-      
-      res.status(200).json({ message: 'Image téléchargée avec succès' });
-    }
-  } catch (error) {
-    console.error('Erreur lors du téléchargement du fichier:', error);
-    res.status(500).json({ error: 'Erreur interne du serveur' });
-  }
-});
-
 
 /*------------------- GET -------------------*/
 
@@ -604,6 +604,44 @@ app.get('/GET/piceleve', async (req: any, res: any) => {
   }
 });
 
+/* GET PHOTO ELEVE INFO ===================================================================*/
+
+app.get('/GET/getphotoeleve-info', async (req: any, res: any) => {
+  const { eleve } = req.query;
+  const pictoDirectory = path.join(__dirname, './src/photo/' + eleve);
+
+  try {
+    const files = fs.readdirSync(pictoDirectory);
+
+    // Construction des noms des fichiers d'images
+    const imageNames = files.map(file => file);
+
+    // Envoi du nombre de fichiers et de la liste des noms de fichiers en réponse à la requête
+    res.status(200).json({ numFiles: imageNames.length, imageNames });
+  } catch (error) {
+    console.error('Erreur lors de la lecture du répertoire des images :', error);
+    res.status(500).send('Erreur interne du serveur');
+  }
+});
+
+/* GET PHOTO ELEVE FILE ===============================================================*/
+
+app.get('/GET/getphotoeleve-file', async (req: any, res: any) => {
+  const { eleve } = req.query;
+  const pictoDirectory = path.join(__dirname, './src/photo/' + eleve);
+  const { name } = req.query;
+
+  try {
+    // Construction du chemin complet du fichier image
+    const imagePath = path.join(pictoDirectory, name);
+
+    // Envoi du fichier image en réponse à la requête
+    res.status(200).sendFile(imagePath);
+  } catch (error) {
+    console.error('Erreur lors de la récupération du fichier image :', error);
+    res.status(500).send('Erreur interne du serveur');
+  }
+});
 
 
 /*------------------- DELETE -------------------*/
