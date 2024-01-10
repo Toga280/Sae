@@ -1,4 +1,5 @@
 import axios from "axios";
+import "./AffecterListe.css";
 import React, { useEffect, useState } from "react";
 
 function AffecterListe({
@@ -61,6 +62,7 @@ function AffecterListe({
       <div>
         {eleveSelectionne && (
           <div>
+            <div className="custom_eleve_selec">
             <h3>Élève sélectionné :</h3>
             <p>
               {eleveSelectionne.nom} {eleveSelectionne.prenom}
@@ -73,15 +75,16 @@ function AffecterListe({
             >
               Affecter
             </button>
+            </div>
           </div>
         )}
       </div>
-      <button
+      {/* <button
         className="retour_liste_fiches"
         onClick={setAffichageAffecterListeFalse}
       >
         Retour
-      </button>
+      </button> */}
     </div>
   );
 }

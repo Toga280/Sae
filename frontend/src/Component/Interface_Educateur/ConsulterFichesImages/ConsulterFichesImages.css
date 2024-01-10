@@ -1,102 +1,103 @@
+/* CSS avec des noms de classe modifiés */
 :root {
-    --main-color: #355c7d;
-    --button-green: #4caf50;
-    --button-green-hover: #45a049;
-    --button-blue: #3498db;
-    --button-blue-hover: #2980b9;
-  }
-  
-  .global_affecter_fiche {
-    color: var(--main-color);
-    max-width: 600px;
-    margin: 2em auto;
-    padding: 20px;
-    background-color: #f5f5f5;
-    border-radius: 8px;
-    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
-  }
-  
-  .titleh1 {
-    text-align: center;
-    font-size: 34px;
-  }
-  
-  .title h2 {
-    font-size: 20px;
-  }
-  
-  .title h3 {
-    font-size: 18px;
-  }
-  
-  ul {
-    list-style-type: none;
-    padding: 0;
-  }
-  
-  li {
-    margin-bottom: 15px;
-    padding: 15px;
-    border-radius: 4px;
-    background-color: #fff;
-    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
-    transition: background-color 0.3s ease;
-  }
-  
-  li:hover {
-    background-color: #f5f5f5;
-  }
-  
-  button.affecter_fiche_eleve{
-    margin-top: 1em;
-    padding: 10px 15px;
-    border: none;
-    border-radius: 4px;
-    cursor: pointer;
-    color: #fff;
-  }
-  
-  button.affecter_fiche_eleve {
-    margin: 15px;
-    background-color: var(--button-green);
-  }
-  
-  button.affecter_fiche_eleve:hover {
-    background-color: var(--button-green-hover);
-  }
-  
-
-  
-  .global_all_fiche {
-    text-align: center;
-    max-width: 1200px;
-    margin: 20px auto;
-    padding: 20px;
-    border: 1px solid #ccc;
-    border-radius: 5px;
-    background-color: #f9f9f9;
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-  }
-  
-.button_choose{
-    text-align: center;
-}  
-.eleve_selec{
-    background-color: white;
-    text-align: center;
-    font-size: 20px;
+  --main-color: #355c7d;
+  --button-green: #4caf50;
+  --button-green-hover: #45a049;
+  --button-blue: #3498db;
+  --button-blue-hover: #2980b9;
 }
+
+.custom_global_affecter_fiche {
+  color: var(--main-color);
+  max-width: 600px;
+  margin: 2em auto;
+  padding: 20px;
+  background-color: #f5f5f5;
+  border-radius: 8px;
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+}
+
+.custom_titleh1 {
+  text-align: center;
+  font-size: 34px;
+}
+
+.custom_title h2 {
+  font-size: 20px;
+}
+
+.custom_title h3 {
+  font-size: 18px;
+}
+
+ul {
+  list-style-type: none;
+  padding: 0;
+}
+
 li {
-    margin-bottom: 15px;
-    padding: 15px;
-    border-radius: 4px;
-    background-color: #fff;
-    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
-    transition: background-color 0.3s ease;
-    font-size: 18px; /* Ajout de la taille de texte pour les élèves */
-  }
+  margin-bottom: 15px;
+  padding: 15px;
+  border-radius: 4px;
+  background-color: #fff;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+  transition: background-color 0.3s ease;
+}
+
+li:hover {
+  background-color: #f5f5f5;
+}
+
+button.custom_affecter_fiche_eleve,
+button.custom_retour_liste_fiches {
+  margin-top: 1em;
+  padding: 10px 15px;
+  border: none;
+  border-radius: 4px;
+  cursor: pointer;
+  color: #fff;
+}
+
+button.custom_affecter_fiche_eleve {
+  margin: 15px;
+  background-color: var(--button-green);
+}
+
+button.custom_affecter_fiche_eleve:hover {
+  background-color: var(--button-green-hover);
+}
+
+button.custom_retour_liste_fiches {
+  background-color: var(--button-blue);
+}
+
+button.custom_retour_liste_fiches:hover {
+  background-color: var(--button-blue-hover);
+}
+
+.custom_global_all_fiche {
+  text-align: center;
+  max-width: 1200px;
+  margin: 20px auto;
+  padding: 20px;
+  border: 1px solid #ccc;
+  border-radius: 5px;
+  background-color: #f9f9f9;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.custom_button_choose {
+  text-align: center;
+}
+
+.custom_eleve_selec {
+  background-color: white;
+  text-align: center;
+  font-size: 20px;
+}
+
 .retour_liste_fiches{
     cursor: pointer;
     background-color: #fff;

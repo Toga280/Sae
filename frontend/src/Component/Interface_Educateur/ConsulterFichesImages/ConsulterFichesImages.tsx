@@ -31,9 +31,9 @@ function ConsulterFichesImages({ redirection }: any) {
     
       return (
       <div>
-        <div className="global_affecter_fiche">
-          <h1 className="titleh1">Consulter Fiches/Images d'un élève</h1>
-          <h2 className="title">Liste des élèves</h2>
+        <div className="custom_global_affecter_fiche">
+          <h1 className="custom_titleh1">Consulter Fiches/Images d'un élève</h1>
+          <h2 className="custom_title">Liste des élèves</h2>
           <ul>
             {eleves.map((eleve) => (
               <li
@@ -50,21 +50,21 @@ function ConsulterFichesImages({ redirection }: any) {
           </ul>
           <div>
             {eleveSelectionne && (
-              <div>
-                <div className="eleve_selec">
-                  <h3>Élève sélectionné :</h3>
-                  <p>
-                    {eleveSelectionne.nom} {eleveSelectionne.prenom}
-                  </p>
-                
-                  <div className="button_choose">
-                    <button className="affecter_fiche_eleve">Voir les photos</button>
-                    <button className="affecter_fiche_eleve">Voir la fiches</button>
-                  </div>
+              <div className="custom_eleve_selec">
+                <h3>Élève sélectionné :</h3>
+                <p>
+                  {eleveSelectionne.nom} {eleveSelectionne.prenom}
+                </p>
+                <div className="custom_button_choose">
+                  <button className="custom_affecter_fiche_eleve">Voir les photos</button>
+                  <button className="custom_affecter_fiche_eleve">Voir la fiche</button>
                 </div>
               </div>
             )}
           </div>
+          <button className="custom_retour_liste_fiches" onClick={setRedirectionTwo}>
+            Retour
+          </button>
         </div>
         <button className="retour_liste_fiches" onClick={setRedirectionTwo}>
             Retour
