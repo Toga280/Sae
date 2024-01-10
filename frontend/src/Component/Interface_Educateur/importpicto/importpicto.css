@@ -31,15 +31,18 @@
   }
   
   .back-button {
-    border: none;
-    background-color: #007bff;
-    color: white;
+    bottom: 20px;
+    left: 20px;
+    background-color: #fff;
+    color: #355c7d;
     font-weight: bold;
     font-size: 18px;
-    padding: 10px 20px;
-    margin: 10px;
+    padding: 0.8em;
+    margin: 1em;
     border-radius: 4px;
-    cursor: pointer;
+    border: none;
+    cursor:pointer;
+    
   }
   
   .file-input-container {
