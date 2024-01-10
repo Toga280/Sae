@@ -2,7 +2,7 @@ import React, { useEffect, useState } from "react";
 import axios from "axios";
 import ConnectionEleveShema from "./ConnectionEleveShema";
 
-function ConnectionEleve({ redirection }: any) {
+function ConnectionEleve({ redirection, set1Eleve }: any) {
   const [c, setC] = useState(Boolean); // État pour suivre si une connexion est active
   const [eleves, setEleves] = useState<any[]>([]); // État pour stocker la liste des étudiants
   const [nomEleveActuelle, setNomEleveActuelle] = useState(String); // État pour stocker le nom de famille de l'étudiant actuel
@@ -108,6 +108,7 @@ function ConnectionEleve({ redirection }: any) {
           prenomEleveActuelle={prenomEleveActuelle}
           nomEleveActuelle={nomEleveActuelle}
           redirection={redirection}
+          set1Eleve={set1Eleve}
         />
       )}
     </div>
