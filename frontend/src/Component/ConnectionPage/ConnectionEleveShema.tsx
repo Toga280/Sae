@@ -13,7 +13,6 @@ function ConnectionEleveShema({ redirection, setC, nomEleveActuelle, prenomEleve
   const [message, setMessage] = useState(String);
   const [time, setTime] = useState(30);
   const TAILLE_MAX_MDP = 6;
-
   const Connexion = (event: React.FormEvent) => {
     event.preventDefault();
     setMdpFaux(true);

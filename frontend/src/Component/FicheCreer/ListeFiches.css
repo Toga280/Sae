@@ -80,6 +80,9 @@
   padding: 1em;
   margin: 2em 0 1em 1em; /* Ajoutez cette ligne */
   cursor: pointer;
+  bottom: 20px;
+  left: 20px;
+  background-color: #fff;
   color: #355c7d;
   font-weight: bold;
   font-size: 18px;
