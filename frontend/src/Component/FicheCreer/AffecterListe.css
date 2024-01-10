@@ -57,16 +57,7 @@ li:hover {
   background-color: #45a049;
 }
 
-.retour_liste_fiches {
-  background-color: #3498db;
-  color: #fff;
-  padding: 12px 18px; 
-  border: none;
-  border-radius: 4px;
-  cursor: pointer;
-  margin-top: 15px;
-  font-size: 16px;
-}
+
 
 .retour_liste_fiches:hover {
   background-color: #2980b9;

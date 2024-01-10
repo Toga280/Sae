@@ -133,18 +133,7 @@
   .bouton_sauvegarder_creation_profil_edu:hover {
     background-color: #45a049;
   }
-  
-  .bouton_retour_creation_profil_edu {
-    border: none;
-    background-color: #007bff;
-    color: white;
-    font-weight: bold;
-    font-size: 18px;
-    padding: 10px 20px;
-    margin: 10px;
-    border-radius: 4px;
-    cursor: pointer;
-  }
+
   .select_role{
     color: #355c7d;
     font-size: 20px;
@@ -255,15 +244,17 @@
   }
   
   .bouton_retour_creation_profil_edu {
-    border: none;
-    background-color: #007bff;
-    color: white;
+    bottom: 20px;
+    left: 20px;
+    background-color: #fff;
+    color: #355c7d;
     font-weight: bold;
     font-size: 18px;
-    padding: 10px 20px;
-    margin: 10px;
+    padding: 0.8em;
+    margin: 1em;
     border-radius: 4px;
-    cursor: pointer;
+    border: none;
+    cursor:pointer;
   }
   
   @media(max-width: 1200px) {

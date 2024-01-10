@@ -100,7 +100,6 @@ const ImportPicto = ({ redirection }: any): JSX.Element => {
         {selectedFile && <p className="selected-file">Fichier sélectionné : {selectedFile.name}</p>}
         <input className="text-input" type="text" value={pictoName} onChange={handleNameChange} placeholder="Entrer le nom du pictogramme" />
         <button className="upload-button" onClick={handleUpload}>Télécharger</button>
-        <button className="back-button" onClick={() => redirection(2)}>Retour</button>
       </div>
       <div>
         <h2 className='txt_picto_present'>Liste des pictogrammes :</h2>
@@ -116,6 +115,8 @@ const ImportPicto = ({ redirection }: any): JSX.Element => {
         ))}
         </div>
       </div>
+      <button className="back-button" onClick={() => redirection(2)}>Retour</button>
+
     </div>
   );
 };

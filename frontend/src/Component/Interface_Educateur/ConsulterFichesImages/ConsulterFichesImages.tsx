@@ -62,9 +62,6 @@ function ConsulterFichesImages({ redirection }: any) {
               </div>
             )}
           </div>
-          <button className="custom_retour_liste_fiches" onClick={setRedirectionTwo}>
-            Retour
-          </button>
         </div>
         <button className="retour_liste_fiches" onClick={setRedirectionTwo}>
             Retour
