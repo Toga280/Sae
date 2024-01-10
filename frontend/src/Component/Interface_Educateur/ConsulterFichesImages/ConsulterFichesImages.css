@@ -1,11 +1,15 @@
 /* CSS avec des noms de classe modifiés */
+/* CSS avec des noms de classe modifiés */
 :root {
+  --main-color: #355c7d;
   --button-green: #4caf50;
   --button-green-hover: #45a049;
+  --button-blue: #3498db;
+  --button-blue-hover: #2980b9;
 }
 
 .custom_global_affecter_fiche {
-  color: #355c7d;
+  color: var(--main-color);
   max-width: 600px;
   margin: 2em auto;
   padding: 20px;
@@ -46,8 +50,7 @@ li:hover {
 }
 
 button.custom_affecter_fiche_eleve,
-button.custom_retour_liste_fiches,
-button.custom_retour {
+button.custom_retour_liste_fiches {
   margin-top: 1em;
   padding: 10px 15px;
   border: none;
@@ -65,9 +68,13 @@ button.custom_affecter_fiche_eleve:hover {
   background-color: var(--button-green-hover);
 }
 
+button.custom_retour_liste_fiches {
+  background-color: var(--button-blue);
+}
 
-
-
+button.custom_retour_liste_fiches:hover {
+  background-color: var(--button-blue-hover);
+}
 
 .custom_global_all_fiche {
   text-align: center;
