@@ -44,12 +44,7 @@ function FicheBoxTotal({ onSelectBox, redirection, setSaveName }: any) {
 
   return (
     <div>
-      <button
-        className="boutton_retour_interaction_edu"
-        onClick={() => redirection(2)}
-      >
-        Retour
-      </button>
+
       <div onClick={() => handleClick(1)}>
         <FicheBox1
           numeroMiniBox={[0]}
@@ -111,7 +106,12 @@ function FicheBoxTotal({ onSelectBox, redirection, setSaveName }: any) {
       <button onClick={consoleLogJson}>return log json</button> 
       
       */}
-
+      <button
+        className="boutton_retour_interaction_edu"
+        onClick={() => redirection(2)}
+      >
+        Retour
+      </button>
       <button
         onClick={Sauvegarder}
         className="boutton_sauvegarder_interaction_edu"
