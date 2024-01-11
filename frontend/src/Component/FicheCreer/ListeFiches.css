@@ -70,6 +70,16 @@
   transition: background-color 0.3s ease;
 }
 .bouton_retour_liste_fiche_crée_edu {
+  border: none;
+  width: 15%;
+  background-color: #ffffff;
+  border-radius: 8px;
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+  text-align: center;
+  box-sizing: border-box;
+  padding: 1em;
+  margin: 2em 0 1em 1em; /* Ajoutez cette ligne */
+  cursor: pointer;
   bottom: 20px;
   left: 20px;
   background-color: #fff;
