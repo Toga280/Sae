@@ -154,6 +154,43 @@ app.post('/POST/uploadImageEleve', upload.single('file'), async (req: any, res: 
   }
 });
 
+/*UPLOAD FOND ECRAN ELEVE==========================================================*/
+
+app.post('/POST/uploadFondEcran', upload.single('file'), async (req: any, res: any) => {
+  try {
+    const { name } = req.query;
+
+    if (!req.file) {
+      return res.status(400).json({ error: 'Aucun fichier n\'a été téléchargé.' });
+    }
+
+    const fileBuffer = req.file.buffer;
+    const newFileName = `${Date.now()}.webp`;
+    const filePath = `./src/fond/${name}/${newFileName}`;
+  
+    // Créer récursivement le répertoire parent si nécessaire
+    const directoryPath = `./src/fond/${name}/`;
+    if (!fs.existsSync(directoryPath)) {
+      fs.mkdirSync(directoryPath, { recursive: true });
+    }
+
+    if (fs.existsSync(filePath)) {
+      res.status(409).json({ message: 'Le fichier existe déjà' });
+    } else {
+      // Utiliser sharp pour convertir l'image au format WebP
+      await sharp(fileBuffer)
+        .toFormat('webp')
+        .toFile(filePath);
+      
+      res.status(200).json({ message: 'Image téléchargée avec succès' });
+    }
+  } catch (error) {
+    console.error('Erreur lors du téléchargement du fichier:', error);
+    res.status(500).json({ error: 'Erreur interne du serveur' });
+  }
+});
+
+
 /*UPLOAD PICTO==============================================*/
 
 app.post('/POST/uploadpicto', upload.single('file'), async (req: any, res: any) => {
