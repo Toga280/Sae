@@ -8,7 +8,7 @@
 .bouton_retour_modif_mdp_eleve{
     background-color: white;
     height: 3em;
-    width: 10%;
+    width: 5%;
     max-width: 30%;
     color: #355c7d;
     font-weight: bold;
@@ -26,3 +26,41 @@
     color: #355c7d;
     margin: 1em;
 }
+.container {
+    text-align: center;
+  }
+    p {
+    font-size: 16px;
+    margin-bottom: 10px;
+  }
+  
+  .input_login {
+    width: 100%;
+    padding: 8px;
+    margin-bottom: 15px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+  }
+  
+  .bouton_valider {
+    background-color: #4caf50;
+    color: #fff;
+    padding: 10px 15px;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    font-size: 16px;
+  }
+  #choix{
+    width: 100%;
+    padding: 8px;
+    margin-bottom: 15px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+  }
+  
+  .bouton_valider:hover {
+    background-color: #45a049;
+  }
+  
+  

@@ -8,6 +8,11 @@ function ConnectionEleveShema({
   nomEleveActuelle,
   prenomEleveActuelle,
 }: any) {
+
+
+function ConnectionEleveShema({ redirection, setC, nomEleveActuelle, prenomEleveActuelle, set1Eleve }: any) {
+  
+
   const [mdpFaux, setMdpFaux] = useState(true);
   const [nombreEssais, setnombreEssais] = useState(Number);
   const [boutonDesactive, setBoutonDesactive] = useState(false);
@@ -18,6 +23,8 @@ function ConnectionEleveShema({
   const Connexion = (event: React.FormEvent) => {
     event.preventDefault();
     setMdpFaux(true);
+
+    set1Eleve(nomEleveActuelle + prenomEleveActuelle);
 
     axios
       .get(

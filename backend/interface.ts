@@ -55,7 +55,6 @@ export interface Admin{
   mdp: string;
   id: string;
   role: string;
-  
 }
 
 export interface Eleve{
@@ -63,7 +62,7 @@ export interface Eleve{
   prenom: string,
   image: string,
   mdp: string,
-  archiver: boolean
+  archiver: boolean,
 }
 
 export interface Materiel {

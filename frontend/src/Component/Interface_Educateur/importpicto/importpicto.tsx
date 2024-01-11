@@ -28,6 +28,7 @@ const ImportPicto = ({ redirection }: any): JSX.Element => {
         const formData = new FormData();
         formData.append('file', selectedFile);
 
+        console.log(formData)
         const response = await axios.post('http://localhost:5000/POST/uploadpicto', formData, {
           params: {
             name: pictoName,
@@ -58,11 +59,7 @@ const ImportPicto = ({ redirection }: any): JSX.Element => {
     const getPictoInfo = async () => {
       try {
         const response = await axios.get('http://localhost:5000/GET/getpicto-info');
-        const { numFiles, imageNames } = response.data;
-
-        // Afficher les informations
-        console.log(`Nombre de fichiers: ${numFiles}`);
-        console.log('Liste des noms de fichiers:', imageNames);
+        const { imageNames } = response.data;
 
         // Demander chaque fichier individuellement
         const imagePromises = imageNames.map(async (imageName: string) => {
@@ -99,10 +96,10 @@ const ImportPicto = ({ redirection }: any): JSX.Element => {
         {selectedFile && <p className="selected-file">Fichier sélectionné : {selectedFile.name}</p>}
         <input className="text-input" type="text" value={pictoName} onChange={handleNameChange} placeholder="Entrer le nom du pictogramme" />
         <button className="upload-button" onClick={handleUpload}>Télécharger</button>
-        <button className="back-button" onClick={() => redirection(2)}>Retour</button>
       </div>
       <div>
-        <h2 className='txt_picto_present'>liste des pictogrammes</h2>
+        <h2 className='txt_picto_present'>Liste des pictogrammes :</h2>
+        <div className="picto-container">
         {imageError && <p className="error-message">{imageError}</p>}
         {images.map((imageData, index) => (
           <img
@@ -112,7 +109,10 @@ const ImportPicto = ({ redirection }: any): JSX.Element => {
           style={{ maxWidth: '200px', maxHeight: '200px' }}
         />
         ))}
+        </div>
       </div>
+      <button className="back-button" onClick={() => redirection(2)}>Retour</button>
+
     </div>
   );
 };

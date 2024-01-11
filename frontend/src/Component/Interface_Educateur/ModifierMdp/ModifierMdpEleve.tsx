@@ -92,6 +92,7 @@ function ModifierMdpEleve({ redirection }: any) {
 
               {profilSelectionne === eleve && inputActive && (
                 <>
+                  <div className="container">
                   <p>Nouveau Mot de passe :</p>
                   <input
                     type="password"
@@ -101,6 +102,7 @@ function ModifierMdpEleve({ redirection }: any) {
                   <button className="bouton_valider" onClick={sauvegarde}>
                     Valider
                   </button>
+                  </div>
                 </>
               )}
             </div>

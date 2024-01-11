@@ -21,6 +21,7 @@
 
 }
 .txt_espace_élève{
+  font-size: 2em;
   margin-top: 3em;
   margin-bottom: 2em;
   text-align: center;
@@ -106,4 +107,8 @@
     cursor: pointer;
 
   }
+}
+.reglage-icon{
+  margin: 2em;
+  float: right;
 }

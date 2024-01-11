@@ -5,19 +5,26 @@ import ModifierMdpEleve from "./ModifierMdpEleve";
 import exp from "constants";
 import ModifierMdpProf from "./ModifierMdpProf";
 
-function ModifierMdp({redirection}:any){
+function ModifierMdp({redirection,role}:any){
     const setRedirectionTwo = () => {
         redirection(2);
     };
-      
+    console.log(role);
+
     return(
     <div>
-        <ModifierMdpEleve>
-            
-        </ModifierMdpEleve>
-        <ModifierMdpProf>
-            
-        </ModifierMdpProf>
+        {role === "Admin" && (        
+            <>
+                <ModifierMdpEleve />
+                <ModifierMdpProf />   
+            </>
+        )}
+
+        {role === "ProfesseurAdmin" && (
+            <ModifierMdpEleve>
+            </ModifierMdpEleve>
+        )}
+
         <button onClick={setRedirectionTwo} className="bouton_retour_modif_mdp_eleve">Retour</button>
 
     </div>
