@@ -25,7 +25,6 @@ function ModifierMdpProf({ redirection }: any) {
     ModifMdpProf(event.target.value);
   };
   const postProfChangeMdp = (ProfData: any) => {
-    console.log("ProfData", ProfData);
     axios
       .post("http://localhost:5000/POST/profUpdatePassword", ProfData)
       .then((response) => {

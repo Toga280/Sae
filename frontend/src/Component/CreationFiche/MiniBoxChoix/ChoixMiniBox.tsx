@@ -12,6 +12,7 @@ function ChoixMiniBox({
   infoSelectionChoixMiniBox,
 }: any) {
   const setSelectionChoixMiniBoxTrue = () => {
+    console.log(numeroMiniBox);
     fonctionsMiniBoxInfoJson.allIsSelectedMiniBoxFalse();
     infoSelectionChoixMiniBox(true, numeroMiniBox);
     fonctionsMiniBoxInfoJson.modifierIsSelectedMiniBox(numeroMiniBox, true);
@@ -32,11 +33,11 @@ function ChoixMiniBox({
           <p></p>
         )}
         {fonctionsMiniBoxInfoJson.getChoixMiniBox(numeroMiniBox) ===
-          "Pictogramme" ? (
-            <PictoChoisi numeroMiniBox={numeroMiniBox} />
-          ) : (
-            <p></p>
-          )}
+        "Pictogramme" ? (
+          <PictoChoisi numeroMiniBox={numeroMiniBox} />
+        ) : (
+          <p></p>
+        )}
       </div>
       {fonctionsMiniBoxInfoJson.getAudio(numeroMiniBox) === true ? (
         <Son Texte={TexteInfo} Balise={Balise} ClassName={ClassName} />

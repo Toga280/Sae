@@ -40,7 +40,6 @@ function CreationProfil({ redirection, setSaveName }: any) {
 
   /*METHODE POST =====================================================*/
   const postEleve = (eleveData: any) => {
-    console.log(eleveData);
     axios
       .post("http://localhost:5000/POST/eleves", eleveData)
       .then((response) => {
@@ -61,9 +60,7 @@ function CreationProfil({ redirection, setSaveName }: any) {
         handleInputChangeImage={handleInputChangeImage}
         sauvegarde={sauvegarde}
       />
-      <CreationProfilProf 
-        setRedirectionTwo={setRedirectionTwo}
-      />
+      <CreationProfilProf setRedirectionTwo={setRedirectionTwo} />
       <button
         className="bouton_retour_creation_profil_edu"
         onClick={setRedirectionTwo}

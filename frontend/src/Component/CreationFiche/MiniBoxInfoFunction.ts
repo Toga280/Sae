@@ -5,7 +5,7 @@ const MiniBoxInfoJson = require("./MiniBoxInfo.json");
 const fonctionsMiniBoxInfoJson: FonctionsMiniBoxInfoJson = {
   modifierCouleurTexte: (position, nouvelleCouleurTexte) => {
     for (let key in MiniBoxInfoJson) {
-      const currentBox = MiniBoxInfoJson[key];
+      const currentBox = MiniBoxInfoJson.AllMiniBox[key];;
   
       if (currentBox.Position === position) {
         currentBox.CouleurTexte = nouvelleCouleurTexte;
@@ -15,7 +15,7 @@ const fonctionsMiniBoxInfoJson: FonctionsMiniBoxInfoJson = {
   },
   getCouleurTexte: (position) => {
     for (let key in MiniBoxInfoJson) {
-      const currentBox = MiniBoxInfoJson[key];
+      const currentBox = MiniBoxInfoJson.AllMiniBox[key];;
   
       if (currentBox.Position === position) {
         return currentBox.CouleurTexte;
@@ -26,7 +26,7 @@ const fonctionsMiniBoxInfoJson: FonctionsMiniBoxInfoJson = {
   },
   modifierChoixMiniBox: (position, nouveauChoix) => {
     for (let key in MiniBoxInfoJson) {
-      const currentBox = MiniBoxInfoJson[key];
+      const currentBox = MiniBoxInfoJson.AllMiniBox[key];;
   
       if (currentBox.Position === position) {
         currentBox.ChoixMiniBox = nouveauChoix;
@@ -35,19 +35,17 @@ const fonctionsMiniBoxInfoJson: FonctionsMiniBoxInfoJson = {
     }
   },
   getChoixMiniBox: (position) => {
-    for (let key in MiniBoxInfoJson) {
-      const currentBox = MiniBoxInfoJson[key];
-  
-      if (currentBox.Position === position) {
-        return currentBox.ChoixMiniBox;
-      }
+    if (position >= 1 && position <= 21) {
+      const miniBoxKey = "MiniBox" + position;
+      const choixMiniBox = MiniBoxInfoJson.AllMiniBox[miniBoxKey].ChoixMiniBox;
+      return choixMiniBox;
+    } else {
+      return null
     }
-
-    return null;
   },
   modifierIsSelectedMiniBox: (position, boolean) => {
     for (let key in MiniBoxInfoJson) {
-      const currentBox = MiniBoxInfoJson[key];
+      const currentBox = MiniBoxInfoJson.AllMiniBox[key];;
   
       if (currentBox.Position === position) {
         currentBox.isSelected = boolean;
@@ -57,7 +55,7 @@ const fonctionsMiniBoxInfoJson: FonctionsMiniBoxInfoJson = {
   },
   getIsSelectedMiniBox: (position) => {
     for (let key in MiniBoxInfoJson) {
-      const currentBox = MiniBoxInfoJson[key];
+      const currentBox = MiniBoxInfoJson.AllMiniBox[key];
   
       if (currentBox.Position === position) {
         return currentBox.isSelected;
@@ -68,13 +66,13 @@ const fonctionsMiniBoxInfoJson: FonctionsMiniBoxInfoJson = {
   },
   allIsSelectedMiniBoxFalse: () => {
     for (let key in MiniBoxInfoJson) {
-      const currentBox = MiniBoxInfoJson[key];
+      const currentBox = MiniBoxInfoJson.AllMiniBox[key];;
       currentBox.isSelected = false
     }
   },
   modifierPoliceTexte: (position, nouvellePolice) => {
     for (let key in MiniBoxInfoJson) {
-      const currentBox = MiniBoxInfoJson[key];
+      const currentBox = MiniBoxInfoJson.AllMiniBox[key];;
   
       if (currentBox.Position === position) {
         currentBox.PoliceTexte = nouvellePolice;
@@ -84,7 +82,7 @@ const fonctionsMiniBoxInfoJson: FonctionsMiniBoxInfoJson = {
   },
   getPoliceTexte: (position) => {
     for (let key in MiniBoxInfoJson) {
-      const currentBox = MiniBoxInfoJson[key];
+      const currentBox = MiniBoxInfoJson.AllMiniBox[key];;
   
       if (currentBox.Position === position) {
         return currentBox.PoliceTexte;
@@ -95,7 +93,7 @@ const fonctionsMiniBoxInfoJson: FonctionsMiniBoxInfoJson = {
   },
   modifierTaille: (position, nouvelleTaille) => {
     for (let key in MiniBoxInfoJson) {
-      const currentBox = MiniBoxInfoJson[key];
+      const currentBox = MiniBoxInfoJson.AllMiniBox[key];;
   
       if (currentBox.Position === position) {
         currentBox.Taille = nouvelleTaille;
@@ -105,7 +103,7 @@ const fonctionsMiniBoxInfoJson: FonctionsMiniBoxInfoJson = {
   },
   getTaille: (position) => {
     for (let key in MiniBoxInfoJson) {
-      const currentBox = MiniBoxInfoJson[key];
+      const currentBox = MiniBoxInfoJson.AllMiniBox[key];;
   
       if (currentBox.Position === position) {
         return currentBox.Taille;
@@ -116,7 +114,7 @@ const fonctionsMiniBoxInfoJson: FonctionsMiniBoxInfoJson = {
   },
   modifierCouleurFond: (position, nouvelleCouleurFond) => {
     for (let key in MiniBoxInfoJson) {
-      const currentBox = MiniBoxInfoJson[key];
+      const currentBox = MiniBoxInfoJson.AllMiniBox[key];;
   
       if (currentBox.Position === position) {
         currentBox.CouleurFond = nouvelleCouleurFond;
@@ -126,7 +124,7 @@ const fonctionsMiniBoxInfoJson: FonctionsMiniBoxInfoJson = {
   },
   modificationAudio: (position, audio) => {
     for (let key in MiniBoxInfoJson) {
-      const currentBox = MiniBoxInfoJson[key];
+      const currentBox = MiniBoxInfoJson.AllMiniBox[key];;
   
       if (currentBox.Position === position) {
         currentBox.Audio = audio;
@@ -136,7 +134,7 @@ const fonctionsMiniBoxInfoJson: FonctionsMiniBoxInfoJson = {
   },
   getAudio: (position) => {
     for (let key in MiniBoxInfoJson) {
-      const currentBox = MiniBoxInfoJson[key];
+      const currentBox = MiniBoxInfoJson.AllMiniBox[key];;
   
       if (currentBox.Position === position) {
         return currentBox.Audio;
@@ -147,7 +145,7 @@ const fonctionsMiniBoxInfoJson: FonctionsMiniBoxInfoJson = {
   },
   getNomPicto: (position) => {
     for (let key in MiniBoxInfoJson) {
-      const currentBox = MiniBoxInfoJson[key];
+      const currentBox = MiniBoxInfoJson.AllMiniBox[key];;
       if (currentBox.Position === position) {
         return currentBox.NomPicto
       }
@@ -156,7 +154,7 @@ const fonctionsMiniBoxInfoJson: FonctionsMiniBoxInfoJson = {
   },
   setNomPicto: (position, nom) => {
     for (let key in MiniBoxInfoJson) {
-      const currentBox = MiniBoxInfoJson[key];
+      const currentBox = MiniBoxInfoJson.AllMiniBox[key];;
       if (currentBox.Position === position) {
         currentBox.NomPicto = nom
       }
@@ -167,7 +165,7 @@ const fonctionsMiniBoxInfoJson: FonctionsMiniBoxInfoJson = {
   },
   getNom: () => {
     for (let key in MiniBoxInfoJson) {
-      const currentBox = MiniBoxInfoJson[key];
+      const currentBox = MiniBoxInfoJson.AllMiniBox[key];;
         return currentBox.name
     }
     return "Nom de la fiche"
@@ -178,7 +176,7 @@ const fonctionsMiniBoxInfoJson: FonctionsMiniBoxInfoJson = {
   modifierAllJsonToBase: () => {
     MiniBoxInfoJson.info.name = "";
     for (let key in MiniBoxInfoJson) {
-      const currentBox = MiniBoxInfoJson[key];
+      const currentBox = MiniBoxInfoJson.AllMiniBox[key];;
       currentBox.ChoixMiniBox = "Texte";
       currentBox.CouleurTexte = "#000000";
       currentBox.PoliceTexte = "Times New Roman";
@@ -191,7 +189,7 @@ const fonctionsMiniBoxInfoJson: FonctionsMiniBoxInfoJson = {
   setNewJson: (newJson) => {
     if (typeof newJson === 'object' && newJson !== null) {
       Object.keys(MiniBoxInfoJson).forEach((key) => {
-        MiniBoxInfoJson[key] = newJson[key];
+        MiniBoxInfoJson.AllMiniBox[key] = newJson[key];
       });
     } else {
       console.error('Le paramètre newJson doit être un objet JSON valide.');
