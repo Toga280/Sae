@@ -36,7 +36,7 @@ function App() {
     const currentDay = currentDate.getDate();
     const currentMonth = currentDate.getMonth() + 1;
 
-    if (currentMonth <= 11 && (currentMonth === 12 && currentDay >= 25) || (currentMonth === 1 && currentDay === 11)) {
+    if (currentMonth <= 11 && (currentMonth == 12 && currentDay >= 25)){ 
       setBackground(noel);
     } else if (currentMonth === 10 && (currentDay <= 31 && currentDay >= 24)) {
       setBackground(halloween);
