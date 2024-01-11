@@ -14,17 +14,23 @@
   .txt_creation_espace_élève {
     font-size: 24px;
     font-weight: bold;
-  }
-  
-  .form_creation_profil_eleve {
-    margin-top: 20px;
-    width: 100%;
-  }
-  
-  .form_nom_creation_profil,
-  .form_prenom_creation_profil,
-  .form_mdp_creation_profil,
-  .form_image_creation_profil {
+    margin-bottom: 20px;
+}
+
+.form_creation_profil_eleve {
+    display: flex;
+    color: #355c7d;
+    font-size: 1.5em;
+    flex-direction: column;
+    align-items: center;
+}
+
+.form_nom_creation_profil,
+.form_prenom_creation_profil,
+.form_mdp_creation_profil,
+.form_image_creation_profil {
+    color: #355c7d;
+    margin: 10px;
     display: flex;
     flex-direction: row;
     align-items: center;

@@ -1,5 +1,3 @@
-import e from "express";
-
 export interface MiniBox {
   ChoixMiniBox: string;
   Position: number;
@@ -54,7 +52,6 @@ export interface Admin{
   mdp: string;
   id: string;
   role: string;
-  
 }
 
 export interface Eleve{
@@ -63,13 +60,4 @@ export interface Eleve{
   image: string,
   mdp: string,
   archiver: boolean,
-  wallpaper: string
-}
-
-export interface Materiel {
-  Mat1: string,
-  Mat2: string,
-  Mat3: string,
-  Mat4: string,
-  Mat5: string
 }
