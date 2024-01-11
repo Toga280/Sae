@@ -1,5 +1,3 @@
-import e from "express";
-
 export interface MiniBox {
   ChoixMiniBox: string;
   Position: number;
@@ -43,6 +41,7 @@ export interface FicheInfo {
 export interface FicheDocument extends Document {
   info: FicheInfo;
   AllMiniBox: AllMiniBox;
+  Materiel: Materiel;
 }
 
 export interface Picto {

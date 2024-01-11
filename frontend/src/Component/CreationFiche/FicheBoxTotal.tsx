@@ -105,11 +105,8 @@ function FicheBoxTotal({ onSelectBox, redirection, setSaveName }: any) {
           classNameDiv={"Box"}
         />
       </div>
-      {/* RETURN JSON MIS EN COMMENTAIRE POUR LA DEMO 
-      
-      <button onClick={consoleLogJson}>return log json</button> 
-      
-      */}
+
+      <button onClick={consoleLogJson}>return log json</button>
 
       <button
         onClick={Sauvegarder}
