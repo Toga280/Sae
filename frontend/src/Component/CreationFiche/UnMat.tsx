@@ -6,9 +6,6 @@ import fonctionsMiniBoxInfoJson from "./MiniBoxInfoFunction";
 function UnMat({ mat, numMat, setSelect }: any, image: string) {
   const setSelectFalse = () => {setSelect(false);}
   const returnMat = () => {
-    fonctionsMiniBoxInfoJson.setMateriel(mat, numMat);
-    console.log(fonctionsMiniBoxInfoJson.getAllJson());
-    setSelectFalse() ;
   }
   return (
     <div className="UnMat" onClick={returnMat}>

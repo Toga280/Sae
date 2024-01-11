@@ -35,6 +35,9 @@
     left: 20px;
     background-color: #fff;
     color: #355c7d;
+    border: none;
+    background-color: #007bff;
+    color: white;
     font-weight: bold;
     font-size: 18px;
     padding: 0.8em;
