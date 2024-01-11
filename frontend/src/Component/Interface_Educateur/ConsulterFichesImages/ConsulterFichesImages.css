@@ -46,7 +46,8 @@ li:hover {
 }
 
 button.custom_affecter_fiche_eleve,
-button.custom_retour_liste_fiches {
+button.custom_retour_liste_fiches,
+button.custom_retour {
   margin-top: 1em;
   padding: 10px 15px;
   border: none;
@@ -92,6 +93,21 @@ button.custom_affecter_fiche_eleve:hover {
 }
 
 .retour_liste_fiches{
+  position: fixed;
+  bottom: 20px;
+  left: 20px;
+  background-color: #fff;
+  color: #355c7d;
+  font-weight: bold;
+  font-size: 18px;
+  padding: 0.8em;
+  margin: 1em;
+  border-radius: 4px;
+  border: none;
+  cursor:pointer;
+}
+
+.retour{
   position: fixed;
   bottom: 20px;
   left: 20px;

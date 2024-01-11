@@ -95,9 +95,6 @@ function PhotoEleve({ redirection, eleve }: any) {
           Télécharger une photo
         </button>
       </div>
-      <button onClick={setRedirectionfour} className="button_retour">
-        Retour
-      </button>
       </div>
       <div>
         <h2 className='txt_picto_present'>Liste des photo :</h2>
@@ -113,6 +110,9 @@ function PhotoEleve({ redirection, eleve }: any) {
         ))}
         </div>
       </div>
+      <button onClick={setRedirectionfour} className="button_retour">
+        Retour
+      </button>
     </div>
   );
 }
