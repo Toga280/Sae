@@ -1,7 +1,6 @@
 import React, { useState } from "react";
 import "./connectionEleveShema.css";
 import axios from "axios";
-import { toBeDisabled } from "@testing-library/jest-dom/matchers";
 
 
 function ConnectionEleveShema({ redirection, setC, nomEleveActuelle, prenomEleveActuelle, set1Eleve }: any) {
