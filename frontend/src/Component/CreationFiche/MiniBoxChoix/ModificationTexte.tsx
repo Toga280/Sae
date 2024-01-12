@@ -1,7 +1,7 @@
 import React, { useState } from "react";
 import fonctionsMiniBoxInfoJson from "../MiniBoxInfoFunction";
 import { CompactPicker, ColorResult } from "react-color";
-
+import "./ModificationTexte.css";
 const policeOptions = [
   { value: "Times New Roman", label: "(défault) Times New Roman" },
   { value: "Arial", label: "Arial" },
