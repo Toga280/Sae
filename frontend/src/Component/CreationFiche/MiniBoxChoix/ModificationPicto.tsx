@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import Pictogramme from './Pictogramme';
 import fonctionsMiniBoxInfoJson from '../MiniBoxInfoFunction';
-
+import "./ModificationPicto.css";
 function ModificationPicto({ setModificationPictoPropsFalse, numeroMiniBox }: any) {
   const [selectedImage, setSelectedImage] = useState<string | undefined>(undefined);
   const [selectedImageName, setSelectedImageName] = useState<string | null>(null);
