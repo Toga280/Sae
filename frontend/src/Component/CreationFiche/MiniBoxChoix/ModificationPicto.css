@@ -1,0 +1,38 @@
+.select_all_choix_picto {
+    max-width: 600px;
+    margin: 0 auto;
+    padding: 20px;
+    text-align: center;
+    background-color: #f4f4f4;
+    border: 1px solid #ccc;
+    border-radius: 8px;
+  }
+  
+  .select_all_choix_picto p {
+    font-size: 16px;
+    margin-bottom: 10px;
+  }
+  
+  .select_all_choix_picto div {
+    margin-bottom: 20px;
+    cursor: pointer;
+  }
+  
+  .select_all_choix_picto img {
+    max-width: 100%;
+    height: auto;
+    margin-top: 10px;
+  }
+  
+  /* Ajoutez des styles spécifiques si nécessaire */
+  
+  @media screen and (max-width: 600px) {
+    .select_all_choix_picto {
+      padding: 10px;
+    }
+  
+    .select_all_choix_picto p {
+      font-size: 14px;
+    }
+  }
+  
