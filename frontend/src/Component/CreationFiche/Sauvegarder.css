@@ -40,6 +40,28 @@
 
   }
 
+  .bouton_annuler_ecraser{
+    margin:0.5em;
+    background-color: #4caf50;
+    color: #fff;
+    border: none;
+    padding: 10px 20px;
+    font-size: 16px;
+    cursor: pointer;
+    border-radius: 4px;
+  }
+  .bouton_delete_ecraser{
+    margin:0.5em;
+
+    background-color: red;
+    color: #fff;
+    border: none;
+    padding: 10px 20px;
+    font-size: 16px;
+    cursor: pointer;
+    border-radius: 4px;
+  }
+ 
   @media screen and (max-width: 600px) {
     .global_sauvegarder_fiche {
       padding: 10px;
