@@ -10,7 +10,7 @@ function FicheBox8({ numeroMiniBox, infoSelectionChoixMiniBox,classNameDiv }: an
 
   return (  
     <div className={classNameDiv}>
-      <ChoixMiniBox
+      {/* <ChoixMiniBox
         TexteInfo={"Matériaux Utilisés"}
         Balise={4}
         ClassName={""}
@@ -18,7 +18,7 @@ function FicheBox8({ numeroMiniBox, infoSelectionChoixMiniBox,classNameDiv }: an
         infoSelectionChoixMiniBox={infoSelectionChoixMiniBox}
       />
 
-      {select ? <PageSelect setSelect={setSelect} numMat={numMat} />: <SelectsAffichage setSelect={setSelect} setNumMat={setNumMat}/>}
+      {select ? <PageSelect setSelect={setSelect} numMat={numMat} />: <SelectsAffichage setSelect={setSelect} setNumMat={setNumMat}/>} */}
 
     </div>
   );
