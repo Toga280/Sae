@@ -38,6 +38,7 @@ const miniBoxSchema = new Schema<MiniBox>({
   PoliceTexte: { type: String, required: true },
   Taille: { type: Number, required: true },
   Audio: { type: Boolean, required: true },
+  NomPicto: {type: String, required: true}
 }, { _id: false }); 
 
 const ficheSchema = new Schema<FicheDocument>({

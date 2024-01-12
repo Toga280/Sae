@@ -6,6 +6,7 @@ export interface MiniBox {
   Taille: number;
   CouleurFond?: string;
   Audio: boolean;
+  NomPicto: string;
 }
 
 export interface AllMiniBox {
