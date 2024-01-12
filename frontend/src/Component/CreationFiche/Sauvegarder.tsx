@@ -5,6 +5,7 @@ import axios from "axios";
 import "./Sauvegarder.css";
 
 function Sauvegarder({ redirection, setSaveName }: any) {
+
   const [nomFiche, setNomFiche] = useState("");
   const [upPopUpSauvegarder, setUpPopUpSauvegarder] = useState(false);
 
@@ -52,35 +53,39 @@ function Sauvegarder({ redirection, setSaveName }: any) {
   };
 
   return (
-<div className="global_sauvegarder_fiche">
-  <input
-    className="input_sauvegarder_ficheBox"
-    type="text"
-    placeholder="Nom de la fiche"
-    value={nomFiche}
-    required
-    onChange={handleInputChange}
-  />
-  <input
-    type="button"
-    className="boutton_sauvegarder_ficheBox"
-    value="Sauvegarder"
-    onClick={() => {
-      if (nomFiche.trim() !== "") {
-        testNameFiche(nomFiche);
-      } else {
-        alert("Veuillez saisir un nom pour votre fiche avant de sauvegarder.");
-      }
-    }}
-  />
-  {upPopUpSauvegarder ? (
-    <PopUpSauvegarder
-      setUpPopUpSauvegarder={setUpPopUpSauvegarder}
-      nomFiche={nomFiche}
-      sauvegarde={sauvegarde}
-    />
-  ) : null}
-</div>
+    <div className="global_sauvegarder_fiche">
+      <h1 className="title_choose_name_for_fiche">Choisir un nom pour votre fiche</h1>
+
+      <input
+        className="input_sauvegarder_ficheBox"
+        type="text"
+        placeholder="Nom de la fiche"
+        value={nomFiche}
+        required
+        onChange={handleInputChange}
+      />
+      <input
+        type="button"
+        className="boutton_sauvegarder_ficheBox"
+        value="Sauvegarder"
+        required
+        onClick={() => {
+          if (nomFiche.trim() !== "") {
+            testNameFiche(nomFiche);
+          } else {
+            alert("Veuillez saisir un nom pour votre fiche avant de sauvegarder.");
+          }
+        }}
+      />
+      {upPopUpSauvegarder ? (
+        <PopUpSauvegarder
+          setUpPopUpSauvegarder={setUpPopUpSauvegarder}
+          nomFiche={nomFiche}
+          sauvegarde={sauvegarde}
+        />
+      ) : null}
+
+    </div>
   );
 }
 
