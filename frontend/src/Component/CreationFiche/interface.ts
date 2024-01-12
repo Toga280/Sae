@@ -32,4 +32,6 @@ export interface FonctionsMiniBoxInfoJson {
   getNom: () => string;
   getAllJson: () => MiniBox;
   setNewJson: (newJson : any) => void;
+  setMateriel: (Materiel: string, nMateriel: string) => void;
+  getMateriel: (nMateriel : String) => string;
 }

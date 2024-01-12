@@ -10,7 +10,6 @@ function Interface({ redirection, role }: any) {
     }
   };
 
-
   return (
     <div>
       {role === "Admin" && (
@@ -19,7 +18,6 @@ function Interface({ redirection, role }: any) {
           <h2 className="txt_espace_prof">Espace Administrateur</h2>
           <div className="global_bouton_interface_educateur">
             <button className="bouton_interface_educateur" onClick={() => redirection(3)}>Création Fiche</button>
-            <button className="bouton_interface_educateur" onClick={() => redirection(14)} >Consulter fiches/images</button>
             <button className="bouton_interface_educateur" onClick={() => redirection(14)} >Consulter fiches/images</button>
             <button className="bouton_interface_educateur" onClick={() => redirection(10)} > Importer un pictogramme</button>
             {/* <button className="bouton_interface_educateur" onClick={() => redirection(3)}>Brouillons fiches </button> */}
@@ -50,9 +48,8 @@ function Interface({ redirection, role }: any) {
           <div className="global_bouton_interface_educateur">
             <button className="bouton_interface_educateur" onClick={() => redirection(3)}>Création Fiche</button>
             <button className="bouton_interface_educateur" onClick={() => redirection(14)} >Consulter fiches/images</button>
-            <button className="bouton_interface_educateur" onClick={() => redirection(14)} >Consulter fiches/images</button>
             <button className="bouton_interface_educateur" onClick={() => redirection(10)} > Importer un pictogramme</button>
-            {/* {/* <button className="bouton_interface_educateur" onClick={() => redirection(3)}>Brouillons fiches </button> */}
+            {/* <button className="bouton_interface_educateur" onClick={() => redirection(3)}>Brouillons fiches </button> */}
             <button className="bouton_interface_educateur" onClick={() => redirection(6)}>Fiches crées</button>
             <button className="bouton_interface_educateur" onClick={() => redirection(9)}>Modifier mots de passe</button>
           </div>
