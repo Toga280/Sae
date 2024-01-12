@@ -1,5 +1,3 @@
-import e from "express";
-
 export interface MiniBox {
   ChoixMiniBox: string;
   Position: number;
@@ -8,16 +6,10 @@ export interface MiniBox {
   Taille: number;
   CouleurFond?: string;
   Audio: boolean;
+  NomPicto: string;
 }
 
-export interface FicheInfo {
-  name: string;
-  nomEleveAttribuer: string;
-  prenomEleveAttribuer: string;
-}
-
-export interface FicheDocument extends Document {
-  info: FicheInfo;
+export interface AllMiniBox {
   MiniBox1: MiniBox;
   MiniBox2: MiniBox;
   MiniBox3: MiniBox;
@@ -39,8 +31,18 @@ export interface FicheDocument extends Document {
   MiniBox19: MiniBox;
   MiniBox20: MiniBox;
   MiniBox21: MiniBox;
-  MiniBox22: MiniBox;
-  MiniBox23: MiniBox;
+}
+
+export interface FicheInfo {
+  name: string;
+  nomEleveAttribuer: string;
+  prenomEleveAttribuer: string;
+}
+
+export interface FicheDocument extends Document {
+  info: FicheInfo;
+  AllMiniBox: AllMiniBox;
+  Materiel: Materiel;
 }
 
 export interface Picto {

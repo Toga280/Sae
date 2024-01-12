@@ -2,7 +2,11 @@ import React from "react";
 import ChoixMiniBox from "./MiniBoxChoix/ChoixMiniBox";
 import "../../style/ficheGlobal.css";
 import "../../style/fiche7.css";
-function FicheBox7({ numeroMiniBox, infoSelectionChoixMiniBox,classNameDiv }: any) {
+function FicheBox7({
+  numeroMiniBox,
+  infoSelectionChoixMiniBox,
+  classNameDiv,
+}: any) {
   return (
     <div className={classNameDiv}>
       <div className="grp_travaux_realises">
@@ -30,7 +34,7 @@ function FicheBox7({ numeroMiniBox, infoSelectionChoixMiniBox,classNameDiv }: an
         </div>
       </div>
       <div className="nvlle_inter">
-      <div className="">
+        <div className="">
           <input type="checkbox" />
         </div>
         <ChoixMiniBox

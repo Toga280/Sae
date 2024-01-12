@@ -54,35 +54,35 @@ function FicheBoxSelected({ numberFichBox, onSelectBoxChange }: any) {
       ) : null}
       {numberFichBox === 4 ? (
         <FicheBox4
-          numeroMiniBox={[8, 9, 10, 11]}
+          numeroMiniBox={[8, 9]}
           infoSelectionChoixMiniBox={infoSelectionChoixMiniBox}
           classNameDiv={"boxSelected"}
         />
       ) : null}
       {numberFichBox === 5 ? (
         <FicheBox5
-          numeroMiniBox={[12, 13, 14]}
+          numeroMiniBox={[10, 11, 12]}
           infoSelectionChoixMiniBox={infoSelectionChoixMiniBox}
           classNameDiv={"boxSelected"}
         />
       ) : null}
       {numberFichBox === 6 ? (
         <FicheBox6
-          numeroMiniBox={[15, 16, 17, 18]}
+          numeroMiniBox={[13, 14, 15, 16]}
           infoSelectionChoixMiniBox={infoSelectionChoixMiniBox}
           classNameDiv={"boxSelected"}
         />
       ) : null}
       {numberFichBox === 7 ? (
         <FicheBox7
-          numeroMiniBox={[19, 20]}
+          numeroMiniBox={[17, 18, 19]}
           infoSelectionChoixMiniBox={infoSelectionChoixMiniBox}
           classNameDiv={"boxSelected"}
         />
       ) : null}
       {numberFichBox === 8 ? (
         <FicheBox8
-          numeroMiniBox={[21, 22]}
+          numeroMiniBox={[20]}
           infoSelectionChoixMiniBox={infoSelectionChoixMiniBox}
           classNameDiv={"boxSelected"}
         />

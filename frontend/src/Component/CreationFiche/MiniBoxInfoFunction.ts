@@ -3,223 +3,156 @@ import { FonctionsMiniBoxInfoJson } from "./interface";
 const MiniBoxInfoJson = require("./MiniBoxInfo.json");
 
 const fonctionsMiniBoxInfoJson: FonctionsMiniBoxInfoJson = {
-  modifierCouleurTexte: (position, nouvelleCouleurTexte) => {
-    for (let key in MiniBoxInfoJson) {
-      const currentBox = MiniBoxInfoJson[key];
-  
-      if (currentBox.Position === position) {
-        currentBox.CouleurTexte = nouvelleCouleurTexte;
-        break;
-      }
-    }
-  },
-  getCouleurTexte: (position) => {
-    for (let key in MiniBoxInfoJson) {
-      const currentBox = MiniBoxInfoJson[key];
-  
-      if (currentBox.Position === position) {
-        return currentBox.CouleurTexte;
-      }
-    }
+    modifierCouleurTexte: (position, nouvelleCouleurTexte) => {
+        updateMiniBoxProperty(position, 'CouleurTexte', nouvelleCouleurTexte);
+    },
 
-    return "#FFFFFF";
-  },
-  modifierChoixMiniBox: (position, nouveauChoix) => {
-    for (let key in MiniBoxInfoJson) {
-      const currentBox = MiniBoxInfoJson[key];
-  
-      if (currentBox.Position === position) {
-        currentBox.ChoixMiniBox = nouveauChoix;
-        break;
-      }
-    }
-  },
-  getChoixMiniBox: (position) => {
-    for (let key in MiniBoxInfoJson) {
-      const currentBox = MiniBoxInfoJson[key];
-  
-      if (currentBox.Position === position) {
-        return currentBox.ChoixMiniBox;
-      }
-    }
+    getCouleurTexte: (position) => {
+        return getMiniBoxProperty(position, 'CouleurTexte') || "#FFFFFF";
+    },
 
-    return null;
-  },
-  modifierIsSelectedMiniBox: (position, boolean) => {
-    for (let key in MiniBoxInfoJson) {
-      const currentBox = MiniBoxInfoJson[key];
-  
-      if (currentBox.Position === position) {
-        currentBox.isSelected = boolean;
-        break;
-      }
-    }
-  },
-  getIsSelectedMiniBox: (position) => {
-    for (let key in MiniBoxInfoJson) {
-      const currentBox = MiniBoxInfoJson[key];
-  
-      if (currentBox.Position === position) {
-        return currentBox.isSelected;
-      }
-    }
+    modifierChoixMiniBox: (position, nouveauChoix) => {
+        updateMiniBoxProperty(position, 'ChoixMiniBox', nouveauChoix);
+    },
 
-    return null;
-  },
-  allIsSelectedMiniBoxFalse: () => {
-    for (let key in MiniBoxInfoJson) {
-      const currentBox = MiniBoxInfoJson[key];
-      currentBox.isSelected = false
-    }
-  },
-  modifierPoliceTexte: (position, nouvellePolice) => {
-    for (let key in MiniBoxInfoJson) {
-      const currentBox = MiniBoxInfoJson[key];
-  
-      if (currentBox.Position === position) {
-        currentBox.PoliceTexte = nouvellePolice;
-        break;
-      }
-    }
-  },
-  getPoliceTexte: (position) => {
-    for (let key in MiniBoxInfoJson) {
-      const currentBox = MiniBoxInfoJson[key];
-  
-      if (currentBox.Position === position) {
-        return currentBox.PoliceTexte;
-      }
-    }
+    getChoixMiniBox: (position) => {
+        return getMiniBoxProperty(position, 'ChoixMiniBox');
+    },
 
-    return undefined;
-  },
-  modifierTaille: (position, nouvelleTaille) => {
-    for (let key in MiniBoxInfoJson) {
-      const currentBox = MiniBoxInfoJson[key];
-  
-      if (currentBox.Position === position) {
-        currentBox.Taille = nouvelleTaille;
-        break;
-      }
-    }
-  },
-  getTaille: (position) => {
-    for (let key in MiniBoxInfoJson) {
-      const currentBox = MiniBoxInfoJson[key];
-  
-      if (currentBox.Position === position) {
-        return currentBox.Taille;
-      }
-    }
+    modifierIsSelectedMiniBox: (position, boolean) => {
+        updateMiniBoxProperty(position, 'isSelected', boolean);
+    },
 
-    return 12;
-  },
-  modifierCouleurFond: (position, nouvelleCouleurFond) => {
-    for (let key in MiniBoxInfoJson) {
-      const currentBox = MiniBoxInfoJson[key];
-  
-      if (currentBox.Position === position) {
-        currentBox.CouleurFond = nouvelleCouleurFond;
-        break;
-      }
-    }
-  },
-  modificationAudio: (position, audio) => {
-    for (let key in MiniBoxInfoJson) {
-      const currentBox = MiniBoxInfoJson[key];
-  
-      if (currentBox.Position === position) {
-        currentBox.Audio = audio;
-        break;
-      }
-    }
-  },
-  getAudio: (position) => {
-    for (let key in MiniBoxInfoJson) {
-      const currentBox = MiniBoxInfoJson[key];
-  
-      if (currentBox.Position === position) {
-        return currentBox.Audio;
-      }
-    }
-
-    return null;
-  },
-  getNomPicto: (position) => {
-    for (let key in MiniBoxInfoJson) {
-      const currentBox = MiniBoxInfoJson[key];
-      if (currentBox.Position === position) {
-        return currentBox.NomPicto
-      }
-    }
-    return null
-  },
-  setNomPicto: (position, nom) => {
-    for (let key in MiniBoxInfoJson) {
-      const currentBox = MiniBoxInfoJson[key];
-      if (currentBox.Position === position) {
-        currentBox.NomPicto = nom
-      }
-    }
-  },
-  modifierNom: (nom) => {
-    MiniBoxInfoJson.info.name = nom;
-  },
-  getNom: () => {
-    for (let key in MiniBoxInfoJson) {
-      const currentBox = MiniBoxInfoJson[key];
-        return currentBox.name
-    }
-    return "Nom de la fiche"
-  },
-  getAllJson:() => {
-    return MiniBoxInfoJson
-  },
-  modifierAllJsonToBase: () => {
-    MiniBoxInfoJson.info.name = "";
-    for (let key in MiniBoxInfoJson) {
-      const currentBox = MiniBoxInfoJson[key];
-      currentBox.ChoixMiniBox = "Texte";
-      currentBox.CouleurTexte = "#000000";
-      currentBox.PoliceTexte = "Times New Roman";
-      currentBox.Taille = 18;
-      currentBox.CouleurFond = "none";
-      currentBox.Audio = false;
-      currentBox.isSelected = false;
-    }
-  },
-  setNewJson: (newJson) => {
-    if (typeof newJson === 'object' && newJson !== null) {
-      Object.keys(MiniBoxInfoJson).forEach((key) => {
-        MiniBoxInfoJson[key] = newJson[key];
-      });
-    } else {
-      console.error('Le paramètre newJson doit être un objet JSON valide.');
-    }
-  },
-  setMateriel: (Materiel, nMateriel) => {
-    Object.keys(MiniBoxInfoJson.Materiel).forEach((key) => {
-      if(key === nMateriel){
-        MiniBoxInfoJson.Materiel[key] = Materiel;
-      }
-    });
-  },
-
-  
-    getMateriel: (nMateriel: String): string => {
-      // Initialize the result to null
-      let result: string = "null";
-  
-      // Iterate over the keys of MiniBoxInfoJson.Materiel
-      Object.keys(MiniBoxInfoJson.Materiel).forEach((key) => {
-        if (key === nMateriel) {
-          // Assign the corresponding value to the result
-          result = MiniBoxInfoJson.Materiel[key];
+    getIsSelectedMiniBox: (position) => {
+        return getMiniBoxProperty(position, 'isSelected');
+    },
+    allIsSelectedMiniBoxFalse: () => {
+      for (let key in MiniBoxInfoJson.AllMiniBox) {
+        const currentBox = MiniBoxInfoJson.AllMiniBox[key];
+        if (currentBox) {
+            currentBox.isSelected = false;
         }
-      });
-  
-      // Return the result
-      return result;
+      }
+    },
+    modifierPoliceTexte: (position, nouvellePolice) => {
+        updateMiniBoxProperty(position, 'PoliceTexte', nouvellePolice);
+    },
+
+    getPoliceTexte: (position) => {
+        return getMiniBoxProperty(position, 'PoliceTexte');
+    },
+
+    modifierTaille: (position, nouvelleTaille) => {
+        updateMiniBoxProperty(position, 'Taille', nouvelleTaille);
+    },
+
+    getTaille: (position) => {
+        return getMiniBoxProperty(position, 'Taille') || 12;
+    },
+
+    modifierCouleurFond: (position, nouvelleCouleurFond) => {
+        updateMiniBoxProperty(position, 'CouleurFond', nouvelleCouleurFond);
+    },
+
+    modificationAudio: (position, audio) => {
+        updateMiniBoxProperty(position, 'Audio', audio);
+    },
+
+    getAudio: (position) => {
+        return getMiniBoxProperty(position, 'Audio');
+    },
+
+    getNomPicto: (position) => {
+        return getMiniBoxProperty(position, 'NomPicto');
+    },
+
+    setNomPicto: (position, nom) => {
+        updateMiniBoxProperty(position, 'NomPicto', nom);
+    },
+
+    modifierNom: (nom) => {
+        MiniBoxInfoJson.info.name = nom;
+    },
+
+    getNom: () => {
+        for (let key in MiniBoxInfoJson.AllMiniBox) {
+            return MiniBoxInfoJson.AllMiniBox[key].name;
+        }
+        return "Nom de la fiche";
+    },
+    getAllJson: () => {
+        return MiniBoxInfoJson;
+    },
+    modifierAllJsonToBase: () => {
+    MiniBoxInfoJson.info.name = "";
+
+    for (let miniBoxKey in MiniBoxInfoJson.AllMiniBox) {
+        const currentBox = MiniBoxInfoJson.AllMiniBox[miniBoxKey];
+        if (currentBox) {
+            currentBox.ChoixMiniBox = "Texte";
+            currentBox.CouleurTexte = "#000000";
+            currentBox.PoliceTexte = "Times New Roman";
+            currentBox.Taille = 18;
+            currentBox.CouleurFond = "none";
+            currentBox.Audio = false;
+            currentBox.isSelected = false;
+        }
     }
-  };
+},
+
+setNewJson: (newJson) => {
+  console.log('newJson --> ', newJson);
+
+  if (typeof newJson === 'object' && newJson !== null) {
+      if (newJson.AllMiniBox) {
+          MiniBoxInfoJson.AllMiniBox = newJson.AllMiniBox;
+      } else {
+          console.error('Le paramètre newJson doit contenir une propriété AllMiniBox valide.');
+      }
+  } else {
+      console.error('Le paramètre newJson doit être un objet JSON valide.');
+  }
+},
+
+
+    setMateriel: (Materiel, nMateriel) => {
+        Object.keys(MiniBoxInfoJson.Materiel).forEach((key) => {
+            if (key === nMateriel) {
+                MiniBoxInfoJson.Materiel[key] = Materiel;
+            }
+        });
+    },
+
+    getMateriel: (nMateriel: String): string => {
+        let result: string = "null";
+        Object.keys(MiniBoxInfoJson.Materiel).forEach((key) => {
+            if (key === nMateriel) {
+                result = MiniBoxInfoJson.Materiel[key];
+            }
+        });
+        return result;
+    }
+};
+
 export default fonctionsMiniBoxInfoJson;
+
+// Helper function to update mini-box property
+function updateMiniBoxProperty(position : any, property : any, value : any) {
+    if (position >= 1 && position <= 21) {
+        const miniBoxKey = "MiniBox" + position;
+        if (MiniBoxInfoJson.AllMiniBox.hasOwnProperty(miniBoxKey)) {
+            MiniBoxInfoJson.AllMiniBox[miniBoxKey][property] = value;
+        }
+    }
+}
+
+// Helper function to get mini-box property
+function getMiniBoxProperty(position : any, property : any) {
+    if (position >= 1 && position <= 21) {
+        const miniBoxKey = "MiniBox" + position;
+        if (MiniBoxInfoJson.AllMiniBox.hasOwnProperty(miniBoxKey)) {
+            return MiniBoxInfoJson.AllMiniBox[miniBoxKey][property];
+        }
+    }
+    return null;
+}

@@ -38,33 +38,40 @@ const miniBoxSchema = new Schema<MiniBox>({
   PoliceTexte: { type: String, required: true },
   Taille: { type: Number, required: true },
   Audio: { type: Boolean, required: true },
+  NomPicto: {type: String, required: true}
 }, { _id: false }); 
 
 const ficheSchema = new Schema<FicheDocument>({
   info: { type: { name: String }, _id: false, nomEleveAttribuer:{type: String}, prenomEleveAttribuer:{type: String}},
-  MiniBox1: { type: miniBoxSchema, required: true },
-  MiniBox2: { type: miniBoxSchema, required: true },
-  MiniBox3: { type: miniBoxSchema, required: true },
-  MiniBox4: { type: miniBoxSchema, required: true },
-  MiniBox5: { type: miniBoxSchema, required: true },
-  MiniBox6: { type: miniBoxSchema, required: true },
-  MiniBox7: { type: miniBoxSchema, required: true },
-  MiniBox8: { type: miniBoxSchema, required: true },
-  MiniBox9: { type: miniBoxSchema, required: true },
-  MiniBox10: { type: miniBoxSchema, required: true },
-  MiniBox11: { type: miniBoxSchema, required: true },
-  MiniBox12: { type: miniBoxSchema, required: true },
-  MiniBox13: { type: miniBoxSchema, required: true },
-  MiniBox14: { type: miniBoxSchema, required: true },
-  MiniBox15: { type: miniBoxSchema, required: true },
-  MiniBox16: { type: miniBoxSchema, required: true },
-  MiniBox17: { type: miniBoxSchema, required: true },
-  MiniBox18: { type: miniBoxSchema, required: true },
-  MiniBox19: { type: miniBoxSchema, required: true },
-  MiniBox20: { type: miniBoxSchema, required: true },
-  MiniBox21: { type: miniBoxSchema, required: true },
-  MiniBox22: { type: miniBoxSchema, required: true },
-  MiniBox23: { type: miniBoxSchema, required: true },
+  AllMiniBox: {
+    MiniBox1: { type: miniBoxSchema, required: true },
+    MiniBox2: { type: miniBoxSchema, required: true },
+    MiniBox3: { type: miniBoxSchema, required: true },
+    MiniBox4: { type: miniBoxSchema, required: true },
+    MiniBox5: { type: miniBoxSchema, required: true },
+    MiniBox6: { type: miniBoxSchema, required: true },
+    MiniBox7: { type: miniBoxSchema, required: true },
+    MiniBox8: { type: miniBoxSchema, required: true },
+    MiniBox9: { type: miniBoxSchema, required: true },
+    MiniBox10: { type: miniBoxSchema, required: true },
+    MiniBox11: { type: miniBoxSchema, required: true },
+    MiniBox12: { type: miniBoxSchema, required: true },
+    MiniBox13: { type: miniBoxSchema, required: true },
+    MiniBox14: { type: miniBoxSchema, required: true },
+    MiniBox15: { type: miniBoxSchema, required: true },
+    MiniBox16: { type: miniBoxSchema, required: true },
+    MiniBox17: { type: miniBoxSchema, required: true },
+    MiniBox18: { type: miniBoxSchema, required: true },
+    MiniBox19: { type: miniBoxSchema, required: true },
+    MiniBox20: { type: miniBoxSchema, required: true },
+    MiniBox21: { type: miniBoxSchema, required: true },},
+    Materiel: {
+      Mat1: { type: String},
+      Mat2: { type: String},
+      Mat3: { type: String},
+      Mat4: { type: String},
+      Mat5: { type: String}
+  }
 });
 
 const admin = new Schema<Admin>({

@@ -1,4 +1,4 @@
-import React , { useState } from "react";
+import React, { useState } from "react";
 import "../../style/ficheGlobal.css";
 import "./unMat.css";
 import fonctionsMiniBoxInfoJson from "./MiniBoxInfoFunction";
@@ -22,6 +22,7 @@ function UnMat({ mat, numMat, setSelect, image }: any) {
       console.log(img);
   }
 
+<<<<<<< HEAD
   const setSelectFalse = () => {setSelect(false);}
   const returnMat = () => {
     fonctionsMiniBoxInfoJson.setMateriel(mat, numMat);
@@ -36,6 +37,20 @@ function UnMat({ mat, numMat, setSelect, image }: any) {
         {mat}
       </div>  
       <img src={img} alt={mat} className="imageMat" />
+=======
+function UnMat({ mat, numMat, setSelect }: any, image: string) {
+  const setSelectFalse = () => {
+    setSelect(false);
+  };
+  const returnMat = () => {
+    fonctionsMiniBoxInfoJson.setMateriel(mat, numMat);
+    setSelectFalse();
+  };
+  return (
+    <div className="UnMat" onClick={returnMat}>
+      <div className="matname">{mat}</div>
+      <img src={image} alt={mat} className="imageMat" />
+>>>>>>> 7b80663c8f841305be43ed52d664a3037cfc8ca4
     </div>
   );
 }
