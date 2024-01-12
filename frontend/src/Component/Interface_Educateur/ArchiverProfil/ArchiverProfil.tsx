@@ -87,6 +87,7 @@ function ConnectionEleve({ redirection }: any) {
   }, [eleves]);
 
   return (
+    <div>
     <div className="general_login">
       {eleves.map((eleve, index) => (
         <div className="login-container" key={index}>
@@ -114,9 +115,10 @@ function ConnectionEleve({ redirection }: any) {
       ))}
 
       {redirection}
-      <button className="button_retour" onClick={redirectionTwo}>
-        Retour
-      </button>
+    </div>
+          <button className="button_retour" onClick={redirectionTwo}>
+          Retour
+        </button>
     </div>
   );
 }

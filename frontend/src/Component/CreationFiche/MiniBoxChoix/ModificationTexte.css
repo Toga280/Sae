@@ -1,0 +1,46 @@
+.modif_texte_ficheBox {
+  max-width: 600px;
+  margin: 0 auto;
+  padding: 20px;
+  text-align: center;
+  background-color: #f8f8f8;
+  border: 2px solid #ddd;
+  border-radius: 10px;
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+}
+
+.modif_texte_ficheBox p {
+  font-size: 18px;
+  margin-bottom: 10px;
+  color: #355c7d;
+}
+
+.choix_selection_police_ficheBox {
+  width: 100%;
+  padding: 10px;
+  margin-bottom: 15px;
+  box-sizing: border-box;
+  font-size: 16px;
+}
+
+.choix_couleur_modif_fiche {
+  margin-bottom: 15px;
+}
+
+.choix_taille_modif_fiche {
+  width: 100%;
+  padding: 10px;
+  box-sizing: border-box;
+  font-size: 16px;
+}
+.choix_couleur_modif_fiche {
+  margin-bottom: 15px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  max-width: 300px; /* ou ajustez en fonction de la largeur souhaitée */
+  margin: 0 auto; /* Pour centrer le bloc dans le conteneur parent */
+}
+
+
+/* Ajoutez des styles spécifiques si nécessaire */
