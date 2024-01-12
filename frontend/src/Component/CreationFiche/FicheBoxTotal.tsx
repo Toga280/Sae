@@ -46,8 +46,7 @@ function FicheBoxTotal({ onSelectBox, redirection, setSaveName }: any) {
     <div>
       <div onClick={() => handleClick(1)}>
         <FicheBox1
-          numeroMiniBox={[0]}
-          infoSelectionChoixMiniBox={infoSelectionChoixMiniBox}
+          nomfiche={fonctionsMiniBoxInfoJson.getNom()}
           classNameDiv={"Box"}
         />
       </div>
