@@ -4,7 +4,6 @@ import "./ModifierMdp.css";
 import "./ModifierMdp";
 
 function ModifierMdpEleve({ redirection }: any) {
-
   const [mdpEleve, ModifMdpEleve] = useState("");
   const handleInputModifMdp = (event: any) => {
     ModifMdpEleve(event.target.value);
@@ -32,7 +31,6 @@ function ModifierMdpEleve({ redirection }: any) {
 
   /*------------------- MODIFIER MDP ELEVE -------------------*/
   const postEleveChangeMdp = (eleveData: any) => {
-    console.log("eleveData", eleveData);
     axios
       .post("http://localhost:5000/POST/eleveUpdatePassword", eleveData)
       .then((response) => {
@@ -78,7 +76,9 @@ function ModifierMdpEleve({ redirection }: any) {
   return (
     <div>
       <div className="global_modif_mdp_eleve">
-        <h1 className="titre_modif_mdp_eleve">Modifier le mot de passe d'un élève</h1>
+        <h1 className="titre_modif_mdp_eleve">
+          Modifier le mot de passe d'un élève
+        </h1>
         <div className="general_login">
           {eleves.map((eleve, index) => (
             <div className="login-container" key={index}>
@@ -109,7 +109,6 @@ function ModifierMdpEleve({ redirection }: any) {
           ))}
 
           {redirection}
-
         </div>
       </div>
     </div>

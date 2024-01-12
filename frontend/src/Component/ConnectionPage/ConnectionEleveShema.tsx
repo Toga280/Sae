@@ -1,36 +1,57 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import "./connectionEleveShema.css";
 import axios from "axios";
 
-
-function ConnectionEleveShema({ redirection, setC, nomEleveActuelle, prenomEleveActuelle, set1Eleve }: any) {
-  
-
-  const [mdpFaux, setMdpFaux] = useState(true);
-  const [nombreEssais, setnombreEssais] = useState(Number);
-  const [boutonDesactive, setBoutonDesactive] = useState(false);
-  const [message, setMessage] = useState(String);
-  const [time, setTime] = useState(30);
+function ConnectionEleveShema({
+  redirection,
+  setC,
+  nomEleveActuelle,
+  prenomEleveActuelle,
+  set1Eleve,
+}: any) {
   const TAILLE_MAX_MDP = 6;
+
+  const [mdpFaux, setMdpFaux] = useState(false);
+  const [boutonDesactive, setBoutonDesactive] = useState(false);
+  const [message, setMessage] = useState("");
+  const [time, setTime] = useState(30);
+  const [nombreEssais, setNombreEssais] = useState(0);
+  const [password, setPassword] = useState<number[]>([]);
+
+  useEffect(() => {
+    const interval = setInterval(() => {
+      if (time > 0) {
+        setTime(time - 1);
+        setMessage(`Trop d'essais, patientez ${time} secondes`);
+      } else {
+        setBoutonDesactive(false);
+        setTime(30);
+        setMessage("");
+        setNombreEssais(0);
+      }
+    }, 1000);
+
+    return () => clearInterval(interval);
+  }, [time]);
 
   const Connexion = (event: React.FormEvent) => {
     event.preventDefault();
-    setMdpFaux(true);
-
-    set1Eleve(nomEleveActuelle+prenomEleveActuelle);
+    setMdpFaux(false);
+    set1Eleve(`${nomEleveActuelle}${prenomEleveActuelle}`);
 
     axios
       .get(
         `http://localhost:5000/GET/eleve/authentification?prenom=${encodeURIComponent(
           prenomEleveActuelle
-        )}&nom=${encodeURIComponent(nomEleveActuelle)}&mdp=${encodeURIComponent(password.toString().replace(/,/g,""))}`
+        )}&nom=${encodeURIComponent(nomEleveActuelle)}&mdp=${encodeURIComponent(
+          password.join("")
+        )}`
       )
       .then((response) => {
-        console.log("Réponse du serveur :", response.data);
         if (response.data) {
           redirection(4);
         } else {
-          setMdpFaux(false);
+          setMdpFaux(true);
         }
       })
       .catch((error) => {
@@ -41,86 +62,66 @@ function ConnectionEleveShema({ redirection, setC, nomEleveActuelle, prenomEleve
         }
       });
 
-      if (!mdpFaux){
-        redirection(4);
-      } else { 
-        //alert("Mot de passe incorrect");
- 
-        setPassword([]);
-    
-        setnombreEssais(nombreEssais + 1);
+    if (mdpFaux) {
+      // alert("Mot de passe incorrect");
+      setPassword([]);
+      setNombreEssais(nombreEssais + 1);
+
+      if (nombreEssais >= 2) {
+        setBoutonDesactive(true);
       }
-
-      // if (nombreEssais >= 2){
-      //   setBoutonDesactive(false);
-      //   console.log(time);
-      //   setTime(30);
-      //   console.log(time);
-      //   while (time > 0) {
-      //     setTimeout(() => {
-            
-      //       }, 1000);
-      //       setTime(time - 1);
-      //       setMessage("Trop d'éssais, patientez" + time + "secondes");
-      //       console.log(time);
-      //   }
-      //   setBoutonDesactive(true);
-      //   setnombreEssais(0);
-      //   setMessage("");
-      // }
-   };
-  
-
-  const [password, setPassword] = useState<Number[]>([]);
-
-  const addNumber = (Int: number) => {
-    if (password.length < TAILLE_MAX_MDP){
-      setPassword([...password, Int]);
-      console.log("password" );
     }
-  }
+  };
+
+  const addNumber = (num: number) => {
+    if (password.length < TAILLE_MAX_MDP) {
+      setPassword([...password, num]);
+    }
+  };
 
   const removeNumber = () => {
-
-    if(password.length <= 0){
-      setPassword([]);
-
-    } else {
-      const updatedPassword = password.slice(0, -1);
-      setPassword(updatedPassword);
+    if (password.length > 0) {
+      setPassword(password.slice(0, -1));
     }
-
-    console.log("password" + password);
-  }
+  };
 
   return (
     <div className="container">
-        
-    {/* <button className="bouton_deconnection_eleve" onClick={() => setC(false)}> Se déconnecter</button> */}
       <div className="affichage">
-      <p className="affichageMDP">{password.map(num => num).join('')}</p> 
+        <p className="affichageMDP">{password.join("")}</p>
       </div>
-      
+
       <div className="boutons">
         <div className="boutonsChiffre">
-            <button className="bouton" onClick={() => addNumber(1)}>1</button>
-            <button className="bouton" onClick={() => addNumber(2)}>2</button>
-            <button className="bouton" onClick={() => addNumber(3)}>3</button>
-            <button className="bouton" onClick={() => addNumber(4)}>4</button>
-            <button className="bouton" onClick={() => addNumber(5)}>5</button>
-            <button className="bouton" onClick={() => addNumber(6)}>6</button>
-            <button className="bouton" onClick={() => addNumber(7)}>7</button>
-            <button className="bouton" onClick={() => addNumber(8)}>8</button>
-            <button className="bouton" onClick={() => addNumber(9)}>9</button>
-            <button className="bouton" onClick={() => removeNumber()}>
-                <img src = {require("../CreationFiche/MiniBoxChoix/imagesTestStuart/retour.png")} alt="suprimmer chiffre" className="btn-retour-pin"></img> </button>
-            <button className="bouton" onClick={() => addNumber(0)}>0</button>
-            <button className="bouton" onClick={(e) => Connexion(e) } disabled={boutonDesactive}>Connexion</button>
-            <input type="text" className="countdown" disabled={true} value={message}/>
-          </div>  
+          {[1, 2, 3, 4, 5, 6, 7, 8, 9, 0].map((num) => (
+            <button key={num} className="bouton" onClick={() => addNumber(num)}>
+              {num}
+            </button>
+          ))}
+          <button className="bouton" onClick={removeNumber}>
+            <img
+              src={require("../CreationFiche/MiniBoxChoix/imagesTestStuart/retour.png")}
+              alt="supprimer chiffre"
+              className="btn-retour-pin"
+            />
+          </button>
+          <button
+            className="bouton"
+            onClick={(e) => Connexion(e)}
+            disabled={boutonDesactive}
+          >
+            Connexion
+          </button>
+          <input
+            type="text"
+            className="countdown"
+            disabled={true}
+            value={message}
+          />
+        </div>
       </div>
-  </div>
+    </div>
   );
+}
 
-};
 export default ConnectionEleveShema;

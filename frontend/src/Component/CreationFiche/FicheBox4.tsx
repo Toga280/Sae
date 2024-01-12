@@ -43,26 +43,6 @@ function FicheBox4({ numeroMiniBox, infoSelectionChoixMiniBox,classNameDiv }: an
             <option>04h00</option>
           </select>
         </div>
-        {/* <div>
-          { <div className="">
-            <div className="">
-              <ChoixMiniBox
-                TexteInfo={"Action"}
-                Balise={3}
-                ClassName={""}
-                numeroMiniBox={numeroMiniBox[2]}
-              />
-              <div>
-                <div className="">
-                  <input type="" className="TextInput" />
-                </div>
-                <div className="">
-                  <label> </label>
-                </div>
-              </div>
-            </div>
-          </div> }
-        </div> */}
       </div>
     </div>
   );

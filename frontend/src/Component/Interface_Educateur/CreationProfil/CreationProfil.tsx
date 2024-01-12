@@ -81,9 +81,7 @@ function CreationProfil({ redirection, setSaveName }: any) {
         handleInputChangeImage={handleInputChangeImage}
         sauvegarde={sauvegarde}
       />
-      <CreationProfilProf 
-        setRedirectionTwo={setRedirectionTwo}
-      />
+      <CreationProfilProf setRedirectionTwo={setRedirectionTwo} />
       <button
         className="bouton_retour_creation_profil_edu"
         onClick={setRedirectionTwo}
