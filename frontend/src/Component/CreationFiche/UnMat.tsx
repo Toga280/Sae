@@ -158,9 +158,36 @@ function UnMat({ mat, numMat, setSelect, image }: any) {
   const setSelectFalse = () => {
     setSelect(false);
   };
+
+  function obtenirMateriel(nom: string): string {
+    switch (nom) {
+        case "Mat1":
+            return "Matériel n°1";
+        case "Mat2":
+            return "Matériel n°2";
+        case "Mat3":
+            return "Matériel n°3";
+        case "Mat4":
+            return "Matériel n°4";
+        case "Mat5":
+            return "Matériel n°5";
+        case "Mat6":
+            return "Matériel n°6";
+        case "Mat7":
+            return "Matériel n°7";
+        case "Mat8":
+            return "Matériel n°8";
+        case "Mat9":
+            return "Matériel n°9";
+        case "Mat10":
+            return "Matériel n°10";
+        default:
+            return "Matériel inconnu";
+    }
+}
   const returnMat = () => {
-    if (mat === "anuller") {
-      fonctionsMiniBoxInfoJson.setMateriel(numMat, numMat);
+    if (mat === "annuler") {
+      fonctionsMiniBoxInfoJson.setMateriel(obtenirMateriel(numMat), numMat);
       setSelectFalse();
     } else {
     fonctionsMiniBoxInfoJson.setMateriel(mat, numMat);

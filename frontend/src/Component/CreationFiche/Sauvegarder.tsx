@@ -51,12 +51,17 @@ function Sauvegarder({ redirection, setSaveName }: any) {
       throw error;
     }
   };
+  // PARTIE COMMENTAIRE 
+
 
   return (
     <div>
+
     <div className="global_sauvegarder_fiche">
       <h1 className="title_choose_name_for_fiche">Choisir un nom pour votre fiche</h1>
-
+      
+      <h5 className="titleCommentaire">Nom de la fiche</h5>
+      
       <input
         className="input_sauvegarder_ficheBox"
         type="text"
@@ -65,6 +70,15 @@ function Sauvegarder({ redirection, setSaveName }: any) {
         required
         onChange={handleInputChange}
       />
+
+      <div className="commentaire">
+        <h5 className="titleCommentaire">Commentaire</h5>
+        <textarea
+          className="input_commenter_ficheBox"
+          placeholder="Commentaire"
+        />
+      </div>
+      
       <input
         type="button"
         className="boutton_sauvegarder_ficheBox"
@@ -78,6 +92,9 @@ function Sauvegarder({ redirection, setSaveName }: any) {
           }
         }}
       />
+
+      
+
       {upPopUpSauvegarder ? (
         <PopUpSauvegarder
           setUpPopUpSauvegarder={setUpPopUpSauvegarder}
