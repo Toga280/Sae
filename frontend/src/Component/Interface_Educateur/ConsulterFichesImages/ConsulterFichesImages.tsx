@@ -117,7 +117,7 @@ function ConsulterFichesImages({ redirection }: any) {
               </p>
               <div className="custom_button_choose">
                 <button className="custom_affecter_fiche_eleve" onClick={handleVoirPhototrue}>Voir les photos</button>
-                <button className="custom_affecter_fiche_eleve" onClick={handlefiche}>Voir la fiche</button>
+                <button className="custom_affecter_fiche_eleve" onClick={handlefiche}>Voir les fiches</button>
               </div>
             </div>
           )}
