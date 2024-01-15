@@ -33,10 +33,9 @@ function FicheBoxSelected({ numberFichBox, onSelectBoxChange }: any) {
     <div>
       {numberFichBox === 1 ? (
         <FicheBox1
-          numeroMiniBox={[0]}
-          infoSelectionChoixMiniBox={infoSelectionChoixMiniBox}
-          classNameDiv={"boxSelected"}
-        />
+        nomfiche={fonctionsMiniBoxInfoJson.getNom()}
+        classNameDiv={"Box"}
+      />
       ) : null}
       {numberFichBox === 2 ? (
         <FicheBox2
