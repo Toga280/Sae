@@ -11,6 +11,9 @@ function PhotoEleve({ redirection, eleve }: any) {
   const setRedirectionfour = () => {
     redirection(4);
   };
+  const setRedirectionThristeen = () => {
+    redirection(13);
+  };
 
   const handleFileChange = (event: React.ChangeEvent<HTMLInputElement>) => {
     const file = event.target.files && event.target.files[0];
@@ -46,6 +49,8 @@ function PhotoEleve({ redirection, eleve }: any) {
     } catch (error) {
       console.error('Error in handleUpload:', error);
     }
+    redirection(4);
+    redirection(13);
   };
 
     useEffect(() => {
