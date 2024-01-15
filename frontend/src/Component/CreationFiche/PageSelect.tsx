@@ -76,7 +76,7 @@ function PageSelect({setSelect, numMat} : any){
             <UnMat mat={"Vis TRPF"} numMat={numMat} setSelect={setSelect} image={64}/>
             <UnMat mat={"Vis TTPC 25"} numMat={numMat} setSelect={setSelect} image={65}/>
             <UnMat mat={"Vis TTPC 35"} numMat={numMat} setSelect={setSelect} image={67}/>
-            <UnMat mat={"null"} numMat={numMat} setSelect={setSelect} image={67}/>
+            <UnMat mat={"anuller"} numMat={numMat} setSelect={setSelect} image={68}/>
             
     </div>
   );

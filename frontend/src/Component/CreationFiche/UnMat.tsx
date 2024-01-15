@@ -1,8 +1,6 @@
-
-
 import React, { useState } from "react";
 import "../../style/ficheGlobal.css";
-import "./unMat.css";
+import "../CreationFiche/unMat.css";
 import fonctionsMiniBoxInfoJson from "./MiniBoxInfoFunction";
 // IMAGES
 const a = require("./imagesFiche/bondelavemain.png");
@@ -35,57 +33,60 @@ const z = require("./imagesFiche/paroicreuse.webp");
 const a2 = require("./imagesFiche/paroipleine.webp");
 const b2 = require("./imagesFiche/mcuivre.jpg");
 const c2 = require("./imagesFiche/mcuivre.jpg");
-const d2 = require("./imagesFiche/coudepvc.jpg");
-const e2 = require("./imagesFiche/coudepvc.jpg");
-const f2 = require("./imagesFiche/coudepvc.jpg");
-const g2 = require("./imagesFiche/coudepvc.jpg");
-const h2 = require("./imagesFiche/coudepvc.jpg");
-const i2 = require("./imagesFiche/coudepvc.jpg");
-const j2 = require("./imagesFiche/coudepvc.jpg");
-const k2 = require("./imagesFiche/coudepvc.jpg");
-const l2 = require("./imagesFiche/coudepvc.jpg");
-const m2 = require("./imagesFiche/coudepvc.jpg");
-const n2 = require("./imagesFiche/coudepvc.jpg");
-const o2 = require("./imagesFiche/coudepvc.jpg");
-const p2 = require("./imagesFiche/coudepvc.jpg");
-const q2 = require("./imagesFiche/coudepvc.jpg");
-const r2 = require("./imagesFiche/coudepvc.jpg");
-const s2 = require("./imagesFiche/coudepvc.jpg");
-const t2 = require("./imagesFiche/coudepvc.jpg");
+const d2 = require("./imagesFiche/manchondilatation.jpg");
+const e2 = require("./imagesFiche/manchonCGU.jpg");
+const f2 = require("./imagesFiche/manchonCGU.jpg");
+const g2 = require("./imagesFiche/manchonPVC.jpg");
+const h2 = require("./imagesFiche/manchonPVC.jpg");
+const i2 = require("./imagesFiche/manchonPVC.jpg");
+const j2 = require("./imagesFiche/melangeurlavemain.webp");
+const k2 = require("./imagesFiche/pack-wc.jpg");
+const l2 = require("./imagesFiche/osb.jpg");
+const m2 = require("./imagesFiche/papierverre.webp");
+const n2 = require("./imagesFiche/papierverre.webp");
+const o2 = require("./imagesFiche/patteavis.jpg");
+const p2 = require("./imagesFiche/pipewc.jpg");
+const q2 = require("./imagesFiche/pipewcdroite.webp");
+const r2 = require("./imagesFiche/planchecoffrage.jpg");
+const s2 = require("./imagesFiche/reductionPVC.jpg");
+const t2 = require("./imagesFiche/Platinerobinetjardinlaitonnickele2.jpg");
+const u2 = require("./imagesFiche/robinnetracordement.webp");
+const v2 = require("./imagesFiche/rosace.jpg");
+const w2 = require("./imagesFiche/siphon.jpg");
+const x2 = require("./imagesFiche/ssiphonmachine.jpg");
+const y2 = require("./imagesFiche/tampon.jpg");
+const z2 = require("./imagesFiche/bouchon-tampon-de-visite-mf-ø-100-réf-ft-nicoll.webp");
+const a3 = require("./imagesFiche/bouchon-tampon-de-visite-mf-ø-100-réf-ft-nicoll.webp");
+const b3 = require("./imagesFiche/te-cuivre-egal_10.jpg");
+const c3 = require("./imagesFiche/31cMJS38XUL._AC_UF1000,1000_QL80_.jpg");
+const d3 = require("./imagesFiche/31cMJS38XUL._AC_UF1000,1000_QL80_.jpg");
+const e3 = require("./imagesFiche/31cMJS38XUL._AC_UF1000,1000_QL80_.jpg");
+const f3 = require("./imagesFiche/tube-cuivre-12-mm-4-m~3506465167137_36c.webp");
+const g3 = require("./imagesFiche/tubepvc.webp");
+const h3 = require("./imagesFiche/tubepvc.webp");
+const i3 = require("./imagesFiche/tubepvc.webp");
+const j3 = require("./imagesFiche/vanne-d-arret-1-4-de-tour-male-femelle-12x17-diall~5052931288410_03c.jpg");
+const k3 = require("./imagesFiche/verrou.jpg");
+const l3 = require("./imagesFiche/visabois.jpg");
+const m3 = require("./imagesFiche/vistrpf-389349.jpg");
+const n3 = require("./imagesFiche/vis-ttpc-tete-trompette-platre_vis35025-bte_b5_pai.jpg");
+const o3 = require("./imagesFiche/vis-ttpc-milieu-humide_vi35035mh_p_pai.jpg");
+const p3 = require("./imagesFiche/vis-ttpc-milieu-humide_vi35035mh_p_pai.jpg");
+const q3 = require("./imagesFiche/annuler.jpg");
+
 const parDefaut = require("./imagesFiche/1.webp");
 let img = "";
 
 function UnMat({ mat, numMat, setSelect, image }: any) {
   
   switch (image) {
-    case 0:
-    img = a;
-    console.log("image : " + img);
-    break;
-    case 1:
-      img = b;
-      console.log("image : " + img);
-      break;
-    case 2:
-      img = c;
-      console.log("image : " + img);
-      break;
-    case 3:
-      img = d;
-      console.log("image : " + img);
-      break;
-    case 4:
-      img = e;
-      console.log("image : " + img);
-      break; 
-    case 5:
-      img = f;
-      console.log("image : " + img);
-      break;  
-    case 6:
-      img = g;
-      console.log("image : " + img);
-      break;
+    case 0: img = a; break;
+    case 1: img = b; break;
+    case 2:img = c;break;
+    case 3: img = d;break;
+    case 4: img = e; break; 
+    case 5:img = f; break;  
+    case 6:  img = g; break;
     case 7: img = h;break;
     case 8: img = i; break;
     case 9:  img = j; break; 
@@ -113,10 +114,41 @@ function UnMat({ mat, numMat, setSelect, image }: any) {
     case 31: img = f2; break;
     case 32: img = g2; break;
     case 33: img = h2; break;
-
-
-
-
+    case 34: img = i2; break;
+    case 35: img = j2; break;
+    case 36: img = k2; break;
+    case 37: img = l2; break;
+    case 38: img = m2; break;
+    case 39: img = n2; break;
+    case 40: img = o2; break;
+    case 41: img = p2; break;
+    case 42: img = q2; break;
+    case 43: img = r2; break;
+    case 44: img = s2; break;
+    case 45: img = t2; break;
+    case 46: img = u2; break;
+    case 47: img = v2; break;
+    case 48: img = w2; break;
+    case 49: img = x2; break;
+    case 50: img = y2; break;
+    case 51: img = z2; break;
+    case 52: img = a3; break;
+    case 53: img = b3; break;
+    case 54: img = c3; break;
+    case 55: img = d3; break;
+    case 56: img = e3; break;
+    case 57: img = f3; break;
+    case 58: img = g3; break;
+    case 59: img = h3; break;
+    case 60: img = i3; break;
+    case 61: img = j3; break;
+    case 62: img = k3; break;
+    case 63: img = l3; break;
+    case 64: img = m3; break;
+    case 65: img = n3; break;
+    case 66: img = o3; break;
+    case 67: img = p3; break;
+    case 68: img = q3; break;
 
 
     default:
@@ -127,8 +159,13 @@ function UnMat({ mat, numMat, setSelect, image }: any) {
     setSelect(false);
   };
   const returnMat = () => {
+    if (mat === "anuller") {
+      fonctionsMiniBoxInfoJson.setMateriel(numMat, numMat);
+      setSelectFalse();
+    } else {
     fonctionsMiniBoxInfoJson.setMateriel(mat, numMat);
     setSelectFalse();
+    }
   };
   return (
     <div className="UnMat" onClick={returnMat}>

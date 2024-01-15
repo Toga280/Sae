@@ -9,8 +9,8 @@ function ConnectionEleveShema({
   prenomEleveActuelle,
   set1Eleve,
 }: any) {
+  
   const TAILLE_MAX_MDP = 6;
-
   const [mdpFaux, setMdpFaux] = useState(false);
   const [boutonDesactive, setBoutonDesactive] = useState(false);
   const [message, setMessage] = useState("");
