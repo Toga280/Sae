@@ -36,6 +36,7 @@ function ListeFiches({ redirection }: any) {
   };
 
   const affecterFiche = (item: string) => {
+    console.log(item);
     setAffichageAffecterListe(true);
     setNomFicheSelectionner(item);
   };

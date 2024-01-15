@@ -42,7 +42,7 @@ const miniBoxSchema = new Schema<MiniBox>({
 }, { _id: false }); 
 
 const ficheSchema = new Schema<FicheDocument>({
-  info: { type: { name: String }, _id: false, nomEleveAttribuer:{type: String}, prenomEleveAttribuer:{type: String}},
+  info: { name: { type: String }, _id: false, nomEleveAttribuer:{type: String}, prenomEleveAttribuer:{type: String}},
   AllMiniBox: {
     MiniBox1: { type: miniBoxSchema, required: true },
     MiniBox2: { type: miniBoxSchema, required: true },
@@ -328,23 +328,38 @@ app.post('/POST/restorerEleve', async (req: any, res: any) => {
 
 /*AFFECTER UN ELEVE A UNE FICHE=====================================================*/
 
-app.post('/POST/affectereleve', async (req : any, res : any) => {
-  const {nom, prenom, ficheName} = req.body;
-
-  try{
-    const fiche = await Fiche.findOne({ficheName});
-    if (!fiche) {
-      return res.status(404).json({ message: 'Fiche non trouvé' });
+app.post('/POST/affectereleve', async (req: any, res: any) => {
+  const { nom, prenom, ficheName } = req.body;
+  console.log('nom, prenom, ficheName -> ', nom, prenom, ficheName);
+  try {
+    if (!ficheName || !nom || !prenom) {
+      return res.status(500).send('Information manquante');
     }
-    fiche.info.nomEleveAttribuer = nom;
-    fiche.info.prenomEleveAttribuer = prenom;
+
+    const fiche = await Fiche.findOne({ 'info.name': ficheName });
+
+    if (!fiche) {
+      return res.status(404).json({ message: 'Fiche non trouvée' });
+    }
+
+    if (!fiche.info.nomEleveAttribuer) {
+      fiche.info.nomEleveAttribuer = nom;
+    }
+
+    if (!fiche.info.prenomEleveAttribuer) {
+      fiche.info.prenomEleveAttribuer = prenom;
+    }
+
     await fiche.save();
-    res.status(200).json({ message : 'fiche bien attribuer'});
-  } catch(error) {
+
+    console.log('fiche.info --> ', fiche.info);
+
+    res.status(200).json({ message: 'Fiche bien attribuée' });
+  } catch (error) {
     console.error(error);
     res.status(500).json({ message: 'Erreur serveur' });
   }
-})
+});
 
 /*AJOUTER UN ADMIN===============================================================*/
 
