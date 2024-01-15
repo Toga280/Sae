@@ -15,7 +15,7 @@ function FicheBox8({
   return (
     <div className={classNameDiv}>
       <ChoixMiniBox
-        TexteInfo={"Matériaux Utilisés"}
+        TexteInfo={""}
         Balise={4}
         ClassName={""}
         numeroMiniBox={numeroMiniBox[0]}

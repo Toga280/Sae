@@ -53,6 +53,7 @@ function Sauvegarder({ redirection, setSaveName }: any) {
   };
 
   return (
+    <div>
     <div className="global_sauvegarder_fiche">
       <h1 className="title_choose_name_for_fiche">Choisir un nom pour votre fiche</h1>
 
@@ -85,6 +86,8 @@ function Sauvegarder({ redirection, setSaveName }: any) {
         />
       ) : null}
 
+    </div>
+    <button className="retour_btn_save" onClick={() => setSaveName(false)}>Retour</button>
     </div>
   );
 }
