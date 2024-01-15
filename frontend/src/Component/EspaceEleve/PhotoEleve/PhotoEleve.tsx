@@ -6,6 +6,7 @@ function PhotoEleve({ redirection, eleve }: any) {
   const [selectedFile, setSelectedFile] = useState<File | null>(null);
   const [images, setImages] = useState<ArrayBuffer[]>([]);
   const [imageError, setImageError] = useState<string>('');
+  const [fondEcranUrl, setFondEcranUrl] = useState<string | null>(null);
 
   const setRedirectionfour = () => {
     redirection(4);
@@ -47,6 +48,27 @@ function PhotoEleve({ redirection, eleve }: any) {
     }
   };
 
+    useEffect(() => {
+      // Appeler la requête pour récupérer l'image du fond d'écran
+      axios.get('http://localhost:5000/GET/fondecran', {
+        params: {
+          name: eleve
+        },
+        responseType: 'arraybuffer',
+      })
+        .then(response => {
+          const base64 = btoa(
+            new Uint8Array(response.data).reduce(
+              (data, byte) => data + String.fromCharCode(byte),
+              ''
+            )
+          );
+          const url = `data:${response.headers['content-type'].toLowerCase()};base64,${base64}`;
+          setFondEcranUrl(url);
+        })
+        .catch(error => console.error(error));
+    }, []);
+
   useEffect(() => {
     const getPictoInfo = async () => {
       try {
@@ -82,37 +104,39 @@ function PhotoEleve({ redirection, eleve }: any) {
   }, []);
 
   return (
-    <div className="global_bouton_interface_élève">
-      <div>
-      <h2 className='txt_picto_present'>uploader une photo</h2>
-      <div className="content_espace__take_photo_eleve">
-        <input
-          type="file"
-          accept="image/*"
-          onChange={handleFileChange}
-        />
-        <button onClick={handleFileUpload} className="button_photo">
-          Télécharger une photo
+    <div style={{ backgroundImage: `url(${fondEcranUrl})`, backgroundSize: 'cover', height: '100vh' }}>
+      <div className="global_bouton_interface_élève">
+        <div>
+        <h2 className='txt_picto_present'>uploader une photo</h2>
+        <div className="content_espace__take_photo_eleve">
+          <input
+            type="file"
+            accept="image/*"
+            onChange={handleFileChange}
+          />
+          <button onClick={handleFileUpload} className="button_photo">
+            Télécharger une photo
+          </button>
+        </div>
+        </div>
+        <div>
+          <h2 className='txt_picto_present'>Liste des photo :</h2>
+          <div className="picto-container">
+          {imageError && <p className="error-message">{imageError}</p>}
+          {images.map((imageData, index) => (
+            <img
+            key={index}
+            src={`data:image/webp;base64,${btoa(new Uint8Array(imageData).reduce((data, byte) => data + String.fromCharCode(byte), ''))}`}
+            alt={`Pictogramme ${index}`}
+            style={{ maxWidth: '200px', maxHeight: '200px' }}
+          />
+          ))}
+          </div>
+        </div>
+        <button onClick={setRedirectionfour} className="button_retour">
+          Retour
         </button>
       </div>
-      </div>
-      <div>
-        <h2 className='txt_picto_present'>Liste des photo :</h2>
-        <div className="picto-container">
-        {imageError && <p className="error-message">{imageError}</p>}
-        {images.map((imageData, index) => (
-          <img
-          key={index}
-          src={`data:image/webp;base64,${btoa(new Uint8Array(imageData).reduce((data, byte) => data + String.fromCharCode(byte), ''))}`}
-          alt={`Pictogramme ${index}`}
-          style={{ maxWidth: '200px', maxHeight: '200px' }}
-        />
-        ))}
-        </div>
-      </div>
-      <button onClick={setRedirectionfour} className="button_retour">
-        Retour
-      </button>
     </div>
   );
 }

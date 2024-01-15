@@ -15,6 +15,7 @@ import ModifierMdp from "./Interface_Educateur/ModifierMdp/ModifierMdp";
 import PhotoEleve from "./EspaceEleve/PhotoEleve/PhotoEleve";
 import ConsulterFichesImages from "./Interface_Educateur/ConsulterFichesImages/ConsulterFichesImages";
 import ModifierRole from "./Interface_Educateur/ModifierRole/ModifierRole";
+import Optioneleve from "./EspaceEleve/optioneleve";
 const noel = require("./fond/noel.webp");
 const halloween = require("./fond/hallowen.webp");
 
@@ -60,6 +61,7 @@ function App() {
       {redirection === 13 && <PhotoEleve redirection={setRedirection} eleve={eleve} />}
       {redirection === 14 && <ConsulterFichesImages redirection={setRedirection} />}
       {redirection === 15 && <ModifierRole redirection={setRedirection} />}
+      {redirection === 16 && <Optioneleve redirection={setRedirection} eleve={eleve} />}
       {redirection === 3 ? (
         selectBox === null ? (
           !saveName ? (
