@@ -2,7 +2,12 @@ import React from "react";
 import "../../style/fiche3.css";
 import "../../style/ficheGlobal.css";
 import ChoixMiniBox from "./MiniBoxChoix/ChoixMiniBox";
-function FicheBox3({ numeroMiniBox, infoSelectionChoixMiniBox, classNameDiv }: any) {
+function FicheBox3({
+  numeroMiniBox,
+  infoSelectionChoixMiniBox,
+  classNameDiv,
+  versionProf,
+}: any) {
   return (
     <div className={classNameDiv}>
       <div className="grp3">
@@ -13,6 +18,7 @@ function FicheBox3({ numeroMiniBox, infoSelectionChoixMiniBox, classNameDiv }: a
             ClassName={"name_demandeur"}
             numeroMiniBox={numeroMiniBox[0]}
             infoSelectionChoixMiniBox={infoSelectionChoixMiniBox}
+            versionProf={versionProf}
           />
           <div>
             <input type="text" className="TextInput" />
@@ -25,6 +31,7 @@ function FicheBox3({ numeroMiniBox, infoSelectionChoixMiniBox, classNameDiv }: a
             ClassName={"date_localisation"}
             numeroMiniBox={numeroMiniBox[1]}
             infoSelectionChoixMiniBox={infoSelectionChoixMiniBox}
+            versionProf={versionProf}
           />
           <input type="text" className="TextInput" />
           <ChoixMiniBox
@@ -33,6 +40,7 @@ function FicheBox3({ numeroMiniBox, infoSelectionChoixMiniBox, classNameDiv }: a
             ClassName={"locali_localisation"}
             numeroMiniBox={numeroMiniBox[2]}
             infoSelectionChoixMiniBox={infoSelectionChoixMiniBox}
+            versionProf={versionProf}
           />
           <input type="text" className="TextInput" />
         </div>
@@ -43,6 +51,7 @@ function FicheBox3({ numeroMiniBox, infoSelectionChoixMiniBox, classNameDiv }: a
             ClassName={"description_demande"}
             numeroMiniBox={numeroMiniBox[3]}
             infoSelectionChoixMiniBox={infoSelectionChoixMiniBox}
+            versionProf={versionProf}
           />
         </div>
         <div>
@@ -55,6 +64,7 @@ function FicheBox3({ numeroMiniBox, infoSelectionChoixMiniBox, classNameDiv }: a
             ClassName={"txt_urgence"}
             numeroMiniBox={numeroMiniBox[4]}
             infoSelectionChoixMiniBox={infoSelectionChoixMiniBox}
+            versionProf={versionProf}
           />
           <div>
             <input type="text" className="TextInput" />

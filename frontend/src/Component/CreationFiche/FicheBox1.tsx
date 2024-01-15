@@ -6,6 +6,7 @@ function FicheBox1({
   numeroMiniBox,
   infoSelectionChoixMiniBox,
   classNameDiv,
+  versionProf,
 }: any) {
   return (
     <div className={classNameDiv}>
@@ -16,6 +17,7 @@ function FicheBox1({
           ClassName={""}
           numeroMiniBox={numeroMiniBox[0]}
           infoSelectionChoixMiniBox={infoSelectionChoixMiniBox}
+          versionProf={versionProf}
         />
       </div>
     </div>

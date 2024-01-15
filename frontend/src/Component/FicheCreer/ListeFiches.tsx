@@ -4,7 +4,7 @@ import "./ListeFiches.css";
 import fonctionsMiniBoxInfoJson from "../CreationFiche/MiniBoxInfoFunction";
 import AffecterListe from "./AffecterListe";
 
-function ListeFiches({ redirection }: any) {
+function ListeFiches({ redirection, refreshFiche }: any) {
   const [FichesNames, setFichesNames] = useState([]);
   const [affichageAffecterListe, setAffichageAffecterListe] = useState(Boolean);
   const [nomFicheSelectionner, setNomFicheSelectionner] = useState(String);
@@ -77,23 +77,22 @@ function ListeFiches({ redirection }: any) {
       });
   };
 
-  const FicheNames = (nameValue: string) => {
-    axios
-      .get(
+  const FicheNames = async (nameValue: string) => {
+    try {
+      const response = await axios.get(
         `http://localhost:5000/GET/nameFiche?name=${encodeURIComponent(
           nameValue
         )}`
-      )
-      .then((response) => {
-        fonctionsMiniBoxInfoJson.setNewJson(response.data);
-      })
-      .catch((error) => {
-        console.error("Erreur lors de la requête vers le serveur :", error);
-      });
+      );
+      fonctionsMiniBoxInfoJson.setNewJson(response.data);
+    } catch (error) {
+      console.error("Erreur lors de la requête vers le serveur :", error);
+    }
   };
 
-  const SetUpModificationFiche = (item: string) => {
-    FicheNames(item);
+  const SetUpModificationFiche = async (item: string) => {
+    await FicheNames(item);
+    refreshFiche();
     redirection(3);
   };
 

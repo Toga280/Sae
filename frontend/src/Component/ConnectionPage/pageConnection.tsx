@@ -3,7 +3,13 @@ import PageLoginEducateur from "./pageLoginEducateur";
 import ConnectionEleve from "./connectionEleve";
 import "./pageConnection.css";
 
-function PageConnection({ redirection , setRole, set1Eleve}: any) {
+function PageConnection({
+  redirection,
+  setRole,
+  set1Eleve,
+  setNomEleveActuelleApp,
+  setPrenomEleveActuelleApp,
+}: any) {
   const [selectBoutton, setSelectBoutton] = useState(false);
   const BoutonCliquezConnection = (etat: boolean) => {
     setSelectBoutton(etat);
@@ -19,18 +25,26 @@ function PageConnection({ redirection , setRole, set1Eleve}: any) {
           Connexion éducateur
         </button>
       )}
-      {!selectBoutton && <ConnectionEleve redirection={redirection} set1Eleve={set1Eleve}/>}
+      {!selectBoutton && (
+        <ConnectionEleve
+          redirection={redirection}
+          set1Eleve={set1Eleve}
+          setNomEleveActuelleApp={setNomEleveActuelleApp}
+          setPrenomEleveActuelleApp={setPrenomEleveActuelleApp}
+        />
+      )}
 
-      {selectBoutton ? <PageLoginEducateur redirection={redirection} setRole={setRole}/> : null}
+      {selectBoutton ? (
+        <PageLoginEducateur redirection={redirection} setRole={setRole} />
+      ) : null}
       {selectBoutton && (
         <button
           className="bouton_retour_connection_edu"
           onClick={() => BoutonCliquezConnection(false)}
-        >Retour</button>
-        
+        >
+          Retour
+        </button>
       )}
-
-      
     </div>
   );
 }

@@ -3,7 +3,12 @@ import ChoixMiniBox from "./MiniBoxChoix/ChoixMiniBox";
 import "../../style/ficheGlobal.css";
 import "../../style/fiche4.css";
 
-function FicheBox4({ numeroMiniBox, infoSelectionChoixMiniBox,classNameDiv }: any) {
+function FicheBox4({
+  numeroMiniBox,
+  infoSelectionChoixMiniBox,
+  classNameDiv,
+  versionProf,
+}: any) {
   return (
     <div className={classNameDiv}>
       <div className="grp_intervention">
@@ -13,6 +18,7 @@ function FicheBox4({ numeroMiniBox, infoSelectionChoixMiniBox,classNameDiv }: an
           ClassName={""}
           numeroMiniBox={numeroMiniBox[0]}
           infoSelectionChoixMiniBox={infoSelectionChoixMiniBox}
+          versionProf={versionProf}
         />
         <input type="text" className="TextInput" />
         <ChoixMiniBox
@@ -21,8 +27,9 @@ function FicheBox4({ numeroMiniBox, infoSelectionChoixMiniBox,classNameDiv }: an
           ClassName={"duree_operation"}
           numeroMiniBox={numeroMiniBox[1]}
           infoSelectionChoixMiniBox={infoSelectionChoixMiniBox}
+          versionProf={versionProf}
         />
-        <div >
+        <div>
           <select className="selecteur_duree">
             <option>-- Choisir une durée --</option>
             <option>00h15</option>

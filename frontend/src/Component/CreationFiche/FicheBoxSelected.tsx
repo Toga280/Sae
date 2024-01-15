@@ -36,6 +36,7 @@ function FicheBoxSelected({ numberFichBox, onSelectBoxChange }: any) {
           numeroMiniBox={[0]}
           infoSelectionChoixMiniBox={infoSelectionChoixMiniBox}
           classNameDiv={"boxSelected"}
+          versionProf={true}
         />
       ) : null}
       {numberFichBox === 2 ? (
@@ -43,6 +44,7 @@ function FicheBoxSelected({ numberFichBox, onSelectBoxChange }: any) {
           numeroMiniBox={[1, 2]}
           infoSelectionChoixMiniBox={infoSelectionChoixMiniBox}
           classNameDiv={"boxSelected"}
+          versionProf={true}
         />
       ) : null}
       {numberFichBox === 3 ? (
@@ -50,6 +52,7 @@ function FicheBoxSelected({ numberFichBox, onSelectBoxChange }: any) {
           numeroMiniBox={[3, 4, 5, 6, 7]}
           infoSelectionChoixMiniBox={infoSelectionChoixMiniBox}
           classNameDiv={"boxSelected"}
+          versionProf={true}
         />
       ) : null}
       {numberFichBox === 4 ? (
@@ -57,6 +60,7 @@ function FicheBoxSelected({ numberFichBox, onSelectBoxChange }: any) {
           numeroMiniBox={[8, 9]}
           infoSelectionChoixMiniBox={infoSelectionChoixMiniBox}
           classNameDiv={"boxSelected"}
+          versionProf={true}
         />
       ) : null}
       {numberFichBox === 5 ? (
@@ -64,6 +68,7 @@ function FicheBoxSelected({ numberFichBox, onSelectBoxChange }: any) {
           numeroMiniBox={[10, 11, 12]}
           infoSelectionChoixMiniBox={infoSelectionChoixMiniBox}
           classNameDiv={"boxSelected"}
+          versionProf={true}
         />
       ) : null}
       {numberFichBox === 6 ? (
@@ -71,6 +76,7 @@ function FicheBoxSelected({ numberFichBox, onSelectBoxChange }: any) {
           numeroMiniBox={[13, 14, 15, 16]}
           infoSelectionChoixMiniBox={infoSelectionChoixMiniBox}
           classNameDiv={"boxSelected"}
+          versionProf={true}
         />
       ) : null}
       {numberFichBox === 7 ? (
@@ -78,6 +84,7 @@ function FicheBoxSelected({ numberFichBox, onSelectBoxChange }: any) {
           numeroMiniBox={[17, 18, 19]}
           infoSelectionChoixMiniBox={infoSelectionChoixMiniBox}
           classNameDiv={"boxSelected"}
+          versionProf={true}
         />
       ) : null}
       {numberFichBox === 8 ? (
@@ -85,6 +92,7 @@ function FicheBoxSelected({ numberFichBox, onSelectBoxChange }: any) {
           numeroMiniBox={[20]}
           infoSelectionChoixMiniBox={infoSelectionChoixMiniBox}
           classNameDiv={"boxSelected"}
+          versionProf={true}
         />
       ) : null}
 

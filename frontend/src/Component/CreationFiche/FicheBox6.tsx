@@ -2,7 +2,12 @@ import React from "react";
 import ChoixMiniBox from "./MiniBoxChoix/ChoixMiniBox";
 import "../../style/ficheGlobal.css";
 import "../../style/fiche6.css";
-function FicheBox6({ numeroMiniBox, infoSelectionChoixMiniBox,classNameDiv }: any) {
+function FicheBox6({
+  numeroMiniBox,
+  infoSelectionChoixMiniBox,
+  classNameDiv,
+  versionProf,
+}: any) {
   return (
     //nature_intervention
     <div className={classNameDiv}>
@@ -17,6 +22,7 @@ function FicheBox6({ numeroMiniBox, infoSelectionChoixMiniBox,classNameDiv }: an
             ClassName={"txt_nature_intervention"}
             numeroMiniBox={numeroMiniBox[0]}
             infoSelectionChoixMiniBox={infoSelectionChoixMiniBox}
+            versionProf={versionProf}
           />
         </div>
       </div>
@@ -31,6 +37,7 @@ function FicheBox6({ numeroMiniBox, infoSelectionChoixMiniBox,classNameDiv }: an
             ClassName={"txt_nature_intervention"}
             numeroMiniBox={numeroMiniBox[1]}
             infoSelectionChoixMiniBox={infoSelectionChoixMiniBox}
+            versionProf={versionProf}
           />
         </div>
       </div>
@@ -45,6 +52,7 @@ function FicheBox6({ numeroMiniBox, infoSelectionChoixMiniBox,classNameDiv }: an
             ClassName={"txt_nature_intervention"}
             numeroMiniBox={numeroMiniBox[2]}
             infoSelectionChoixMiniBox={infoSelectionChoixMiniBox}
+            versionProf={versionProf}
           />
         </div>
       </div>
@@ -59,6 +67,7 @@ function FicheBox6({ numeroMiniBox, infoSelectionChoixMiniBox,classNameDiv }: an
             ClassName={"txt_nature_intervention"}
             numeroMiniBox={numeroMiniBox[3]}
             infoSelectionChoixMiniBox={infoSelectionChoixMiniBox}
+            versionProf={versionProf}
           />
         </div>
       </div>

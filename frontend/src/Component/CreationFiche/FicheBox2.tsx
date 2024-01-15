@@ -2,7 +2,12 @@ import React from "react";
 import "../../style/fiche2.css";
 import "../../style/ficheGlobal.css";
 import ChoixMiniBox from "./MiniBoxChoix/ChoixMiniBox";
-function FicheBox2({ numeroMiniBox, infoSelectionChoixMiniBox, classNameDiv }: any) {
+function FicheBox2({
+  numeroMiniBox,
+  infoSelectionChoixMiniBox,
+  classNameDiv,
+  versionProf,
+}: any) {
   return (
     <div className={classNameDiv}>
       <div className="fd2">
@@ -12,6 +17,7 @@ function FicheBox2({ numeroMiniBox, infoSelectionChoixMiniBox, classNameDiv }: a
           ClassName={"nom_inter"}
           numeroMiniBox={numeroMiniBox[0]}
           infoSelectionChoixMiniBox={infoSelectionChoixMiniBox}
+          versionProf={versionProf}
         />
         <input type="text" className="TextInput" />
         <ChoixMiniBox
@@ -20,6 +26,7 @@ function FicheBox2({ numeroMiniBox, infoSelectionChoixMiniBox, classNameDiv }: a
           ClassName={"prenom_inter"}
           numeroMiniBox={numeroMiniBox[1]}
           infoSelectionChoixMiniBox={infoSelectionChoixMiniBox}
+          versionProf={versionProf}
         />
         <input type="text" className="TextInput" />
       </div>

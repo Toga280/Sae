@@ -10,13 +10,15 @@ function ChoixMiniBox({
   ClassName,
   numeroMiniBox,
   infoSelectionChoixMiniBox,
+  versionProf,
 }: any) {
   const setSelectionChoixMiniBoxTrue = () => {
-    console.log(numeroMiniBox);
-    fonctionsMiniBoxInfoJson.allIsSelectedMiniBoxFalse();
-    infoSelectionChoixMiniBox(true, numeroMiniBox);
-    fonctionsMiniBoxInfoJson.modifierIsSelectedMiniBox(numeroMiniBox, true);
-    fonctionsMiniBoxInfoJson.modifierChoixMiniBox(numeroMiniBox, "Texte");
+    if (versionProf) {
+      fonctionsMiniBoxInfoJson.allIsSelectedMiniBoxFalse();
+      infoSelectionChoixMiniBox(true, numeroMiniBox);
+      fonctionsMiniBoxInfoJson.modifierIsSelectedMiniBox(numeroMiniBox, true);
+      fonctionsMiniBoxInfoJson.modifierChoixMiniBox(numeroMiniBox, "Texte");
+    }
   };
 
   return (

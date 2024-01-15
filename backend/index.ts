@@ -500,7 +500,7 @@ app.get('/GET/allEleveArchiver', async (req: any, res: any) => {
 
 /*GET ELEVE AUTHENTIFICATION =================================================*/
 
-app.get('/GET/eleve/authentification', async (req: any, res : any) => {
+app.get('/GET/eleve/authentification', async (req : any, res : any) => {
   const { nom, prenom , mdp} = req.query;
   try{
     const admin = await EleveModel.findOne({nom,prenom,mdp}).exec();
@@ -514,6 +514,20 @@ app.get('/GET/eleve/authentification', async (req: any, res : any) => {
     res.status(500).json({ success: false, message: 'Internal server error' });
   }
 });
+
+/*GET ELEVE AUTHENTIFICATION =================================================*/
+
+app.get('/GET/eleve/fiche', async (req : any, res : any) => {
+  const {nom, prenom} = req.query;
+  try{
+  const fiche = await Fiche.findOne({ 'info.nomEleveAttribuer': nom , 'info.prenomEleveAttribuer': prenom }).exec();
+  console.log(nom, prenom)
+  res.status(200).json(fiche);
+  } catch (error){
+    console.error('Error during authentication:', error);
+    res.status(500).json({ success: false, message: 'Internal server error' });
+  }
+})
 
 /*GET ADMIN======================================================================*/
 

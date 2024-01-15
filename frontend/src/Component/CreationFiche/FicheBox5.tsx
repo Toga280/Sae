@@ -2,7 +2,12 @@ import React from "react";
 import ChoixMiniBox from "./MiniBoxChoix/ChoixMiniBox";
 import "../../style/ficheGlobal.css";
 import "../../style/fiche5.css";
-function FicheBox5({ numeroMiniBox, infoSelectionChoixMiniBox,classNameDiv }: any) {
+function FicheBox5({
+  numeroMiniBox,
+  infoSelectionChoixMiniBox,
+  classNameDiv,
+  versionProf,
+}: any) {
   return (
     <div className={classNameDiv}>
       <div className="grp_type_maintenance">
@@ -16,6 +21,7 @@ function FicheBox5({ numeroMiniBox, infoSelectionChoixMiniBox,classNameDiv }: an
             ClassName={"txt_type_maintenance"}
             numeroMiniBox={numeroMiniBox[0]}
             infoSelectionChoixMiniBox={infoSelectionChoixMiniBox}
+            versionProf={versionProf}
           />
         </div>
       </div>
@@ -30,6 +36,7 @@ function FicheBox5({ numeroMiniBox, infoSelectionChoixMiniBox,classNameDiv }: an
             ClassName={"txt_type_maintenance"}
             numeroMiniBox={numeroMiniBox[1]}
             infoSelectionChoixMiniBox={infoSelectionChoixMiniBox}
+            versionProf={versionProf}
           />
         </div>
       </div>
@@ -44,6 +51,7 @@ function FicheBox5({ numeroMiniBox, infoSelectionChoixMiniBox,classNameDiv }: an
             ClassName={"txt_type_maintenance"}
             numeroMiniBox={numeroMiniBox[2]}
             infoSelectionChoixMiniBox={infoSelectionChoixMiniBox}
+            versionProf={versionProf}
           />
         </div>
       </div>
