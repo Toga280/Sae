@@ -70,7 +70,7 @@ function ModifierMdpProf({ redirection }: any) {
     <div>
       <div className="global_modif_mdp_eleve">
         <h1 className="titre_modif_mdp_eleve">
-          Modifier le mot de passe d'un professeur
+          Modifier le mot de passe d'un membre de l'équipe
         </h1>
         <div className="general_login">
           {admin.map((admin, index) => (

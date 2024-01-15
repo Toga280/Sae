@@ -8,6 +8,9 @@
     margin-right: auto;
   }
   .imageMat {
+
+    max-width : auto;
+    max-height : 150px;
     margin: auto;
     
     img:hover{
@@ -16,3 +19,7 @@
       transform: scale(3) translate(30px);
     } 
   }
+
+  .imageMat img{
+   
+    }

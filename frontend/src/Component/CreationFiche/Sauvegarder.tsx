@@ -5,6 +5,7 @@ import axios from "axios";
 import "./Sauvegarder.css";
 
 function Sauvegarder({ redirection, setSaveName }: any) {
+
   const [nomFiche, setNomFiche] = useState("");
   const [upPopUpSauvegarder, setUpPopUpSauvegarder] = useState(false);
 
@@ -50,37 +51,61 @@ function Sauvegarder({ redirection, setSaveName }: any) {
       throw error;
     }
   };
+  // PARTIE COMMENTAIRE 
+
 
   return (
-<div className="global_sauvegarder_fiche">
-  <input
-    className="input_sauvegarder_ficheBox"
-    type="text"
-    placeholder="Nom de la fiche"
-    value={nomFiche}
-    required
-    onChange={handleInputChange}
-  />
-  <input
-    type="button"
-    className="boutton_sauvegarder_ficheBox"
-    value="Sauvegarder"
-    onClick={() => {
-      if (nomFiche.trim() !== "") {
-        testNameFiche(nomFiche);
-      } else {
-        alert("Veuillez saisir un nom pour votre fiche avant de sauvegarder.");
-      }
-    }}
-  />
-  {upPopUpSauvegarder ? (
-    <PopUpSauvegarder
-      setUpPopUpSauvegarder={setUpPopUpSauvegarder}
-      nomFiche={nomFiche}
-      sauvegarde={sauvegarde}
-    />
-  ) : null}
-</div>
+    <div>
+
+    <div className="global_sauvegarder_fiche">
+      <h1 className="title_choose_name_for_fiche">Choisir un nom pour votre fiche</h1>
+      
+      <h5 className="titleCommentaire">Nom de la fiche</h5>
+      
+      <input
+        className="input_sauvegarder_ficheBox"
+        type="text"
+        placeholder="Nom de la fiche"
+        value={nomFiche}
+        required
+        onChange={handleInputChange}
+      />
+
+      <div className="commentaire">
+        <h5 className="titleCommentaire">Commentaire</h5>
+        <textarea
+          className="input_commenter_ficheBox"
+          placeholder="Commentaire"
+        />
+      </div>
+      
+      <input
+        type="button"
+        className="boutton_sauvegarder_ficheBox"
+        value="Sauvegarder"
+        required
+        onClick={() => {
+          if (nomFiche.trim() !== "") {
+            testNameFiche(nomFiche);
+          } else {
+            alert("Veuillez saisir un nom pour votre fiche avant de sauvegarder.");
+          }
+        }}
+      />
+
+      
+
+      {upPopUpSauvegarder ? (
+        <PopUpSauvegarder
+          setUpPopUpSauvegarder={setUpPopUpSauvegarder}
+          nomFiche={nomFiche}
+          sauvegarde={sauvegarde}
+        />
+      ) : null}
+
+    </div>
+    <button className="retour_btn_save" onClick={() => setSaveName(false)}>Retour</button>
+    </div>
   );
 }
 

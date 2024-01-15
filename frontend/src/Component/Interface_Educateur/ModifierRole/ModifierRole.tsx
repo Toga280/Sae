@@ -1,6 +1,6 @@
 import axios from "axios";
 import React, { useEffect, useState } from "react";
-
+import "./ModifierRole.css";
 
 interface Admin {
   nom: string;
@@ -83,7 +83,7 @@ function ModifierRole({ redirection }: any) {
   };
 
     return (
-
+      <div>
         <div className="global_creation_profil_prof">
           <p className="txt_creation_espace_élève">Modifier le rôle d'un membre de l'équipe</p>
           <div className="general_login">
@@ -122,12 +122,11 @@ function ModifierRole({ redirection }: any) {
       
             {redirection}
           </div>
-          <div>
-            <button className="button_retour" onClick={redirectionTwo}>
-              Retour
-            </button>
-          </div>
         </div>
+          <button className="bouton_retour_modifier_role" onClick={redirectionTwo}>
+              Retour
+          </button>
+      </div>
       );
       
 }

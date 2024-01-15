@@ -14,7 +14,7 @@
     "react-router-dom": "^6.18.0",
     "react-scripts": "^5.0.1",
     "sequelize": "^6.33.0",
-    "sharp": "^0.33.0",
+    "sharp": "^0.33.1",
     "sqlite3": "^5.1.6",
     "styled-components": "^6.1.1",
     "ts-node": "^10.9.1",
@@ -22,6 +22,7 @@
     "yarn": "^1.22.19"
   },
   "devDependencies": {
-    "@types/react-color": "^3.0.10"
+    "@types/react-color": "^3.0.10",
+    "@types/react-dom": "^18.2.18"
   }
 }

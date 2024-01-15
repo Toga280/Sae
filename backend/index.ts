@@ -1,14 +1,14 @@
 import { Document, Schema, model, Model } from "mongoose";
 import { MiniBox, FicheDocument, Picto, Eleve, Admin } from "./interface";
 import sharp from 'sharp';
-import fs from 'fs';
-import path from 'path';
 const express = require('express');
 const app = express();
 const mongoose = require('mongoose');
 const cors = require('cors');
 const PORT = 5000;
 const multer = require('multer');
+import fs from 'fs';
+import path from 'path';
 const storage = multer.memoryStorage();
 const upload = multer({ storage: storage });
 
@@ -187,6 +187,35 @@ app.post('/POST/uploadpicto', upload.single('file'), async (req: any, res: any) 
       
       res.status(200).json({ message: 'Image téléchargée avec succès' });
     }
+  } catch (error) {
+    console.error('Erreur lors du téléchargement du fichier:', error);
+    res.status(500).json({ error: 'Erreur interne du serveur' });
+  }
+});
+
+/* upload fond ecran elelve======================================================*/
+
+app.post('/POST/uploadfondecran', upload.single('file'), async (req: any, res: any) => {
+  try {
+    const { name } = req.query;
+
+    if (!req.file) {
+      return res.status(400).json({ error: 'Aucun fichier n\'a été téléchargé.' });
+    }
+
+    const fileBuffer = req.file.buffer;
+
+    const originalFileName = req.file.originalname;
+    const fileExtension = originalFileName.split('.').pop();
+    const newFileName = `${name}.webp`; // Change the file extension to webp
+    const filePath = `./src/fond/${newFileName}`;
+
+    // Use sharp to convert the image to WebP format
+    await sharp(fileBuffer)
+      .toFormat('webp')
+      .toFile(filePath);
+
+    res.status(200).json({ message: 'Image téléchargée avec succès' });
   } catch (error) {
     console.error('Erreur lors du téléchargement du fichier:', error);
     res.status(500).json({ error: 'Erreur interne du serveur' });
@@ -679,6 +708,29 @@ app.get('/GET/getphotoeleve-file', async (req: any, res: any) => {
   }
 });
 
+/* GET FOND ECRAN ELEVE ===============================================================*/
+
+app.get('/GET/fondecran', async (req: any, res: any) => {
+  const pictoDirectory = path.join(__dirname, './src/fond');
+  const { name } = req.query;
+
+  try {
+    // Construction du chemin complet du fichier image
+    const imagePath = path.join(pictoDirectory, name + '.webp');
+
+    // Vérification si le fichier image existe
+    if (fs.existsSync(imagePath)) {
+      // Envoi du fichier image en réponse à la requête
+      res.status(200).sendFile(imagePath);
+    } else {
+      res.status(404).send('Image non trouvée');
+    }
+  } catch (error) {
+    console.error('Erreur lors de la récupération du fichier image :', error);
+    res.status(500).send('Erreur interne du serveur');
+  }
+});
+
 
 /*------------------- DELETE -------------------*/
 
@@ -704,4 +756,26 @@ app.get('/DELETE/ficheName', async (req: any, res: any) => {
     res.status(500).send('Erreur interne du serveur');
   }
 });
+
+/* delete fond ecran eleve ===============================================================*/
+
+app.get('/DELETE/fond', async (req: any, res: any) => {
+  const { name } = req.query;
+  const imagePath = path.join(__dirname, './src/fond', `${name}.webp`);
+  try {
+    // Check if the file exists
+    if (fs.existsSync(imagePath)) {
+      // Delete the file
+      fs.unlinkSync(imagePath);
+      console.log('File deleted successfully');
+      res.status(200).send('File deleted successfully');
+    } else {
+      res.status(404).send('File ' + imagePath + ' not found');
+    }
+  } catch (error) {
+    console.error('Error deleting the file:', error);
+    res.status(500).send('Internal server error');
+  }
+});
+
 

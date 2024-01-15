@@ -2,23 +2,14 @@ import React from "react";
 import ChoixMiniBox from "./MiniBoxChoix/ChoixMiniBox";
 import "../../style/fiche1.css";
 import "../../style/ficheGlobal.css";
-function FicheBox1({
-  numeroMiniBox,
-  infoSelectionChoixMiniBox,
-  classNameDiv,
-  versionProf,
-}: any) {
+function FicheBox1({ classNameDiv, versionProf }: any) {
+  const randomInterventionNumber = Math.floor(Math.random() * 1000) + 1;
   return (
     <div className={classNameDiv}>
       <div className="fb1">
-        <ChoixMiniBox
-          TexteInfo={"Fiche d'intervention N°10"}
-          Balise={2}
-          ClassName={""}
-          numeroMiniBox={numeroMiniBox[0]}
-          infoSelectionChoixMiniBox={infoSelectionChoixMiniBox}
-          versionProf={versionProf}
-        />
+        <h1 className="titreFiche">
+          Fiche d'intervention n°{randomInterventionNumber}
+        </h1>
       </div>
     </div>
   );

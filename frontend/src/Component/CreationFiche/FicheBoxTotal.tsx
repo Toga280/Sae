@@ -60,8 +60,6 @@ function FicheBoxTotal({
     <div>
       <div onClick={() => handleClick(1)}>
         <FicheBox1
-          numeroMiniBox={[0]}
-          infoSelectionChoixMiniBox={infoSelectionChoixMiniBox}
           classNameDiv={"Box"}
           versionProf={versionProf}
         />

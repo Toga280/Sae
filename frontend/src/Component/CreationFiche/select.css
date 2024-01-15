@@ -1,3 +1,55 @@
-.lesSelect{
-    border: 1px solid #ced4da;
-}
+.lesSelect {
+    justify-content: center;
+    display: flex;
+    flex-wrap: wrap;
+  }
+  
+  .mat {
+    padding: 10px;
+    margin: 5px;
+    border: 1px solid #ccc;
+    cursor: pointer;
+  }
+  
+  /* Ajoutez ces styles si vous voulez un effet de survol */
+  .mat:hover {
+    background-color: #f0f0f0;
+  }
+  .global_select {
+    padding: 20px;
+  }
+  
+  .retour_select {
+    background-color: #3498db;
+    color: #fff;
+    padding: 10px;
+    border: none;
+    cursor: pointer;
+    border-radius: 4px;
+
+  }
+
+  
+  .txt_choix_selec_mat {
+    margin-top: 20px;
+    font-size: 1.5em;
+  }
+  
+  .UnMat {
+    padding: 10px;
+    margin: 10px;
+    border: 1px solid #ccc;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+  }
+  
+  .UnMat:hover {
+    background-color: #f0f0f0;
+  }
+  
+  .UnMat img {
+    margin-right: 10px;
+    max-width: 100px; /* Ajustez la taille de l'image selon vos besoins */
+  }
+  

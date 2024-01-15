@@ -86,33 +86,36 @@ const ImportPicto = ({ redirection }: any): JSX.Element => {
   }, []);
 
   return (
-    <div className="upload-container">
-      <div>
-        {fileExists && <p className="error-message">Un pictogramme avec ce nom existe déjà.</p>}
-        <label className="file-input-label">
-          Choisir un fichier
-          <input className="file-input" type="file" accept="image/*" onChange={handleFileChange} />
-        </label>
-        {selectedFile && <p className="selected-file">Fichier sélectionné : {selectedFile.name}</p>}
-        <input className="text-input" type="text" value={pictoName} onChange={handleNameChange} placeholder="Entrer le nom du pictogramme" />
-        <button className="upload-button" onClick={handleUpload}>Télécharger</button>
-      </div>
-      <div>
-        <h2 className='txt_picto_present'>Liste des pictogrammes :</h2>
-        <div className="picto-container">
-        {imageError && <p className="error-message">{imageError}</p>}
-        {images.map((imageData, index) => (
-          <img
-          key={index}
-          src={`data:image/webp;base64,${btoa(new Uint8Array(imageData).reduce((data, byte) => data + String.fromCharCode(byte), ''))}`}
-          alt={`Pictogramme ${index}`}
-          style={{ maxWidth: '200px', maxHeight: '200px' }}
-        />
-        ))}
+    <div>
+      <div className="upload-container">
+        <div>
+          {fileExists && <p className="error-message">Un pictogramme avec ce nom existe déjà.</p>}
+          <label className="file-input-label">
+            Choisir un fichier
+            <input className="file-input" type="file" accept="image/*" onChange={handleFileChange} />
+          </label>
+          {selectedFile && <p className="selected-file">Fichier sélectionné : {selectedFile.name}</p>}
+          <input className="text-input" type="text" value={pictoName} onChange={handleNameChange} placeholder="Entrer le nom du pictogramme" />
+          <button className="upload-button" onClick={handleUpload}>Télécharger</button>
         </div>
-      </div>
-      <button className="back-button" onClick={() => redirection(2)}>Retour</button>
+        <div>
+          <h2 className='txt_picto_present'>Liste des pictogrammes :</h2>
+          <div className="picto-container">
+            {imageError && <p className="error-message">{imageError}</p>}
+            {images.map((imageData, index) => (
+              <img
+              key={index}
+              src={`data:image/webp;base64,${btoa(new Uint8Array(imageData).reduce((data, byte) => data + String.fromCharCode(byte), ''))}`}
+              alt={`Pictogramme ${index}`}
+              style={{ maxWidth: '150px', maxHeight: '150px' }}
+            />
+            ))}
+          </div>
+        </div>
+        
 
+      </div>
+      <button className="back-button" onClick={() => redirection(2)}>Retour</button>  
     </div>
   );
 };

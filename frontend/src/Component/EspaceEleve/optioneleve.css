@@ -1,0 +1,11 @@
+.global_option_eleve{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin-top: 2em;
+  
+  }
+.titre_changer_fond{
+    text-align: center;
+    color:#355c7d;
+}

@@ -50,6 +50,9 @@
  max-width: 2.5em;
 
 }
+.bouton:active {
+  background-color: #e0e0e0;
+}
 
 .bouton_deconnection_eleve{
   color: #ffffff;
