@@ -1,18 +1,19 @@
 import React, {useState} from "react";
 import "../../style/fiche1.css";
 import "../../style/ficheGlobal.css";
+import "./select.css";
 import UnMat from "./UnMat";
 
 function PageSelect({setSelect, numMat} : any){
   const setSelectFalse = () => setSelect(false);
 
   return (
-    <div>
-      <button onClick={() => setSelectFalse()}> Retour </button> 
-          Séléctionnez un materiel à ajouter :
+    <div className="global_select">
+      <button className="retour_select" onClick={() => setSelectFalse()}> Retour </button> 
+          <h2 className="txt_choix_selec_mat">Séléctionnez un materiel à ajouter :</h2>
             <UnMat mat={"Bonde à grille pour lave-mains"}  numMat={numMat} setSelect={setSelect} image={0}/>
             <UnMat mat={"Bouchon laiton à visser F 1/2"} numMat={numMat} setSelect={setSelect} image={1}/>
-             <UnMat mat={"Chevilles à expansion avec patte à vis"} numMat={numMat} setSelect={setSelect} image={2}/>
+            <UnMat mat={"Chevilles à expansion avec patte à vis"} numMat={numMat} setSelect={setSelect} image={2}/>
             <UnMat mat={"Chevilles à frapper"} numMat={numMat} setSelect={setSelect} image={3}/>
             <UnMat mat={"Chevilles autoforeuses - Fixation plaque de plâtre"} numMat={numMat} setSelect={setSelect} image={4}/>
             <UnMat mat={"Chiffons"} numMat={numMat} setSelect={setSelect} image={5}/>
@@ -76,7 +77,7 @@ function PageSelect({setSelect, numMat} : any){
             <UnMat mat={"Vis TRPF"} numMat={numMat} setSelect={setSelect} image={64}/>
             <UnMat mat={"Vis TTPC 25"} numMat={numMat} setSelect={setSelect} image={65}/>
             <UnMat mat={"Vis TTPC 35"} numMat={numMat} setSelect={setSelect} image={67}/>
-            <UnMat mat={"anuller"} numMat={numMat} setSelect={setSelect} image={68}/>
+            <UnMat mat={"annuler"} numMat={numMat} setSelect={setSelect} image={68}/>
             
     </div>
   );

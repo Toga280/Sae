@@ -73,6 +73,20 @@
     border-radius: 4px;
   }
  
+  .retour_btn_save{
+    bottom: 20px;
+    left: 20px;
+    background-color: #fff;
+    color: #355c7d;
+    font-weight: bold;
+    font-size: 18px;
+    padding: 0.8em;
+    margin: 1em;
+    border-radius: 4px;
+    border: none;
+    cursor:pointer;
+    position:absolute;
+  }
   @media screen and (max-width: 600px) {
     .global_sauvegarder_fiche {
       padding: 10px;
