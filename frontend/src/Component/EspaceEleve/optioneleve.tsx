@@ -93,24 +93,38 @@ function Optioneleve({ redirection, eleve }: any) {
 
   return (
     <div style={{ backgroundImage: `url(${fondEcranUrl})`, backgroundSize: 'cover', height: '100vh' }}>
-      <div>
-      <button className="bouton_deconnection_eleve" onClick={() => redirection(1)}>
-        Se déconnecter
-      </button>
-      </div>
-      <div>
-      <input type="file" onChange={handleFileChange} />
-      <button onClick={handleFileUpload} className="button_upload">
-        Upload
-      </button>
-      <button onClick={handlesupprimer} className="button_supprimer">
-        Supprimer
-      </button>
-      </div>
-      <div>
-      <button onClick={setRedirectionfour} className="button_retour">
-        Retour
-      </button>
+    <div>
+    <h2 className="titre_changer_fond">Changer le font d'écran</h2>
+
+      <div className="global_option_eleve">
+        <label htmlFor="fileInput" className={`custom-file-upload`}>
+              {selectedFile ? `Fichier sélectionné: ${selectedFile.name}` : 'Choisir une photo'}
+              <input
+                type="file"
+                id="fileInput"
+                accept="image/*"
+                onChange={handleFileChange}
+                style={{ display: 'none' }}
+              />
+          </label>
+          <img
+            src={require("./PhotoEleve/telecharger.png")}
+            alt="Télécharger une photo"
+            onClick={handleFileUpload}
+            className={`button_photo ${selectedFile ? 'selected' : ''}`}
+          />
+          <img
+            src={require("./supprimer.webp")}
+            alt="Supprimer une photo"
+            onClick={handlesupprimer}
+            className={`button_photo`}
+          />
+        </div>
+        <div>
+          <button onClick={setRedirectionfour} className="button_retour">
+            Retour
+          </button>
+        </div>
       </div>
     </div>
   );
