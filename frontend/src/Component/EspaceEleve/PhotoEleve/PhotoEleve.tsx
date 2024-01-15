@@ -10,6 +10,9 @@ function PhotoEleve({ redirection, eleve }: any) {
   const setRedirectionfour = () => {
     redirection(4);
   };
+  const setRedirectionThristeen = () => {
+    redirection(13);
+  };
 
   const handleFileChange = (event: React.ChangeEvent<HTMLInputElement>) => {
     const file = event.target.files && event.target.files[0];
@@ -45,6 +48,8 @@ function PhotoEleve({ redirection, eleve }: any) {
     } catch (error) {
       console.error('Error in handleUpload:', error);
     }
+    redirection(4);
+    redirection(13);
   };
 
   useEffect(() => {
@@ -82,34 +87,46 @@ function PhotoEleve({ redirection, eleve }: any) {
   }, []);
 
   return (
-    <div className="global_bouton_interface_élève">
-      <div>
-      <h2 className='txt_picto_present'>uploader une photo</h2>
-      <div className="content_espace__take_photo_eleve">
-        <input
-          type="file"
-          accept="image/*"
-          onChange={handleFileChange}
-        />
-        <button onClick={handleFileUpload} className="button_photo">
-          Télécharger une photo
-        </button>
-      </div>
-      </div>
-      <div>
-        <h2 className='txt_picto_present'>Liste des photo :</h2>
-        <div className="picto-container">
-        {imageError && <p className="error-message">{imageError}</p>}
-        {images.map((imageData, index) => (
-          <img
-          key={index}
-          src={`data:image/webp;base64,${btoa(new Uint8Array(imageData).reduce((data, byte) => data + String.fromCharCode(byte), ''))}`}
-          alt={`Pictogramme ${index}`}
-          style={{ maxWidth: '200px', maxHeight: '200px' }}
-        />
-        ))}
+    <div>
+      <div className="global_bouton_interface_élève">
+          <div>
+            <div className="content_espace__take_photo_eleve">
+            <label htmlFor="fileInput" className={`custom-file-upload ${selectedFile ? 'selected' : ''}`}>
+              {selectedFile ? `Fichier sélectionné: ${selectedFile.name}` : 'Choisir une photo'}
+              <input
+                type="file"
+                id="fileInput"
+                accept="image/*"
+                onChange={handleFileChange}
+                style={{ display: 'none' }}
+              />
+            </label>
+
+            <img
+              src={require("./telecharger.png")}
+              alt="Télécharger une photo"
+              onClick={handleFileUpload}
+              className={`button_photo`}
+              style={{ width: "40px", height: "40px", cursor: "pointer" }}
+            />
+            </div>
+          </div>
+          <div>
+            <h2 className='txt_picto_present'>Liste des photo(s) :</h2>
+              <div className="picto-container">
+              {imageError && <p className="error-message">{imageError}</p>}
+              {images.map((imageData, index) => (
+                <img
+                key={index}
+                src={`data:image/webp;base64,${btoa(new Uint8Array(imageData).reduce((data, byte) => data + String.fromCharCode(byte), ''))}`}
+                alt={`Pictogramme ${index}`}
+                style={{ maxWidth: '200px', maxHeight: '200px' }}
+              />
+              ))}
+            </div>
+          </div>
+
         </div>
-      </div>
       <button onClick={setRedirectionfour} className="button_retour">
         Retour
       </button>

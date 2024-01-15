@@ -31,7 +31,7 @@ function PageConnection({ redirection , setRole, set1Eleve}: any) {
       )}
 
       
-    </div>
+    </div>  
   );
 }
 
