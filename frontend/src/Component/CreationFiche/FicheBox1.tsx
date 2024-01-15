@@ -9,7 +9,6 @@ function FicheBox1({
   return (
     <div className={classNameDiv}>
       <div className="fb1">
-        
         <h1 className="titreFiche">Fiche d'intervention n°{randomInterventionNumber}</h1>
       </div>
     </div>
