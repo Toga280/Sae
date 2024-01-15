@@ -75,11 +75,12 @@ const fonctionsMiniBoxInfoJson: FonctionsMiniBoxInfoJson = {
     },
 
     getNom: () => {
-        for (let key in MiniBoxInfoJson.AllMiniBox) {
-            return MiniBoxInfoJson.AllMiniBox[key].name;
+        if (MiniBoxInfoJson.info.name === "") {
+            return "brouillon";
         }
-        return "Nom de la fiche";
+        return MiniBoxInfoJson.info.name;
     },
+
     getAllJson: () => {
         return MiniBoxInfoJson;
     },
