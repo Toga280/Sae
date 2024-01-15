@@ -66,6 +66,7 @@ function Optioneleve({ redirection, eleve }: any) {
     } catch (error) {
       console.error('Error in handleUpload:', error);
     }
+    redirection(4);
   };
 
   const handlesupprimer = async () => {
@@ -86,6 +87,7 @@ function Optioneleve({ redirection, eleve }: any) {
     } catch (error) {
       console.error('Error in handlesupprimer:', error);
     }
+    redirection(4);
   };
   
 
