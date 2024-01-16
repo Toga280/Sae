@@ -52,9 +52,9 @@ function PageEspaceEleve({ redirection, eleve, nomEleve, prenomEleve }: any) {
   }, []);
 
   return (
-    <div style={{ backgroundImage: `url(${fondEcranUrl})`, backgroundSize: 'cover', height: '100vh' }}>
+    <div>
       {!seeMaFiche ? (
-        <div>
+        <div style={{ backgroundImage: `url(${fondEcranUrl})`, backgroundSize: 'cover', height: '100vh' }}>
           <button
             className="bouton_deconnection_eleve"
             onClick={() => redirection(1)}
