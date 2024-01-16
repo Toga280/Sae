@@ -177,6 +177,13 @@ app.post('/POST/uploadpicto', upload.single('file'), async (req: any, res: any) 
     const fileExtension = originalFileName.split('.').pop();
     const newFileName = `${name}.webp`; // Change the file extension to webp
     const filePath = `./src/picto/${newFileName}`;
+    
+    // Créer récursivement le répertoire parent si nécessaire
+    const directoryPath = `./src/picto/`;
+    if (!fs.existsSync(directoryPath)) {
+      fs.mkdirSync(directoryPath, { recursive: true });
+    }
+
     if (fs.existsSync(filePath)) {
       res.status(409).json({ message: 'Le fichier existe déjà' });
     } else {
@@ -210,6 +217,11 @@ app.post('/POST/uploadfondecran', upload.single('file'), async (req: any, res: a
     const newFileName = `${name}.webp`; // Change the file extension to webp
     const filePath = `./src/fond/${newFileName}`;
 
+    const directoryPath = `./src/fond/`;
+    if (!fs.existsSync(directoryPath)) {
+      fs.mkdirSync(directoryPath, { recursive: true });
+    }
+
     // Use sharp to convert the image to WebP format
     await sharp(fileBuffer)
       .toFormat('webp')
@@ -238,6 +250,12 @@ app.post('/POST/uploadpictoEleve', upload.single('file'), async (req: any, res: 
     const fileExtension = originalFileName.split('.').pop();
     const newFileName = `${name}.webp`; // Change the file extension to webp
     const filePath = `./src/piceleve/${newFileName}`;
+
+    const directoryPath = `./src/piceleve/`;
+    if (!fs.existsSync(directoryPath)) {
+      fs.mkdirSync(directoryPath, { recursive: true });
+    }
+    
     if (fs.existsSync(filePath)) {
       res.status(409).json({ message: 'Le fichier existe déjà' });
     } else {
