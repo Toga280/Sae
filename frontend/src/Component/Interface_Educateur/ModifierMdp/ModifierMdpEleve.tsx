@@ -8,6 +8,7 @@ function ModifierMdpEleve({ redirection }: any) {
   const [loading, setLoading] = useState(false);
   const [studentImages, setStudentImages] = useState<string[]>([]);
   const [eleves, setEleves] = useState<any[]>([]);
+  const [selectedFile, setSelectedFile] = useState<File | null>(null);
   const handleInputModifMdp = (event: any) => {
     ModifMdpEleve(event.target.value);
   };
@@ -71,6 +72,7 @@ function ModifierMdpEleve({ redirection }: any) {
         };
 
         postEleveChangeMdp(eleveData);
+        postphotoeleve(selectedFile,profilSelectionne.nom,profilSelectionne.prenom);
         setInputActive(false);
         setProfilSelectionne(null);
         // redirection(2);
@@ -116,6 +118,30 @@ function ModifierMdpEleve({ redirection }: any) {
       setLoading(false);
     }
   };
+
+  const handleFileChange = (event: React.ChangeEvent<HTMLInputElement>) => {
+    const file = event.target.files && event.target.files[0];
+    if (file) {
+      setSelectedFile(file);
+    }
+  };
+
+  const postphotoeleve = async (imageEleve: any , nomEleve: any , prenomEleve: any) => {
+    const formData = new FormData();
+        formData.append('file', imageEleve);
+    axios
+    .post("http://localhost:5000/POST/uploadpictoEleve", formData, {
+      params: {
+        name: nomEleve+prenomEleve,
+      },
+    })
+    .then((response) => {
+      console.log("Réponse du serveur :", response.data);
+    })
+    .catch((error) => {
+      console.error("Erreur lors de la requête vers le serveur :", error);
+    });
+  };
   
 
   return (
@@ -147,6 +173,13 @@ function ModifierMdpEleve({ redirection }: any) {
                   type="password"
                   className="input_login"
                   onChange={handleInputModifMdp}
+                />
+                <p>Nouvelle photo de profil :</p>
+                <input
+                  type="file"
+                  id="fileInput"
+                  accept="image/*"
+                  onChange={handleFileChange}
                 />
                 <button className="bouton_valider" onClick={sauvegarde}>
                   Valider
