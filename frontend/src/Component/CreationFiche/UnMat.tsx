@@ -73,6 +73,31 @@ const n3 = require("./imagesFiche/vis-ttpc-tete-trompette-platre_vis35025-bte_b5
 const o3 = require("./imagesFiche/vis-ttpc-milieu-humide_vi35035mh_p_pai.jpg");
 const p3 = require("./imagesFiche/vis-ttpc-milieu-humide_vi35035mh_p_pai.jpg");
 const q3 = require("./imagesFiche/annuler.jpg");
+
+const a4 = require("./imageFicheElec/1.webp");
+const b4 = require("./imageFicheElec/2.jpg");
+const c4 = require("./imageFicheElec/3.jpg");
+const d4 = require("./imageFicheElec/4.jpg");
+const e4 = require("./imageFicheElec/5.jpg");
+const f4 = require("./imageFicheElec/6.jpg");
+const g4 = require("./imageFicheElec/7.jpg");
+const h4 = require("./imageFicheElec/8.jpg");
+const i4 = require("./imageFicheElec/9.jpg");
+const j4 = require("./imageFicheElec/10.jpg");
+const k4 = require("./imageFicheElec/11.jpg");
+const l4 = require("./imageFicheElec/12.jpg");
+const m4 = require("./imageFicheElec/13.jpg");
+const n4 = require("./imageFicheElec/14.jpg");
+const o4 = require("./imageFicheElec/15.webp");
+const p4 = require("./imageFicheElec/16.jpg");
+const q4 = require("./imageFicheElec/17.jpg");
+const r4 = require("./imageFicheElec/18.jpg");
+const s4 = require("./imageFicheElec/19.jpg");
+const t4 = require("./imageFicheElec/20.jpg");
+const u4 = require("./imageFicheElec/21.jpg");
+const v4 = require("./imageFicheElec/22.webp");
+const w4 = require("./imageFicheElec/23.jpg");
+
 const parDefaut = require("./imagesFiche/1.webp");
 
 
@@ -167,7 +192,30 @@ function UnMat({ mat, numMat, setSelect, image }: any) {
     case 66: img = o3; break;
     case 67: img = p3; break;
     case 68: img = q3; break;
-
+    
+    case 70: img = a4; break;
+    case 71: img = b4; break;
+    case 72: img = c4; break;
+    case 73: img = d4; break;
+    case 74: img = e4; break;
+    case 75: img = f4; break;
+    case 76: img = g4; break;
+    case 77: img = h4; break;
+    case 78: img = i4; break;
+    case 79: img = j4; break;
+    case 80: img = k4; break;
+    case 81: img = l4; break;
+    case 82: img = m4; break;
+    case 83: img = n4; break;
+    case 84: img = o4; break;
+    case 85: img = p4; break;
+    case 86: img = q4; break;
+    case 87: img = r4; break;
+    case 88: img = s4; break;
+    case 89: img = t4; break;
+    case 90: img = u4; break;
+    case 91: img = v4; break;
+    case 92: img = w4; break;
 
     default:
       img = parDefaut;
