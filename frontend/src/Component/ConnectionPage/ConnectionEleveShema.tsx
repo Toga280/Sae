@@ -18,21 +18,21 @@ function ConnectionEleveShema({
   const [nombreEssais, setNombreEssais] = useState(0);
   const [password, setPassword] = useState<number[]>([]);
 
-  useEffect(() => {
-    const interval = setInterval(() => {
-      if (time > 0) {
-        setTime(time - 1);
-        setMessage(`Trop d'essais, patientez ${time} secondes`);
-      } else {
-        setBoutonDesactive(false);
-        setTime(30);
-        setMessage("");
-        setNombreEssais(0);
-      }
-    }, 1000);
+  // useEffect(() => {
+  //   const interval = setInterval(() => {
+  //     if (time > 0) {
+  //       setTime(time - 1);
+  //       setMessage(`Trop d'essais, patientez ${time} secondes`);
+  //     } else {
+  //       setBoutonDesactive(false);
+  //       setTime(30);
+  //       setMessage("");
+  //       setNombreEssais(0);
+  //     }
+  //   }, 1000);
 
-    return () => clearInterval(interval);
-  }, [time]);
+  //   return () => clearInterval(interval);
+  // }, [time]);
 
   const Connexion = (event: React.FormEvent) => {
     event.preventDefault();
