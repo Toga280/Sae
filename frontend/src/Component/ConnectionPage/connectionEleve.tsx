@@ -2,7 +2,12 @@ import React, { useEffect, useState } from "react";
 import axios from "axios";
 import ConnectionEleveShema from "./ConnectionEleveShema";
 
-function ConnectionEleve({ redirection, set1Eleve }: any) {
+function ConnectionEleve({
+  redirection,
+  set1Eleve,
+  setPrenomEleveActuelleApp,
+  setNomEleveActuelleApp,
+}: any) {
   const [c, setC] = useState(Boolean); // État pour suivre si une connexion est active
   const [eleves, setEleves] = useState<any[]>([]); // État pour stocker la liste des étudiants
   const [nomEleveActuelle, setNomEleveActuelle] = useState(String); // État pour stocker le nom de famille de l'étudiant actuel
@@ -14,6 +19,8 @@ function ConnectionEleve({ redirection, set1Eleve }: any) {
   const connection = (nom: string, prenom: string) => {
     setNomEleveActuelle(nom);
     setPrenomEleveActuelle(prenom);
+    setPrenomEleveActuelleApp(prenom);
+    setNomEleveActuelleApp(nom);
     setC(true);
   };
 
@@ -24,28 +31,39 @@ function ConnectionEleve({ redirection, set1Eleve }: any) {
       const responses = await Promise.all(
         eleves.map(async (eleve: any) => {
           const imageName = `${eleve.nom}${eleve.prenom}.webp`;
-          console.log('Recherche de l\'image :', imageName);
+          console.log("Recherche de l'image :", imageName);
           try {
-            const imagePath = `http://localhost:5000/GET/piceleve?name=${encodeURIComponent(imageName)}`;
+            const imagePath = `http://localhost:5000/GET/piceleve?name=${encodeURIComponent(
+              imageName
+            )}`;
             const response = await axios.get(imagePath, {
-              responseType: 'arraybuffer',
+              responseType: "arraybuffer",
             });
 
             const imageData = `data:image/webp;base64,${btoa(
-              new Uint8Array(response.data).reduce((data, byte) => data + String.fromCharCode(byte), '')
+              new Uint8Array(response.data).reduce(
+                (data, byte) => data + String.fromCharCode(byte),
+                ""
+              )
             )}`;
 
             return imageData;
           } catch (error) {
-            console.error(`Erreur lors de la récupération de l'image pour ${eleve.prenom} ${eleve.nom} :`, error);
-            return ''; // Vous pouvez fournir une image par défaut ou gérer l'erreur en conséquence
+            console.error(
+              `Erreur lors de la récupération de l'image pour ${eleve.prenom} ${eleve.nom} :`,
+              error
+            );
+            return ""; // Vous pouvez fournir une image par défaut ou gérer l'erreur en conséquence
           }
         })
       );
 
-      setStudentImages(responses.filter(image => !!image)); // Filtrer les réponses vides
+      setStudentImages(responses.filter((image) => !!image)); // Filtrer les réponses vides
     } catch (error) {
-      console.error('Erreur lors de la récupération des images des étudiants :', error);
+      console.error(
+        "Erreur lors de la récupération des images des étudiants :",
+        error
+      );
       setStudentImages([]); // Définir un tableau vide en cas d'erreur
     } finally {
       setLoading(false);
@@ -59,7 +77,7 @@ function ConnectionEleve({ redirection, set1Eleve }: any) {
         const response = await axios.get(`http://localhost:5000/GET/allEleve`);
         setEleves(response.data);
       } catch (error) {
-        console.error('Erreur lors de la récupération des étudiants :', error);
+        console.error("Erreur lors de la récupération des étudiants :", error);
       }
     };
 
@@ -85,19 +103,20 @@ function ConnectionEleve({ redirection, set1Eleve }: any) {
           <div className="login-container" key={index}>
             {loading ? (
               <div className="loading-spinner">Chargement...</div>
+            ) : studentImages[index] ? (
+              <img
+                className="user-photo"
+                src={studentImages[index]}
+                alt={`Portrait de ${eleve.prenom} ${eleve.nom}`}
+              />
             ) : (
-              studentImages[index] ? (
-                <img
-                  className="user-photo"
-                  src={studentImages[index]}
-                  alt={`Portrait de ${eleve.prenom} ${eleve.nom}`}
-                />
-              ) : (
-                <div className="error-message">image non présente</div>
-              )
+              <div className="error-message">image non présente</div>
             )}
             <div className="user-name">{`${eleve.prenom} ${eleve.nom}`}</div>
-            <button className="login-button" onClick={() => connection(eleve.nom, eleve.prenom)}>
+            <button
+              className="login-button"
+              onClick={() => connection(eleve.nom, eleve.prenom)}
+            >
               Se connecter
             </button>
           </div>

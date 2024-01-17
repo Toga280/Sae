@@ -29,15 +29,21 @@ function AffecterListe({
   };
 
   const affecterFiche = (nom: string, prenom: string) => {
-    console.log(nom, prenom);
+    const ficheName = nomFicheSelectionner;
+    console.log("affectation de l'éleve --> ", nom, prenom, ficheName);
     axios
-      .post(`http://localhost:5000/POST/affectereleve`, { nom, prenom })
+      .post(`http://localhost:5000/POST/affectereleve`, {
+        nom,
+        prenom,
+        ficheName,
+      })
       .then((response) => {
         setEleves(response.data);
       })
       .catch((error) => {
         console.error("erreur : ", error);
       });
+    setAffichageAffecterListeFalse();
   };
 
   return (
@@ -63,18 +69,18 @@ function AffecterListe({
         {eleveSelectionne && (
           <div>
             <div className="custom_eleve_selec">
-            <h3>Élève sélectionné :</h3>
-            <p>
-              {eleveSelectionne.nom} {eleveSelectionne.prenom}
-            </p>
-            <button
-              className="affecter_fiche_eleve"
-              onClick={() =>
-                affecterFiche(eleveSelectionne.nom, eleveSelectionne.prenom)
-              }
-            >
-              Affecter
-            </button>
+              <h3>Élève sélectionné :</h3>
+              <p>
+                {eleveSelectionne.nom} {eleveSelectionne.prenom}
+              </p>
+              <button
+                className="affecter_fiche_eleve"
+                onClick={() =>
+                  affecterFiche(eleveSelectionne.nom, eleveSelectionne.prenom)
+                }
+              >
+                Affecter
+              </button>
             </div>
           </div>
         )}

@@ -42,7 +42,7 @@ const miniBoxSchema = new Schema<MiniBox>({
 }, { _id: false }); 
 
 const ficheSchema = new Schema<FicheDocument>({
-  info: { type: { name: String }, _id: false, nomEleveAttribuer:{type: String}, prenomEleveAttribuer:{type: String}},
+  info: { name: { type: String }, _id: false, nomEleveAttribuer:{type: String}, prenomEleveAttribuer:{type: String}},
   AllMiniBox: {
     MiniBox1: { type: miniBoxSchema, required: true },
     MiniBox2: { type: miniBoxSchema, required: true },
@@ -177,6 +177,13 @@ app.post('/POST/uploadpicto', upload.single('file'), async (req: any, res: any) 
     const fileExtension = originalFileName.split('.').pop();
     const newFileName = `${name}.webp`; // Change the file extension to webp
     const filePath = `./src/picto/${newFileName}`;
+    
+    // Créer récursivement le répertoire parent si nécessaire
+    const directoryPath = `./src/picto/`;
+    if (!fs.existsSync(directoryPath)) {
+      fs.mkdirSync(directoryPath, { recursive: true });
+    }
+
     if (fs.existsSync(filePath)) {
       res.status(409).json({ message: 'Le fichier existe déjà' });
     } else {
@@ -210,6 +217,11 @@ app.post('/POST/uploadfondecran', upload.single('file'), async (req: any, res: a
     const newFileName = `${name}.webp`; // Change the file extension to webp
     const filePath = `./src/fond/${newFileName}`;
 
+    const directoryPath = `./src/fond/`;
+    if (!fs.existsSync(directoryPath)) {
+      fs.mkdirSync(directoryPath, { recursive: true });
+    }
+
     // Use sharp to convert the image to WebP format
     await sharp(fileBuffer)
       .toFormat('webp')
@@ -238,16 +250,18 @@ app.post('/POST/uploadpictoEleve', upload.single('file'), async (req: any, res: 
     const fileExtension = originalFileName.split('.').pop();
     const newFileName = `${name}.webp`; // Change the file extension to webp
     const filePath = `./src/piceleve/${newFileName}`;
-    if (fs.existsSync(filePath)) {
-      res.status(409).json({ message: 'Le fichier existe déjà' });
-    } else {
-      // Use sharp to convert the image to WebP format
-      await sharp(fileBuffer)
-        .toFormat('webp')
-        .toFile(filePath);
-      
-      res.status(200).json({ message: 'Image téléchargée avec succès' });
+
+    const directoryPath = `./src/piceleve/`;
+    if (!fs.existsSync(directoryPath)) {
+      fs.mkdirSync(directoryPath, { recursive: true });
     }
+    
+    // Use sharp to convert the image to WebP format
+    await sharp(fileBuffer)
+      .toFormat('webp')
+      .toFile(filePath);
+      
+    res.status(200).json({ message: 'Image téléchargée avec succès' });
   } catch (error) {
     console.error('Erreur lors du téléchargement du fichier:', error);
     res.status(500).json({ error: 'Erreur interne du serveur' });
@@ -286,7 +300,11 @@ app.post('/POST/eleveUpdatePassword', async (req: any, res: any) => {
     if (!eleve) {
       return res.status(404).json({ message: 'Élève non trouvé' });
     }
-    eleve.mdp = mdp;
+
+    if (mdp !== "" || mdp !== null || mdp !== undefined) {
+      eleve.mdp = mdp;
+    }
+
     await eleve.save();
     res.status(200).json({ message: 'Mot de passe mis à jour avec succès' });
     
@@ -357,23 +375,38 @@ app.post('/POST/restorerEleve', async (req: any, res: any) => {
 
 /*AFFECTER UN ELEVE A UNE FICHE=====================================================*/
 
-app.post('/POST/affectereleve', async (req : any, res : any) => {
-  const {nom, prenom, ficheName} = req.body;
-
-  try{
-    const fiche = await Fiche.findOne({ficheName});
-    if (!fiche) {
-      return res.status(404).json({ message: 'Fiche non trouvé' });
+app.post('/POST/affectereleve', async (req: any, res: any) => {
+  const { nom, prenom, ficheName } = req.body;
+  console.log('nom, prenom, ficheName -> ', nom, prenom, ficheName);
+  try {
+    if (!ficheName || !nom || !prenom) {
+      return res.status(500).send('Information manquante');
     }
-    fiche.info.nomEleveAttribuer = nom;
-    fiche.info.prenomEleveAttribuer = prenom;
+
+    const fiche = await Fiche.findOne({ 'info.name': ficheName });
+
+    if (!fiche) {
+      return res.status(404).json({ message: 'Fiche non trouvée' });
+    }
+
+    if (!fiche.info.nomEleveAttribuer) {
+      fiche.info.nomEleveAttribuer = nom;
+    }
+
+    if (!fiche.info.prenomEleveAttribuer) {
+      fiche.info.prenomEleveAttribuer = prenom;
+    }
+
     await fiche.save();
-    res.status(200).json({ message : 'fiche bien attribuer'});
-  } catch(error) {
+
+    console.log('fiche.info --> ', fiche.info);
+
+    res.status(200).json({ message: 'Fiche bien attribuée' });
+  } catch (error) {
     console.error(error);
     res.status(500).json({ message: 'Erreur serveur' });
   }
-})
+});
 
 /*AJOUTER UN ADMIN===============================================================*/
 
@@ -514,7 +547,7 @@ app.get('/GET/allEleveArchiver', async (req: any, res: any) => {
 
 /*GET ELEVE AUTHENTIFICATION =================================================*/
 
-app.get('/GET/eleve/authentification', async (req: any, res : any) => {
+app.get('/GET/eleve/authentification', async (req : any, res : any) => {
   const { nom, prenom , mdp} = req.query;
   try{
     const admin = await EleveModel.findOne({nom,prenom,mdp}).exec();
@@ -528,6 +561,20 @@ app.get('/GET/eleve/authentification', async (req: any, res : any) => {
     res.status(500).json({ success: false, message: 'Internal server error' });
   }
 });
+
+/*GET ELEVE AUTHENTIFICATION =================================================*/
+
+app.get('/GET/eleve/fiche', async (req : any, res : any) => {
+  const {nom, prenom} = req.query;
+  try{
+  const fiche = await Fiche.findOne({ 'info.nomEleveAttribuer': nom , 'info.prenomEleveAttribuer': prenom }).exec();
+  console.log(nom, prenom)
+  res.status(200).json(fiche);
+  } catch (error){
+    console.error('Error during authentication:', error);
+    res.status(500).json({ success: false, message: 'Internal server error' });
+  }
+})
 
 /*GET ADMIN======================================================================*/
 

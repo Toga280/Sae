@@ -8,6 +8,7 @@ function FicheBox8({
   numeroMiniBox,
   infoSelectionChoixMiniBox,
   classNameDiv,
+  versionProf,
 }: any) {
   const [select, setSelect] = useState(false);
   const [numMat, setNumMat] = useState(String);
@@ -20,6 +21,7 @@ function FicheBox8({
         ClassName={""}
         numeroMiniBox={numeroMiniBox[0]}
         infoSelectionChoixMiniBox={infoSelectionChoixMiniBox}
+        versionProf={versionProf}
       />
 
       {select ? (

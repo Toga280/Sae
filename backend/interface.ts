@@ -56,7 +56,6 @@ export interface Admin{
   mdp: string;
   id: string;
   role: string;
-  
 }
 
 export interface Eleve{
