@@ -6,6 +6,7 @@ import FicheBoxTotal from '../../../CreationFiche/FicheBoxTotal'
 function FicheEleve({ nomEleve, prenomEleve, setVoirFicheFalse }: any) {
   const [ficheEnCour, SetFicheEnCour] = useState(String)
   const [ficheTerminee, SetFicheTerminee] = useState<string[]>([])
+  const [aucuneFicheTerminee, setAucuneFicheTerminee] = useState<boolean>(false)
   const [voirFiche, setVoirFiche] = useState(Boolean)
 
   const consulterFicheEnCour = async () => {
@@ -38,7 +39,11 @@ function FicheEleve({ nomEleve, prenomEleve, setVoirFicheFalse }: any) {
         `http://localhost:5000/GET/eleve/FicheCompleted?nom=${nomEleve}&prenom=${prenomEleve}`,
       )
       .then((response) => {
-        SetFicheTerminee(response.data)
+        if (response.data === 'Aucune fiche terminée trouvée') {
+          setAucuneFicheTerminee(true)
+        } else {
+          SetFicheTerminee(response.data)
+        }
       })
       .catch((error) => {
         console.error(
@@ -74,11 +79,15 @@ function FicheEleve({ nomEleve, prenomEleve, setVoirFicheFalse }: any) {
           <p>Fiche en cour</p>
           <div onClick={consulterFicheEnCour}>{ficheEnCour}</div>
           <p>Fiche(s) fini</p>
-          {ficheTerminee.map((ficheTerminee) => (
-            <div onClick={() => consulterFicheTerminee(ficheTerminee)}>
-              {ficheTerminee}
-            </div>
-          ))}
+          {!aucuneFicheTerminee ? (
+            ficheTerminee.map((ficheTerminee) => (
+              <div onClick={() => consulterFicheTerminee(ficheTerminee)}>
+                {ficheTerminee}
+              </div>
+            ))
+          ) : (
+            <p>aucune fiche trouvée</p>
+          )}
           <button
             className="boutton_retour_interaction_edu"
             onClick={setVoirFicheFalse}

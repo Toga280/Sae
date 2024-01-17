@@ -108,6 +108,14 @@ const fonctionsMiniBoxInfoJson: FonctionsMiniBoxInfoJson = {
     }
   },
 
+  modifierInformationSuplementaire: (value) => {
+    MiniBoxInfoJson.info.informationSuplementaire = value
+  },
+
+  getInformationSuplementaire: () => {
+    return MiniBoxInfoJson.informationSuplementaire
+  },
+
   changeEnCourTrue: () => {
     MiniBoxInfoJson.info.enCour = true
   },

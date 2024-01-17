@@ -36,6 +36,8 @@ export interface FonctionsMiniBoxInfoJson {
   modifierInputFiche: (position: number, value: string | boolean) => void
   getInputFiche: (position: number) => string
   getInputFicheCheckbox: (position: number) => boolean
+  modifierInformationSuplementaire: (value: string) => void
+  getInformationSuplementaire: () => string
   changeEnCourTrue: () => void
   changeEnCourFalse: () => void
   getAllJson: () => MiniBox
