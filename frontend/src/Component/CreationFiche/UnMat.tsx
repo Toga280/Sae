@@ -2,7 +2,8 @@ import React, { useState } from "react";
 import "../../style/ficheGlobal.css";
 import "../CreationFiche/unMat.css";
 import fonctionsMiniBoxInfoJson from "./MiniBoxInfoFunction";
-// IMAGES
+
+// IMAGES PLOMBERIE
 const a = require("./imagesFiche/bondelavemain.png");
 const b = require("./imagesFiche/bouchonlaiton.webp");
 const c = require("./imagesFiche/chevilleexpansion.jpg");
@@ -23,7 +24,6 @@ const q = require("./imagesFiche/coudepvc.jpg");
 const r = require("./imagesFiche/faience.jpg");
 const s = require("./imagesFiche/collepoudre.jpg");
 const t = require("./imagesFiche/jointpoudrecarrelage.jpg");
-
 const u = require("./imagesFiche/bouchoncolletbattut.webp");
 const v = require("./imagesFiche/joints.jfif");
 const w = require("./imagesFiche/kitrobinnet.webp");
@@ -73,8 +73,26 @@ const n3 = require("./imagesFiche/vis-ttpc-tete-trompette-platre_vis35025-bte_b5
 const o3 = require("./imagesFiche/vis-ttpc-milieu-humide_vi35035mh_p_pai.jpg");
 const p3 = require("./imagesFiche/vis-ttpc-milieu-humide_vi35035mh_p_pai.jpg");
 const q3 = require("./imagesFiche/annuler.jpg");
-
 const parDefaut = require("./imagesFiche/1.webp");
+
+
+// const fs = require('fs');
+// const path = require('path');
+
+// // Répertoire des images
+// const imageDirectory = './imageFicheElec';
+
+// // Liste des noms de fichiers d'images (vous pouvez obtenir cette liste de différentes manières)
+// const imageFileNames = ['', ''];
+
+// // Obtenir le chemin complet de chaque image
+// const imagePaths = imageFileNames.map(fileName => path.join(imageDirectory, fileName));
+
+// // Importer chaque image
+// const imageObjects = imagePaths.map(imagePath => require(imagePath));
+
+
+
 let img = "";
 
 function UnMat({ mat, numMat, setSelect, image }: any) {

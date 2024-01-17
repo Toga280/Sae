@@ -750,3 +750,13 @@ app.get('/DELETE/fond', async (req: any, res: any) => {
 });
 
 
+/* GET NOMBRE D'ESSAIS ADMIN ===============================================================*/
+app.get('/GET/NombreEssais', async (req: any, res: any) => {
+  try {
+    const admin = await Admin.find({}, "nom prenom").exec();
+    res.json(admin);
+  } catch (error) {
+    console.error(error);
+    res.status(500).json({ message: 'Erreur serveur' });
+  }
+});

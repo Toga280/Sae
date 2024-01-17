@@ -18,21 +18,21 @@ function ConnectionEleveShema({
   const [nombreEssais, setNombreEssais] = useState(0);
   const [password, setPassword] = useState<number[]>([]);
 
-  useEffect(() => {
-    const interval = setInterval(() => {
-      if (time > 0) {
-        setTime(time - 1);
-        setMessage(`Trop d'essais, patientez ${time} secondes`);
-      } else {
-        setBoutonDesactive(false);
-        setTime(30);
-        setMessage("");
-        setNombreEssais(0);
-      }
-    }, 1000);
+  // useEffect(() => {
+  //   const interval = setInterval(() => {
+  //     if (time > 0 && nombreEssais > 2) {
+  //       setTime(time - 1 );
+  //       setMessage(`Trop d'essais, patientez ${time} secondes`);
+  //     } else {
+  //       setBoutonDesactive(false);
+  //       setTime(30);
+  //       setMessage("");
+  //       setNombreEssais(0);
+  //     }
+  //   }, 1000);
 
-    return () => clearInterval(interval);
-  }, [time]);
+  //   return () => clearInterval(interval);
+  // }, [time]);
 
   const Connexion = (event: React.FormEvent) => {
     event.preventDefault();
@@ -61,15 +61,9 @@ function ConnectionEleveShema({
           console.error("Erreur lors de la requête :", error);
         }
       });
-
+    // RESETPASSWORD
     if (mdpFaux) {
-      // alert("Mot de passe incorrect");
       setPassword([]);
-      setNombreEssais(nombreEssais + 1);
-
-      if (nombreEssais >= 2) {
-        setBoutonDesactive(true);
-      }
     }
   };
 
