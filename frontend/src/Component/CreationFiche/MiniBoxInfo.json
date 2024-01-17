@@ -1,6 +1,9 @@
 {
   "info": {
-    "name": ""
+    "name": "",
+    "nomEleveAttribuer": "",
+    "prenomEleveAttribuer": "",
+    "enCour": true
   },
   "AllMiniBox": {
     "MiniBox1": {
@@ -246,5 +249,26 @@
     "Mat8": "Matériel n°8",
     "Mat9": "Matériel n°9",
     "Mat10": "Matériel n°10"
+  },
+  "InputFiche": {
+    "input1": "",
+    "input2": "",
+    "input3": "",
+    "input4": "",
+    "input5": "",
+    "input6": "",
+    "input7": "",
+    "input8": "",
+    "input9": "",
+    "input10": false,
+    "input11": false,
+    "input12": false,
+    "input13": false,
+    "input14": false,
+    "input15": false,
+    "input16": false,
+    "input17": "",
+    "input18": "",
+    "input19": false
   }
 }

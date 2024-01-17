@@ -1,36 +1,71 @@
-import React, { useState } from "react";
-import "./pageEspaceEleve.css";
-import FicheBoxTotal from "../CreationFiche/FicheBoxTotal";
-import axios from "axios";
-import fonctionsMiniBoxInfoJson from "../CreationFiche/MiniBoxInfoFunction";
+import React, { useEffect, useState } from 'react'
+import './pageEspaceEleve.css'
+import FicheBoxTotal from '../CreationFiche/FicheBoxTotal'
+import axios from 'axios'
+import fonctionsMiniBoxInfoJson from '../CreationFiche/MiniBoxInfoFunction'
 
-function PageEspaceEleve({ redirection, nomEleve, prenomEleve }: any) {
-  const [seeMaFiche, setSeeMaFiche] = useState(Boolean);
+function PageEspaceEleve({ redirection, nomEleve, prenomEleve, eleve }: any) {
+  const [fondEcranUrl, setFondEcranUrl] = useState<string | null>(null)
+  const [seeMaFiche, setSeeMaFiche] = useState(Boolean)
+  const [pasDeFicheEnCour, setPasDeFicheEnCour] = useState<boolean>(false)
+
+  useEffect(() => {
+    // Appeler la requête pour récupérer l'image du fond d'écran
+    axios
+      .get('http://localhost:5000/GET/fondecran', {
+        params: {
+          name: eleve,
+        },
+        responseType: 'arraybuffer',
+      })
+      .then((response) => {
+        const base64 = btoa(
+          new Uint8Array(response.data).reduce(
+            (data, byte) => data + String.fromCharCode(byte),
+            '',
+          ),
+        )
+        const url = `data:${response.headers[
+          'content-type'
+        ].toLowerCase()};base64,${base64}`
+        setFondEcranUrl(url)
+      })
+      .catch((error) => console.error(error))
+  }, [])
 
   const setRedirectionThriteen = () => {
-    redirection(13);
-  };
+    redirection(13)
+  }
 
   const setMaFiche = () => {
     axios
       .get(
         `http://localhost:5000/GET/eleve/fiche?nom=${encodeURIComponent(
-          nomEleve
-        )}&prenom=${encodeURIComponent(prenomEleve)}`
+          nomEleve,
+        )}&prenom=${encodeURIComponent(prenomEleve)}`,
       )
       .then((response) => {
-        console.log(response.data);
-        fonctionsMiniBoxInfoJson.setNewJson(response.data);
+        console.log(response.data)
+        if (response.data) {
+          fonctionsMiniBoxInfoJson.setNewJson(response.data)
+          setSeeMaFiche(true)
+        } else {
+          setPasDeFicheEnCour(true)
+        }
       })
       .catch((error) => {
-        console.error("Erreur lors de la requête vers le serveur :", error);
-      });
-    console.log();
-    setSeeMaFiche(true);
-  };
+        console.error('Erreur lors de la requête vers le serveur :', error)
+      })
+  }
 
   return (
-    <div>
+    <div
+      style={{
+        backgroundImage: `url(${fondEcranUrl})`,
+        backgroundSize: 'cover',
+        height: '100vh',
+      }}
+    >
       {!seeMaFiche ? (
         <div>
           <button
@@ -40,10 +75,11 @@ function PageEspaceEleve({ redirection, nomEleve, prenomEleve }: any) {
             Se déconnecter
           </button>
           <img
-            src={require("./icon_reglage.webp")}
+            src={require('./icon_reglage.webp')}
             alt="reglage-icon"
             className="reglage-icon"
-            style={{ width: "40px", height: "40px", cursor: "pointer" }}
+            style={{ width: '40px', height: '40px', cursor: 'pointer' }}
+            onClick={() => redirection(16)}
           />
           <div className="global_bouton_interface_élève">
             <p className="txt_espace_élève">Espace élève</p>
@@ -69,12 +105,13 @@ function PageEspaceEleve({ redirection, nomEleve, prenomEleve }: any) {
               </button>
             </div>
           </div>
+          {pasDeFicheEnCour ? <p>pas de fiche en cour</p> : null}
         </div>
       ) : (
         <FicheBoxTotal versionProf={false} redirection={setSeeMaFiche} />
       )}
     </div>
-  );
+  )
 }
 
-export default PageEspaceEleve;
+export default PageEspaceEleve
