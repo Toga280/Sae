@@ -98,24 +98,41 @@ const u4 = require("./imageFicheElec/21.jpg");
 const v4 = require("./imageFicheElec/22.webp");
 const w4 = require("./imageFicheElec/23.jpg");
 
+const a5 = require("./imageFicheFinition/1.jpg");
+const b5 = require("./imageFicheFinition/2.jpg");
+const c5 = require("./imageFicheFinition/3.jpg");
+const d5 = require("./imageFicheFinition/4.jpg");
+const e5 = require("./imageFicheFinition/5.jpeg");
+const f5 = require("./imageFicheFinition/6.png");
+const g5 = require("./imageFicheFinition/7.webp");
+const h5 = require("./imageFicheFinition/8.webp");
+const i5 = require("./imageFicheFinition/9.jpg");
+const j5 = require("./imageFicheFinition/10.jpg");
+const k5 = require("./imageFicheFinition/11.jpg");
+const l5 = require("./imageFicheFinition/12.jpg");
+const m5 = require("./imageFicheFinition/13.jpg");
+const n5 = require("./imageFicheFinition/14.webp");
+const o5 = require("./imageFicheFinition/15.jpeg");
+const p5 = require("./imageFicheFinition/16.jpg");
+const q5 = require("./imageFicheFinition/17.webp");
+const r5 = require("./imageFicheFinition/18.jpg");
+const s5 = require("./imageFicheFinition/19.jpg");
+const t5 = require("./imageFicheFinition/20.webp");
+const u5 = require("./imageFicheFinition/21.webp");
+const v5 = require("./imageFicheFinition/22.webp");
+const w5 = require("./imageFicheFinition/23.webp");
+const x5 = require("./imageFicheFinition/24.webp");
+const y5 = require("./imageFicheFinition/25.jpeg");
+const z5 = require("./imageFicheFinition/26.jpg");
+const a6 = require("./imageFicheFinition/27.jpg");
+const b6 = require("./imageFicheFinition/28.jpg");
+const c6 = require("./imageFicheFinition/29.jpg");
+const d6 = require("./imageFicheFinition/30.jpg");
+const e6 = require("./imageFicheFinition/31.jpeg");
+const f6 = require("./imageFicheFinition/32.png");
+const g6 = require("./imageFicheFinition/33.webp");
+
 const parDefaut = require("./imagesFiche/1.webp");
-
-
-// const fs = require('fs');
-// const path = require('path');
-
-// // Répertoire des images
-// const imageDirectory = './imageFicheElec';
-
-// // Liste des noms de fichiers d'images (vous pouvez obtenir cette liste de différentes manières)
-// const imageFileNames = ['', ''];
-
-// // Obtenir le chemin complet de chaque image
-// const imagePaths = imageFileNames.map(fileName => path.join(imageDirectory, fileName));
-
-// // Importer chaque image
-// const imageObjects = imagePaths.map(imagePath => require(imagePath));
-
 
 
 let img = "";
@@ -123,6 +140,7 @@ let img = "";
 function UnMat({ mat, numMat, setSelect, image }: any) {
   
   switch (image) {
+    //FICHE PLOMBERIE
     case 0: img = a; break;
     case 1: img = b; break;
     case 2:img = c;break;
@@ -192,7 +210,7 @@ function UnMat({ mat, numMat, setSelect, image }: any) {
     case 66: img = o3; break;
     case 67: img = p3; break;
     case 68: img = q3; break;
-    
+    // FICHE ELECTRICITE
     case 70: img = a4; break;
     case 71: img = b4; break;
     case 72: img = c4; break;
@@ -216,6 +234,41 @@ function UnMat({ mat, numMat, setSelect, image }: any) {
     case 90: img = u4; break;
     case 91: img = v4; break;
     case 92: img = w4; break;
+    // FICHE FINITION
+    case 100: img = a5; break;
+    case 101: img = b5; break;
+    case 102: img = c5; break;
+    case 103: img = d5; break;
+    case 104: img = e5; break;
+    case 105: img = f5; break;
+    case 106: img = g5; break;
+    case 107: img = h5; break;
+    case 108: img = i5; break;
+    case 109: img = j5; break;
+    case 110: img = k5; break;
+    case 111: img = l5; break;
+    case 112: img = m5; break;
+    case 113: img = n5; break;
+    case 114: img = o5; break;
+    case 115: img = p5; break;
+    case 116: img = q5; break;
+    case 117: img = r5; break;
+    case 118: img = s5; break;
+    case 119: img = t5; break;
+    case 120: img = u5; break;
+    case 121: img = v5; break;
+    case 122: img = w5; break;
+    case 123: img = x5; break;
+    case 124: img = y5; break;
+    case 125: img = z5; break;
+    case 126: img = a6; break;
+    case 127: img = b6; break;
+    case 128: img = c6; break;
+    case 129: img = d6; break;
+    case 130: img = e6; break;
+    case 131: img = f6; break;
+    case 132: img = g6; break;
+
 
     default:
       img = parDefaut;
