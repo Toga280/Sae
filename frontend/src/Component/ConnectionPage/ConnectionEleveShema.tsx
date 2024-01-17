@@ -20,8 +20,13 @@ function ConnectionEleveShema({
 
   // useEffect(() => {
   //   const interval = setInterval(() => {
+<<<<<<< HEAD
   //     if (time > 0 && nombreEssais > 2) {
   //       setTime(time - 1 );
+=======
+  //     if (time > 0) {
+  //       setTime(time - 1);
+>>>>>>> 70ddda5d33f0ff3f50d121da4f99fd796551ce3f
   //       setMessage(`Trop d'essais, patientez ${time} secondes`);
   //     } else {
   //       setBoutonDesactive(false);

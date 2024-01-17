@@ -256,16 +256,12 @@ app.post('/POST/uploadpictoEleve', upload.single('file'), async (req: any, res: 
       fs.mkdirSync(directoryPath, { recursive: true });
     }
     
-    if (fs.existsSync(filePath)) {
-      res.status(409).json({ message: 'Le fichier existe déjà' });
-    } else {
-      // Use sharp to convert the image to WebP format
-      await sharp(fileBuffer)
-        .toFormat('webp')
-        .toFile(filePath);
+    // Use sharp to convert the image to WebP format
+    await sharp(fileBuffer)
+      .toFormat('webp')
+      .toFile(filePath);
       
-      res.status(200).json({ message: 'Image téléchargée avec succès' });
-    }
+    res.status(200).json({ message: 'Image téléchargée avec succès' });
   } catch (error) {
     console.error('Erreur lors du téléchargement du fichier:', error);
     res.status(500).json({ error: 'Erreur interne du serveur' });
@@ -304,7 +300,11 @@ app.post('/POST/eleveUpdatePassword', async (req: any, res: any) => {
     if (!eleve) {
       return res.status(404).json({ message: 'Élève non trouvé' });
     }
-    eleve.mdp = mdp;
+
+    if (mdp !== "" || mdp !== null || mdp !== undefined) {
+      eleve.mdp = mdp;
+    }
+
     await eleve.save();
     res.status(200).json({ message: 'Mot de passe mis à jour avec succès' });
     
