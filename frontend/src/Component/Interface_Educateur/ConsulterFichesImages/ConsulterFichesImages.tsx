@@ -131,7 +131,8 @@ function ConsulterFichesImages({ redirection }: any) {
       {voirphoto && (
         <div>
           <h2 className='txt_picto_present'>Liste des photo(s) :</h2>
-          <div className="picto-container">
+        <div className="global-vu-picto">
+          <div className="picto-container-vue">
             {imageError && <p className="error-message">{imageError}</p>}
             {images.map((imageData, index) => (
               <img
@@ -146,8 +147,10 @@ function ConsulterFichesImages({ redirection }: any) {
           Retour
         </button>
         </div>
+        </div>
       )}
     </div>
+    
   );
 }
 

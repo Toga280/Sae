@@ -148,7 +148,7 @@ function ModifierMdpEleve({ redirection }: any) {
     <div>
       <div className="global_modif_mdp_eleve">
         <h1 className="titre_modif_mdp_eleve">
-          Modifier le mot de passe d'un élève
+          Modifier les informations d'un élève
         </h1>
         <div className="general_login">
         {eleves.map((eleve, index) => (
@@ -175,12 +175,16 @@ function ModifierMdpEleve({ redirection }: any) {
                   onChange={handleInputModifMdp}
                 />
                 <p>Nouvelle photo de profil :</p>
-                <input
-                  type="file"
-                  id="fileInput"
-                  accept="image/*"
-                  onChange={handleFileChange}
-                />
+                <label htmlFor="fileInput" className={`custom-file-upload`}>
+                  {selectedFile ? `Fichier sélectionné: ${selectedFile.name}` : 'Choisir une photo'}
+                  <input
+                    type="file"
+                    id="fileInput"
+                    accept="image/*"
+                    onChange={handleFileChange}
+                    style={{ display: 'none' }}
+                  />
+              </label>
                 <button className="bouton_valider" onClick={sauvegarde}>
                   Valider
                 </button>
