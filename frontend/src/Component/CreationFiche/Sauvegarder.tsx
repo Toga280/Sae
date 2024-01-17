@@ -112,7 +112,7 @@ function Sauvegarder({ redirection, setSaveName }: any) {
               <h2 className="titleCommentaire">Commentaire</h2>
               <textarea
                 className="input_commenter_ficheBox"
-                placeholder="Commentaire"
+                placeholder="Informations supplémentaires"
               />
             </div>
 
