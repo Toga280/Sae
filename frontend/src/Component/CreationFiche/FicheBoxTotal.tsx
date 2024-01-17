@@ -11,12 +11,19 @@ import fonctionsMiniBoxInfoJson from "./MiniBoxInfoFunction";
 import { imprimerPage } from "../FonctionEleve/Imprimer";
 import "./imprimerFiche.css";
 
-function FicheBoxTotal({ onSelectBox, redirection, setSaveName }: any) {
+function FicheBoxTotal({
+  onSelectBox,
+  redirection,
+  setSaveName,
+  versionProf,
+  forceRefreshFiche,
+}: any) {
   const [numBox, setNumBox] = useState(0);
-  const [forceRefresh, setForceRefresh] = useState(false);
   const handleClick = (numero: number) => {
-    setNumBox(numero);
-    fonctionsMiniBoxInfoJson.allIsSelectedMiniBoxFalse();
+    if (versionProf) {
+      setNumBox(numero);
+      fonctionsMiniBoxInfoJson.allIsSelectedMiniBoxFalse();
+    }
   };
 
   const consoleLogJson = () => {
@@ -24,7 +31,17 @@ function FicheBoxTotal({ onSelectBox, redirection, setSaveName }: any) {
   };
 
   const Sauvegarder = () => {
-    setSaveName(true);
+    if (versionProf) {
+      setSaveName(true);
+    }
+  };
+
+  const retour = () => {
+    if (versionProf) {
+      redirection(2);
+    } else if (!versionProf) {
+      redirection(false);
+    }
   };
 
   const infoSelectionChoixMiniBox = (
@@ -36,17 +53,16 @@ function FicheBoxTotal({ onSelectBox, redirection, setSaveName }: any) {
     if (numBox !== 0) {
       onSelectBox(numBox);
     }
-  }, [numBox, onSelectBox]);
-
-  useEffect(() => {
-    setForceRefresh(true);
-  }, [forceRefresh]);
+    console.log(forceRefreshFiche);
+  }, [numBox, onSelectBox, forceRefreshFiche]);
 
   return (
     <div>
       <div onClick={() => handleClick(1)}>
         <FicheBox1
           classNameDiv={"Box"}
+          versionProf={versionProf}
+          nomfiche={fonctionsMiniBoxInfoJson.getNom()}
         />
       </div>
       <div onClick={() => handleClick(2)}>
@@ -54,6 +70,7 @@ function FicheBoxTotal({ onSelectBox, redirection, setSaveName }: any) {
           numeroMiniBox={[1, 2]}
           infoSelectionChoixMiniBox={infoSelectionChoixMiniBox}
           classNameDiv={"Box"}
+          versionProf={versionProf}
         />
       </div>
       <div onClick={() => handleClick(3)}>
@@ -61,6 +78,7 @@ function FicheBoxTotal({ onSelectBox, redirection, setSaveName }: any) {
           numeroMiniBox={[3, 4, 5, 6, 7]}
           infoSelectionChoixMiniBox={infoSelectionChoixMiniBox}
           classNameDiv={"Box"}
+          versionProf={versionProf}
         />
       </div>
       <div onClick={() => handleClick(4)}>
@@ -68,6 +86,7 @@ function FicheBoxTotal({ onSelectBox, redirection, setSaveName }: any) {
           numeroMiniBox={[8, 9]}
           infoSelectionChoixMiniBox={infoSelectionChoixMiniBox}
           classNameDiv={"Box"}
+          versionProf={versionProf}
         />
       </div>
       <div onClick={() => handleClick(5)}>
@@ -75,6 +94,7 @@ function FicheBoxTotal({ onSelectBox, redirection, setSaveName }: any) {
           numeroMiniBox={[10, 11, 12]}
           infoSelectionChoixMiniBox={infoSelectionChoixMiniBox}
           classNameDiv={"Box"}
+          versionProf={versionProf}
         />
       </div>
       <div onClick={() => handleClick(6)}>
@@ -82,6 +102,7 @@ function FicheBoxTotal({ onSelectBox, redirection, setSaveName }: any) {
           numeroMiniBox={[13, 14, 15, 16]}
           infoSelectionChoixMiniBox={infoSelectionChoixMiniBox}
           classNameDiv={"Box"}
+          versionProf={versionProf}
         />
       </div>
       <div onClick={() => handleClick(7)}>
@@ -89,6 +110,7 @@ function FicheBoxTotal({ onSelectBox, redirection, setSaveName }: any) {
           numeroMiniBox={[17, 18, 19]}
           infoSelectionChoixMiniBox={infoSelectionChoixMiniBox}
           classNameDiv={"Box"}
+          versionProf={versionProf}
         />
       </div>
       <div onClick={() => handleClick(8)}>
@@ -96,13 +118,11 @@ function FicheBoxTotal({ onSelectBox, redirection, setSaveName }: any) {
           numeroMiniBox={[20]}
           infoSelectionChoixMiniBox={infoSelectionChoixMiniBox}
           classNameDiv={"Box"}
+          versionProf={versionProf}
         />
       </div>
       <button onClick={consoleLogJson}>return log json</button>
-      <button
-        className="boutton_retour_interaction_edu"
-        onClick={() => redirection(2)}
-      >
+      <button className="boutton_retour_interaction_edu" onClick={retour}>
         Retour
       </button>
       <button
@@ -111,13 +131,21 @@ function FicheBoxTotal({ onSelectBox, redirection, setSaveName }: any) {
       >
         Sauvegarder
       </button>
-      {/* <button className="boutton_brouillon_interaction_edu">Brouillons</button> */}
-      <button
-        className="boutton_sauvegarder_interaction_edu"
-        onClick={imprimerPage}
-      >
-        imprimer
-      </button>
+
+      {!versionProf ? (
+        <button className="boutton_brouillon_interaction_edu">
+          Brouillons
+        </button>
+      ) : null}
+
+      {versionProf ? (
+        <button
+          className="boutton_sauvegarder_interaction_edu"
+          onClick={imprimerPage}
+        >
+          imprimer
+        </button>
+      ) : null}
     </div>
   );
 }

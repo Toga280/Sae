@@ -6,6 +6,7 @@ function FicheBox7({
   numeroMiniBox,
   infoSelectionChoixMiniBox,
   classNameDiv,
+  versionProf,
 }: any) {
   return (
     <div className={classNameDiv}>
@@ -16,6 +17,7 @@ function FicheBox7({
           ClassName={"txt_travaux_realises"}
           numeroMiniBox={numeroMiniBox[0]}
           infoSelectionChoixMiniBox={infoSelectionChoixMiniBox}
+          versionProf={versionProf}
         />
         <textarea rows={10} className="descdmd"></textarea>
       </div>
@@ -27,6 +29,7 @@ function FicheBox7({
             ClassName={"txt_travaux_non_realises"}
             numeroMiniBox={numeroMiniBox[1]}
             infoSelectionChoixMiniBox={infoSelectionChoixMiniBox}
+            versionProf={versionProf}
           />
           <div>
             <textarea rows={10} className="descdmd"></textarea>
@@ -43,6 +46,7 @@ function FicheBox7({
           ClassName={""}
           numeroMiniBox={numeroMiniBox[2]}
           infoSelectionChoixMiniBox={infoSelectionChoixMiniBox}
+          versionProf={versionProf}
         />
       </div>
     </div>
