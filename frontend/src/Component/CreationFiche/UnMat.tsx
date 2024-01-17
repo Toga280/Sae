@@ -128,9 +128,9 @@ const a6 = require("./imageFicheFinition/27.jpg");
 const b6 = require("./imageFicheFinition/28.jpg");
 const c6 = require("./imageFicheFinition/29.jpg");
 const d6 = require("./imageFicheFinition/30.jpg");
-const e6 = require("./imageFicheFinition/31.jpeg");
-const f6 = require("./imageFicheFinition/32.png");
-const g6 = require("./imageFicheFinition/33.webp");
+const e6 = require("./imageFicheFinition/31.jpg");
+const f6 = require("./imageFicheFinition/32.jpg");
+const g6 = require("./imageFicheFinition/33.jpg");
 
 const parDefaut = require("./imagesFiche/1.webp");
 
