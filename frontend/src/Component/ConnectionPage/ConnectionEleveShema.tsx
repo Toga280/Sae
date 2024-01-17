@@ -61,15 +61,9 @@ function ConnectionEleveShema({
           console.error("Erreur lors de la requête :", error);
         }
       });
-
+    // RESETPASSWORD
     if (mdpFaux) {
-      // alert("Mot de passe incorrect");
       setPassword([]);
-      setNombreEssais(nombreEssais + 1);
-
-      if (nombreEssais >= 2) {
-        setBoutonDesactive(true);
-      }
     }
   };
 

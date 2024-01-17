@@ -64,7 +64,7 @@ export interface Eleve{
   image: string,
   mdp: string,
   archiver: boolean,
-  wallpaper: string
+  wallpaper: string,
 }
 
 export interface Materiel {
