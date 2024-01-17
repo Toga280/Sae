@@ -133,3 +133,22 @@
   .Sauevgarder_global_fiche_ecraser{
     margin-top: 2em;
   }
+
+  .boutton_type_ficheBox {
+    background-color: #5c7081;
+    margin: 0.2em;
+    color: #fff;
+    border: none;
+    margin-top: 1em;
+    padding: 10px 2em;
+    font-size: 16px;
+    cursor: pointer;
+    border-radius: 4px;
+}
+
+.boutton_type_ficheBox:focus {
+    background-color: green;
+    outline: none; /* Pour enlever la bordure bleue */
+}
+
+  

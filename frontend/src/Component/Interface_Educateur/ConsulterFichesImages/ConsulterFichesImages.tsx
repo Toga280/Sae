@@ -159,26 +159,28 @@ function ConsulterFichesImages({ redirection }: any) {
 
       {voirphoto && (
         <div>
-          <h2 className="txt_picto_present">Liste des photo :</h2>
-          <div className="picto-container">
-            {imageError && <p className="error-message">{imageError}</p>}
-            {images.map((imageData, index) => (
-              <img
-                key={index}
-                src={`data:image/webp;base64,${btoa(
-                  new Uint8Array(imageData).reduce(
-                    (data, byte) => data + String.fromCharCode(byte),
-                    '',
-                  ),
-                )}`}
-                alt={`Pictogramme ${index}`}
-                style={{ maxWidth: '200px', maxHeight: '200px' }}
-              />
-            ))}
+          <h2 className="txt_picto_present">Liste des photo(s) :</h2>
+          <div className="global-vu-picto">
+            <div className="picto-container-vue">
+              {imageError && <p className="error-message">{imageError}</p>}
+              {images.map((imageData, index) => (
+                <img
+                  key={index}
+                  src={`data:image/webp;base64,${btoa(
+                    new Uint8Array(imageData).reduce(
+                      (data, byte) => data + String.fromCharCode(byte),
+                      '',
+                    ),
+                  )}`}
+                  alt={`Pictogramme ${index}`}
+                  style={{ maxWidth: '200px', maxHeight: '200px' }}
+                />
+              ))}
+            </div>
+            <button className="retour" onClick={handleVoirPhotofalse}>
+              Retour
+            </button>
           </div>
-          <button className="retour" onClick={handleVoirPhotofalse}>
-            Retour
-          </button>
         </div>
       )}
       {voirFiche ? (

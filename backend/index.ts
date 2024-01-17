@@ -224,6 +224,13 @@ app.post(
       const fileExtension = originalFileName.split('.').pop()
       const newFileName = `${name}.webp` // Change the file extension to webp
       const filePath = `./src/picto/${newFileName}`
+
+      // Créer récursivement le répertoire parent si nécessaire
+      const directoryPath = `./src/picto/`
+      if (!fs.existsSync(directoryPath)) {
+        fs.mkdirSync(directoryPath, { recursive: true })
+      }
+
       if (fs.existsSync(filePath)) {
         res.status(409).json({ message: 'Le fichier existe déjà' })
       } else {
@@ -238,7 +245,6 @@ app.post(
     }
   },
 )
-
 /* upload fond ecran elelve======================================================*/
 
 app.post(
@@ -260,6 +266,11 @@ app.post(
       const fileExtension = originalFileName.split('.').pop()
       const newFileName = `${name}.webp` // Change the file extension to webp
       const filePath = `./src/fond/${newFileName}`
+
+      const directoryPath = `./src/fond/`
+      if (!fs.existsSync(directoryPath)) {
+        fs.mkdirSync(directoryPath, { recursive: true })
+      }
 
       // Use sharp to convert the image to WebP format
       await sharp(fileBuffer).toFormat('webp').toFile(filePath)
@@ -293,14 +304,16 @@ app.post(
       const fileExtension = originalFileName.split('.').pop()
       const newFileName = `${name}.webp` // Change the file extension to webp
       const filePath = `./src/piceleve/${newFileName}`
-      if (fs.existsSync(filePath)) {
-        res.status(409).json({ message: 'Le fichier existe déjà' })
-      } else {
-        // Use sharp to convert the image to WebP format
-        await sharp(fileBuffer).toFormat('webp').toFile(filePath)
 
-        res.status(200).json({ message: 'Image téléchargée avec succès' })
+      const directoryPath = `./src/piceleve/`
+      if (!fs.existsSync(directoryPath)) {
+        fs.mkdirSync(directoryPath, { recursive: true })
       }
+
+      // Use sharp to convert the image to WebP format
+      await sharp(fileBuffer).toFormat('webp').toFile(filePath)
+
+      res.status(200).json({ message: 'Image téléchargée avec succès' })
     } catch (error) {
       console.error('Erreur lors du téléchargement du fichier:', error)
       res.status(500).json({ error: 'Erreur interne du serveur' })
@@ -344,7 +357,11 @@ app.post('/POST/eleveUpdatePassword', async (req: any, res: any) => {
     if (!eleve) {
       return res.status(404).json({ message: 'Élève non trouvé' })
     }
-    eleve.mdp = mdp
+
+    if (mdp !== '' || mdp !== null || mdp !== undefined) {
+      eleve.mdp = mdp
+    }
+
     await eleve.save()
     res.status(200).json({ message: 'Mot de passe mis à jour avec succès' })
   } catch (error) {
@@ -905,5 +922,16 @@ app.get('/DELETE/fond', async (req: any, res: any) => {
   } catch (error) {
     console.error('Error deleting the file:', error)
     res.status(500).send('Internal server error')
+  }
+})
+
+/* GET NOMBRE D'ESSAIS ADMIN ===============================================================*/
+app.get('/GET/NombreEssais', async (req: any, res: any) => {
+  try {
+    const admin = await Admin.find({}, 'nom prenom').exec()
+    res.json(admin)
+  } catch (error) {
+    console.error(error)
+    res.status(500).json({ message: 'Erreur serveur' })
   }
 })

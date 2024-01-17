@@ -11,7 +11,7 @@ function SelectsAffichage({ setSelect, setNumMat }: any) {
   const value = (nMateriel: string): string => {
     return fonctionsMiniBoxInfoJson.getMateriel(nMateriel);
   };
-
+  
   return (
     <div className="lesSelect">
       <div className="mat" onClick={() => setSelectTrue("Mat1")}> {value("Mat1")} </div>

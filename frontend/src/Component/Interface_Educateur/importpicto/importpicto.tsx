@@ -53,6 +53,8 @@ const ImportPicto = ({ redirection }: any): JSX.Element => {
     } catch (error) {
       console.error('Error in handleUpload:', error);
     }
+    redirection(2);
+    redirection(10);
   };
 
   useEffect(() => {

@@ -121,3 +121,31 @@ button.custom_affecter_fiche_eleve:hover {
   border: none;
   cursor:pointer;
 }
+
+.global-vu-picto{
+  justify-content: center;
+  text-align: center;
+}
+
+
+.global-vu-picto {
+  width: 70%;
+  margin: 0 auto; /* Pour centrer horizontalement */
+  padding: 20px;
+  border: 1px solid #ccc;
+  border-radius: 10px;
+  background-color: #fff;
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+}
+
+.txt_picto_present {
+  text-align: center;
+  font-size: 1.5rem;
+  margin-bottom: 10px;
+}
+
+.error-message {
+  color: #ff0000;
+  font-weight: bold;
+}
+

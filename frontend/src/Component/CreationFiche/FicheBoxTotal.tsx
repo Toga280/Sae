@@ -107,7 +107,11 @@ function FicheBoxTotal({
   return (
     <div>
       <div onClick={() => handleClick(1)}>
-        <FicheBox1 classNameDiv={'Box'} versionProf={versionProf} />
+        <FicheBox1
+          classNameDiv={'Box'}
+          versionProf={versionProf}
+          nomfiche={fonctionsMiniBoxInfoJson.getNom()}
+        />
       </div>
       <div onClick={() => handleClick(2)}>
         <FicheBox2
