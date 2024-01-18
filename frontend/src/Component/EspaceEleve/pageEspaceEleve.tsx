@@ -128,7 +128,7 @@ function PageEspaceEleve({ redirection, nomEleve, prenomEleve, eleve }: any) {
                 value="ma Fiche"
                 onClick={setMaFiche}
               >
-                Ma Fiche
+                Ma fiche
               </button>
               <button
                 className="bouton_interface_eleve"

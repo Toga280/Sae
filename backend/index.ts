@@ -46,7 +46,7 @@ const miniBoxSchema = new Schema<MiniBox>(
 
 const ficheSchema = new Schema<FicheDocument>({
   info: {
-    name: { type: String },
+    name: { type: String, required: true },
     nomEleveAttribuer: { type: String },
     prenomEleveAttribuer: { type: String },
     enCour: { type: Boolean },
@@ -501,15 +501,28 @@ app.post('/POST/affectereleve', async (req: any, res: any) => {
       fiche.info.nomEleveAttribuer = nom
       fiche.info.prenomEleveAttribuer = prenom
       fiche.info.enCour = true
+    } else if (
+      fiche.info.nomEleveAttribuer === nom &&
+      fiche.info.prenomEleveAttribuer === prenom
+    ) {
+      return res.status(501).json({
+        success: false,
+        message:
+          'La fiche est déjà affectée à ' +
+          fiche.info.prenomEleveAttribuer +
+          ' ' +
+          fiche.info.nomEleveAttribuer +
+          '. il doit finir sa fiche précédente pour pouvoir lui en affecter une nouvelle',
+      })
     } else {
       return res.status(501).json({
         success: false,
         message:
-          'La fiche est déjà affecter a ' +
+          'La fiche est déjà affectée à ' +
           fiche.info.prenomEleveAttribuer +
           ' ' +
           fiche.info.nomEleveAttribuer +
-          '. Il doit finir sa fiche précendente pour pouvoir lui en affecter une nouvelle.',
+          ". elle ne peut pas être affectée à quelqu'un d'autre",
       })
     }
 
@@ -582,6 +595,11 @@ app.post('/POST/ficheUpdateName', async (req: any, res: any) => {
     if (!fiche) {
       return res.status(404).json({ message: 'Fiche non trouvée' })
     }
+    if (newName === '') {
+      return res
+        .status(404)
+        .json({ message: 'Le nom de la fiche ne peut pas être vide' })
+    }
 
     fiche.info.name = newName
     await fiche.save()
@@ -604,6 +622,11 @@ app.post('/POST/ficheDuplicate', async (req: any, res: any) => {
       return res.status(404).json({ message: 'Fiche non trouvée' })
     }
 
+    if (name === '') {
+      return res
+        .status(404)
+        .json({ message: 'Le nom de la fiche ne peut pas être vide' })
+    }
     // Créer une copie de l'objet sans le champ _id
     const { _id, ...ficheWithoutId } = fiche
     fiche.info.nomEleveAttribuer = ''
@@ -984,6 +1007,35 @@ app.get('/GET/fondecran', async (req: any, res: any) => {
     }
   } catch (error) {
     console.error('Erreur lors de la récupération du fichier image :', error)
+    res.status(500).send('Erreur interne du serveur')
+  }
+})
+
+/* get eleve affecter a fiche ===============================================================*/
+
+app.get('/GET/eleveAffecter', async (req: any, res: any) => {
+  const { ficheName } = req.query
+  console.log('ficheName -> ', ficheName)
+  try {
+    console.log('CPT 1')
+    const fiche = await Fiche.findOne({ 'info.name': ficheName }).exec()
+    console.log('CPT 2')
+    if (!fiche) {
+      return res.status(404).send('Fiche non trouvée')
+    }
+    console.log('CPT 3')
+    if (!fiche.info.nomEleveAttribuer && !fiche.info.prenomEleveAttribuer) {
+      return res.status(200).send('personne')
+    }
+    console.log('CPT 4')
+
+    // Formattez la réponse comme une chaîne de caractères
+    const eleveAffecteString = `${fiche.info.nomEleveAttribuer} ${fiche.info.prenomEleveAttribuer}`
+
+    console.log('CPT 5')
+    return res.status(200).send(eleveAffecteString)
+  } catch (error) {
+    console.error('Erreur lors de la recherche de la fiche :', error)
     res.status(500).send('Erreur interne du serveur')
   }
 })

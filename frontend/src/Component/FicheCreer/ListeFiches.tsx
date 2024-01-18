@@ -5,12 +5,16 @@ import fonctionsMiniBoxInfoJson from "../CreationFiche/MiniBoxInfoFunction";
 import AffecterListe from "./AffecterListe";
 
 function ListeFiches({ redirection, refreshFiche }: any) {
-  const [FichesNames, setFichesNames] = useState([]);
-  const [affichageAffecterListe, setAffichageAffecterListe] = useState(Boolean);
-  const [nomFicheSelectionner, setNomFicheSelectionner] = useState(String);
+  const [FichesNames, setFichesNames] = useState<string[]>([]);
+  const [affichageAffecterListe, setAffichageAffecterListe] = useState(false);
+  const [nomFicheSelectionner, setNomFicheSelectionner] = useState("");
+  const [eleveAffecte, setEleveAffecte] = useState<Record<string, string | undefined>>({});
+  const [ficheexiste, setFicheexiste] = useState(false);
+
   const setAffichageAffecterListeFalse = () => {
     setAffichageAffecterListe(false);
   };
+
   const deleteFiche = (nomFiche: string) => {
     const confirmation = window.confirm(
       `Êtes-vous sûr de vouloir supprimer cette fiche ${nomFiche} ?`
@@ -26,7 +30,9 @@ function ListeFiches({ redirection, refreshFiche }: any) {
         .then((response) => {
           if (response.data) {
             console.log("fiche supprimée avec succès");
-            allFicheNames();
+            setFichesNames((prevFiches) =>
+              prevFiches.filter((fiche) => fiche !== nomFiche)
+            );
           }
         })
         .catch((error) => {
@@ -36,52 +42,89 @@ function ListeFiches({ redirection, refreshFiche }: any) {
   };
 
   const affecterFiche = (item: string) => {
-    console.log(item);
     setAffichageAffecterListe(true);
     setNomFicheSelectionner(item);
   };
 
-  const elements = FichesNames.map((item, index) => (
-    <div className="global_liste_nom_fiches_crée">
-      <div
-        className="liste_nom_fiches_crée"
-        key={index}
-        onClick={() => SetUpModificationFiche(item)}
-      >
-        {item}
+  const getEleveAffecteAsync = async (nomf: string) => {
+    try {
+      const response = await axios.get(
+        `http://localhost:5000/GET/eleveAffecter?ficheName=${encodeURIComponent(nomf)}`
+      );
+      return response.data;
+    } catch (error) {
+      console.error("Erreur lors de la requête vers le serveur :", error);
+      return "";
+    }
+  };
+
+  useEffect(() => {
+    const fetchData = async (itemName: string) => {
+      try {
+        const data = await getEleveAffecteAsync(itemName);
+        setEleveAffecte((prevData) => ({
+          ...prevData,
+          [itemName]: data, // Use itemName as a key to store the data for each item
+        }));
+      } catch (error) {
+        console.error("Erreur lors de la requête vers le serveur :", error);
+      }
+    };
+
+    // Fetch data for each item in FichesNames
+    FichesNames.forEach((itemName) => {
+      fetchData(itemName);
+    });
+  }, [FichesNames]); // Depend on FichesNames to trigger the effect when it changes
+
+  const elements = FichesNames.sort().map((item, index) => {
+    return (
+      <div className="global_liste_nom_fiches_crée" key={index}>
+        <div
+          className="liste_nom_fiches_crée"
+          onClick={() => SetUpModificationFiche(item)}
+        >
+          {item}
+        </div>
+        <img
+          src={require("./delete-icon.png")}
+          alt="delete-icon"
+          className="delete-icon"
+          style={{ width: "30px", height: "40px", cursor: "pointer" }}
+          onClick={() => deleteFiche(item)}
+        />
+        <button
+          className="affecter_fiche_crée"
+          onClick={() => affecterFiche(item)}
+        >
+          Affecter
+        </button>
+        <img
+          src={require("./dupliquer.webp")}
+          className="autre-icon"
+          style={{ width: "30px", height: "40px", cursor: "pointer" }}
+          onClick={() => dupliquerFiche(item)}
+        />
+        <img
+          src={require("./modifier.webp")}
+          style={{ width: "30px", height: "30px", cursor: "pointer" }}
+          className="autre-icon"
+          onClick={async () => {
+            const newNom = prompt("Entrez le nouveau nom de la fiche :");
+            if (newNom !== null) {
+              await testNameFiche(newNom);
+              if (ficheexiste === true) {
+                modifnomfiche(item, newNom);
+              } else {
+                alert("Une fiche avec ce nom existe déjà. Veuillez choisir un autre nom.");
+              }
+            }
+          }}
+        />
+        <p> Fiche attribuée à : {eleveAffecte[item]}</p>
       </div>
-      <img
-        src={require("./delete-icon.png")}
-        alt="delete-icon"
-        className="delete-icon"
-        style={{ width: "30px", height: "40px", cursor: "pointer" }}
-        onClick={() => deleteFiche(item)}
-      />
-      <button
-        className="affecter_fiche_crée"
-        onClick={() => affecterFiche(item)}
-      >
-        Affecter
-      </button>
-      <button
-        className="dupliquer_fiche_crée"
-        onClick={() => dupliquerFiche(item)}
-      >
-        Dupliquer
-      </button>
-      <button
-        className="modif_nom_fiche_crée"
-        onClick={() => {
-          const newNom = prompt("Entrez le nouveau nom de la fiche :");
-          if (newNom !== null) {
-            modifnomfiche(item, newNom);
-          }
-        }}
-      >
-        Modifier le nom
-      </button>
-    </div>
-  ));
+    );
+  });
 
   const allFicheNames = () => {
     axios
@@ -121,16 +164,46 @@ function ListeFiches({ redirection, refreshFiche }: any) {
     redirection(2);
   };
 
-  const modifnomfiche = async (oldnom: string, newnom: string )  => {
+  const modifnomfiche = async (oldnom: string, newnom: string) => {
+    if (newnom === "") {
+      alert(
+        "Le nom de la fiche ne peut pas être vide, le nom n'a pas été modifié"
+      );
+<<<<<<< HEAD
+    }
+=======
+      }
+>>>>>>> 8741eba5dde0de639efbfb00043ee36e295015a6
+
     try {
       await axios.post(`http://localhost:5000/POST/ficheUpdateName`, {
         name: oldnom,
-        newName: newnom
+        newName: newnom,
       });
     } catch (error) {
       console.error(error);
     }
+    redirection(2);
+    redirection(6);
   };
+
+  const testNameFiche = async (nomFiche: string) => {
+    try {
+      const response = await axios.get(
+        `http://localhost:5000/GET/nameFicheExiste?name=${encodeURIComponent(
+          nomFiche,
+        )}`,
+      )
+      if (response.data) {
+        setFicheexiste(true)
+      } else {
+        setFicheexiste(false)
+      }
+    } catch (error) {
+      console.error('Erreur lors de la requête vers le serveur :', error)
+      throw error
+    }
+  }
 
   const dupliquerFiche = async (nomf: string) => {
     try {
@@ -140,6 +213,8 @@ function ListeFiches({ redirection, refreshFiche }: any) {
     } catch (error) {
       console.error(error);
     }
+    redirection(2);
+    redirection(6);
   };
 
   return (

@@ -51,7 +51,7 @@ function CreationProfilProf({ setRedirectionTwo }: any) {
 
   return (
     <div className="global_creation_profil_prof">
-      <p className="txt_creation_espace_élève">Création de profil Professeur</p>
+      <p className="txt_creation_espace_élève">Création d'un profil professeur</p>
 
       <form
         action="#"
@@ -69,7 +69,7 @@ function CreationProfilProf({ setRedirectionTwo }: any) {
         </div>
 
         <div className="form_prenom_creation_profil">
-          <p> Prenom </p>
+          <p> Prénom </p>
           <input
             type="text"
             className="TextInput"
@@ -87,7 +87,7 @@ function CreationProfilProf({ setRedirectionTwo }: any) {
         </div>
 
         <div className="form_prenom_creation_profil">
-          <p> Mots de passe </p>
+          <p> Mot de passe </p>
           <input
             type="text"
             className="TextInput"

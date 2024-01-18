@@ -32,7 +32,7 @@ input.TextInput {
 .boutton_retour_interaction_edu{
   background-color: #ffffff;
   max-height: 4em;
-  width: 5%;
+  width: 10%;
   max-width: 30%;
   color: #355c7d;
   font-weight: bold;
@@ -41,6 +41,7 @@ input.TextInput {
   margin: 1em;
   border-radius: 4px;
   border: none;
+  cursor: pointer;
 }
 .boutton_sauvegarder_interaction_edu{
   background-color: #ffffff;
@@ -54,6 +55,7 @@ input.TextInput {
   margin: 1em;
   border-radius: 4px;
   float: right;
+  cursor: pointer;
   border: none;
 }
 .boutton_brouillon_interaction_edu{
@@ -69,6 +71,7 @@ input.TextInput {
   border-radius: 4px;
   float: right;
   border: none;
+  cursor: pointer;
 }
 @media (max-width: 1250px) {
   .Box {
@@ -126,4 +129,17 @@ input.TextInput {
     padding: 1em;
     box-sizing: border-box;
   }
+}
+.message_brouillon {
+  padding: 10px;
+  margin-top: 10px;
+  border-radius: 5px;
+  background-color: #4CAF50; /* Fond vert */
+  border: 1px solid #3e8e41; /* Bordure un peu plus foncée que le fond */
+  color: #fff; /* Texte blanc pour une meilleure lisibilité sur fond vert */
+  text-align: center;
+  font-size: 14px;
+  font-weight: bold;
+  box-shadow: 0px 3px 6px rgba(0, 0, 0, 0.16);
+  animation: fadeInOut 5s linear forwards; /* Fade in and out animation */
 }
