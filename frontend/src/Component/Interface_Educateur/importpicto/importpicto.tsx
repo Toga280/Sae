@@ -29,7 +29,7 @@ const ImportPicto = ({ redirection }: any): JSX.Element => {
         formData.append('file', selectedFile);
 
         console.log(formData)
-        const response = await axios.post('http://localhost:5000/POST/uploadpicto', formData, {
+        const response = await axios.post('http://192.168.105.71:5000/POST/uploadpicto', formData, {
           params: {
             name: pictoName,
           },
@@ -60,12 +60,12 @@ const ImportPicto = ({ redirection }: any): JSX.Element => {
   useEffect(() => {
     const getPictoInfo = async () => {
       try {
-        const response = await axios.get('http://localhost:5000/GET/getpicto-info');
+        const response = await axios.get('http://192.168.105.71:5000/GET/getpicto-info');
         const { imageNames } = response.data;
 
         // Demander chaque fichier individuellement
         const imagePromises = imageNames.map(async (imageName: string) => {
-          const imagePath = `http://localhost:5000/GET/getpicto-file?name=${encodeURIComponent(imageName)}`;
+          const imagePath = `http://192.168.105.71:5000/GET/getpicto-file?name=${encodeURIComponent(imageName)}`;
           const imageResponse = await axios.get(imagePath, {
             responseType: 'arraybuffer',
           });

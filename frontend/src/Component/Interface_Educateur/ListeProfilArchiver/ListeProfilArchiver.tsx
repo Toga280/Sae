@@ -12,7 +12,7 @@ function ListeProfilArchiver({ redirection }: any) {
 
   const getEleve = () => {
     axios
-      .get(`http://localhost:5000/GET/allEleveArchiver`)
+      .get(`http://192.168.105.71:5000/GET/allEleveArchiver`)
       .then((response) => {
         setEleves(response.data);
       })
@@ -29,7 +29,7 @@ function ListeProfilArchiver({ redirection }: any) {
           const imageName = `${eleve.nom}${eleve.prenom}.webp`;
           console.log('Recherche de l\'image :', imageName);
           try {
-            const imagePath = `http://localhost:5000/GET/piceleve?name=${encodeURIComponent(imageName)}`;
+            const imagePath = `http://192.168.105.71:5000/GET/piceleve?name=${encodeURIComponent(imageName)}`;
             const response = await axios.get(imagePath, {
               responseType: 'arraybuffer',
             });
@@ -61,7 +61,7 @@ function ListeProfilArchiver({ redirection }: any) {
     );
     if (confirmation) {
       axios
-        .post("http://localhost:5000/POST/restorerEleve", { nom, prenom })
+        .post("http://192.168.105.71:5000/POST/restorerEleve", { nom, prenom })
         .then((response) => {
           console.log(response.data);
           getEleve();

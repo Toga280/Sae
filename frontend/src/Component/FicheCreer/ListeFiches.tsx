@@ -19,7 +19,7 @@ function ListeFiches({ redirection, refreshFiche }: any) {
   if (confirmation) {
     axios
       .get(
-        `http://localhost:5000/DELETE/ficheName?name=${encodeURIComponent(
+        `http://192.168.105.71:5000/DELETE/ficheName?name=${encodeURIComponent(
           nomFiche
         )}`
       )
@@ -91,7 +91,7 @@ function ListeFiches({ redirection, refreshFiche }: any) {
 
   const allFicheNames = () => {
     axios
-      .get("http://localhost:5000/GET/allFicheNames")
+      .get("http://192.168.105.71:5000/GET/allFicheNames")
       .then((response) => {
         setFichesNames(response.data);
       })
@@ -103,7 +103,7 @@ function ListeFiches({ redirection, refreshFiche }: any) {
   const FicheNames = async (nameValue: string) => {
     try {
       const response = await axios.get(
-        `http://localhost:5000/GET/nameFiche?name=${encodeURIComponent(
+        `http://192.168.105.71:5000/GET/nameFiche?name=${encodeURIComponent(
           nameValue
         )}`
       );
@@ -132,7 +132,7 @@ function ListeFiches({ redirection, refreshFiche }: any) {
       alert("Le nom de la fiche ne peut pas être vide, le nom n'a pas été modifié");
     }
     try {
-      await axios.post(`http://localhost:5000/POST/ficheUpdateName`, {
+      await axios.post(`http://192.168.105.71:5000/POST/ficheUpdateName`, {
         name: oldnom,
         newName: newnom
       });
@@ -145,7 +145,7 @@ function ListeFiches({ redirection, refreshFiche }: any) {
 
   const dupliquerFiche = async (nomf: string) => {
     try {
-      await axios.post("http://localhost:5000/POST/ficheDuplicate", {
+      await axios.post("http://192.168.105.71:5000/POST/ficheDuplicate", {
         name: nomf,
       });
     } catch (error) {

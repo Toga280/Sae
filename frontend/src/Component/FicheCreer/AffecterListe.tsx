@@ -14,7 +14,7 @@ function AffecterListe({
   useEffect(() => {
     const getEleve = () => {
       axios
-        .get(`http://localhost:5000/GET/allEleve`)
+        .get(`http://192.168.105.71:5000/GET/allEleve`)
         .then((response) => {
           setEleves(response.data)
         })
@@ -34,7 +34,7 @@ function AffecterListe({
     const ficheName = nomFicheSelectionner
     axios
       .post(
-        `http://localhost:5000/POST/affectereleve`,
+        `http://192.168.105.71:5000/POST/affectereleve`,
         {
           nom,
           prenom,

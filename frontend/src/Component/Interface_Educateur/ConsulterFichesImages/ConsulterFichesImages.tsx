@@ -24,7 +24,7 @@ function ConsulterFichesImages({ redirection }: any) {
   useEffect(() => {
     const getEleve = () => {
       axios
-        .get(`http://localhost:5000/GET/allEleve`)
+        .get(`http://192.168.105.71:5000/GET/allEleve`)
         .then((response) => {
           setEleves(response.data)
         })
@@ -48,7 +48,7 @@ function ConsulterFichesImages({ redirection }: any) {
       const getPictoInfo = async () => {
         try {
           const response = await axios.get(
-            'http://localhost:5000/GET/getphotoeleve-info',
+            'http://192.168.105.71:5000/GET/getphotoeleve-info',
             {
               params: {
                 eleve: eleveSelectionne.nom + eleveSelectionne.prenom,
@@ -59,7 +59,7 @@ function ConsulterFichesImages({ redirection }: any) {
 
           // Demander chaque fichier individuellement
           const imagePromises = imageNames.map(async (imageName: string) => {
-            const imagePath = `http://localhost:5000/GET/getphotoeleve-file?eleve=${encodeURIComponent(
+            const imagePath = `http://192.168.105.71:5000/GET/getphotoeleve-file?eleve=${encodeURIComponent(
               eleveSelectionne.nom + eleveSelectionne.prenom,
             )}&name=${encodeURIComponent(imageName)}`
             const imageResponse = await axios.get(imagePath, {
