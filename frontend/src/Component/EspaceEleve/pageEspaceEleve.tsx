@@ -3,11 +3,13 @@ import './pageEspaceEleve.css'
 import FicheBoxTotal from '../CreationFiche/FicheBoxTotal'
 import axios from 'axios'
 import fonctionsMiniBoxInfoJson from '../CreationFiche/MiniBoxInfoFunction'
+import FicheEleve from '../Interface_Educateur/ConsulterFichesImages/FicheEleve/FicheEleve'
 
 function PageEspaceEleve({ redirection, nomEleve, prenomEleve, eleve }: any) {
   const [fondEcranUrl, setFondEcranUrl] = useState<string | null>(null)
   const [seeMaFiche, setSeeMaFiche] = useState(Boolean)
   const [pasDeFicheEnCour, setPasDeFicheEnCour] = useState<boolean>(false)
+  const [seeMesFichesTermine, setSeeMesFichesTermine] = useState<boolean>(false)
 
   useEffect(() => {
     // Appeler la requête pour récupérer l'image du fond d'écran
@@ -35,6 +37,10 @@ function PageEspaceEleve({ redirection, nomEleve, prenomEleve, eleve }: any) {
 
   const setRedirectionThriteen = () => {
     redirection(13)
+  }
+
+  const setSeeMesFichesTermineFalse = () => {
+    setSeeMesFichesTermine(false)
   }
 
   const setMaFiche = () => {
@@ -90,7 +96,7 @@ function PageEspaceEleve({ redirection, nomEleve, prenomEleve, eleve }: any) {
         height: '100vh',
       }}
     >
-      {!seeMaFiche ? (
+      {!seeMaFiche && !seeMesFichesTermine ? (
         <div
           style={{
             backgroundImage: `url(${fondEcranUrl})`,
@@ -133,15 +139,35 @@ function PageEspaceEleve({ redirection, nomEleve, prenomEleve, eleve }: any) {
               >
                 Mes photos
               </button>
+              <button
+                className="bouton_interface_eleve"
+                type="button"
+                id="photo"
+                value="Voir mes photos"
+                onClick={() => setSeeMesFichesTermine(true)}
+              >
+                Mes Fiche Fini
+              </button>
             </div>
           </div>
-          <div className='global_pas_de_fiche'>
-          {pasDeFicheEnCour ? <p className='pas_de_fiche'>Tu n'as pas de fiche !</p> : null}
+          <div className="global_pas_de_fiche">
+            {pasDeFicheEnCour ? (
+              <p className="pas_de_fiche">Tu n'as pas de fiche !</p>
+            ) : null}
           </div>
         </div>
-      ) : (
+      ) : null}
+      {seeMesFichesTermine ? (
+        <FicheEleve
+          prenomEleve={prenomEleve}
+          nomEleve={nomEleve}
+          setVoirFicheFalse={setSeeMesFichesTermineFalse}
+          versionEleve={true}
+        />
+      ) : null}
+      {seeMaFiche ? (
         <FicheBoxTotal versionProf={false} redirection={setSeeMaFiche} />
-      )}
+      ) : null}
     </div>
   )
 }

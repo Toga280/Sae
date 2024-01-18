@@ -42,7 +42,7 @@ function AffecterListe({
         },
         {
           validateStatus: function (status) {
-            return status == 500
+            return status == 501
           },
         },
       )
@@ -57,8 +57,8 @@ function AffecterListe({
         }
       })
       .catch((error) => {
-        if (!error.response || error.response.status !== 500) {
-          console.error('Erreur autre que 500 :', error)
+        if (!error.response || error.response.status !== 501) {
+          console.error('Erreur autre que 501 :', error)
         }
       })
   }

@@ -1,20 +1,42 @@
-import axios from 'axios'
+import axios, { all } from 'axios'
 import React, { useEffect, useState } from 'react'
 import fonctionsMiniBoxInfoJson from '../../../CreationFiche/MiniBoxInfoFunction'
 import FicheBoxTotal from '../../../CreationFiche/FicheBoxTotal'
 import './FicheEleve.css'
-function FicheEleve({ nomEleve, prenomEleve, setVoirFicheFalse }: any) {
+function FicheEleve({
+  nomEleve,
+  prenomEleve,
+  setVoirFicheFalse,
+  IdConnecter,
+  versionEleve,
+}: any) {
   const [ficheEnCour, SetFicheEnCour] = useState(String)
+  const [ficheSelected, setFicheSelected] = useState(String)
   const [ficheTerminee, SetFicheTerminee] = useState<string[]>([])
+  const [allCommentaire, setAllCommentaire] = useState<
+    {
+      contenu: string
+      idCommentateur: string
+    }[]
+  >([])
   const [aucuneFicheTerminee, setAucuneFicheTerminee] = useState<boolean>(false)
   const [voirFiche, setVoirFiche] = useState(Boolean)
+  const [contenu, setContenu] = useState(String)
 
   const consulterFicheEnCour = async () => {
     await FicheNames(ficheEnCour)
+    setFicheSelected(ficheEnCour)
+  }
+
+  const handleTextAreaCommentaire = (
+    e: React.ChangeEvent<HTMLTextAreaElement>,
+  ) => {
+    setContenu(e.target.value)
   }
 
   const consulterFicheTerminee = async (name: string) => {
     await FicheNames(name)
+    setFicheSelected(ficheEnCour)
   }
 
   const getFicheInProgressEleve = () => {
@@ -67,16 +89,50 @@ function FicheEleve({ nomEleve, prenomEleve, setVoirFicheFalse }: any) {
     }
   }
 
+  const PostCommentaire = async () => {
+    axios
+      .post(`http://localhost:5000/POST/commentaire`, {
+        ficheName: ficheSelected,
+        contenu: contenu,
+        idCommentateur: IdConnecter,
+      })
+      .then((response) => {
+        if (response.data.message === 'Commentaire ajouté avec succès') {
+          GetAllCommentaire(ficheSelected)
+        } else {
+        }
+      })
+      .catch((error) => {
+        console.error('Erreur --> ', error)
+      })
+  }
+
+  const GetAllCommentaire = async (ficheName: string) => {
+    try {
+      const response = await axios.get(
+        `http://localhost:5000/GET/allCommentaire?ficheName=${ficheName}`,
+      )
+      setAllCommentaire(response.data.commentaires)
+    } catch (error) {
+      console.error('Erreur lors de la récupération des commentaires :', error)
+    }
+  }
+
   useEffect(() => {
     getFicheInProgressEleve()
     getFicheCompletedEleve()
   }, [])
 
+  useEffect(() => {
+    if (ficheSelected) {
+      GetAllCommentaire(ficheSelected)
+    }
+  }, [ficheSelected])
+
   return (
     <div>
-        {!voirFiche ? (
-          <div className="global_consultation_fiche">
-
+      {!voirFiche ? (
+        <div className="global_consultation_fiche">
           <div className="section fiche_en_cours">
             <p className="section_title">Fiche en cours</p>
             {ficheEnCour != 'Aucune fiche trouvée' ? (
@@ -87,7 +143,7 @@ function FicheEleve({ nomEleve, prenomEleve, setVoirFicheFalse }: any) {
                 <div className="fiche_nom">{ficheEnCour}</div>
               </div>
             ) : (
-              <p className='aucune_fiche_trouvé'> aucune fiche trouvée </p>
+              <p className="aucune_fiche_trouvé"> aucune fiche trouvée </p>
             )}
             <div className="section fiche_fini">
               <p className="section_title">Fiche(s) finie(s)</p>
@@ -101,9 +157,8 @@ function FicheEleve({ nomEleve, prenomEleve, setVoirFicheFalse }: any) {
                   </div>
                 ))
               ) : (
-                <p className='aucune_fiche_trouvé'>aucune fiche trouvée</p>
+                <p className="aucune_fiche_trouvé">aucune fiche trouvée</p>
               )}
-              
             </div>
             <button
               className="bouton_retour interaction_edu"
@@ -113,24 +168,43 @@ function FicheEleve({ nomEleve, prenomEleve, setVoirFicheFalse }: any) {
             </button>
           </div>
         </div>
-      
-        ) : (
-          <div>
-            <div className='div_text_area_commentaire_fiche'>
-              <h1 className='add_com'>Ajouter un commentaire</h1>
-              <textarea className='text_area_commentaire_fiche' value="Commentaires"></textarea>
-              <button className='bouton_retour interaction_edu'>Valider</button>
-            </div>
+      ) : (
+        <div>
+          <div className="div_text_area_commentaire_fiche">
+            {!versionEleve ? (
+              <div>
+                <h1 className="add_com">Ajouter un commentaire</h1>
 
-            <div className='fiche_version_prof'>
-              <FicheBoxTotal
-                versionProf={false}
-                versionVue={true}
-                redirection={setVoirFiche}
-              />
-            </div>
+                <textarea
+                  className="text_area_commentaire_fiche"
+                  placeholder="Commentaires"
+                  onChange={handleTextAreaCommentaire}
+                ></textarea>
+                <button
+                  className="bouton_retour interaction_edu"
+                  onClick={PostCommentaire}
+                >
+                  Valider
+                </button>
+              </div>
+            ) : null}
+            {Array.isArray(allCommentaire) &&
+              allCommentaire.map((commentaire, index) => (
+                <p key={index}>
+                  {commentaire.idCommentateur} : {commentaire.contenu}
+                </p>
+              ))}
           </div>
-        )}
+
+          <div className="fiche_version_prof">
+            <FicheBoxTotal
+              versionProf={false}
+              versionVue={true}
+              redirection={setVoirFiche}
+            />
+          </div>
+        </div>
+      )}
     </div>
   )
 }
