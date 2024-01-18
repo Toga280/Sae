@@ -168,7 +168,11 @@ function FicheBoxTotal({
         />
       </div>
       <div onClick={() => handleClick(8)}>
-        <FicheBox8 classNameDiv={'Box'} versionVue={versionVue} />
+        <FicheBox8
+          classNameDiv={'Box'}
+          versionVue={versionVue}
+          versionProf={versionProf}
+        />
       </div>
       <button onClick={consoleLogJson}>return log json</button>
       <button className="boutton_retour_interaction_edu" onClick={retour}>

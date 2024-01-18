@@ -40,8 +40,8 @@ export interface FonctionsMiniBoxInfoJson {
   getInformationSuplementaire: () => string
   changeEnCourTrue: () => void
   changeEnCourFalse: () => void
-  getAllJson: () => MiniBox
+  getAllJson: () => any
   setNewJson: (newJson: any) => void
   setMateriel: (Materiel: string, nMateriel: string) => void
-  getMateriel: (nMateriel: String) => string
+  getMateriel: (nMateriel: string) => string
 }
