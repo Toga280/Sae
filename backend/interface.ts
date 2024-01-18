@@ -38,6 +38,7 @@ export interface FicheInfo {
   nomEleveAttribuer: string
   prenomEleveAttribuer: string
   enCour: Boolean
+  informationSuplementaire: string
 }
 
 export interface FicheDocument extends Document {

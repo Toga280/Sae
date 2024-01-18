@@ -1,0 +1,88 @@
+/* Style général pour la consultation des fiches */
+.global_consultation_fiche {
+    display: flex;
+    flex-direction: column;
+    background: #f9f9f9; /* Couleur de fond légère pour une apparence propre */
+    padding: 25px;
+    border-radius: 10px; /* Coins arrondis pour une touche moderne */
+    box-shadow: 0 6px 20px rgba(0, 0, 0, 0.1); /* Ombre portée plus prononcée pour du relief */
+    max-width: 650px;
+    margin: 40px auto;
+    font-family: 'Helvetica Neue', Helvetica, Arial, sans-serif; /* Police moderne */
+  }
+  
+  /* Style pour les sections individuelles */
+  .section {
+    margin-bottom: 30px;
+  }
+  
+  /* Style pour les titres des sections */
+  .section_title {
+    font-size: 1.2rem; /* Taille de police plus grande pour les titres */
+    font-weight: 700; /* Police plus épaisse */
+    color: #2c3e50; /* Couleur de police foncée */
+    border-bottom: 2px solid #2ecc71; /* Ligne en dessous du titre pour une séparation élégante */
+    padding-bottom: 5px; /* Espacement en dessous du titre */
+    margin-bottom: 15px; /* Espacement avant la liste des fiches */
+  }
+  
+  .fiche_container {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    margin-bottom: 15px;
+    padding: 15px;
+    background: #fff;
+    border-radius: 6px;
+    box-shadow: 0 3px 6px rgba(0, 0, 0, 0.05);
+    transition: transform 0.2s ease-in-out; /* Animation lors du survol */
+  }
+  
+  .fiche_container:hover {
+    transform: translateY(-2px); /* Effet de léger soulèvement lors du survol */
+  }
+  
+  /* Style pour le nom de la fiche */
+  .fiche_nom {
+    width: 30%;
+    font-weight: 500;
+    color: #34495e; /* Couleur de police plus intense */
+  }
+  
+  .fiche_commentaire {
+    width: 70%;
+    padding: 12px;
+    border: 1px solid #bdc3c7; /* Bordure plus subtile */
+    border-radius: 4px;
+    resize: none;
+    background-color: #ecf0f1; /* Couleur de fond pour distinguer la zone de texte */
+    box-shadow: inset 0 1px 2px rgba(0, 0, 0, 0.1); /* Petite ombre interne pour un effet enfoncé */
+  }
+  
+  /* Bouton de retour */
+  .bouton_retour.interaction_edu {
+    padding: 12px 25px;
+    border-radius: 20px; /* Coins fortement arrondis pour le bouton */
+    border: none;
+    background-color: #3498db;
+    color: white;
+    font-weight: 600;
+    cursor: pointer;
+    text-transform: uppercase;
+    letter-spacing: 1px; /* Espacement entre les lettres pour un effet plus stylé */
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2); /* Ombre pour donner de la profondeur */
+    transition: background-color 0.2s ease-in-out;
+  }
+  
+  .bouton_retour.interaction_edu:hover {
+    background-color: #2980b9; /* Couleur plus foncée au survol pour un effet interactif */
+    box-shadow: 0 5px 10px rgba(0, 0, 0, 0.3); /* Ombre plus prononcée au survol */
+  }
+  
+  /* Ajout d'un effet de transition globale pour les interactions */
+  *:focus {
+    outline: none;
+    box-shadow: 0 0 0 3px #3498db88; /* Halo bleu autour de l'élément actif pour une meilleure accessibilité */
+  }
+  
+  

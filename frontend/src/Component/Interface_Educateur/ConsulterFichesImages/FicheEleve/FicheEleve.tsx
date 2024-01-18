@@ -6,6 +6,7 @@ import "./FicheEleve.css";
 function FicheEleve({ nomEleve, prenomEleve, setVoirFicheFalse }: any) {
   const [ficheEnCour, SetFicheEnCour] = useState(String)
   const [ficheTerminee, SetFicheTerminee] = useState<string[]>([])
+  const [aucuneFicheTerminee, setAucuneFicheTerminee] = useState<boolean>(false)
   const [voirFiche, setVoirFiche] = useState(Boolean)
 
   const consulterFicheEnCour = async () => {
@@ -38,7 +39,11 @@ function FicheEleve({ nomEleve, prenomEleve, setVoirFicheFalse }: any) {
         `http://localhost:5000/GET/eleve/FicheCompleted?nom=${nomEleve}&prenom=${prenomEleve}`,
       )
       .then((response) => {
-        SetFicheTerminee(response.data)
+        if (response.data === 'Aucune fiche terminée trouvée') {
+          setAucuneFicheTerminee(true)
+        } else {
+          SetFicheTerminee(response.data)
+        }
       })
       .catch((error) => {
         console.error(
@@ -75,23 +80,19 @@ function FicheEleve({ nomEleve, prenomEleve, setVoirFicheFalse }: any) {
             <p className='section_title'>Fiche en cours</p>
             <div onClick={consulterFicheEnCour} className='fiche_container nom_fiche'>
               <div className='fiche_nom'>{ficheEnCour}</div>
-              <textarea
-                className="fiche_commentaire input_commenter_fiche"
-                placeholder="Commentaires"
-              />
             </div>
           </div>
           <div className='section fiche_fini'>
             <p className='section_title'>Fiche(s) finie(s)</p>
-            {ficheTerminee.map((fiche, index) => (
-              <div key={index} onClick={() => consulterFicheTerminee(fiche)} className='fiche_container nom_fiche'>
-                <div className='fiche_nom'>{fiche}</div>
-                <textarea
-                  className="fiche_commentaire input_commenter_fiche"
-                  placeholder="Commentaires"
-                />
-              </div>
-            ))}
+            {!aucuneFicheTerminee ? (
+            ficheTerminee.map((fiche, index) => (
+                <div key={index} onClick={() => consulterFicheTerminee(fiche)} className='fiche_container nom_fiche'>
+                  <div className='fiche_nom'>{fiche}</div>
+                </div>
+              ))
+          ) : (
+            <p>aucune fiche trouvée</p>
+          )}
           </div>
           <button
             className="bouton_retour interaction_edu"

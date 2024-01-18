@@ -5,6 +5,9 @@
     padding: 20px;
     margin: 3em;
 }
+body{
+    font-family: Arial,sans-serif;
+}
 .bouton_retour_modif_mdp_eleve{
     background-color: white;
     height: 3em;

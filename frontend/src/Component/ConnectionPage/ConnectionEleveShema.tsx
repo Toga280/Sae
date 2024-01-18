@@ -106,12 +106,12 @@ function ConnectionEleveShema({
           >
             Connexion
           </button>
-          <input
+          {/* <input
             type="text"
             className="countdown"
             disabled={true}
             value={message}
-          />
+          /> */}
         </div>
       </div>
     </div>

@@ -50,6 +50,7 @@ const ficheSchema = new Schema<FicheDocument>({
     nomEleveAttribuer: { type: String },
     prenomEleveAttribuer: { type: String },
     enCour: { type: Boolean },
+    informationSuplementaire: { type: String },
     _id: false,
   },
   AllMiniBox: {

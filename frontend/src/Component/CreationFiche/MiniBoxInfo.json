@@ -3,7 +3,8 @@
     "name": "",
     "nomEleveAttribuer": "",
     "prenomEleveAttribuer": "",
-    "enCour": true
+    "enCour": true,
+    "informationSuplementaire": ""
   },
   "AllMiniBox": {
     "MiniBox1": {

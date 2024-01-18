@@ -1,83 +1,75 @@
-
 .container {
+  max-width: 500px; /* Plus large pour une meilleure visibilité */
+  margin: 2em auto;
+  background-color: #f2f2f2; /* Couleur de fond plus claire */
+  border-radius: 10px;
+  box-shadow: 0 6px 16px rgba(0, 0, 0, 0.2); /* Ombre plus prononcée pour plus de profondeur */
+  padding: 30px;
+}
+
+.affichage {
+  background-color: #fff;
+  border: 2px solid #ddd;
+  border-radius: 6px;
+  padding: 15px;
+  margin-bottom: 25px;
+  text-align: center;
+}
+
+.affichageMDP {
+  font-size: 2.5em; /* Plus grand pour une meilleure visibilité */
+  letter-spacing: 0.15em;
+  color: #555; /* Couleur de texte plus foncée */
+}
+
+.boutons {
   display: flex;
   flex-direction: column;
+  align-items: center;
+}
+
+.boutonsChiffre {
+  display: grid;
   grid-template-columns: repeat(3, 1fr);
-  gap: 1em; /* Adjust gap as needed */
-  background-color: #d7e1ec;
-  border-radius: 1em;
-  padding: 2em;
-  justify-content: center;
-  margin: auto;
+  gap: 15px; /* Plus d'espace entre les boutons */
+  margin-bottom: 25px;
 }
 
 .bouton {
-  cursor: pointer;
-  background-color: #d7e1ec;
+  background-color: #3498db; /* Couleur de fond modifiée */
+  color: white;
   border: none;
-  color: black;
-  padding: 2.5em 1em 1em 1em;
-  text-align: center;
-  text-decoration: none;
-  
-  font-size: 1.5em;
-  width: 100%;
+  border-radius: 6px;
+  padding: 20px; /* Plus grand pour une meilleure visibilité */
+  font-size: 1.8em; /* Plus grand pour une meilleure visibilité */
+  cursor: pointer;
+  transition: background-color 0.3s, transform 0.2s;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+}
+
+.bouton:hover {
+  background-color: #2980b9; /* Couleur de survol modifiée */
+  transform: translateY(-3px); /* Effet de soulèvement plus prononcé */
 }
 
 .bouton:disabled {
-  background-color: #d7e1ec;
-  color: #b3b3b3;
+  background-color: #bdc3c7;
   cursor: not-allowed;
 }
-.boutonsChiffre {
-  display: grid;
-  grid-template-columns: repeat(3, 10em);
-  gap: 1em;
-} 
 
-.affichageMDP {
-  background-color: #d7e1ec;
-  border: none;
-  padding: 0.5em 3em;
+.btn-retour-pin {
+  width: 40px; /* Plus grand pour une meilleure visibilité */
+  height: 40px; /* Plus grand pour une meilleure visibilité */
+}
+
+.countdown {
+  grid-column: span 3; /* Prend toute la largeur de la grille */
+  padding: 15px; /* Plus grand pour une meilleure visibilité */
+  margin-top: 15px;
   text-align: center;
-  letter-spacing: 1em;
-  text-decoration: none;
-  font-weight: bold;
-  font-size: 2em;
-}
-
-.btn-retour-pin { 
- max-width: 2.5em;
-
-}
-.bouton:active {
-  background-color: #e0e0e0;
-}
-
-.bouton_deconnection_eleve{
-  color: #ffffff;
-  cursor: pointer;
-  border: none;
-border-radius: 5px;
-box-shadow: 1px 1px 3px rgba(0,0,0,0.15);
-background: #e62222;
-  max-height: 4em;
-
-  
-  font-weight: bold;
-  font-size: 18px;
-  padding: 0.8em;
-  margin: 1em;
-
-}
-@media (max-width: 37.5em) {
-  .container {
-    width: 90%;
-  }
-}
-
-.countdown:disabled{
-  background-color: #d7e1ec;
-  border: none;
-  color: #e62222;
+  border: 2px solid #ddd;
+  border-radius: 6px;
+  background-color: #ecf0f1; /* Couleur de fond modifiée */
+  color: #2c3e50; /* Couleur de texte modifiée */
+  font-size: 1.2em; /* Plus grand pour une meilleure visibilité */
 }
