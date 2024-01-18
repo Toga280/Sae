@@ -69,7 +69,7 @@ function CreationProfilProf({ setRedirectionTwo }: any) {
         </div>
 
         <div className="form_prenom_creation_profil">
-          <p> Prenom </p>
+          <p> Prénom </p>
           <input
             type="text"
             className="TextInput"
@@ -87,7 +87,7 @@ function CreationProfilProf({ setRedirectionTwo }: any) {
         </div>
 
         <div className="form_prenom_creation_profil">
-          <p> Mots de passe </p>
+          <p> Mot de passe </p>
           <input
             type="text"
             className="TextInput"
