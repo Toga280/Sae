@@ -88,37 +88,39 @@ function ConnectionEleve({ redirection }: any) {
 
   return (
     <div>
-    <div className="general_login">
-      {eleves.map((eleve, index) => (
-        <div className="login-container" key={index}>
-          {loading ? (
-            <div className="loading-spinner">Chargement...</div>
-          ) : (
-            studentImages[index] ? (
-              <img
-                className="user-photo"
-                src={studentImages[index]}
-                alt={`Portrait de ${eleve.prenom} ${eleve.nom}`}
-              />
-            ) : (
-              <div className="error-message">image non présente</div>
-            )
-          )}
-          <div className="user-name">{`${eleve.prenom} ${eleve.nom}`}</div>
-          <button
-            className="archiver-button"
-            onClick={() => archiverEleve(eleve.nom, eleve.prenom)}
-          >
-            Archiver
-          </button>
-        </div>
-      ))}
+      <div>
+        <div className="general_login">
+          {eleves.map((eleve, index) => (
+            <div className="login-container" key={index}>
+              {loading ? (
+                <div className="loading-spinner">Chargement...</div>
+              ) : (
+                studentImages[index] ? (
+                  <img
+                    className="user-photo"
+                    src={studentImages[index]}
+                    alt={`Portrait de ${eleve.prenom} ${eleve.nom}`}
+                  />
+                ) : (
+                  <div className="error-message">image non présente</div>
+                )
+              )}
+              <div className="user-name">{`${eleve.prenom} ${eleve.nom}`}</div>
+              <button
+                className="archiver-button"
+                onClick={() => archiverEleve(eleve.nom, eleve.prenom)}
+              >
+                Archiver
+              </button>
+            </div>
+          ))}
 
-      {redirection}
-    </div>
-          <button className="button_retour" onClick={redirectionTwo}>
+          {redirection}
+        </div>
+      </div>
+      <button className="button_retour" onClick={redirectionTwo}>
           Retour
-        </button>
+      </button>
     </div>
   );
 }
