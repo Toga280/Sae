@@ -16,7 +16,7 @@ function ConnectionEleve({
   const [studentImages, setStudentImages] = useState<string[]>([]); // État pour stocker les images des étudiants récupérées
 
   // Fonction pour gérer la connexion d'un étudiant
-  const connection = (nom: string, prenom: string) => {
+  const connection = (nom: string, prenom: string, image: any) => {
     setNomEleveActuelle(nom);
     setPrenomEleveActuelle(prenom);
     setPrenomEleveActuelleApp(prenom);
@@ -115,7 +115,7 @@ function ConnectionEleve({
             <div className="user-name">{`${eleve.prenom} ${eleve.nom}`}</div>
             <button
               className="login-button"
-              onClick={() => connection(eleve.nom, eleve.prenom)}
+              onClick={() => connection(eleve.nom, eleve.prenom,studentImages[index])}
             >
               Se connecter
             </button>

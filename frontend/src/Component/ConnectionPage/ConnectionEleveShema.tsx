@@ -18,22 +18,6 @@ function ConnectionEleveShema({
   const [nombreEssais, setNombreEssais] = useState(0);
   const [password, setPassword] = useState<number[]>([]);
 
-  // useEffect(() => {
-  //   const interval = setInterval(() => {
-  //     if (time > 0) {
-  //       setTime(time - 1);
-  //       setMessage(`Trop d'essais, patientez ${time} secondes`);
-  //     } else {
-  //       setBoutonDesactive(false);
-  //       setTime(30);
-  //       setMessage("");
-  //       setNombreEssais(0);
-  //     }
-  //   }, 1000);
-
-  //   return () => clearInterval(interval);
-  // }, [time]);
-
   const Connexion = (event: React.FormEvent) => {
     event.preventDefault();
     setMdpFaux(false);
@@ -58,7 +42,7 @@ function ConnectionEleveShema({
         if (error.response && error.response.status === 401) {
           setMdpFaux(true);
         } else {
-          console.error("Erreur lors de la requête :", error);
+          console.error("Error during the request:", error);
         }
       });
     // RESETPASSWORD
@@ -81,6 +65,7 @@ function ConnectionEleveShema({
 
   return (
     <div className="container">
+      <p className="info_nom_eleve">{`${prenomEleveActuelle} ${nomEleveActuelle}`}</p>
       <div className="affichage">
         <p className="affichageMDP">{password.join("")}</p>
       </div>
