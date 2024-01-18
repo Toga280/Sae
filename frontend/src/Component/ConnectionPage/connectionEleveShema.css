@@ -1,5 +1,5 @@
 .container {
-  max-width: 500px; /* Plus large pour une meilleure visibilité */
+  max-width: 600px; /* Plus large pour une meilleure visibilité */
   margin: 2em auto;
   background-color: #f2f2f2; /* Couleur de fond plus claire */
   border-radius: 10px;
@@ -8,8 +8,8 @@
 }
 
 .affichage {
-  background-color: #fff;
-  border: 2px solid #ddd;
+  
+  margin-top: 0.5em;
   border-radius: 6px;
   padding: 15px;
   margin-bottom: 25px;
@@ -30,18 +30,23 @@
 
 .boutonsChiffre {
   display: grid;
-  grid-template-columns: repeat(3, 1fr);
+  grid-template-columns: repeat(3, 10em);
+  height: 100%;
   gap: 15px; /* Plus d'espace entre les boutons */
   margin-bottom: 25px;
 }
 
 .bouton {
-  background-color: #3498db; /* Couleur de fond modifiée */
+
+  text-align: center; 
+  background-color: #3498db;
+  height: 3em;
+  width: 100%;
   color: white;
   border: none;
   border-radius: 6px;
   padding: 20px; /* Plus grand pour une meilleure visibilité */
-  font-size: 1.8em; /* Plus grand pour une meilleure visibilité */
+  font-size: 1.6em; /* Plus grand pour une meilleure visibilité */
   cursor: pointer;
   transition: background-color 0.3s, transform 0.2s;
   box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
@@ -62,14 +67,15 @@
   height: 40px; /* Plus grand pour une meilleure visibilité */
 }
 
+/* 
 .countdown {
-  grid-column: span 3; /* Prend toute la largeur de la grille */
-  padding: 15px; /* Plus grand pour une meilleure visibilité */
+  grid-column: span 3; 
+  padding: 15px; 
   margin-top: 15px;
   text-align: center;
   border: 2px solid #ddd;
   border-radius: 6px;
-  background-color: #ecf0f1; /* Couleur de fond modifiée */
-  color: #2c3e50; /* Couleur de texte modifiée */
-  font-size: 1.2em; /* Plus grand pour une meilleure visibilité */
-}
+  background-color: #ecf0f1; 
+  color: #2c3e50; 
+  font-size: 1.2em; 
+}  */
