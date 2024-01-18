@@ -190,10 +190,11 @@ function FicheEleve({
             ) : null}
             {Array.isArray(allCommentaire) &&
               allCommentaire.map((commentaire, index) => (
-                <p key={index}>
-                  {commentaire.idCommentateur} : {commentaire.contenu}
-                </p>
+                <div key={index} className='global_all_commentaire'>
+                  <span className='commentateur_fiche'>{commentaire.idCommentateur}</span> : <span className='commentaire_fiche_txt'>{commentaire.contenu}</span>
+                </div>
               ))}
+
           </div>
 
           <div className="fiche_version_prof">

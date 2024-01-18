@@ -15,6 +15,7 @@ import PhotoEleve from './EspaceEleve/PhotoEleve/PhotoEleve'
 import ConsulterFichesImages from './Interface_Educateur/ConsulterFichesImages/ConsulterFichesImages'
 import ModifierRole from './Interface_Educateur/ModifierRole/ModifierRole'
 import Optioneleve from './EspaceEleve/optioneleve'
+import SuiviEleve from './Interface_Educateur/SuiviEleve/SuiviEleve'
 const noel = require('./fond/noel.webp')
 const halloween = require('./fond/hallowen.webp')
 
@@ -108,6 +109,7 @@ function App() {
       {redirection === 16 && (
         <Optioneleve redirection={setRedirection} eleve={eleve} />
       )}
+      {redirection === 17 && <SuiviEleve redirection={setRedirection} />}
       {redirection === 3 ? (
         selectBox === null ? (
           !saveName ? (

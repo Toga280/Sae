@@ -51,7 +51,7 @@
   
   .bouton_sauvegarder_creation_profil_edu {
     background-color: #4caf50;
-    width: 50%;
+    width: 12%;
     color: white;
     padding: 10px 15px;
     border: none;
@@ -119,16 +119,6 @@
     text-align: center; 
   }
   
-  .bouton_sauvegarder_creation_profil_edu {
-    background-color: #4caf50;
-    width: 50%;
-    color: white;
-    padding: 10px 15px;
-    border: none;
-    border-radius: 4px;
-    cursor: pointer;
-    margin-top: 10px;
-  }
   
   .bouton_sauvegarder_creation_profil_edu:hover {
     background-color: #45a049;
@@ -228,16 +218,6 @@
     margin-top: 5px;
   }
   
-  .bouton_sauvegarder_creation_profil_edu {
-    background-color: #4caf50;
-    width: 50%;
-    color: white;
-    padding: 10px 15px;
-    border: none;
-    border-radius: 4px;
-    cursor: pointer;
-    margin-top: 10px; /* Ajuste la marge supérieure du bouton */
-  }
   
   .bouton_sauvegarder_creation_profil_edu:hover {
     background-color: #45a049;

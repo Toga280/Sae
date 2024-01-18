@@ -27,7 +27,7 @@ function Interface({ redirection, role }: any) {
           >
             Se déconnecter
           </button>
-          <h2 className="txt_espace_prof">Espace Administrateur</h2>
+          <h2 className="txt_espace_prof">Espace super administrateur</h2>
           <div className="global_bouton_interface_educateur">
             <button
               className="bouton_interface_educateur"
@@ -85,6 +85,12 @@ function Interface({ redirection, role }: any) {
             >
               Modifier les rôles
             </button>
+            <button
+                className="bouton_interface_educateur"
+                onClick={() => redirection(17)}
+              >
+                Suivi élèves
+              </button>
           </div>
         </div>
       )}
@@ -97,7 +103,7 @@ function Interface({ redirection, role }: any) {
           >
             Se déconnecter
           </button>
-          <h2 className="txt_espace_prof">Espace Éducateur intervenant</h2>
+          <h2 className="txt_espace_prof">Espace éducateur technique simple</h2>
           <div className="global_bouton_interface_educateur">
             <button
               className="bouton_interface_educateur"
@@ -108,7 +114,32 @@ function Interface({ redirection, role }: any) {
           </div>
         </div>
       )}
+      {role === 'Cip' && (
+        <div>
+          <button
+            className="bouton_deconnection_educateur"
+            onClick={handleBoutonClic}
+          >
+            Se déconnecter
+          </button>
+          <h2 className="txt_espace_prof">Espace conseillère insertion professionnelle</h2>
+          <div className='global_bouton_interface_educateur'>
+            <button
+                className="bouton_interface_educateur"
+                onClick={() => redirection(14)}
+              >
+                Consulter fiches/images
+              </button>
+              <button
+                className="bouton_interface_educateur"
+                onClick={() => redirection(17)}
+              >
+                Suivi élèves
+              </button>
+          </div>
 
+        </div>
+      )}
       {role === 'ProfesseurAdmin' && (
         <div>
           <button
@@ -117,7 +148,7 @@ function Interface({ redirection, role }: any) {
           >
             Se déconnecter
           </button>
-          <h2 className="txt_espace_prof">Espace Éducateur</h2>
+          <h2 className="txt_espace_prof">Espace éducateur technique administrateur</h2>
           <div className="global_bouton_interface_educateur">
             <button
               className="bouton_interface_educateur"
