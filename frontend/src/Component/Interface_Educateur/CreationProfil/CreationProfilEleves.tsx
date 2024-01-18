@@ -48,7 +48,7 @@ function CreationProfilEleves({
         </div>
 
         <div className="form_prenom_creation_profil">
-          <p> Prenom </p>
+          <p> Prénom </p>
           <input
             type="text"
             className="TextInput"
@@ -57,7 +57,7 @@ function CreationProfilEleves({
           />
         </div>
         <div className="form_prenom_creation_profil">
-          <p> Mots de passe </p>
+          <p> Mot de passe </p>
           <input
             type="text"
             className="TextInput"
@@ -67,7 +67,7 @@ function CreationProfilEleves({
         </div>
 
         <div className="form_image_creation_profil">
-          <p> Image </p>
+          <p> Photo de profil </p>
           <input
             type="file"
             className="uploadpp"
