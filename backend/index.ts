@@ -445,12 +445,20 @@ app.post('/POST/affectereleve', async (req: any, res: any) => {
       return res.status(404).json({ message: 'Fiche non trouvée' })
     }
 
-    if (!fiche.info.nomEleveAttribuer) {
+    if (!fiche.info.nomEleveAttribuer && !fiche.info.prenomEleveAttribuer) {
       fiche.info.nomEleveAttribuer = nom
-    }
-
-    if (!fiche.info.prenomEleveAttribuer) {
       fiche.info.prenomEleveAttribuer = prenom
+      fiche.info.enCour = true
+    } else {
+      return res.status(500).json({
+        success: false,
+        message:
+          'La fiche est déjà affecter a ' +
+          fiche.info.prenomEleveAttribuer +
+          ' ' +
+          fiche.info.nomEleveAttribuer +
+          '. Il doit finir sa fiche précendente pour pouvoir lui en affecter une nouvelle.',
+      })
     }
 
     await fiche.save()

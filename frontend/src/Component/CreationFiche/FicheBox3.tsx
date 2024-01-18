@@ -89,13 +89,23 @@ function FicheBox3({
             versionProf={versionProf}
           />
           <div>
-            <input
-              type="text"
-              className="TextInput"
-              onChange={handleInput3Change}
-              value={input3}
-              readOnly={versionVue}
-            />
+            {!versionProf ? (
+              <input
+                type="text"
+                className="TextInput"
+                onChange={handleInput3Change}
+                value={input3}
+                readOnly={true}
+              />
+            ) : (
+              <input
+                type="text"
+                className="TextInput"
+                onChange={handleInput3Change}
+                value={input3}
+                readOnly={versionVue}
+              />
+            )}
           </div>
         </div>
         <div className="grp_demande">
@@ -107,13 +117,24 @@ function FicheBox3({
             infoSelectionChoixMiniBox={infoSelectionChoixMiniBox}
             versionProf={versionProf}
           />
-          <input
-            type="text"
-            className="TextInput"
-            onChange={handleInput4Change}
-            value={input4}
-            readOnly={versionVue}
-          />
+          {!versionProf ? (
+            <input
+              type="text"
+              className="TextInput"
+              onChange={handleInput4Change}
+              value={input4}
+              readOnly={true}
+            />
+          ) : (
+            <input
+              type="text"
+              className="TextInput"
+              onChange={handleInput4Change}
+              value={input4}
+              readOnly={versionVue}
+            />
+          )}
+
           <ChoixMiniBox
             TexteInfo={'Localisation'}
             Balise={1}
@@ -122,13 +143,23 @@ function FicheBox3({
             infoSelectionChoixMiniBox={infoSelectionChoixMiniBox}
             versionProf={versionProf}
           />
-          <input
-            type="text"
-            className="TextInput"
-            onChange={handleInput5Change}
-            value={input5}
-            readOnly={versionVue}
-          />
+          {!versionProf ? (
+            <input
+              type="text"
+              className="TextInput"
+              onChange={handleInput5Change}
+              value={input5}
+              readOnly={true}
+            />
+          ) : (
+            <input
+              type="text"
+              className="TextInput"
+              onChange={handleInput5Change}
+              value={input5}
+              readOnly={versionVue}
+            />
+          )}
         </div>
         <div className="grp_demande">
           <ChoixMiniBox
@@ -141,13 +172,23 @@ function FicheBox3({
           />
         </div>
         <div>
-          <textarea
-            rows={10}
-            className="descdmd"
-            onChange={handleInput6Change}
-            value={input6}
-            readOnly={versionVue}
-          ></textarea>
+          {!versionProf ? (
+            <textarea
+              rows={10}
+              className="descdmd"
+              onChange={handleInput6Change}
+              value={input6}
+              readOnly={true}
+            ></textarea>
+          ) : (
+            <textarea
+              rows={10}
+              className="descdmd"
+              onChange={handleInput6Change}
+              value={input6}
+              readOnly={versionVue}
+            ></textarea>
+          )}
         </div>
         <div className="grp_demande">
           <ChoixMiniBox
@@ -159,13 +200,23 @@ function FicheBox3({
             versionProf={versionProf}
           />
           <div>
-            <input
-              type="text"
-              className="TextInput"
-              onChange={handleInput7Change}
-              value={input7}
-              readOnly={versionVue}
-            />
+            {!versionProf ? (
+              <input
+                type="text"
+                className="TextInput"
+                onChange={handleInput7Change}
+                value={input7}
+                readOnly={true}
+              />
+            ) : (
+              <input
+                type="text"
+                className="TextInput"
+                onChange={handleInput7Change}
+                value={input7}
+                readOnly={versionVue}
+              />
+            )}
           </div>
         </div>
       </div>

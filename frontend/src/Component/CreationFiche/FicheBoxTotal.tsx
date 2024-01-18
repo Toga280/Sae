@@ -22,6 +22,9 @@ function FicheBoxTotal({
 }: any) {
   const [numBox, setNumBox] = useState(0)
 
+  const [isDraftSaved, setIsDraftSaved] = useState(false);
+  const [isDraftSavedFiche, setIsDraftSavedFiche] = useState(false);
+
   const modifierFiche = async () => {
     console.log('nom de la fiche --> ', fonctionsMiniBoxInfoJson.getNom())
     await deleteFiche(fonctionsMiniBoxInfoJson.getNom())
@@ -73,21 +76,32 @@ function FicheBoxTotal({
       setSaveName(true)
     } else if (!versionProf) {
       await fonctionsMiniBoxInfoJson.changeEnCourFalse()
+      setIsDraftSavedFiche(true);
       modifierFiche()
+      window.scrollTo(0, 0);
       redirection(false)
+      {isDraftSavedFiche && <div className="message_brouillon">Fiche Sauvegarder !</div>} // IL FAUT L4AFFICHER
+
     }
   }
 
   const Brouillon = () => {
     if (!versionProf) {
       modifierFiche()
+      setIsDraftSaved(true); 
+      setTimeout(() => setIsDraftSaved(false), 5000);
     }
+    window.scrollTo({
+      top: 0, 
+      behavior: 'smooth'
+    });
   }
 
   const retour = () => {
     if (versionProf) {
       redirection(2)
     } else if (!versionProf) {
+      window.scrollTo(0, 0);
       redirection(false)
     }
   }
@@ -106,6 +120,8 @@ function FicheBoxTotal({
 
   return (
     <div>
+      {isDraftSaved && <div className="message_brouillon">Fiche mise en brouillon</div>} 
+
       <div onClick={() => handleClick(1)}>
         <FicheBox1
           classNameDiv={'Box'}
@@ -174,6 +190,7 @@ function FicheBoxTotal({
           versionProf={versionProf}
         />
       </div>
+
       <button onClick={consoleLogJson}>return log json</button>
       <button className="boutton_retour_interaction_edu" onClick={retour}>
         Retour
@@ -187,12 +204,15 @@ function FicheBoxTotal({
         </button>
       ) : null}
       {!versionProf && !versionVue ? (
+        <>
+
         <button
           className="boutton_brouillon_interaction_edu"
           onClick={Brouillon}
         >
           Brouillons
         </button>
+      </>
       ) : null}
 
       {versionProf ? (

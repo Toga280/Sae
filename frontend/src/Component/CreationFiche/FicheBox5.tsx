@@ -55,12 +55,21 @@ function FicheBox5({
     <div className={classNameDiv}>
       <div className="grp_type_maintenance">
         <div className="">
-          <input
-            type="checkbox"
-            onChange={handleInput10Change}
-            checked={input10}
-            disabled={versionVue}
-          />
+          {versionProf ? (
+            <input
+              type="checkbox"
+              onChange={handleInput10Change}
+              checked={input10}
+              disabled={true}
+            />
+          ) : (
+            <input
+              type="checkbox"
+              onChange={handleInput10Change}
+              checked={input10}
+              disabled={versionVue}
+            />
+          )}
         </div>
         <div className="">
           <ChoixMiniBox
@@ -75,12 +84,21 @@ function FicheBox5({
       </div>
       <div className="grp_type_maintenance">
         <div className="">
-          <input
-            type="checkbox"
-            onChange={handleInput11Change}
-            checked={input11}
-            disabled={versionVue}
-          />
+          {versionProf ? (
+            <input
+              type="checkbox"
+              onChange={handleInput11Change}
+              checked={input11}
+              disabled={true}
+            />
+          ) : (
+            <input
+              type="checkbox"
+              onChange={handleInput11Change}
+              checked={input11}
+              disabled={versionVue}
+            />
+          )}
         </div>
         <div className="droite">
           <ChoixMiniBox
@@ -95,12 +113,21 @@ function FicheBox5({
       </div>
       <div className="grp_type_maintenance">
         <div className="">
-          <input
-            type="checkbox"
-            onChange={handleInput12Change}
-            checked={input12}
-            disabled={versionVue}
-          />
+          {versionProf ? (
+            <input
+              type="checkbox"
+              onChange={handleInput12Change}
+              checked={input12}
+              disabled={true}
+            />
+          ) : (
+            <input
+              type="checkbox"
+              onChange={handleInput12Change}
+              checked={input12}
+              disabled={versionVue}
+            />
+          )}
         </div>
         <div className="">
           <ChoixMiniBox

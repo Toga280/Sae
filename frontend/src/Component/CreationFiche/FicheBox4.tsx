@@ -49,13 +49,24 @@ function FicheBox4({
           infoSelectionChoixMiniBox={infoSelectionChoixMiniBox}
           versionProf={versionProf}
         />
-        <input
-          type="text"
-          className="TextInput"
-          onChange={handleInput8Change}
-          value={input8}
-          readOnly={versionVue}
-        />
+        {versionProf ? (
+          <input
+            type="text"
+            className="TextInput"
+            onChange={handleInput8Change}
+            value={input8}
+            readOnly={true}
+          />
+        ) : (
+          <input
+            type="text"
+            className="TextInput"
+            onChange={handleInput8Change}
+            value={input8}
+            readOnly={versionVue}
+          />
+        )}
+
         <ChoixMiniBox
           TexteInfo={"Durée de l'opération"}
           Balise={1}
@@ -65,30 +76,57 @@ function FicheBox4({
           versionProf={versionProf}
         />
         <div>
-          <select
-            className="selecteur_duree"
-            onChange={handleInput9Change}
-            value={input9}
-            disabled={versionVue}
-          >
-            <option>-- Choisir une durée --</option>
-            <option>00h15</option>
-            <option>00h30</option>
-            <option>00h45</option>
-            <option>01h00</option>
-            <option>01h15</option>
-            <option>01h30</option>
-            <option>01h45</option>
-            <option>02h00</option>
-            <option>02h15</option>
-            <option>02h30</option>
-            <option>02h45</option>
-            <option>03h00</option>
-            <option>03h15</option>
-            <option>03h30</option>
-            <option>03h45</option>
-            <option>04h00</option>
-          </select>
+          {versionProf ? (
+            <select
+              className="selecteur_duree"
+              onChange={handleInput9Change}
+              value={input9}
+              disabled={true}
+            >
+              <option>-- Choisir une durée --</option>
+              <option>00h15</option>
+              <option>00h30</option>
+              <option>00h45</option>
+              <option>01h00</option>
+              <option>01h15</option>
+              <option>01h30</option>
+              <option>01h45</option>
+              <option>02h00</option>
+              <option>02h15</option>
+              <option>02h30</option>
+              <option>02h45</option>
+              <option>03h00</option>
+              <option>03h15</option>
+              <option>03h30</option>
+              <option>03h45</option>
+              <option>04h00</option>
+            </select>
+          ) : (
+            <select
+              className="selecteur_duree"
+              onChange={handleInput9Change}
+              value={input9}
+              disabled={versionVue}
+            >
+              <option>-- Choisir une durée --</option>
+              <option>00h15</option>
+              <option>00h30</option>
+              <option>00h45</option>
+              <option>01h00</option>
+              <option>01h15</option>
+              <option>01h30</option>
+              <option>01h45</option>
+              <option>02h00</option>
+              <option>02h15</option>
+              <option>02h30</option>
+              <option>02h45</option>
+              <option>03h00</option>
+              <option>03h15</option>
+              <option>03h30</option>
+              <option>03h45</option>
+              <option>04h00</option>
+            </select>
+          )}
         </div>
       </div>
     </div>
