@@ -535,24 +535,30 @@ app.post('/POST/ficheUpdateName', async (req: any, res: any) => {
 /*dupliquer FICHE================================================================*/
 
 app.post('/POST/ficheDuplicate', async (req: any, res: any) => {
-  const { name } = req.body
+  const { name } = req.body;
 
   try {
-    const fiche = await Fiche.findOne({ 'info.name': name })
+    const fiche = await Fiche.findOne({ 'info.name': name }).lean();
 
     if (!fiche) {
-      return res.status(404).json({ message: 'Fiche non trouvée' })
+      return res.status(404).json({ message: 'Fiche non trouvée' });
     }
 
-    const newFiche = new Fiche(fiche)
-    newFiche.info.name = `${fiche.info.name} - Copie`
-    await newFiche.save()
-    res.status(200).json({ message: 'Fiche dupliquée avec succès' })
+    // Créer une copie de l'objet sans le champ _id
+    const { _id, ...ficheWithoutId } = fiche;
+
+    const newFiche = new Fiche(ficheWithoutId);
+    newFiche.info.name = `${ficheWithoutId.info.name} - Copie`;
+
+    await newFiche.save();
+    res.status(200).json({ message: 'Fiche dupliquée avec succès' });
   } catch (error) {
-    console.error(error)
-    res.status(500).json({ message: 'Erreur serveur' })
+    console.error(error);
+    res.status(500).json({ message: 'Erreur serveur' });
   }
-})
+});
+
+
 
 
 /*------------------- GET -------------------*/

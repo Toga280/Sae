@@ -63,6 +63,23 @@ function ListeFiches({ redirection, refreshFiche }: any) {
       >
         Affecter
       </button>
+      <button
+        className="dupliquer_fiche_crée"
+        onClick={() => dupliquerFiche(item)}
+      >
+        Dupliquer
+      </button>
+      <button
+        className="modif_nom_fiche_crée"
+        onClick={() => {
+          const newNom = prompt("Entrez le nouveau nom de la fiche :");
+          if (newNom !== null) {
+            modifnomfiche(item, newNom);
+          }
+        }}
+      >
+        Modifier le nom
+      </button>
     </div>
   ));
 
