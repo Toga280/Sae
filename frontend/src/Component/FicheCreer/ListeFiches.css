@@ -52,6 +52,20 @@
 .delete-icon:hover {
   background-color: #c0392b;
 }
+.autre-icon {
+  border-color: #e74c3c;
+  border-radius: 10%;
+  padding: 0.5em;
+  cursor: pointer;
+  margin-left: 5em; /* Ajustez cette ligne */
+  margin-right: 2em; /* Ajoutez cette ligne */
+  margin-top: 20px;
+  transition: background-color 0.3s ease;
+}
+
+.autre-icon:hover {
+  background-color: rgb(183, 180, 180);
+}
 
 .affecter_fiche_crée{
   border: none;
