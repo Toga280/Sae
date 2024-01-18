@@ -1,4 +1,3 @@
-/* Style général pour la consultation des fiches */
 .global_consultation_fiche {
     display: flex;
     flex-direction: column;
@@ -6,7 +5,7 @@
     padding: 25px;
     border-radius: 10px; /* Coins arrondis pour une touche moderne */
     box-shadow: 0 6px 20px rgba(0, 0, 0, 0.1); /* Ombre portée plus prononcée pour du relief */
-    max-width: 650px;
+    max-width: 750px;
     margin: 40px auto;
     font-family: 'Helvetica Neue', Helvetica, Arial, sans-serif; /* Police moderne */
   }
@@ -86,3 +85,28 @@
   }
   
   
+  .aucune_fiche_trouvé{
+    margin: 2em;
+  }
+
+
+  .fiche_version_prof{
+    width: 65%;
+    margin-left: 1em;
+    float: left ;
+
+  }
+  .div_text_area_commentaire_fiche{
+    text-align: center;
+    width: 30%;
+    margin: 1em;
+    float: right;
+  }
+  .text_area_commentaire_fiche{
+    width: 90%;
+    height: 200px;
+  }
+  .add_com{
+    color: #355c7d;
+    text-align: center;
+  }
