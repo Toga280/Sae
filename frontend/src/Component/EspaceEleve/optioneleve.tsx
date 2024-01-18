@@ -94,7 +94,7 @@ function Optioneleve({ redirection, eleve }: any) {
   return (
     <div style={{ backgroundImage: `url(${fondEcranUrl})`, backgroundSize: 'cover', height: '100vh' }}>
     <div>
-    <h2 className="titre_changer_fond">Changer le font d'écran</h2>
+    <h2 className="titre_changer_fond">Changer le fond d'écran</h2>
 
       <div className="global_option_eleve">
         <label htmlFor="fileInput" className={`custom-file-upload`}>

@@ -9,6 +9,7 @@ function ListeFiches({ redirection, refreshFiche }: any) {
   const [affichageAffecterListe, setAffichageAffecterListe] = useState(false);
   const [nomFicheSelectionner, setNomFicheSelectionner] = useState("");
   const [eleveAffecte, setEleveAffecte] = useState<Record<string, string | undefined>>({});
+  const [ficheexiste, setFicheexiste] = useState(false);
 
   const setAffichageAffecterListeFalse = () => {
     setAffichageAffecterListe(false);
@@ -47,11 +48,9 @@ function ListeFiches({ redirection, refreshFiche }: any) {
 
   const getEleveAffecteAsync = async (nomf: string) => {
     try {
-      console.log("nomf", nomf);
       const response = await axios.get(
         `http://localhost:5000/GET/eleveAffecter?ficheName=${encodeURIComponent(nomf)}`
       );
-      console.log("response.data", response.data);
       return response.data;
     } catch (error) {
       console.error("Erreur lors de la requête vers le serveur :", error);
@@ -110,10 +109,15 @@ function ListeFiches({ redirection, refreshFiche }: any) {
           src={require("./modifier.webp")}
           style={{ width: "30px", height: "30px", cursor: "pointer" }}
           className="autre-icon"
-          onClick={() => {
+          onClick={async () => {
             const newNom = prompt("Entrez le nouveau nom de la fiche :");
             if (newNom !== null) {
-              modifnomfiche(item, newNom);
+              await testNameFiche(newNom);
+              if (ficheexiste === true) {
+                modifnomfiche(item, newNom);
+              } else {
+                alert("Une fiche avec ce nom existe déjà. Veuillez choisir un autre nom.");
+              }
             }
           }}
         />
@@ -165,7 +169,12 @@ function ListeFiches({ redirection, refreshFiche }: any) {
       alert(
         "Le nom de la fiche ne peut pas être vide, le nom n'a pas été modifié"
       );
+<<<<<<< HEAD
     }
+=======
+      }
+>>>>>>> 8741eba5dde0de639efbfb00043ee36e295015a6
+
     try {
       await axios.post(`http://localhost:5000/POST/ficheUpdateName`, {
         name: oldnom,
@@ -177,6 +186,24 @@ function ListeFiches({ redirection, refreshFiche }: any) {
     redirection(2);
     redirection(6);
   };
+
+  const testNameFiche = async (nomFiche: string) => {
+    try {
+      const response = await axios.get(
+        `http://localhost:5000/GET/nameFicheExiste?name=${encodeURIComponent(
+          nomFiche,
+        )}`,
+      )
+      if (response.data) {
+        setFicheexiste(true)
+      } else {
+        setFicheexiste(false)
+      }
+    } catch (error) {
+      console.error('Erreur lors de la requête vers le serveur :', error)
+      throw error
+    }
+  }
 
   const dupliquerFiche = async (nomf: string) => {
     try {

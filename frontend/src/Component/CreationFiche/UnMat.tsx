@@ -528,27 +528,27 @@ function UnMat({ mat, numMat, setSelect, image }: any) {
   function obtenirMateriel(nom: string): string {
     switch (nom) {
       case 'Mat1':
-        return 'Matériel n°1'
+        return 'Matériau n°1'
       case 'Mat2':
-        return 'Matériel n°2'
+        return 'Matériau n°2'
       case 'Mat3':
-        return 'Matériel n°3'
+        return 'Matériau n°3'
       case 'Mat4':
-        return 'Matériel n°4'
+        return 'Matériau n°4'
       case 'Mat5':
-        return 'Matériel n°5'
+        return 'Matériau n°5'
       case 'Mat6':
-        return 'Matériel n°6'
+        return 'Matériau n°6'
       case 'Mat7':
-        return 'Matériel n°7'
+        return 'Matériau n°7'
       case 'Mat8':
-        return 'Matériel n°8'
+        return 'Matériau n°8'
       case 'Mat9':
-        return 'Matériel n°9'
+        return 'Matériau n°9'
       case 'Mat10':
-        return 'Matériel n°10'
+        return 'Matériau n°10'
       default:
-        return 'Matériel inconnu'
+        return 'Matériau inconnu'
     }
   }
   const returnMat = () => {

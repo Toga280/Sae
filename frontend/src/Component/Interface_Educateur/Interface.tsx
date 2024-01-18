@@ -15,9 +15,9 @@ function Interface({ redirection, role }: any) {
       {role === "Admin" && (
         <div>
           <button className="bouton_deconnection_educateur" onClick={handleBoutonClic}>Se déconnecter</button>
-          <h2 className="txt_espace_prof">Espace Administrateur</h2>
+          <h2 className="txt_espace_prof">Espace administrateur</h2>
           <div className="global_bouton_interface_educateur">
-            <button className="bouton_interface_educateur" onClick={() => redirection(3)}>Création Fiche</button>
+            <button className="bouton_interface_educateur" onClick={() => redirection(3)}>Création fiche</button>
             <button className="bouton_interface_educateur" onClick={() => redirection(14)} >Consulter fiches/images</button>
             <button className="bouton_interface_educateur" onClick={() => redirection(10)} > Importer un pictogramme</button>
             {/* <button className="bouton_interface_educateur" onClick={() => redirection(3)}>Brouillons fiches </button> */}
@@ -25,7 +25,7 @@ function Interface({ redirection, role }: any) {
             <button className="bouton_interface_educateur" onClick={() => redirection(9)}>Modifier les informations</button>
             <button className="bouton_interface_educateur" onClick={() => redirection(5)}>Créer un profil</button>
             <button className="bouton_interface_educateur" onClick={() => redirection(8)}>Archiver un profil</button>
-            <button className="bouton_interface_educateur" onClick={() => redirection(12)}>Profil Archivé(s)</button>
+            <button className="bouton_interface_educateur" onClick={() => redirection(12)}>Profils archivés</button>
             <button className="bouton_interface_educateur" onClick={() => redirection(15)}>Modifier les rôles</button>
           </div>
         </div>
@@ -34,7 +34,7 @@ function Interface({ redirection, role }: any) {
       {role === "Professeur" && (
         <div>
           <button className="bouton_deconnection_educateur" onClick={handleBoutonClic}>Se déconnecter</button>
-          <h2 className="txt_espace_prof">Espace Éducateur intervenant</h2>
+          <h2 className="txt_espace_prof">Espace éducateur intervenant</h2>
           <div className="global_bouton_interface_educateur">
             <button className="bouton_interface_educateur" onClick={() => redirection(3)} >Consulter fiches/images</button>
           </div>
@@ -44,7 +44,7 @@ function Interface({ redirection, role }: any) {
       {role === "ProfesseurAdmin" && (
         <div>
           <button className="bouton_deconnection_educateur" onClick={handleBoutonClic}>Se déconnecter</button>
-          <h2 className="txt_espace_prof">Espace Éducateur</h2>
+          <h2 className="txt_espace_prof">Espace éducateur</h2>
           <div className="global_bouton_interface_educateur">
             <button className="bouton_interface_educateur" onClick={() => redirection(3)}>Création Fiche</button>
             <button className="bouton_interface_educateur" onClick={() => redirection(14)} >Consulter fiches/images</button>

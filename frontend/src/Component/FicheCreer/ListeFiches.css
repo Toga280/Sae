@@ -18,6 +18,8 @@
 }
 
 .liste_nom_fiches_crée {
+  overflow: hidden;
+  overflow-wrap: break-word;
   border: none;
   width: 20%;
   background-color: #fff;

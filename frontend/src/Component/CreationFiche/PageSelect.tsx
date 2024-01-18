@@ -15,7 +15,7 @@ function PageSelect({ setSelect, numMat }: any) {
         Retour
       </button>
       <h2 className="txt_choix_selec_mat">
-        Séléctionnez un materiel à ajouter :
+        Séléctionnez un matériau à ajouter :
       </h2>
       <UnMat
         mat={'Bonde à grille pour lave-mains'}
