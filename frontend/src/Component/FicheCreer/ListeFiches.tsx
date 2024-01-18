@@ -42,7 +42,7 @@ function ListeFiches({ redirection, refreshFiche }: any) {
 
   };
 
-  const elements = FichesNames.map((item, index) => (
+  const elements = FichesNames.sort().map((item, index) => (
     <div className="global_liste_nom_fiches_crée">
       <div
         className="liste_nom_fiches_crée"
