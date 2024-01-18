@@ -519,6 +519,59 @@ app.post('/POST/ProfUpdateRole', async (req: any, res: any) => {
   }
 })
 
+/*modifier NOM FICHE================================================================*/
+
+app.post('/POST/ficheUpdateName', async (req: any, res: any) => {
+  const { name, newName } = req.body
+
+  try {
+    const fiche = await Fiche.findOne({ 'info.name': name })
+
+    if (!fiche) {
+      return res.status(404).json({ message: 'Fiche non trouvée' })
+    }
+
+    fiche.info.name = newName
+    await fiche.save()
+    res.status(200).json({ message: 'Nom de la fiche mis à jour avec succès' })
+  } catch (error) {
+    console.error(error)
+    res.status(500).json({ message: 'Erreur serveur' })
+  }
+})
+
+/*dupliquer FICHE================================================================*/
+
+app.post('/POST/ficheDuplicate', async (req: any, res: any) => {
+  const { name } = req.body;
+
+  try {
+    const fiche = await Fiche.findOne({ 'info.name': name }).lean();
+
+    if (!fiche) {
+      return res.status(404).json({ message: 'Fiche non trouvée' });
+    }
+
+    // Créer une copie de l'objet sans le champ _id
+    const { _id, ...ficheWithoutId } = fiche;
+    fiche.info.nomEleveAttribuer = ''
+    fiche.info.prenomEleveAttribuer = ''
+    fiche.info.enCour = true
+
+    const newFiche = new Fiche(ficheWithoutId);
+    newFiche.info.name = `${ficheWithoutId.info.name} - Copie`;
+
+    await newFiche.save();
+    res.status(200).json({ message: 'Fiche dupliquée avec succès' });
+  } catch (error) {
+    console.error(error);
+    res.status(500).json({ message: 'Erreur serveur' });
+  }
+});
+
+
+
+
 /*------------------- GET -------------------*/
 
 /* GET ALL FICHES ===========================================================*/
@@ -794,7 +847,7 @@ app.get('/GET/getpicto-file', async (req: any, res: any) => {
   }
 })
 
-/* GET PICTO ELEVE ===============================================================*/
+/* GET photo profil ELEVE ===============================================================*/
 
 app.get('/GET/piceleve', async (req: any, res: any) => {
   const pictoDirectory = path.join(__dirname, './src/piceleve')
@@ -944,3 +997,4 @@ app.get('/GET/NombreEssais', async (req: any, res: any) => {
     res.status(500).json({ message: 'Erreur serveur' })
   }
 })
+

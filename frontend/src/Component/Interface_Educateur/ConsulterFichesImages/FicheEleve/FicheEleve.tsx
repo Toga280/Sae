@@ -73,49 +73,64 @@ function FicheEleve({ nomEleve, prenomEleve, setVoirFicheFalse }: any) {
   }, [])
 
   return (
-    <div className="global_consultation_fiche">
-      {!voirFiche ? (
-        <div className="section fiche_en_cours">
-          <p className="section_title">Fiche en cours</p>
-          {ficheEnCour != 'Aucune fiche trouvée' ? (
-            <div
-              onClick={consulterFicheEnCour}
-              className="fiche_container nom_fiche"
-            >
-              <div className="fiche_nom">{ficheEnCour}</div>
-            </div>
-          ) : (
-            <p> aucune fiche trouvée </p>
-          )}
-          <div className="section fiche_fini">
-            <p className="section_title">Fiche(s) finie(s)</p>
-            {!aucuneFicheTerminee ? (
-              ficheTerminee.map((ficheTerminee) => (
-                <div
-                  onClick={() => consulterFicheTerminee(ficheTerminee)}
-                  className="fiche_container nom_fiche"
-                >
-                  <div className="fiche_nom">{ficheTerminee}</div>
-                </div>
-              ))
+    <div>
+        {!voirFiche ? (
+          <div className="global_consultation_fiche">
+
+          <div className="section fiche_en_cours">
+            <p className="section_title">Fiche en cours</p>
+            {ficheEnCour != 'Aucune fiche trouvée' ? (
+              <div
+                onClick={consulterFicheEnCour}
+                className="fiche_container nom_fiche"
+              >
+                <div className="fiche_nom">{ficheEnCour}</div>
+              </div>
             ) : (
-              <p>aucune fiche trouvée</p>
+              <p className='aucune_fiche_trouvé'> aucune fiche trouvée </p>
             )}
+            <div className="section fiche_fini">
+              <p className="section_title">Fiche(s) finie(s)</p>
+              {!aucuneFicheTerminee ? (
+                ficheTerminee.map((ficheTerminee) => (
+                  <div
+                    onClick={() => consulterFicheTerminee(ficheTerminee)}
+                    className="fiche_container nom_fiche"
+                  >
+                    <div className="fiche_nom">{ficheTerminee}</div>
+                  </div>
+                ))
+              ) : (
+                <p className='aucune_fiche_trouvé'>aucune fiche trouvée</p>
+              )}
+              
+            </div>
+            <button
+              className="bouton_retour interaction_edu"
+              onClick={setVoirFicheFalse}
+            >
+              Retour
+            </button>
           </div>
-          <button
-            className="bouton_retour interaction_edu"
-            onClick={setVoirFicheFalse}
-          >
-            Retour
-          </button>
         </div>
-      ) : (
-        <FicheBoxTotal
-          versionProf={false}
-          versionVue={true}
-          redirection={setVoirFiche}
-        />
-      )}
+      
+        ) : (
+          <div>
+            <div className='div_text_area_commentaire_fiche'>
+              <h1 className='add_com'>Ajouter un commentaire</h1>
+              <textarea className='text_area_commentaire_fiche' value="Commentaires"></textarea>
+              <button className='bouton_retour interaction_edu'>Valider</button>
+            </div>
+
+            <div className='fiche_version_prof'>
+              <FicheBoxTotal
+                versionProf={false}
+                versionVue={true}
+                redirection={setVoirFiche}
+              />
+            </div>
+          </div>
+        )}
     </div>
   )
 }

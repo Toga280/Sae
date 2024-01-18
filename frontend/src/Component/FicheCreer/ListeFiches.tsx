@@ -63,6 +63,23 @@ function ListeFiches({ redirection, refreshFiche }: any) {
       >
         Affecter
       </button>
+      <button
+        className="dupliquer_fiche_crée"
+        onClick={() => dupliquerFiche(item)}
+      >
+        Dupliquer
+      </button>
+      <button
+        className="modif_nom_fiche_crée"
+        onClick={() => {
+          const newNom = prompt("Entrez le nouveau nom de la fiche :");
+          if (newNom !== null) {
+            modifnomfiche(item, newNom);
+          }
+        }}
+      >
+        Modifier le nom
+      </button>
     </div>
   ));
 
@@ -102,6 +119,27 @@ function ListeFiches({ redirection, refreshFiche }: any) {
 
   const setRedirectionTwo = () => {
     redirection(2);
+  };
+
+  const modifnomfiche = async (oldnom: string, newnom: string )  => {
+    try {
+      await axios.post(`http://localhost:5000/POST/ficheUpdateName`, {
+        name: oldnom,
+        newName: newnom
+      });
+    } catch (error) {
+      console.error(error);
+    }
+  };
+
+  const dupliquerFiche = async (nomf: string) => {
+    try {
+      await axios.post("http://localhost:5000/POST/ficheDuplicate", {
+        name: nomf,
+      });
+    } catch (error) {
+      console.error(error);
+    }
   };
 
   return (

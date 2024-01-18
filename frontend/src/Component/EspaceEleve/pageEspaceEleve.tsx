@@ -33,14 +33,6 @@ function PageEspaceEleve({ redirection, nomEleve, prenomEleve, eleve }: any) {
       .catch((error) => console.error(error))
   }, [])
 
-  useEffect(() => {
-    const timeoutId = setTimeout(() => {
-      setPasDeFicheEnCour(false);
-    }, 3000);
-
-    return () => clearTimeout(timeoutId);
-  }, []);
-
   const setRedirectionThriteen = () => {
     redirection(13)
   }
