@@ -786,7 +786,7 @@ app.get('/GET/getpicto-file', async (req: any, res: any) => {
   }
 })
 
-/* GET PICTO ELEVE ===============================================================*/
+/* GET photo profil ELEVE ===============================================================*/
 
 app.get('/GET/piceleve', async (req: any, res: any) => {
   const pictoDirectory = path.join(__dirname, './src/piceleve')

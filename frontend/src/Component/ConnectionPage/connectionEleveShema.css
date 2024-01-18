@@ -81,3 +81,11 @@ background: #e62222;
   border: none;
   color: #e62222;
 }
+
+.info_nom_eleve{
+  font-size: 1.5em;
+  font-weight: bold;
+  margin: 1em;
+  text-align: center;
+  font-family: Arial, Helvetica, sans-serif
+}
