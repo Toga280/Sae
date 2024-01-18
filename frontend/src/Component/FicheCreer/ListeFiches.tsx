@@ -39,6 +39,7 @@ function ListeFiches({ redirection, refreshFiche }: any) {
     console.log(item);
     setAffichageAffecterListe(true);
     setNomFicheSelectionner(item);
+
   };
 
   const elements = FichesNames.map((item, index) => (
@@ -131,6 +132,8 @@ function ListeFiches({ redirection, refreshFiche }: any) {
     } catch (error) {
       console.error(error);
     }
+    redirection(2)
+    redirection(6)
   };
 
   const dupliquerFiche = async (nomf: string) => {
@@ -141,6 +144,8 @@ function ListeFiches({ redirection, refreshFiche }: any) {
     } catch (error) {
       console.error(error);
     }
+    redirection(2)
+    redirection(6)
   };
 
   return (
