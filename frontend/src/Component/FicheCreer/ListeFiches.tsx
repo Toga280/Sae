@@ -12,28 +12,32 @@ function ListeFiches({ redirection, refreshFiche }: any) {
     setAffichageAffecterListe(false);
   };
   const deleteFiche = (nomFiche: string) => {
-    const confirmation = window.confirm(
-      `Êtes-vous sûr de vouloir supprimer cette fiche ${nomFiche} ?`
-    );
+  const confirmation = window.confirm(
+    `Êtes-vous sûr de vouloir supprimer cette fiche ${nomFiche} ?`
+  );
 
-    if (confirmation) {
-      axios
-        .get(
-          `http://localhost:5000/DELETE/ficheName?name=${encodeURIComponent(
-            nomFiche
-          )}`
-        )
-        .then((response) => {
-          if (response.data) {
-            console.log("fiche supprimée avec succès");
-            allFicheNames();
-          }
-        })
-        .catch((error) => {
-          console.error("Erreur lors de la requête vers le serveur :", error);
-        });
-    }
-  };
+  if (confirmation) {
+    axios
+      .get(
+        `http://localhost:5000/DELETE/ficheName?name=${encodeURIComponent(
+          nomFiche
+        )}`
+      )
+      .then((response) => {
+        if (response.data) {
+          console.log("fiche supprimée avec succès");
+          // Mettre à jour l'état après la suppression
+          setFichesNames((prevFiches) => {
+            const updatedFiches = prevFiches.filter((fiche) => fiche !== nomFiche);
+            return updatedFiches;
+          });
+        }
+      })
+      .catch((error) => {
+        console.error("Erreur lors de la requête vers le serveur :", error);
+      });
+  }
+};
 
   const affecterFiche = (item: string) => {
     console.log(item);
@@ -42,7 +46,7 @@ function ListeFiches({ redirection, refreshFiche }: any) {
 
   };
 
-  const elements = FichesNames.map((item, index) => (
+  const elements = FichesNames.sort().map((item, index) => (
     <div className="global_liste_nom_fiches_crée">
       <div
         className="liste_nom_fiches_crée"
@@ -124,6 +128,9 @@ function ListeFiches({ redirection, refreshFiche }: any) {
   };
 
   const modifnomfiche = async (oldnom: string, newnom: string )  => {
+    if (newnom === '') {
+      alert("Le nom de la fiche ne peut pas être vide, le nom n'a pas été modifié");
+    }
     try {
       await axios.post(`http://localhost:5000/POST/ficheUpdateName`, {
         name: oldnom,

@@ -46,7 +46,7 @@ const miniBoxSchema = new Schema<MiniBox>(
 
 const ficheSchema = new Schema<FicheDocument>({
   info: {
-    name: { type: String },
+    name: { type: String, required: true },
     nomEleveAttribuer: { type: String },
     prenomEleveAttribuer: { type: String },
     enCour: { type: Boolean },
@@ -544,6 +544,9 @@ app.post('/POST/ficheUpdateName', async (req: any, res: any) => {
     if (!fiche) {
       return res.status(404).json({ message: 'Fiche non trouvée' })
     }
+    if(newName === ''){
+      return res.status(404).json({ message: 'Le nom de la fiche ne peut pas être vide' })
+    }
 
     fiche.info.name = newName
     await fiche.save()
@@ -566,6 +569,9 @@ app.post('/POST/ficheDuplicate', async (req: any, res: any) => {
       return res.status(404).json({ message: 'Fiche non trouvée' });
     }
 
+    if(name === ''){
+      return res.status(404).json({ message: 'Le nom de la fiche ne peut pas être vide' })
+    }
     // Créer une copie de l'objet sans le champ _id
     const { _id, ...ficheWithoutId } = fiche;
     fiche.info.nomEleveAttribuer = ''
