@@ -959,6 +959,36 @@ app.get('/GET/fondecran', async (req: any, res: any) => {
   }
 })
 
+/* get eleve affecter a fiche ===============================================================*/
+
+app.get('/GET/eleveAffecter', async (req: any, res: any) => {
+  const { ficheName } = req.query;
+  console.log('ficheName -> ', ficheName);
+  try {
+    console.log("CPT 1");
+    const fiche = await Fiche.findOne({ 'info.name': ficheName }).exec();
+    console.log("CPT 2");
+    if (!fiche) {
+      return res.status(404).send('Fiche non trouvée');
+    }
+    console.log("CPT 3");
+    if (!fiche.info.nomEleveAttribuer && !fiche.info.prenomEleveAttribuer) {
+      return res.status(200).send('personne');
+    }
+    console.log("CPT 4");
+
+    // Formattez la réponse comme une chaîne de caractères
+    const eleveAffecteString = `${fiche.info.nomEleveAttribuer} ${fiche.info.prenomEleveAttribuer}`;
+    
+    console.log("CPT 5");
+    return res.status(200).send(eleveAffecteString);
+  } catch (error) {
+    console.error('Erreur lors de la recherche de la fiche :', error);
+    res.status(500).send('Erreur interne du serveur');
+  }
+});
+
+
 /*------------------- DELETE -------------------*/
 
 /* DELETE FICHE ===============================================================*/
