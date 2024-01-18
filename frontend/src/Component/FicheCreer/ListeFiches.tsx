@@ -128,6 +128,9 @@ function ListeFiches({ redirection, refreshFiche }: any) {
   };
 
   const modifnomfiche = async (oldnom: string, newnom: string )  => {
+    if (newnom === '') {
+      alert("Le nom de la fiche ne peut pas être vide, le nom n'a pas été modifié");
+    }
     try {
       await axios.post(`http://localhost:5000/POST/ficheUpdateName`, {
         name: oldnom,
