@@ -1,69 +1,97 @@
-import React, { useState } from "react";
-import fonctionsMiniBoxInfoJson from "./MiniBoxInfoFunction";
-import PopUpSauvegarder from "./PopUpSauvegarder";
-import axios from "axios";
-import "./Sauvegarder.css";
+import React, { useEffect, useState } from 'react'
+import fonctionsMiniBoxInfoJson from './MiniBoxInfoFunction'
+import PopUpSauvegarder from './PopUpSauvegarder'
+import axios from 'axios'
+import './Sauvegarder.css'
 
 function Sauvegarder({ redirection, setSaveName }: any) {
+  const [nomFiche, setNomFiche] = useState('')
+  const [upPopUpSauvegarder, setUpPopUpSauvegarder] = useState(false)
+  const [typeFiche, setTypeFiche] = useState('')
+  const [informationSuplementaire, setInformationSuplementaire] =
+    useState(String)
+  const [boutonClique, setBoutonClique] = useState(false)
 
-  const [nomFiche, setNomFiche] = useState("");
-  const [upPopUpSauvegarder, setUpPopUpSauvegarder] = useState(false);
-  const [typeFiche, setTypeFiche] = useState("");
-  const [boutonClique, setBoutonClique] = useState(false);
+  const handleTypeSelection = (type: any) => {
+    setTypeFiche(type)
+  }
 
-  const handleTypeSelection = (type : any) => {
-    setTypeFiche(type);
-  };
+  const addInformationSuplementaire = () => {
+    fonctionsMiniBoxInfoJson.modifierInformationSuplementaire(
+      informationSuplementaire,
+    )
+  }
+
+  const handleInformationSuplementaireChange = (
+    e: React.ChangeEvent<HTMLTextAreaElement>,
+  ) => {
+    setInformationSuplementaire(e.target.value)
+  }
 
   const handleInputChange = (event: any) => {
-    setNomFiche(event.target.value);
-  };
+    setNomFiche(event.target.value)
+  }
 
-  const sauvegarde = () => {
-    fonctionsMiniBoxInfoJson.modifierNom(nomFiche);
-    postFiche();
-    redirection(2);
-    setSaveName(false);
-    fonctionsMiniBoxInfoJson.modifierAllJsonToBase();
-  };
+  const sauvegarde = async () => {
+    fonctionsMiniBoxInfoJson.modifierNom(nomFiche)
+    addInformationSuplementaire()
+    postFiche()
+  }
 
-  const postFiche = () => {
-    const data = fonctionsMiniBoxInfoJson.getAllJson();
+  const postFiche = async () => {
+    const data = fonctionsMiniBoxInfoJson.getAllJson()
     axios
-      .post("http://localhost:5000/POST/fiche", data)
+      .post('http://localhost:5000/POST/fiche', data)
       .then((response) => {
-        console.log("Réponse du serveur :", response.data);
+        console.log('Réponse du serveur :', response.data)
+        redirection(2)
+        setSaveName(false)
+        fonctionsMiniBoxInfoJson.modifierAllJsonToBase()
       })
       .catch((error) => {
-        console.error("Erreur lors de la requête vers le serveur :", error);
-      });
-  };
+        console.error('Erreur lors de la requête vers le serveur :', error)
+      })
+  }
 
   const testNameFiche = async (nomFiche: string) => {
     try {
       const response = await axios.get(
         `http://localhost:5000/GET/nameFicheExiste?name=${encodeURIComponent(
-          nomFiche
-        )}`
-      );
+          nomFiche,
+        )}`,
+      )
 
       if (response.data) {
-        setUpPopUpSauvegarder(true);
+        setUpPopUpSauvegarder(true)
       } else {
-        sauvegarde();
+        sauvegarde()
       }
     } catch (error) {
-      console.error("Erreur lors de la requête vers le serveur :", error);
-      throw error;
+      console.error('Erreur lors de la requête vers le serveur :', error)
+      throw error
     }
-  };
-  // PARTIE COMMENTAIRE 
+  }
 
+  const logAllJson = () => {
+    console.log(fonctionsMiniBoxInfoJson.getAllJson())
+  }
+
+  useEffect(() => {
+    fonctionsMiniBoxInfoJson.modifierInformationSuplementaire(
+      informationSuplementaire,
+    )
+    console.log(
+      'fonctionsMiniBoxInfoJson.getInformationSuplementaire() --> ',
+      fonctionsMiniBoxInfoJson.getInformationSuplementaire(),
+    )
+  }, [informationSuplementaire])
 
   return (
     <div>
       <div className="global_sauvegarder_fiche">
-        <h1 className="title_choose_name_for_fiche">Choisir un nom pour votre fiche</h1>
+        <h1 className="title_choose_name_for_fiche">
+          Choisir un nom pour votre fiche
+        </h1>
 
         <h2 className="titleCommentaire">Nom de la fiche</h2>
         <input
@@ -74,37 +102,36 @@ function Sauvegarder({ redirection, setSaveName }: any) {
           required
           onChange={handleInputChange}
         />
- <h2 className="titleCommentaire">Type de la fiche</h2>
-              <div>
-                <input
-                  type="button"
-                  className="boutton_type_ficheBox"
-                  value="Électricité"
-                  onClick={() => {
-                    handleTypeSelection('Électricité');
-                    setBoutonClique(true);
-                  }}
-
-                />
-                <input
-                  type="button"
-                  className="boutton_type_ficheBox"
-                  value="Général"
-                  onClick={() => {
-                    handleTypeSelection('Général');
-                    setBoutonClique(true);
-                  }}
-                />
-                <input
-                  type="button"
-                  className="boutton_type_ficheBox "
-                  value="Plomberie"
-                  onClick={() => {
-                    handleTypeSelection('Plomberie');
-                    setBoutonClique(true);
-                  }}
-                />
-              </div>
+        <h2 className="titleCommentaire">Type de la fiche</h2>
+        <div>
+          <input
+            type="button"
+            className="boutton_type_ficheBox"
+            value="Électricité"
+            onClick={() => {
+              handleTypeSelection('Électricité')
+              setBoutonClique(true)
+            }}
+          />
+          <input
+            type="button"
+            className="boutton_type_ficheBox"
+            value="Général"
+            onClick={() => {
+              handleTypeSelection('Général')
+              setBoutonClique(true)
+            }}
+          />
+          <input
+            type="button"
+            className="boutton_type_ficheBox "
+            value="Plomberie"
+            onClick={() => {
+              handleTypeSelection('Plomberie')
+              setBoutonClique(true)
+            }}
+          />
+        </div>
 
         {boutonClique && (
           <div>
@@ -113,6 +140,7 @@ function Sauvegarder({ redirection, setSaveName }: any) {
               <textarea
                 className="input_commenter_ficheBox"
                 placeholder="Commentaire"
+                onChange={handleInformationSuplementaireChange}
               />
             </div>
 
@@ -122,10 +150,12 @@ function Sauvegarder({ redirection, setSaveName }: any) {
               value="Sauvegarder"
               required
               onClick={() => {
-                if (nomFiche.trim() !== "") {
-                  testNameFiche(nomFiche);
+                if (nomFiche.trim() !== '') {
+                  testNameFiche(nomFiche)
                 } else {
-                  alert("Veuillez saisir un nom pour votre fiche avant de sauvegarder.");
+                  alert(
+                    'Veuillez saisir un nom pour votre fiche avant de sauvegarder.',
+                  )
                 }
               }}
             />
@@ -140,9 +170,12 @@ function Sauvegarder({ redirection, setSaveName }: any) {
           </div>
         )}
       </div>
-      <button className="retour_btn_save" onClick={() => setSaveName(false)}>Retour</button>
+      <button className="retour_btn_save" onClick={() => setSaveName(false)}>
+        Retour
+      </button>
+      <button onClick={logAllJson}> aezraqz</button>
     </div>
-  );
-};
+  )
+}
 
-export default Sauvegarder;
+export default Sauvegarder

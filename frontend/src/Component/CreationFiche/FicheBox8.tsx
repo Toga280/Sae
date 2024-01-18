@@ -4,7 +4,7 @@ import '../../style/fiche8.css'
 import '../../style/ficheGlobal.css'
 import PageSelect from './PageSelect'
 import SelectsAffichage from './SelectsAffichage'
-function FicheBox8({ classNameDiv, versionVue }: any) {
+function FicheBox8({ classNameDiv, versionVue, versionProf }: any) {
   const [select, setSelect] = useState(false)
   const [numMat, setNumMat] = useState(String)
 
@@ -13,7 +13,11 @@ function FicheBox8({ classNameDiv, versionVue }: any) {
       {select && !versionVue ? (
         <PageSelect setSelect={setSelect} numMat={numMat} />
       ) : (
-        <SelectsAffichage setSelect={setSelect} setNumMat={setNumMat} />
+        <SelectsAffichage
+          setSelect={setSelect}
+          setNumMat={setNumMat}
+          versionProf={versionProf}
+        />
       )}
     </div>
   )

@@ -85,7 +85,9 @@ function FicheBoxSelected({ numberFichBox, onSelectBoxChange }: any) {
           versionProf={true}
         />
       ) : null}
-      {numberFichBox === 8 ? <FicheBox8 classNameDiv={'boxSelected'} /> : null}
+      {numberFichBox === 8 ? (
+        <FicheBox8 classNameDiv={'boxSelected'} versionProf={true} />
+      ) : null}
 
       <div>
         {selectionChoixMiniBox === true ? (

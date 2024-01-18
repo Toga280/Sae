@@ -77,7 +77,11 @@ function FicheEleve({ nomEleve, prenomEleve, setVoirFicheFalse }: any) {
       {!voirFiche ? (
         <div>
           <p>Fiche en cour</p>
-          <div onClick={consulterFicheEnCour}>{ficheEnCour}</div>
+          {ficheEnCour != 'Aucune fiche trouvée' ? (
+            <div onClick={consulterFicheEnCour}>{ficheEnCour}</div>
+          ) : (
+            <p> aucune fiche trouvée </p>
+          )}
           <p>Fiche(s) fini</p>
           {!aucuneFicheTerminee ? (
             ficheTerminee.map((ficheTerminee) => (
