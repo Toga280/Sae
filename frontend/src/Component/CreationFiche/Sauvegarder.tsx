@@ -34,6 +34,7 @@ function Sauvegarder({ redirection, setSaveName }: any) {
 
   const sauvegarde = async () => {
     fonctionsMiniBoxInfoJson.modifierNom(nomFiche)
+    fonctionsMiniBoxInfoJson.changeEnCourTrue()
     addInformationSuplementaire()
     postFiche()
   }
@@ -79,10 +80,6 @@ function Sauvegarder({ redirection, setSaveName }: any) {
   useEffect(() => {
     fonctionsMiniBoxInfoJson.modifierInformationSuplementaire(
       informationSuplementaire,
-    )
-    console.log(
-      'fonctionsMiniBoxInfoJson.getInformationSuplementaire() --> ',
-      fonctionsMiniBoxInfoJson.getInformationSuplementaire(),
     )
   }, [informationSuplementaire])
 
@@ -173,7 +170,6 @@ function Sauvegarder({ redirection, setSaveName }: any) {
       <button className="retour_btn_save" onClick={() => setSaveName(false)}>
         Retour
       </button>
-      <button onClick={logAllJson}> aezraqz</button>
     </div>
   )
 }

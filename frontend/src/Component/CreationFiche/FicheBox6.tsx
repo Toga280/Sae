@@ -64,12 +64,21 @@ function FicheBox6({
     <div className={classNameDiv}>
       <div className="grp_nature_intervention">
         <div className="">
-          <input
-            type="checkbox"
-            onChange={handleInput13Change}
-            checked={input13}
-            disabled={versionVue}
-          />
+          {versionProf ? (
+            <input
+              type="checkbox"
+              onChange={handleInput13Change}
+              checked={input13}
+              disabled={true}
+            />
+          ) : (
+            <input
+              type="checkbox"
+              onChange={handleInput13Change}
+              checked={input13}
+              disabled={versionVue}
+            />
+          )}
         </div>
         <div className="">
           <ChoixMiniBox
@@ -84,12 +93,21 @@ function FicheBox6({
       </div>
       <div className="grp_nature_intervention">
         <div className="">
-          <input
-            type="checkbox"
-            onChange={handleInput14Change}
-            checked={input14}
-            disabled={versionVue}
-          />
+          {versionProf ? (
+            <input
+              type="checkbox"
+              onChange={handleInput14Change}
+              checked={input14}
+              disabled={true}
+            />
+          ) : (
+            <input
+              type="checkbox"
+              onChange={handleInput14Change}
+              checked={input14}
+              disabled={versionVue}
+            />
+          )}
         </div>
         <div className="">
           <ChoixMiniBox
@@ -104,12 +122,21 @@ function FicheBox6({
       </div>
       <div className="grp_nature_intervention">
         <div className="">
-          <input
-            type="checkbox"
-            onChange={handleInput15Change}
-            checked={input15}
-            disabled={versionVue}
-          />
+          {versionProf ? (
+            <input
+              type="checkbox"
+              onChange={handleInput15Change}
+              checked={input15}
+              disabled={true}
+            />
+          ) : (
+            <input
+              type="checkbox"
+              onChange={handleInput15Change}
+              checked={input15}
+              disabled={versionVue}
+            />
+          )}
         </div>
         <div className="">
           <ChoixMiniBox
@@ -124,12 +151,21 @@ function FicheBox6({
       </div>
       <div className="grp_nature_intervention">
         <div className="">
-          <input
-            type="checkbox"
-            onChange={handleInput16Change}
-            checked={input16}
-            disabled={versionVue}
-          />
+          {versionProf ? (
+            <input
+              type="checkbox"
+              onChange={handleInput16Change}
+              checked={input16}
+              disabled={true}
+            />
+          ) : (
+            <input
+              type="checkbox"
+              onChange={handleInput16Change}
+              checked={input16}
+              disabled={versionVue}
+            />
+          )}
         </div>
         <div className="">
           <ChoixMiniBox

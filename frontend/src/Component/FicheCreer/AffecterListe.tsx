@@ -1,53 +1,71 @@
-import axios from "axios";
-import "./AffecterListe.css";
-import React, { useEffect, useState } from "react";
+import axios from 'axios'
+import './AffecterListe.css'
+import React, { useEffect, useState } from 'react'
 
 function AffecterListe({
   setAffichageAffecterListeFalse,
   nomFicheSelectionner,
 }: any) {
-  const [eleves, setEleves] = useState<any[]>([]);
-  const [eleveSelectionne, setEleveSelectionne] = useState<any | null>(null);
+  const [eleves, setEleves] = useState<any[]>([])
+  const [erreurAffecter, setErreurAffecter] = useState<boolean>(false)
+  const [erreurAffecterMessage, setErreurAffecterMessage] = useState(String)
+  const [eleveSelectionne, setEleveSelectionne] = useState<any | null>(null)
 
   useEffect(() => {
     const getEleve = () => {
       axios
         .get(`http://localhost:5000/GET/allEleve`)
         .then((response) => {
-          setEleves(response.data);
+          setEleves(response.data)
         })
         .catch((error) => {
-          console.error("erreur : ", error);
-        });
-    };
+          console.error('erreur : ', error)
+        })
+    }
 
-    getEleve();
-  }, []);
+    getEleve()
+  }, [])
 
   const handleSelectionEleve = (eleve: any) => {
-    setEleveSelectionne(eleve);
-  };
+    setEleveSelectionne(eleve)
+  }
 
   const affecterFiche = (nom: string, prenom: string) => {
-    const ficheName = nomFicheSelectionner;
-    console.log("affectation de l'éleve --> ", nom, prenom, ficheName);
+    const ficheName = nomFicheSelectionner
     axios
-      .post(`http://localhost:5000/POST/affectereleve`, {
-        nom,
-        prenom,
-        ficheName,
-      })
+      .post(
+        `http://localhost:5000/POST/affectereleve`,
+        {
+          nom,
+          prenom,
+          ficheName,
+        },
+        {
+          validateStatus: function (status) {
+            return status == 500
+          },
+        },
+      )
       .then((response) => {
-        setEleves(response.data);
+        if (!response.data.success) {
+          setErreurAffecter(true)
+          setErreurAffecterMessage(response.data.message)
+          console.log('response.data.message', response.data.message)
+        } else {
+          setEleves(response.data.data)
+          setAffichageAffecterListeFalse()
+        }
       })
       .catch((error) => {
-        console.error("erreur : ", error);
-      });
-    setAffichageAffecterListeFalse();
-  };
+        if (!error.response || error.response.status !== 500) {
+          console.error('Erreur autre que 500 :', error)
+        }
+      })
+  }
 
   return (
     <div className="global_affecter_fiche">
+      {erreurAffecter ? <p> {erreurAffecterMessage} </p> : null}
       <h1 className="titleh1">Affecter une fiche</h1>
       <h2 className="title">Liste des élèves</h2>
       <h3>Fiche sélectionné : {nomFicheSelectionner}</h3>
@@ -57,8 +75,8 @@ function AffecterListe({
             key={eleve.id}
             onClick={() => handleSelectionEleve(eleve)}
             style={{
-              cursor: "pointer",
-              fontWeight: eleve === eleveSelectionne ? "bold" : "normal",
+              cursor: 'pointer',
+              fontWeight: eleve === eleveSelectionne ? 'bold' : 'normal',
             }}
           >
             {eleve.nom} {eleve.prenom}
@@ -92,7 +110,7 @@ function AffecterListe({
         Retour
       </button> */}
     </div>
-  );
+  )
 }
 
-export default AffecterListe;
+export default AffecterListe

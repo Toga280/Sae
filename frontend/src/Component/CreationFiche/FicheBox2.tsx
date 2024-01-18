@@ -48,13 +48,24 @@ function FicheBox2({
           infoSelectionChoixMiniBox={infoSelectionChoixMiniBox}
           versionProf={versionProf}
         />
-        <input
-          type="text"
-          className="TextInput"
-          onChange={handleInput1Change}
-          value={input1}
-          readOnly={versionVue}
-        />
+        {versionProf ? (
+          <input
+            type="text"
+            className="TextInput"
+            onChange={handleInput1Change}
+            value={input1}
+            readOnly={versionProf}
+          />
+        ) : (
+          <input
+            type="text"
+            className="TextInput"
+            onChange={handleInput1Change}
+            value={input1}
+            readOnly={versionVue}
+          />
+        )}
+
         <ChoixMiniBox
           TexteInfo={"Prénom de l'intervenant"}
           Balise={1}
@@ -63,13 +74,23 @@ function FicheBox2({
           infoSelectionChoixMiniBox={infoSelectionChoixMiniBox}
           versionProf={versionProf}
         />
-        <input
-          type="text"
-          className="TextInput"
-          onChange={handleInput2Change}
-          value={input2}
-          readOnly={versionVue}
-        />
+        {versionProf ? (
+          <input
+            type="text"
+            className="TextInput"
+            onChange={handleInput2Change}
+            value={input2}
+            readOnly={versionProf}
+          />
+        ) : (
+          <input
+            type="text"
+            className="TextInput"
+            onChange={handleInput2Change}
+            value={input2}
+            readOnly={versionVue}
+          />
+        )}
       </div>
     </div>
   )

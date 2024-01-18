@@ -59,13 +59,23 @@ function FicheBox7({
           infoSelectionChoixMiniBox={infoSelectionChoixMiniBox}
           versionProf={versionProf}
         />
-        <textarea
-          rows={10}
-          className="descdmd"
-          onChange={handleInput17Change}
-          value={input17}
-          readOnly={versionVue}
-        ></textarea>
+        {versionProf ? (
+          <textarea
+            rows={10}
+            className="descdmd"
+            onChange={handleInput17Change}
+            value={input17}
+            readOnly={true}
+          ></textarea>
+        ) : (
+          <textarea
+            rows={10}
+            className="descdmd"
+            onChange={handleInput17Change}
+            value={input17}
+            readOnly={versionVue}
+          ></textarea>
+        )}
       </div>
       <div className="grp_travaux_non_realises">
         <div>
@@ -78,24 +88,43 @@ function FicheBox7({
             versionProf={versionProf}
           />
           <div>
-            <textarea
-              rows={10}
-              className="descdmd"
-              onChange={handleInput18Change}
-              value={input18}
-              readOnly={versionVue}
-            ></textarea>
+            {versionProf ? (
+              <textarea
+                rows={10}
+                className="descdmd"
+                onChange={handleInput18Change}
+                value={input18}
+                readOnly={true}
+              ></textarea>
+            ) : (
+              <textarea
+                rows={10}
+                className="descdmd"
+                onChange={handleInput18Change}
+                value={input18}
+                readOnly={versionVue}
+              ></textarea>
+            )}
           </div>
         </div>
       </div>
       <div className="nvlle_inter">
         <div className="">
-          <input
-            type="checkbox"
-            onChange={handleInput19Change}
-            checked={input19}
-            disabled={versionVue}
-          />
+          {versionProf ? (
+            <input
+              type="checkbox"
+              onChange={handleInput19Change}
+              checked={input19}
+              disabled={true}
+            />
+          ) : (
+            <input
+              type="checkbox"
+              onChange={handleInput19Change}
+              checked={input19}
+              disabled={versionVue}
+            />
+          )}
         </div>
         <ChoixMiniBox
           TexteInfo={'Nécessite une nouvelle intervention'}
