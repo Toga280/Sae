@@ -20,7 +20,7 @@ function Optioneleve({ redirection, eleve }: any) {
 
   useEffect(() => {
     // Appeler la requête pour récupérer l'image du fond d'écran
-    axios.get('http://192.168.105.71:5000/GET/fondecran', {
+    axios.get('http://localhost:5000/GET/fondecran', {
       params: {
         name: eleve
       },
@@ -48,7 +48,7 @@ function Optioneleve({ redirection, eleve }: any) {
         formData.append('file', selectedFile);
 
         console.log(formData)
-        const response = await axios.post('http://192.168.105.71:5000/POST/uploadfondecran', formData, {
+        const response = await axios.post('http://localhost:5000/POST/uploadfondecran', formData, {
           params: {
             name: eleve,
           },
@@ -74,7 +74,7 @@ function Optioneleve({ redirection, eleve }: any) {
       console.log('Suppression...');
   
       if (eleve.trim() !== '') {
-        const response = await axios.get(`http://192.168.105.71:5000/DELETE/fond?name=${eleve}`, {
+        const response = await axios.get(`http://localhost:5000/DELETE/fond?name=${eleve}`, {
           // Additional request configuration if needed
         });
   

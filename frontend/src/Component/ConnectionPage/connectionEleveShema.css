@@ -1,14 +1,13 @@
 .container {
-  max-width: 600px; /* Plus large pour une meilleure visibilité */
+  max-width: 90%; /* Ajusté pour la réactivité */
   margin: 2em auto;
-  background-color: #f2f2f2; /* Couleur de fond plus claire */
+  background-color: #f2f2f2;
   border-radius: 10px;
-  box-shadow: 0 6px 16px rgba(0, 0, 0, 0.2); /* Ombre plus prononcée pour plus de profondeur */
+  box-shadow: 0 6px 16px rgba(0, 0, 0, 0.2);
   padding: 30px;
 }
 
 .affichage {
-  
   margin-top: 0.5em;
   border-radius: 6px;
   padding: 15px;
@@ -17,9 +16,9 @@
 }
 
 .affichageMDP {
-  font-size: 2.5em; /* Plus grand pour une meilleure visibilité */
+  font-size: 2.5em;
   letter-spacing: 0.15em;
-  color: #555; /* Couleur de texte plus foncée */
+  color: #555;
 }
 
 .boutons {
@@ -30,31 +29,28 @@
 
 .boutonsChiffre {
   display: grid;
-  grid-template-columns: repeat(3, 10em);
-  height: 100%;
-  gap: 15px; /* Plus d'espace entre les boutons */
+  grid-template-columns: repeat(3, 1fr);
+  gap: 15px;
   margin-bottom: 25px;
 }
 
 .bouton {
-
-  text-align: center; 
   background-color: #3498db;
   height: 3em;
-  width: 100%;
+  width: 100%; /* Ajusté pour la réactivité */
   color: white;
   border: none;
   border-radius: 6px;
-  padding: 20px; /* Plus grand pour une meilleure visibilité */
-  font-size: 1.6em; /* Plus grand pour une meilleure visibilité */
+  padding: 15px; /* Ajusté pour la réactivité */
+  font-size: 1.6em; /* Ajusté pour la réactivité */
   cursor: pointer;
   transition: background-color 0.3s, transform 0.2s;
   box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
 }
 
 .bouton:hover {
-  background-color: #2980b9; /* Couleur de survol modifiée */
-  transform: translateY(-3px); /* Effet de soulèvement plus prononcé */
+  background-color: #2980b9;
+  transform: translateY(-3px);
 }
 
 .bouton:disabled {
@@ -63,27 +59,22 @@
 }
 
 .btn-retour-pin {
-  width: 40px; /* Plus grand pour une meilleure visibilité */
-  height: 40px; /* Plus grand pour une meilleure visibilité */
+  width: 40px;
+  height: 40px;
 }
 
-/* 
-.countdown {
-  grid-column: span 3; 
-  padding: 15px; 
-  margin-top: 15px;
-  text-align: center;
-  border: 2px solid #ddd;
-  border-radius: 6px;
-  background-color: #ecf0f1; 
-  color: #2c3e50; 
-  font-size: 1.2em; 
-}  */
-
-.info_nom_eleve{
+.info_nom_eleve {
   font-size: 1.5em;
   font-weight: bold;
   margin: 1em;
   text-align: center;
-  font-family: Arial, Helvetica, sans-serif
+  font-family: Arial, Helvetica, sans-serif;
+}
+
+@media only screen and (max-width: 768px) {
+  .bouton {
+    padding: 10px;
+    font-size: 1.2em;
+  }
+  
 }

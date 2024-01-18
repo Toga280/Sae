@@ -8,7 +8,7 @@ function ModifierMdpProf({ redirection }: any) {
   useEffect(() => {
     const getProf = () => {
       axios
-        .get(`http://192.168.105.71:5000/GET/allProf`)
+        .get(`http://localhost:5000/GET/allProf`)
         .then((response) => {
           setAdmin(response.data);
         })
@@ -26,7 +26,7 @@ function ModifierMdpProf({ redirection }: any) {
   };
   const postProfChangeMdp = (ProfData: any) => {
     axios
-      .post("http://192.168.105.71:5000/POST/profUpdatePassword", ProfData)
+      .post("http://localhost:5000/POST/profUpdatePassword", ProfData)
       .then((response) => {
         console.log("Réponse du serveur :", response.data);
       })

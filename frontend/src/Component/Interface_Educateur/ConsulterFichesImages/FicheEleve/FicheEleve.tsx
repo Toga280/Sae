@@ -20,7 +20,7 @@ function FicheEleve({ nomEleve, prenomEleve, setVoirFicheFalse }: any) {
   const getFicheInProgressEleve = () => {
     axios
       .get(
-        `http://192.168.105.71:5000/GET/eleve/FicheInProgress?nom=${nomEleve}&prenom=${prenomEleve}`,
+        `http://localhost:5000/GET/eleve/FicheInProgress?nom=${nomEleve}&prenom=${prenomEleve}`,
       )
       .then((response) => {
         SetFicheEnCour(response.data)
@@ -36,7 +36,7 @@ function FicheEleve({ nomEleve, prenomEleve, setVoirFicheFalse }: any) {
   const getFicheCompletedEleve = () => {
     axios
       .get(
-        `http://192.168.105.71:5000/GET/eleve/FicheCompleted?nom=${nomEleve}&prenom=${prenomEleve}`,
+        `http://localhost:5000/GET/eleve/FicheCompleted?nom=${nomEleve}&prenom=${prenomEleve}`,
       )
       .then((response) => {
         if (response.data === 'Aucune fiche terminée trouvée') {
@@ -56,7 +56,7 @@ function FicheEleve({ nomEleve, prenomEleve, setVoirFicheFalse }: any) {
   const FicheNames = async (nameValue: string) => {
     try {
       const response = await axios.get(
-        `http://192.168.105.71:5000/GET/nameFiche?name=${encodeURIComponent(
+        `http://localhost:5000/GET/nameFiche?name=${encodeURIComponent(
           nameValue,
         )}`,
       )

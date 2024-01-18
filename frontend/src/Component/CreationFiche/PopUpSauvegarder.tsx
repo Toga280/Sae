@@ -9,7 +9,7 @@ function PopUpSauvegarder({
   const deleteFiche = (nomFiche: string) => {
     axios
       .get(
-        `http://192.168.105.71:5000/DELETE/ficheName?name=${encodeURIComponent(
+        `http://localhost:5000/DELETE/ficheName?name=${encodeURIComponent(
           nomFiche
         )}`
       )

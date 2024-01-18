@@ -34,7 +34,7 @@ function FicheBoxTotal({
   const postFiche = async () => {
     const data = fonctionsMiniBoxInfoJson.getAllJson()
     axios
-      .post('http://192.168.105.71:5000/POST/fiche', data)
+      .post('http://localhost:5000/POST/fiche', data)
       .then((response) => {
         console.log('Réponse du serveur :', response.data)
       })
@@ -46,7 +46,7 @@ function FicheBoxTotal({
   const deleteFiche = async (nomFiche: string) => {
     axios
       .get(
-        `http://192.168.105.71:5000/DELETE/ficheName?name=${encodeURIComponent(
+        `http://localhost:5000/DELETE/ficheName?name=${encodeURIComponent(
           nomFiche,
         )}`,
       )

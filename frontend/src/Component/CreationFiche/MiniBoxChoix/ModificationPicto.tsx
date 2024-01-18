@@ -10,7 +10,7 @@ function ModificationPicto({ setModificationPictoPropsFalse, numeroMiniBox }: an
     setSelectedImageName(imageName);
 
     // Mettre à jour l'état de selectedImage avec le chemin complet de l'image
-    const imagePath = `http://192.168.105.71:5000/GET/getpicto-file?name=${encodeURIComponent(imageName)}`;
+    const imagePath = `http://localhost:5000/GET/getpicto-file?name=${encodeURIComponent(imageName)}`;
     setSelectedImage(imagePath);
   };
 

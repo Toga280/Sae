@@ -31,7 +31,7 @@ function PhotoEleve({ redirection, eleve }: any) {
         formData.append('file', selectedFile);
 
         console.log(formData)
-        const response = await axios.post('http://192.168.105.71:5000/POST/uploadImageEleve', formData, {
+        const response = await axios.post('http://localhost:5000/POST/uploadImageEleve', formData, {
           params: {
             name: eleve,
           },
@@ -55,7 +55,7 @@ function PhotoEleve({ redirection, eleve }: any) {
 
     useEffect(() => {
       // Appeler la requête pour récupérer l'image du fond d'écran
-      axios.get('http://192.168.105.71:5000/GET/fondecran', {
+      axios.get('http://localhost:5000/GET/fondecran', {
         params: {
           name: eleve
         },
@@ -77,7 +77,7 @@ function PhotoEleve({ redirection, eleve }: any) {
   useEffect(() => {
     const getPictoInfo = async () => {
       try {
-        const response = await axios.get('http://192.168.105.71:5000/GET/getphotoeleve-info', {
+        const response = await axios.get('http://localhost:5000/GET/getphotoeleve-info', {
           params: {
             eleve: eleve,
           },
@@ -86,7 +86,7 @@ function PhotoEleve({ redirection, eleve }: any) {
 
         // Demander chaque fichier individuellement
         const imagePromises = imageNames.map(async (imageName: string) => {
-          const imagePath = `http://192.168.105.71:5000/GET/getphotoeleve-file?eleve=${encodeURIComponent(eleve)}&name=${encodeURIComponent(imageName)}`;
+          const imagePath = `http://localhost:5000/GET/getphotoeleve-file?eleve=${encodeURIComponent(eleve)}&name=${encodeURIComponent(imageName)}`;
           const imageResponse = await axios.get(imagePath,{
             responseType: 'arraybuffer',
           });

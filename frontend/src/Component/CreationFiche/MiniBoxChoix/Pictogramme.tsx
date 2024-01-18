@@ -10,7 +10,7 @@ function Pictogramme({ onSelect }: { onSelect: (selectedImage: string) => void }
   useEffect(() => {
     const getPictoInfo = async () => {
       try {
-        const response = await axios.get('http://192.168.105.71:5000/GET/getpicto-info');
+        const response = await axios.get('http://localhost:5000/GET/getpicto-info');
         const { numFiles, imageNames } = response.data;
 
         // Afficher les informations
@@ -19,7 +19,7 @@ function Pictogramme({ onSelect }: { onSelect: (selectedImage: string) => void }
 
         // Demander chaque fichier individuellement
         const imagePromises = imageNames.map(async (imageName: string) => {
-          const imagePath = `http://192.168.105.71:5000/GET/getpicto-file?name=${encodeURIComponent(imageName)}`;
+          const imagePath = `http://localhost:5000/GET/getpicto-file?name=${encodeURIComponent(imageName)}`;
           const imageResponse = await axios.get(imagePath, {
             responseType: 'arraybuffer',
           });

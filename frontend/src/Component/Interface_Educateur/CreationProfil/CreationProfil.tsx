@@ -45,7 +45,7 @@ function CreationProfil({ redirection, setSaveName }: any) {
   /*METHODE POST =====================================================*/
   const postEleve = (eleveData: any) => {
     axios
-      .post("http://192.168.105.71:5000/POST/eleves", eleveData)
+      .post("http://localhost:5000/POST/eleves", eleveData)
       .then((response) => {
         console.log("Réponse du serveur :", response.data);
       })
@@ -58,7 +58,7 @@ function CreationProfil({ redirection, setSaveName }: any) {
     const formData = new FormData();
         formData.append('file', imageEleve);
     axios
-    .post("http://192.168.105.71:5000/POST/uploadpictoEleve", formData, {
+    .post("http://localhost:5000/POST/uploadpictoEleve", formData, {
       params: {
         name: nomEleve+prenomEleve,
       },

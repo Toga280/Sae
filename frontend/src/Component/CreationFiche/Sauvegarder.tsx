@@ -42,7 +42,7 @@ function Sauvegarder({ redirection, setSaveName }: any) {
   const postFiche = async () => {
     const data = fonctionsMiniBoxInfoJson.getAllJson()
     axios
-      .post('http://192.168.105.71:5000/POST/fiche', data)
+      .post('http://localhost:5000/POST/fiche', data)
       .then((response) => {
         console.log('Réponse du serveur :', response.data)
         redirection(2)
@@ -57,7 +57,7 @@ function Sauvegarder({ redirection, setSaveName }: any) {
   const testNameFiche = async (nomFiche: string) => {
     try {
       const response = await axios.get(
-        `http://192.168.105.71:5000/GET/nameFicheExiste?name=${encodeURIComponent(
+        `http://localhost:5000/GET/nameFicheExiste?name=${encodeURIComponent(
           nomFiche,
         )}`,
       )

@@ -12,7 +12,7 @@ function PageEspaceEleve({ redirection, nomEleve, prenomEleve, eleve }: any) {
   useEffect(() => {
     // Appeler la requête pour récupérer l'image du fond d'écran
     axios
-      .get('http://192.168.105.71:5000/GET/fondecran', {
+      .get('http://localhost:5000/GET/fondecran', {
         params: {
           name: eleve,
         },
@@ -40,7 +40,7 @@ function PageEspaceEleve({ redirection, nomEleve, prenomEleve, eleve }: any) {
   const setMaFiche = () => {
     axios
       .get(
-        `http://192.168.105.71:5000/GET/eleve/fiche?nom=${encodeURIComponent(
+        `http://localhost:5000/GET/eleve/fiche?nom=${encodeURIComponent(
           nomEleve,
         )}&prenom=${encodeURIComponent(prenomEleve)}`,
       )
@@ -61,7 +61,7 @@ function PageEspaceEleve({ redirection, nomEleve, prenomEleve, eleve }: any) {
   useEffect(() => {
     // Appeler la requête pour récupérer l'image du fond d'écran
     axios
-      .get('http://192.168.105.71:5000/GET/fondecran', {
+      .get('http://localhost:5000/GET/fondecran', {
         params: {
           name: eleve,
         },

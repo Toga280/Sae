@@ -23,7 +23,7 @@ function ModifierMdpEleve({ redirection }: any) {
   useEffect(() => {
     const getEleve = () => {
       axios
-        .get(`http://192.168.105.71:5000/GET/allEleve`)
+        .get(`http://localhost:5000/GET/allEleve`)
         .then((response) => {
           setEleves(response.data);
         })
@@ -43,7 +43,7 @@ function ModifierMdpEleve({ redirection }: any) {
   /*------------------- MODIFIER MDP ELEVE -------------------*/
   const postEleveChangeMdp = (eleveData: any) => {
     axios
-      .post("http://192.168.105.71:5000/POST/eleveUpdatePassword", eleveData)
+      .post("http://localhost:5000/POST/eleveUpdatePassword", eleveData)
       .then((response) => {
         console.log("Réponse du serveur :", response.data);
       })
@@ -93,7 +93,7 @@ function ModifierMdpEleve({ redirection }: any) {
           const imageName = `${eleve.nom}${eleve.prenom}.webp`;
           console.log('Recherche de l\'image :', imageName);
           try {
-            const imagePath = `http://192.168.105.71:5000/GET/piceleve?name=${encodeURIComponent(imageName)}`;
+            const imagePath = `http://localhost:5000/GET/piceleve?name=${encodeURIComponent(imageName)}`;
             const response = await axios.get(imagePath, {
               responseType: 'arraybuffer',
             });
@@ -130,7 +130,7 @@ function ModifierMdpEleve({ redirection }: any) {
     const formData = new FormData();
         formData.append('file', imageEleve);
     axios
-    .post("http://192.168.105.71:5000/POST/uploadpictoEleve", formData, {
+    .post("http://localhost:5000/POST/uploadpictoEleve", formData, {
       params: {
         name: nomEleve+prenomEleve,
       },
