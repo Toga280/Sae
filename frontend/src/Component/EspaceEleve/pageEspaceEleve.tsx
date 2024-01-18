@@ -33,6 +33,14 @@ function PageEspaceEleve({ redirection, nomEleve, prenomEleve, eleve }: any) {
       .catch((error) => console.error(error))
   }, [])
 
+  useEffect(() => {
+    const timeoutId = setTimeout(() => {
+      setPasDeFicheEnCour(false);
+    }, 3000);
+
+    return () => clearTimeout(timeoutId);
+  }, []);
+
   const setRedirectionThriteen = () => {
     redirection(13)
   }
@@ -135,7 +143,9 @@ function PageEspaceEleve({ redirection, nomEleve, prenomEleve, eleve }: any) {
               </button>
             </div>
           </div>
-          {pasDeFicheEnCour ? <p>pas de fiche en cour</p> : null}
+          <div className='global_pas_de_fiche'>
+          {pasDeFicheEnCour ? <p className='pas_de_fiche'>Tu n'as pas de fiche !</p> : null}
+          </div>
         </div>
       ) : (
         <FicheBoxTotal versionProf={false} redirection={setSeeMaFiche} />

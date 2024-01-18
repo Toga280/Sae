@@ -122,6 +122,7 @@ function ConnectionEleve({
           </div>
         ))
       ) : (
+        <div>
         <ConnectionEleveShema
           setC={setC}
           prenomEleveActuelle={prenomEleveActuelle}
@@ -129,6 +130,13 @@ function ConnectionEleve({
           redirection={redirection}
           set1Eleve={set1Eleve}
         />
+        <button
+          className="bouton_retour_connection_edu"
+          onClick={() => setC(false)}
+        >
+          Retour
+        </button>
+        </div>
       )}
     </div>
   );

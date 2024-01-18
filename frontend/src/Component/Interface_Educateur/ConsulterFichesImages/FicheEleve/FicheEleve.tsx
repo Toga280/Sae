@@ -2,7 +2,7 @@ import axios from 'axios'
 import React, { useEffect, useState } from 'react'
 import fonctionsMiniBoxInfoJson from '../../../CreationFiche/MiniBoxInfoFunction'
 import FicheBoxTotal from '../../../CreationFiche/FicheBoxTotal'
-
+import './FicheEleve.css'
 function FicheEleve({ nomEleve, prenomEleve, setVoirFicheFalse }: any) {
   const [ficheEnCour, SetFicheEnCour] = useState(String)
   const [ficheTerminee, SetFicheTerminee] = useState<string[]>([])
@@ -73,27 +73,37 @@ function FicheEleve({ nomEleve, prenomEleve, setVoirFicheFalse }: any) {
   }, [])
 
   return (
-    <div>
+    <div className="global_consultation_fiche">
       {!voirFiche ? (
-        <div>
-          <p>Fiche en cour</p>
+        <div className="section fiche_en_cours">
+          <p className="section_title">Fiche en cours</p>
           {ficheEnCour != 'Aucune fiche trouvée' ? (
-            <div onClick={consulterFicheEnCour}>{ficheEnCour}</div>
+            <div
+              onClick={consulterFicheEnCour}
+              className="fiche_container nom_fiche"
+            >
+              <div className="fiche_nom">{ficheEnCour}</div>
+            </div>
           ) : (
             <p> aucune fiche trouvée </p>
           )}
-          <p>Fiche(s) fini</p>
-          {!aucuneFicheTerminee ? (
-            ficheTerminee.map((ficheTerminee) => (
-              <div onClick={() => consulterFicheTerminee(ficheTerminee)}>
-                {ficheTerminee}
-              </div>
-            ))
-          ) : (
-            <p>aucune fiche trouvée</p>
-          )}
+          <div className="section fiche_fini">
+            <p className="section_title">Fiche(s) finie(s)</p>
+            {!aucuneFicheTerminee ? (
+              ficheTerminee.map((ficheTerminee) => (
+                <div
+                  onClick={() => consulterFicheTerminee(ficheTerminee)}
+                  className="fiche_container nom_fiche"
+                >
+                  <div className="fiche_nom">{ficheTerminee}</div>
+                </div>
+              ))
+            ) : (
+              <p>aucune fiche trouvée</p>
+            )}
+          </div>
           <button
-            className="boutton_retour_interaction_edu"
+            className="bouton_retour interaction_edu"
             onClick={setVoirFicheFalse}
           >
             Retour

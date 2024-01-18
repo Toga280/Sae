@@ -62,7 +62,11 @@
     font-family: Arial, sans-serif;
 
 }
-
+.bouton_interface_educateur:hover,
+.bouton_interface_educateur:focus {
+    transform: translateY(-3px); /* Légère élévation au survol */
+    box-shadow: 2px 2px 12px rgba(0,0,0,0.2); /* Ombre plus prononcée au survol */
+}
 @media (max-width: 950px) {
     .global_bouton_interface_educateur {
         display: flex;

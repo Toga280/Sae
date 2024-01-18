@@ -57,6 +57,8 @@ button.custom_retour {
 }
 
 button.custom_affecter_fiche_eleve {
+  width: 25%;
+  height: 15%;
   margin: 15px;
   background-color: var(--button-green);
 }
