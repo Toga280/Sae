@@ -449,15 +449,29 @@ app.post('/POST/affectereleve', async (req: any, res: any) => {
       fiche.info.nomEleveAttribuer = nom
       fiche.info.prenomEleveAttribuer = prenom
       fiche.info.enCour = true
-    } else {
-      return res.status(500).json({
+    } else if (
+      fiche.info.nomEleveAttribuer === nom &&
+      fiche.info.prenomEleveAttribuer === prenom
+    ) {
+      return res.status(501).json({
         success: false,
         message:
-          'La fiche est déjà affecter a ' +
+          'La fiche est déjà affectée à ' +
           fiche.info.prenomEleveAttribuer +
           ' ' +
           fiche.info.nomEleveAttribuer +
-          '. Il doit finir sa fiche précendente pour pouvoir lui en affecter une nouvelle.',
+          '. il doit finir sa fiche précédente pour pouvoir lui en affecter une nouvelle',
+      })
+
+    } else {
+      return res.status(501).json({
+        success: false,
+        message:
+          'La fiche est déjà affectée à ' +
+          fiche.info.prenomEleveAttribuer +
+          ' ' +
+          fiche.info.nomEleveAttribuer +
+          ". elle ne peut pas être affectée à quelqu'un d'autre",
       })
     }
 

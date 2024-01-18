@@ -67,3 +67,17 @@ li:hover {
   background-color: #f9f9f9;
   align-items: center;
 }
+.erreur_affectation_fiche {
+  text-align: center;
+  background-color: red;
+  color: white;
+  padding: 10px;
+  border-radius: 5px;
+  margin: 20px;
+  font-size: 16px;
+  font-weight: bold;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.3);
+  max-width: 80%;
+  margin-left: auto;
+  margin-right: auto;
+}

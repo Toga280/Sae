@@ -110,6 +110,7 @@ function ConsulterFichesImages({ redirection }: any) {
   return (
     <div>
       {!voirphoto && !voirFiche ? (
+        <div>
         <div className="custom_global_affecter_fiche">
           <h1 className="custom_titleh1">Consulter Fiches/Images d'un élève</h1>
           <h2 className="custom_title">Liste des élèves</h2>
@@ -151,10 +152,11 @@ function ConsulterFichesImages({ redirection }: any) {
               </div>
             )}
           </div>
-          <button className="retour_liste_fiches" onClick={setRedirectionTwo}>
+        </div>
+        <button className="retour_liste_fiches" onClick={setRedirectionTwo}>
             Retour
           </button>
-        </div>
+      </div>
       ) : null}
 
       {voirphoto && (

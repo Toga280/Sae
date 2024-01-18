@@ -1,17 +1,14 @@
 .bouton_retour_modifier_role {
 
-    background-color: #fff;
-    color: #355c7d;
-    font-weight: bold;
-    font-size: 18px;
-    padding: 0.8em;
-    margin: 1em;
-    border-radius: 4px;
-    border: none;
-    cursor:pointer;
-    position: absolute;
-    bottom: 20px;
-    left: 20px;
+  background-color: #fff;
+  color: #355c7d;
+  font-weight: bold;
+  font-size: 18px;
+  padding: 0.8em;
+  margin: 1em;
+  border-radius: 4px;
+  border: none;
+  cursor: pointer;
 
     
   }
