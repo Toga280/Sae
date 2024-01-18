@@ -29,7 +29,7 @@ function CreationProfilEleves({
 
   return (
     <div className="global_creation_profil_eleve">
-      <p className="txt_creation_espace_élève">Création de profil Eleves</p>
+      <p className="txt_creation_espace_élève">Création d'un profil éleve</p>
 
       <form
         action="#"

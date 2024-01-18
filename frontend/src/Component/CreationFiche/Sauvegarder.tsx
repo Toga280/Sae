@@ -113,7 +113,7 @@ function Sauvegarder({ redirection, setSaveName }: any) {
           <input
             type="button"
             className="boutton_type_ficheBox"
-            value="Général"
+            value="Finition"
             onClick={() => {
               handleTypeSelection('Général')
               setBoutonClique(true)

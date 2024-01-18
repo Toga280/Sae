@@ -51,7 +51,7 @@ function CreationProfilProf({ setRedirectionTwo }: any) {
 
   return (
     <div className="global_creation_profil_prof">
-      <p className="txt_creation_espace_élève">Création de profil Professeur</p>
+      <p className="txt_creation_espace_élève">Création d'un profil professeur</p>
 
       <form
         action="#"

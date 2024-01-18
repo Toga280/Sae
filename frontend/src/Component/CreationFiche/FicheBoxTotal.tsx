@@ -220,7 +220,7 @@ function FicheBoxTotal({
           className="boutton_sauvegarder_interaction_edu"
           onClick={imprimerPage}
         >
-          imprimer
+          Imprimer
         </button>
       ) : null}
     </div>

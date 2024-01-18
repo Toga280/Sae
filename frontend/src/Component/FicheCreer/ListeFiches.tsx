@@ -160,18 +160,11 @@ function ListeFiches({ redirection, refreshFiche }: any) {
     redirection(2);
   };
 
-<<<<<<< HEAD
-  const modifnomfiche = async (oldnom: string, newnom: string )  => {
-
-    if (newnom === '') {
-      alert("Le nom de la fiche ne peut pas être vide, le nom n'a pas été modifié");
-=======
   const modifnomfiche = async (oldnom: string, newnom: string) => {
     if (newnom === "") {
       alert(
         "Le nom de la fiche ne peut pas être vide, le nom n'a pas été modifié"
       );
->>>>>>> 9a186a7f2a34cc0ba2753e3aea43a32ecc06072b
     }
 
     try {
