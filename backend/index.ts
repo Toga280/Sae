@@ -511,6 +511,50 @@ app.post('/POST/ProfUpdateRole', async (req: any, res: any) => {
   }
 })
 
+/*modifier NOM FICHE================================================================*/
+
+app.post('/POST/ficheUpdateName', async (req: any, res: any) => {
+  const { name, newName } = req.body
+
+  try {
+    const fiche = await Fiche.findOne({ 'info.name': name })
+
+    if (!fiche) {
+      return res.status(404).json({ message: 'Fiche non trouvée' })
+    }
+
+    fiche.info.name = newName
+    await fiche.save()
+    res.status(200).json({ message: 'Nom de la fiche mis à jour avec succès' })
+  } catch (error) {
+    console.error(error)
+    res.status(500).json({ message: 'Erreur serveur' })
+  }
+})
+
+/*dupliquer FICHE================================================================*/
+
+app.post('/POST/ficheDuplicate', async (req: any, res: any) => {
+  const { name } = req.body
+
+  try {
+    const fiche = await Fiche.findOne({ 'info.name': name })
+
+    if (!fiche) {
+      return res.status(404).json({ message: 'Fiche non trouvée' })
+    }
+
+    const newFiche = new Fiche(fiche)
+    newFiche.info.name = `${fiche.info.name} - Copie`
+    await newFiche.save()
+    res.status(200).json({ message: 'Fiche dupliquée avec succès' })
+  } catch (error) {
+    console.error(error)
+    res.status(500).json({ message: 'Erreur serveur' })
+  }
+})
+
+
 /*------------------- GET -------------------*/
 
 /* GET ALL FICHES ===========================================================*/
@@ -936,3 +980,4 @@ app.get('/GET/NombreEssais', async (req: any, res: any) => {
     res.status(500).json({ message: 'Erreur serveur' })
   }
 })
+
