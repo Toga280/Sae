@@ -546,6 +546,9 @@ app.post('/POST/ficheDuplicate', async (req: any, res: any) => {
 
     // Créer une copie de l'objet sans le champ _id
     const { _id, ...ficheWithoutId } = fiche;
+    fiche.info.nomEleveAttribuer = ''
+    fiche.info.prenomEleveAttribuer = ''
+    fiche.info.enCour = true
 
     const newFiche = new Fiche(ficheWithoutId);
     newFiche.info.name = `${ficheWithoutId.info.name} - Copie`;
