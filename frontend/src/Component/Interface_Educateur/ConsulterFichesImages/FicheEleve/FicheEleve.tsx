@@ -201,13 +201,16 @@ function FicheEleve({
         <div>
           <div className="div_text_area_commentaire_fiche">
             {!versionEleve ? (
-              <div className='all_commentaire'>
+              <div className="all_commentaire">
                 {informationSuplementaire ? (
                   <div>
-                    <h1 className='add_com'>Informations supplémentaires de la fiche</h1>
-                    <textarea readOnly className='text_area_commentaire_fiche'>{informationSuplementaire}</textarea>
+                    <h1 className="add_com">
+                      Informations supplémentaires de la fiche
+                    </h1>
+                    <textarea readOnly className="text_area_commentaire_fiche">
+                      {informationSuplementaire}
+                    </textarea>
                   </div>
-
                 ) : null}
 
                 <h1 className="add_com">Ajouter un commentaire</h1>
@@ -230,8 +233,8 @@ function FicheEleve({
                 <div key={index} className="global_all_commentaire">
                   <span className="commentateur_fiche">
                     {commentaire.idCommentateur}
-                  </span>{' '}
-                  :{' '}
+                  </span>
+                  :
                   <span className="commentaire_fiche_txt">
                     {commentaire.contenu}
                   </span>
