@@ -77,7 +77,7 @@ function Interface({ redirection, role }: any) {
               className="bouton_interface_educateur"
               onClick={() => redirection(12)}
             >
-              Profil Archivé(s)
+              Profil archivés
             </button>
             <button
               className="bouton_interface_educateur"
