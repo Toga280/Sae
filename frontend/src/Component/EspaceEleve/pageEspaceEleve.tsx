@@ -52,10 +52,6 @@ function PageEspaceEleve({ redirection, nomEleve, prenomEleve, eleve }: any) {
         )}&prenom=${encodeURIComponent(prenomEleve)}`,
       )
       .then((response) => {
-<<<<<<< HEAD
-=======
-        console.log('response.data --> ', response.data)
->>>>>>> brancheSelect
         if (response.data) {
           fonctionsMiniBoxInfoJson.setNewJson(response.data)
           setSeeMaFiche(true)

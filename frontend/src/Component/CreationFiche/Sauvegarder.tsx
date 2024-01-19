@@ -162,7 +162,6 @@ function Sauvegarder({ redirection, setSaveName }: any) {
           </div>
         )}
       </div>
-      <button onClick={logAllJson}>oui</button>
       <button className="retour_btn_save" onClick={() => setSaveName(false)}>
         Retour
       </button>
