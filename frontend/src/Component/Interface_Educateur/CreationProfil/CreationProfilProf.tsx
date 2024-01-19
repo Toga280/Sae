@@ -100,10 +100,10 @@ function CreationProfilProf({ setRedirectionTwo }: any) {
           <label htmlFor="choix" className="select_role">Sélectionnez un rôle :</label>
           <select id="" name="choix" onChange={handleInputChangeRole}>
               <option value=""selected disabled>Sélectionnez un rôle</option>
-              <option value="Professeur">Éducateur technique simple</option>
-              <option value="ProfesseurAdmin">Éducateur technique administrateur</option>
+              <option value="Professeur">Éducateur intervenant</option>
+              <option value="ProfesseurAdmin">Éducateur technique </option>
               <option value="Admin">Super administrateur</option>
-              <option value="Cip">Conseillère insertion professionnelle</option>
+              <option value="Cip">Conseillère d'insertion professionnelle</option>
           </select>
         </div>
         <br></br>
