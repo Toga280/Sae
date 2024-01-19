@@ -89,13 +89,19 @@ function PageEspaceEleve({ redirection, nomEleve, prenomEleve, eleve }: any) {
   }, [])
 
   return (
-    <div
-      style={{
-        backgroundImage: `url(${fondEcranUrl})`,
-        backgroundSize: 'cover',
-        height: '100vh',
-      }}
-    >
+    <>
+    {fondEcranUrl && (
+      <style>
+        {`
+          body {
+            background-image: url(${fondEcranUrl});
+            background-size: cover;
+            background-repeat: no-repeat;
+          }
+        `}
+      </style>
+    )}
+    <div>
       {ficheSave ? (
         <div className="message_brouillon">Fiche Sauvegarder !</div>
       ) : null}
@@ -176,6 +182,7 @@ function PageEspaceEleve({ redirection, nomEleve, prenomEleve, eleve }: any) {
         />
       ) : null}
     </div>
+    </>
   )
 }
 
