@@ -3,6 +3,7 @@ import React, { useEffect, useState } from 'react'
 import fonctionsMiniBoxInfoJson from '../../../CreationFiche/MiniBoxInfoFunction'
 import FicheBoxTotal from '../../../CreationFiche/FicheBoxTotal'
 import './FicheEleve.css'
+const image = require("../../../CreationFiche/MiniBoxChoix/tts.webp");
 function FicheEleve({
   nomEleve,
   prenomEleve,
@@ -22,6 +23,8 @@ function FicheEleve({
   const [aucuneFicheTerminee, setAucuneFicheTerminee] = useState<boolean>(false)
   const [voirFiche, setVoirFiche] = useState(Boolean)
   const [contenu, setContenu] = useState(String)
+  const [isPlaying, setIsPlaying] = useState(false);
+
 
   const consulterFicheEnCour = async () => {
     await FicheNames(ficheEnCour)
@@ -130,6 +133,16 @@ function FicheEleve({
     }
   }, [ficheSelected])
 
+  const lireTexte = (texte: string) => {
+    if (!isPlaying) {
+      setIsPlaying(true);
+      const syntheseVocale = new SpeechSynthesisUtterance(texte);
+      syntheseVocale.lang = "fr-FR";
+      syntheseVocale.onend = () => setIsPlaying(false);
+      window.speechSynthesis.speak(syntheseVocale);
+    }
+  }
+
   return (
     <div>
       {!voirFiche ? (
@@ -199,6 +212,12 @@ function FicheEleve({
                   <span className="commentaire_fiche_txt">
                     {commentaire.contenu}
                   </span>
+                  <div style={{ display: "flex", alignItems: "center" }}>
+                    {/* Bouton pour lire le texte en audio */}
+                    <button onClick={() => lireTexte(commentaire.contenu)} disabled={isPlaying} style={{ marginLeft: "10px" }}>
+                      <img src={image} alt="Lire en audio" style={{ width: "24px", height: "24px" }} />
+                    </button>
+                  </div>
                 </div>
               ))}
           </div>
