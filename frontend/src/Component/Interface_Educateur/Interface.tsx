@@ -1,8 +1,10 @@
-import React from 'react'
+import React, { useEffect, useState } from 'react'
 import './Interface.css'
 import fonctionsMiniBoxInfoJson from '../CreationFiche/MiniBoxInfoFunction'
+import axios from 'axios'
 
-function Interface({ redirection, role }: any) {
+function Interface({ redirection, role, identifiant }: any) {
+  const [fondEcranUrl, setFondEcranUrl] = useState<string | null>(null)
   const handleBoutonClic = () => {
     const confirmation = window.confirm(
       'Êtes-vous sûr de vouloir vous déconnecter ?',
@@ -17,6 +19,30 @@ function Interface({ redirection, role }: any) {
     redirection(3)
   }
 
+  useEffect(() => {
+    // Appeler la requête pour récupérer l'image du fond d'écran
+    axios
+      .get('http://localhost:5000/GET/fondecran', {
+        params: {
+          name: identifiant,
+        },
+        responseType: 'arraybuffer',
+      })
+      .then((response) => {
+        const base64 = btoa(
+          new Uint8Array(response.data).reduce(
+            (data, byte) => data + String.fromCharCode(byte),
+            '',
+          ),
+        )
+        const url = `data:${response.headers[
+          'content-type'
+        ].toLowerCase()};base64,${base64}`
+        setFondEcranUrl(url)
+      })
+      .catch((error) => console.error(error))
+  }, [])
+
   return (
     <div>
       {role === 'Admin' && (
@@ -27,9 +53,14 @@ function Interface({ redirection, role }: any) {
           >
             Se déconnecter
           </button>
-          <div className="global_txt_espace_prof">
-            <h2 className="txt_espace_prof">Espace super administrateur</h2>
-          </div>
+          <img
+            src={require('./icon_reglage.webp')}
+            alt="reglage-icon"
+            className="reglage-icon"
+            style={{ width: '40px', height: '40px', cursor: 'pointer' }}
+            onClick={() => redirection(18)}
+          />
+          <h2 className="txt_espace_prof">Espace super administrateur</h2>
           <div className="global_bouton_interface_educateur">
             <button
               className="bouton_interface_educateur"
@@ -126,11 +157,16 @@ function Interface({ redirection, role }: any) {
           >
             Se déconnecter
           </button>
-          <div className="global_txt_espace_prof">
-            <h2 className="txt_espace_prof">
-              Espace conseillère insertion professionnelle
-            </h2>
-          </div>
+          <img
+            src={require('./icon_reglage.webp')}
+            alt="reglage-icon"
+            className="reglage-icon"
+            style={{ width: '40px', height: '40px', cursor: 'pointer' }}
+            onClick={() => redirection(18)}
+          />
+          <h2 className="txt_espace_prof">
+            Espace conseillère insertion professionnelle
+          </h2>
           <div className="global_bouton_interface_educateur">
             <button
               className="bouton_interface_educateur"
@@ -155,13 +191,18 @@ function Interface({ redirection, role }: any) {
           >
             Se déconnecter
           </button>
-          <div className="global_txt_espace_prof">
-            <h2 className="txt_espace_prof">Espace éducateur technique </h2>
-          </div>
+          <img
+            src={require('./icon_reglage.webp')}
+            alt="reglage-icon"
+            className="reglage-icon"
+            style={{ width: '40px', height: '40px', cursor: 'pointer' }}
+            onClick={() => redirection(18)}
+          />
+          <h2 className="txt_espace_prof">Espace éducateur technique</h2>
           <div className="global_bouton_interface_educateur">
             <button
               className="bouton_interface_educateur"
-              onClick={redirectionCreationFiche}
+              onClick={() => redirection(3)}
             >
               Création fiche
             </button>
