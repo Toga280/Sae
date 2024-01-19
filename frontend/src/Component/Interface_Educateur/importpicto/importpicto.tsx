@@ -2,12 +2,13 @@ import React, { useState, useEffect } from 'react';
 import axios from 'axios';
 import './importpicto.css';
 
-const ImportPicto = ({ redirection }: any): JSX.Element => {
+const ImportPicto = ({ redirection, identifiant }: any): JSX.Element => {
   const [selectedFile, setSelectedFile] = useState<File | null>(null);
   const [pictoName, setPictoName] = useState<string>('');
   const [fileExists, setFileExists] = useState<boolean>(false);
   const [images, setImages] = useState<ArrayBuffer[]>([]);
   const [imageError, setImageError] = useState<string>('');
+  const [fondEcranUrl, setFondEcranUrl] = useState<string | null>(null)
 
   const handleFileChange = (event: React.ChangeEvent<HTMLInputElement>) => {
     if (event.target.files && event.target.files.length > 0) {
@@ -87,7 +88,43 @@ const ImportPicto = ({ redirection }: any): JSX.Element => {
     getPictoInfo();
   }, []);
 
+  useEffect(() => {
+    // Appeler la requête pour récupérer l'image du fond d'écran
+    axios
+      .get('http://localhost:5000/GET/fondecran', {
+        params: {
+          name: identifiant,
+        },
+        responseType: 'arraybuffer',
+      })
+      .then((response) => {
+        const base64 = btoa(
+          new Uint8Array(response.data).reduce(
+            (data, byte) => data + String.fromCharCode(byte),
+            '',
+          ),
+        )
+        const url = `data:${response.headers[
+          'content-type'
+        ].toLowerCase()};base64,${base64}`
+        setFondEcranUrl(url)
+      })
+      .catch((error) => console.error(error))
+  }, [])
+
   return (
+    <>
+    {fondEcranUrl && (
+      <style>
+        {`
+          body {
+            background-image: url(${fondEcranUrl});
+            background-size: cover;
+            background-repeat: no-repeat;
+          }
+        `}
+      </style>
+    )}
     <div>
       <div className="upload-container">
         <div>
@@ -119,6 +156,7 @@ const ImportPicto = ({ redirection }: any): JSX.Element => {
       </div>
       <button className="back-button" onClick={() => redirection(2)}>Retour</button>  
     </div>
+    </>
   );
 };
 

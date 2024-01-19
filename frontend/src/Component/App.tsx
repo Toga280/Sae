@@ -16,6 +16,7 @@ import ConsulterFichesImages from './Interface_Educateur/ConsulterFichesImages/C
 import ModifierRole from './Interface_Educateur/ModifierRole/ModifierRole'
 import Optioneleve from './EspaceEleve/optioneleve'
 import SuiviEleve from './Interface_Educateur/SuiviEleve/SuiviEleve'
+import Optionprof from './Interface_Educateur/optionprof'
 const noel = require('./fond/noel.png')
 const halloween = require('./fond/halloween.png')
 
@@ -30,6 +31,7 @@ function App() {
   const [prenomEleveActuelleApp, setPrenomEleveActuelleApp] = useState(String)
   const [forceRefreshFiche, setForceRefreshFiche] = useState(Boolean)
   const [IdConnecter, setIdConnecter] = useState(String)
+  const [identifiant, setIdentifiant] = useState(String)
 
   const handleSelectBoxChange = (value: any) => {
     setSelectBox(value)
@@ -44,7 +46,7 @@ function App() {
     const currentDay = currentDate.getDate()
     const currentMonth = currentDate.getMonth() + 1
 
-    if (currentMonth <= 11 && currentMonth === 12 && currentDay >= 25 ) {
+    if (currentMonth <= 11 && currentMonth === 12 && currentDay >= 25) {
       setBackground(noel)
     } else if (currentMonth === 10 && currentDay <= 31 && currentDay >= 24) {
       setBackground(halloween)
@@ -75,10 +77,11 @@ function App() {
           setNomEleveActuelleApp={setNomEleveActuelleApp}
           setPrenomEleveActuelleApp={setPrenomEleveActuelleApp}
           setIdConnecter={setIdConnecter}
+          identifiant={setIdentifiant}
         />
       )}
       {redirection === 2 && (
-        <Interface redirection={setRedirection} role={role} />
+        <Interface redirection={setRedirection} role={role} identifiant={identifiant} />
       )}
       {redirection === 4 && (
         <PageEspaceEleve
@@ -88,17 +91,17 @@ function App() {
           prenomEleve={prenomEleveActuelleApp}
         />
       )}
-      {redirection === 5 && <CreationProfil redirection={setRedirection} />}
+      {redirection === 5 && <CreationProfil redirection={setRedirection} identifiant={identifiant} />}
       {redirection === 6 && (
-        <ListeFiches redirection={setRedirection} refreshFiche={refreshFiche} />
+        <ListeFiches redirection={setRedirection} refreshFiche={refreshFiche} identifiant={identifiant} />
       )}
-      {redirection === 8 && <ArchiverProfil redirection={setRedirection} />}
+      {redirection === 8 && <ArchiverProfil redirection={setRedirection} identifiant={identifiant} />}
       {redirection === 9 && (
-        <ModifierMdp redirection={setRedirection} role={role} />
+        <ModifierMdp redirection={setRedirection} role={role} identifiant={identifiant} />
       )}
-      {redirection === 10 && <ImportPicto redirection={setRedirection} />}
+      {redirection === 10 && <ImportPicto redirection={setRedirection} identifiant={identifiant} />}
       {redirection === 12 && (
-        <ListeProfilArchiver redirection={setRedirection} />
+        <ListeProfilArchiver redirection={setRedirection} identifiant={identifiant} />
       )}
       {redirection === 13 && (
         <PhotoEleve redirection={setRedirection} eleve={eleve} />
@@ -107,13 +110,15 @@ function App() {
         <ConsulterFichesImages
           redirection={setRedirection}
           IdConnecter={IdConnecter}
+          identifiant={identifiant} 
         />
       )}
-      {redirection === 15 && <ModifierRole redirection={setRedirection} />}
+      {redirection === 15 && <ModifierRole redirection={setRedirection} identifiant={identifiant} />}
       {redirection === 16 && (
         <Optioneleve redirection={setRedirection} eleve={eleve} />
       )}
-      {redirection === 17 && <SuiviEleve redirection={setRedirection} />}
+      {redirection === 17 && <SuiviEleve redirection={setRedirection} identifiant={identifiant} />}
+      {redirection === 18 && <Optionprof redirection={setRedirection} identifiant={identifiant} />}
       {redirection === 3 ? (
         selectBox === null ? (
           !saveName ? (
@@ -123,17 +128,20 @@ function App() {
               setSaveName={setSaveName}
               versionProf={true}
               forceRefreshFiche={forceRefreshFiche}
+              identifiant={identifiant}
             />
           ) : (
             <Sauvegarder
               redirection={setRedirection}
               setSaveName={setSaveName}
+              identifiant={identifiant}
             />
           )
         ) : (
           <FicheBoxSelected
             numberFichBox={selectBox}
             onSelectBoxChange={handleSelectBoxChange}
+            identifiant={identifiant}
           />
         )
       ) : null}

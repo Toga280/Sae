@@ -73,7 +73,7 @@ const n3 = require('./imagesFiche/vis-ttpc-tete-trompette-platre_vis35025-bte_b5
 const o3 = require('./imagesFiche/vis-ttpc-milieu-humide_vi35035mh_p_pai.jpg')
 const p3 = require('./imagesFiche/vis-ttpc-milieu-humide_vi35035mh_p_pai.jpg')
 const q3 = require('./imagesFiche/annuler.jpg')
-
+//FICHE ELECTRICITE
 const a4 = require('./imageFicheElec/1.webp')
 const b4 = require('./imageFicheElec/2.jpg')
 const c4 = require('./imageFicheElec/3.jpg')
@@ -97,7 +97,7 @@ const t4 = require('./imageFicheElec/20.jpg')
 const u4 = require('./imageFicheElec/21.jpg')
 const v4 = require('./imageFicheElec/22.webp')
 const w4 = require('./imageFicheElec/23.jpg')
-
+//FINITION
 const a5 = require('./imageFicheFinition/1.jpg')
 const b5 = require('./imageFicheFinition/2.jpg')
 const c5 = require('./imageFicheFinition/3.jpg')
@@ -460,60 +460,62 @@ function UnMat({ mat, numMat, setSelect, image }: any) {
       img = n5
       break
     case 114:
-      img = o5
+      img = n5
       break
     case 115:
-      img = p5
+      img = o5
       break
     case 116:
-      img = q5
+      img = p5
       break
     case 117:
-      img = r5
+      img = q5
       break
     case 118:
-      img = s5
+      img = r5
       break
     case 119:
-      img = t5
+      img = s5
       break
     case 120:
-      img = u5
+      img = t5
       break
     case 121:
-      img = v5
+      img = u5
       break
     case 122:
-      img = w5
+      img = v5
       break
     case 123:
-      img = x5
+      img = w5
       break
     case 124:
-      img = y5
+      img = x5
       break
     case 125:
-      img = z5
+      img = y5
       break
     case 126:
-      img = a6
+      img = z5
       break
     case 127:
-      img = b6
+      img = a6
       break
     case 128:
-      img = c6
+      img = b6
       break
     case 129:
-      img = d6
+      img = c6
       break
     case 130:
-      img = e6
+      img = d6
       break
     case 131:
-      img = f6
+      img = e6
       break
     case 132:
+      img = f6
+    case 133:
       img = g6
       break
 

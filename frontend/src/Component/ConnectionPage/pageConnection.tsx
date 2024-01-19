@@ -10,6 +10,7 @@ function PageConnection({
   setNomEleveActuelleApp,
   setPrenomEleveActuelleApp,
   setIdConnecter,
+  identifiant,
 }: any) {
   const [selectBoutton, setSelectBoutton] = useState(false)
   const BoutonCliquezConnection = (etat: boolean) => {
@@ -40,6 +41,7 @@ function PageConnection({
           redirection={redirection}
           setRole={setRole}
           setIdConnecter={setIdConnecter}
+          identifiant={identifiant}
         />
       ) : null}
       {selectBoutton && (

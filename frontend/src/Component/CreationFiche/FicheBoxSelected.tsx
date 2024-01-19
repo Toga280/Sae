@@ -1,4 +1,4 @@
-import React, { useState } from 'react'
+import React, { useEffect, useState } from 'react'
 import FicheBox1 from './FicheBox1'
 import FicheBox2 from './FicheBox2'
 import FicheBox3 from './FicheBox3'
@@ -9,9 +9,11 @@ import FicheBox7 from './FicheBox7'
 import FicheBox8 from './FicheBox8'
 import SelectionChoixMiniBox from './MiniBoxChoix/SelectionChoixMiniBox'
 import fonctionsMiniBoxInfoJson from './MiniBoxInfoFunction'
-function FicheBoxSelected({ numberFichBox, onSelectBoxChange }: any) {
+import axios from 'axios'
+function FicheBoxSelected({ numberFichBox, onSelectBoxChange, identifiant }: any) {
   const [selectionChoixMiniBox, setSelectionChoixMiniBox] = useState(false)
   const [numeroMiniBox, setnumeroMiniBox] = useState(Number)
+  const [fondEcranUrl, setFondEcranUrl] = useState<string | null>(null)
   const setSelectionChoixMiniBoxFalse = () => {
     setSelectionChoixMiniBox(false)
   }
@@ -29,7 +31,43 @@ function FicheBoxSelected({ numberFichBox, onSelectBoxChange }: any) {
     setnumeroMiniBox(numeroMiniBox)
   }
 
+  useEffect(() => {
+    // Appeler la requête pour récupérer l'image du fond d'écran
+    axios
+      .get('http://localhost:5000/GET/fondecran', {
+        params: {
+          name: identifiant,
+        },
+        responseType: 'arraybuffer',
+      })
+      .then((response) => {
+        const base64 = btoa(
+          new Uint8Array(response.data).reduce(
+            (data, byte) => data + String.fromCharCode(byte),
+            '',
+          ),
+        )
+        const url = `data:${response.headers[
+          'content-type'
+        ].toLowerCase()};base64,${base64}`
+        setFondEcranUrl(url)
+      })
+      .catch((error) => console.error(error))
+  }, [])
+
   return (
+    <>
+    {fondEcranUrl && (
+      <style>
+        {`
+          body {
+            background-image: url(${fondEcranUrl});
+            background-size: cover;
+            background-repeat: no-repeat;
+          }
+        `}
+      </style>
+    )}
     <div>
       {numberFichBox === 1 ? (
         <FicheBox1
@@ -101,6 +139,7 @@ function FicheBoxSelected({ numberFichBox, onSelectBoxChange }: any) {
         </button>
       </div>
     </div>
+    </>
   )
 }
 

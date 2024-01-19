@@ -53,6 +53,10 @@
     cursor: pointer;
 
 }
+.reglage-icon{
+    margin: 2em;
+    float: right;
+}
 .global_txt_espace_prof{
     display: flex; /* Utilisez Flexbox */
     justify-content: center; /* Centre horizontalement */
@@ -70,7 +74,6 @@
     background-color: white;
     border-radius: 4px;
     width: 30%;
-
 }
 .bouton_interface_educateur:hover,
 .bouton_interface_educateur:focus {
@@ -150,4 +153,4 @@
         white-space: nowrap;
         text-overflow: ellipsis;
     }
-}
+};
