@@ -36,7 +36,7 @@ function FicheEleve({
 
   const consulterFicheTerminee = async (name: string) => {
     await FicheNames(name)
-    setFicheSelected(ficheEnCour)
+    setFicheSelected(name)
   }
 
   const getFicheInProgressEleve = () => {
@@ -90,6 +90,7 @@ function FicheEleve({
   }
 
   const PostCommentaire = async () => {
+    console.log('ficheSelected --> ', ficheSelected)
     axios
       .post(`http://localhost:5000/POST/commentaire`, {
         ficheName: ficheSelected,
@@ -190,11 +191,16 @@ function FicheEleve({
             ) : null}
             {Array.isArray(allCommentaire) &&
               allCommentaire.map((commentaire, index) => (
-                <div key={index} className='global_all_commentaire'>
-                  <span className='commentateur_fiche'>{commentaire.idCommentateur}</span> : <span className='commentaire_fiche_txt'>{commentaire.contenu}</span>
+                <div key={index} className="global_all_commentaire">
+                  <span className="commentateur_fiche">
+                    {commentaire.idCommentateur}
+                  </span>{' '}
+                  :{' '}
+                  <span className="commentaire_fiche_txt">
+                    {commentaire.contenu}
+                  </span>
                 </div>
               ))}
-
           </div>
 
           <div className="fiche_version_prof">

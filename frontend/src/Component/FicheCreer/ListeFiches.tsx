@@ -31,7 +31,6 @@ function ListeFiches({ redirection, refreshFiche }: any) {
         )
         .then((response) => {
           if (response.data) {
-            console.log('fiche supprimée avec succès')
             setFichesNames((prevFiches) =>
               prevFiches.filter((fiche) => fiche !== nomFiche),
             )

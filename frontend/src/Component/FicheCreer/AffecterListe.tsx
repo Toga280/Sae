@@ -50,13 +50,11 @@ function AffecterListe({
         if (!response.data.success) {
           setErreurAffecter(true)
           setErreurAffecterMessage(response.data.message)
-          console.log('response.data.message', response.data.message)
         } else {
           setEleves(response.data.data)
           setAffichageAffecterListeFalse()
         }
-        window.scrollTo(0, 0);
-
+        window.scrollTo(0, 0)
       })
       .catch((error) => {
         if (!error.response || error.response.status !== 501) {
@@ -67,7 +65,9 @@ function AffecterListe({
 
   return (
     <div className="global_affecter_fiche">
-      {erreurAffecter ? <p className='erreur_affectation_fiche'> {erreurAffecterMessage} </p> : null}
+      {erreurAffecter ? (
+        <p className="erreur_affectation_fiche"> {erreurAffecterMessage} </p>
+      ) : null}
       <h1 className="titleh1">Affecter une fiche</h1>
       <h2 className="title">Liste des élèves</h2>
       <h3>Fiche sélectionné : {nomFicheSelectionner}</h3>

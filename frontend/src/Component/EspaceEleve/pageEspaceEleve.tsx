@@ -51,7 +51,6 @@ function PageEspaceEleve({ redirection, nomEleve, prenomEleve, eleve }: any) {
         )}&prenom=${encodeURIComponent(prenomEleve)}`,
       )
       .then((response) => {
-        console.log(response.data)
         if (response.data) {
           fonctionsMiniBoxInfoJson.setNewJson(response.data)
           setSeeMaFiche(true)

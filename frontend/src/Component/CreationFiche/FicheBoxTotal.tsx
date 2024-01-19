@@ -22,11 +22,10 @@ function FicheBoxTotal({
 }: any) {
   const [numBox, setNumBox] = useState(0)
 
-  const [isDraftSaved, setIsDraftSaved] = useState(false);
-  const [isDraftSavedFiche, setIsDraftSavedFiche] = useState(false);
+  const [isDraftSaved, setIsDraftSaved] = useState(false)
+  const [isDraftSavedFiche, setIsDraftSavedFiche] = useState(false)
 
   const modifierFiche = async () => {
-    console.log('nom de la fiche --> ', fonctionsMiniBoxInfoJson.getNom())
     await deleteFiche(fonctionsMiniBoxInfoJson.getNom())
     await postFiche()
   }
@@ -35,9 +34,7 @@ function FicheBoxTotal({
     const data = fonctionsMiniBoxInfoJson.getAllJson()
     axios
       .post('http://localhost:5000/POST/fiche', data)
-      .then((response) => {
-        console.log('Réponse du serveur :', response.data)
-      })
+      .then((response) => {})
       .catch((error) => {
         console.error('Erreur lors de la requête vers le serveur :', error)
       })
@@ -67,41 +64,40 @@ function FicheBoxTotal({
     }
   }
 
-  const consoleLogJson = () => {
-    console.log(fonctionsMiniBoxInfoJson.getAllJson())
-  }
-
   const Sauvegarder = async () => {
     if (versionProf) {
       setSaveName(true)
     } else if (!versionProf) {
       await fonctionsMiniBoxInfoJson.changeEnCourFalse()
-      setIsDraftSavedFiche(true);
+      setIsDraftSavedFiche(true)
       modifierFiche()
-      window.scrollTo(0, 0);
+      window.scrollTo(0, 0)
       redirection(false)
-      {isDraftSavedFiche && <div className="message_brouillon">Fiche Sauvegarder !</div>} // IL FAUT L4AFFICHER
-
+      {
+        isDraftSavedFiche && (
+          <div className="message_brouillon">Fiche Sauvegarder !</div>
+        )
+      } // IL FAUT L4AFFICHER
     }
   }
 
   const Brouillon = () => {
     if (!versionProf) {
       modifierFiche()
-      setIsDraftSaved(true); 
-      setTimeout(() => setIsDraftSaved(false), 5000);
+      setIsDraftSaved(true)
+      setTimeout(() => setIsDraftSaved(false), 5000)
     }
     window.scrollTo({
-      top: 0, 
-      behavior: 'smooth'
-    });
+      top: 0,
+      behavior: 'smooth',
+    })
   }
 
   const retour = () => {
     if (versionProf) {
       redirection(2)
     } else if (!versionProf) {
-      window.scrollTo(0, 0);
+      window.scrollTo(0, 0)
       redirection(false)
     }
   }
@@ -115,12 +111,13 @@ function FicheBoxTotal({
     if (numBox !== 0) {
       onSelectBox(numBox)
     }
-    console.log(forceRefreshFiche)
   }, [numBox, onSelectBox, forceRefreshFiche])
 
   return (
     <div>
-      {isDraftSaved && <div className="message_brouillon">Fiche mise en brouillon</div>} 
+      {isDraftSaved && (
+        <div className="message_brouillon">Fiche mise en brouillon</div>
+      )}
 
       <div onClick={() => handleClick(1)}>
         <FicheBox1
@@ -205,14 +202,13 @@ function FicheBoxTotal({
       ) : null}
       {!versionProf && !versionVue ? (
         <>
-
-        <button
-          className="boutton_brouillon_interaction_edu"
-          onClick={Brouillon}
-        >
-          Brouillons
-        </button>
-      </>
+          <button
+            className="boutton_brouillon_interaction_edu"
+            onClick={Brouillon}
+          >
+            Brouillons
+          </button>
+        </>
       ) : null}
 
       {versionProf ? (

@@ -37,7 +37,6 @@ function PageLoginEducateur({ redirection, setRole, setIdConnecter }: any) {
         )}&mdp=${encodeURIComponent(mdp)}`,
       )
       .then((response) => {
-        console.log('Réponse du serveur :', response.data)
         if (response.data) {
           getRole(id)
           setIdConnecter(id)
