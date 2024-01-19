@@ -1,81 +1,84 @@
-import axios from "axios";
-import React, { useEffect, useState } from "react";
-import "./ListeFiches.css";
-import fonctionsMiniBoxInfoJson from "../CreationFiche/MiniBoxInfoFunction";
-import AffecterListe from "./AffecterListe";
+import axios from 'axios'
+import React, { useEffect, useState } from 'react'
+import './ListeFiches.css'
+import fonctionsMiniBoxInfoJson from '../CreationFiche/MiniBoxInfoFunction'
+import AffecterListe from './AffecterListe'
 
 function ListeFiches({ redirection, refreshFiche }: any) {
-  const [FichesNames, setFichesNames] = useState<string[]>([]);
-  const [affichageAffecterListe, setAffichageAffecterListe] = useState(false);
-  const [nomFicheSelectionner, setNomFicheSelectionner] = useState("");
-  const [eleveAffecte, setEleveAffecte] = useState<Record<string, string | undefined>>({});
-  const [ficheexiste, setFicheexiste] = useState(false);
+  const [FichesNames, setFichesNames] = useState<string[]>([])
+  const [affichageAffecterListe, setAffichageAffecterListe] = useState(false)
+  const [nomFicheSelectionner, setNomFicheSelectionner] = useState('')
+  const [eleveAffecte, setEleveAffecte] = useState<
+    Record<string, string | undefined>
+  >({})
+  const [ficheexiste, setFicheexiste] = useState(false)
 
   const setAffichageAffecterListeFalse = () => {
-    setAffichageAffecterListe(false);
-  };
+    setAffichageAffecterListe(false)
+  }
 
   const deleteFiche = (nomFiche: string) => {
     const confirmation = window.confirm(
-      `Êtes-vous sûr de vouloir supprimer cette fiche ${nomFiche} ?`
-    );
+      `Êtes-vous sûr de vouloir supprimer cette fiche ${nomFiche} ?`,
+    )
 
     if (confirmation) {
       axios
         .get(
           `http://localhost:5000/DELETE/ficheName?name=${encodeURIComponent(
-            nomFiche
-          )}`
+            nomFiche,
+          )}`,
         )
         .then((response) => {
           if (response.data) {
-            console.log("fiche supprimée avec succès");
             setFichesNames((prevFiches) =>
-              prevFiches.filter((fiche) => fiche !== nomFiche)
-            );
+              prevFiches.filter((fiche) => fiche !== nomFiche),
+            )
           }
         })
         .catch((error) => {
-          console.error("Erreur lors de la requête vers le serveur :", error);
-        });
+          console.error('Erreur lors de la requête vers le serveur :', error)
+        })
     }
-  };
+  }
 
   const affecterFiche = (item: string) => {
-    setAffichageAffecterListe(true);
-    setNomFicheSelectionner(item);
-  };
+    setAffichageAffecterListe(true)
+    setNomFicheSelectionner(item)
+  }
 
   const getEleveAffecteAsync = async (nomf: string) => {
     try {
       const response = await axios.get(
-        `http://localhost:5000/GET/eleveAffecter?ficheName=${encodeURIComponent(nomf)}`
-      );
-      return response.data;
+        `http://localhost:5000/GET/eleveAffecter?ficheName=${encodeURIComponent(
+          nomf,
+        )}`,
+      )
+      return response.data
     } catch (error) {
-      console.error("Erreur lors de la requête vers le serveur :", error);
-      return "";
+      console.error('Erreur lors de la requête vers le serveur :', error)
+      return ''
     }
-  };
+  }
 
   useEffect(() => {
     const fetchData = async (itemName: string) => {
       try {
-        const data = await getEleveAffecteAsync(itemName);
+        const data = await getEleveAffecteAsync(itemName)
         setEleveAffecte((prevData) => ({
           ...prevData,
           [itemName]: data, // Use itemName as a key to store the data for each item
-        }));
+        }))
       } catch (error) {
-        console.error("Erreur lors de la requête vers le serveur :", error);
+        console.error('Erreur lors de la requête vers le serveur :', error)
       }
-    };
+    }
 
     // Fetch data for each item in FichesNames
     FichesNames.forEach((itemName) => {
-      fetchData(itemName);
-    });
-  }, [FichesNames]); // Depend on FichesNames to trigger the effect when it changes
+      fetchData(itemName)
+    })
+  }, [FichesNames]) // Depend on FichesNames to trigger the effect when it changes
 
   const elements = FichesNames.sort().map((item, index) => {
     return (
@@ -87,10 +90,10 @@ function ListeFiches({ redirection, refreshFiche }: any) {
           {item}
         </div>
         <img
-          src={require("./delete-icon.png")}
+          src={require('./delete-icon.png')}
           alt="delete-icon"
           className="delete-icon"
-          style={{ width: "30px", height: "40px", cursor: "pointer" }}
+          style={{ width: '30px', height: '40px', cursor: 'pointer' }}
           onClick={() => deleteFiche(item)}
         />
         <button
@@ -100,88 +103,90 @@ function ListeFiches({ redirection, refreshFiche }: any) {
           Affecter
         </button>
         <img
-          src={require("./dupliquer.webp")}
+          src={require('./dupliquer.webp')}
           className="autre-icon"
-          style={{ width: "30px", height: "40px", cursor: "pointer" }}
+          style={{ width: '30px', height: '40px', cursor: 'pointer' }}
           onClick={() => dupliquerFiche(item)}
         />
         <img
-          src={require("./modifier.webp")}
-          style={{ width: "30px", height: "30px", cursor: "pointer" }}
+          src={require('./modifier.webp')}
+          style={{ width: '30px', height: '30px', cursor: 'pointer' }}
           className="autre-icon"
           onClick={async () => {
-            const newNom = prompt("Entrez le nouveau nom de la fiche :");
+            const newNom = prompt('Entrez le nouveau nom de la fiche :')
             if (newNom !== null) {
-              await testNameFiche(newNom);
+              await testNameFiche(newNom)
               if (ficheexiste === true) {
-                modifnomfiche(item, newNom);
+                modifnomfiche(item, newNom)
               } else {
-                alert("Une fiche avec ce nom existe déjà. Veuillez choisir un autre nom.");
+                alert(
+                  'Une fiche avec ce nom existe déjà. Veuillez choisir un autre nom.',
+                )
               }
             }
           }}
         />
         <p> Fiche attribuée à : {eleveAffecte[item]}</p>
       </div>
-    );
-  });
+    )
+  })
 
   const allFicheNames = () => {
     axios
-      .get("http://localhost:5000/GET/allFicheNames")
+      .get('http://localhost:5000/GET/allFicheNames')
       .then((response) => {
-        setFichesNames(response.data);
+        setFichesNames(response.data)
       })
       .catch((error) => {
-        console.error("Erreur lors de la requête vers le serveur :", error);
-      });
-  };
+        console.error('Erreur lors de la requête vers le serveur :', error)
+      })
+  }
 
   const FicheNames = async (nameValue: string) => {
     try {
       const response = await axios.get(
         `http://localhost:5000/GET/nameFiche?name=${encodeURIComponent(
-          nameValue
-        )}`
-      );
-      fonctionsMiniBoxInfoJson.setNewJson(response.data);
+          nameValue,
+        )}`,
+      )
+      fonctionsMiniBoxInfoJson.setNewJson(response.data)
     } catch (error) {
-      console.error("Erreur lors de la requête vers le serveur :", error);
+      console.error('Erreur lors de la requête vers le serveur :', error)
     }
-  };
+  }
 
   const SetUpModificationFiche = async (item: string) => {
-    await FicheNames(item);
-    refreshFiche();
-    redirection(3);
-  };
+    await FicheNames(item)
+    refreshFiche()
+    redirection(3)
+  }
 
   useEffect(() => {
-    allFicheNames();
-  }, []);
+    allFicheNames()
+  }, [])
 
   const setRedirectionTwo = () => {
-    redirection(2);
-  };
+    redirection(2)
+  }
 
   const modifnomfiche = async (oldnom: string, newnom: string) => {
-    if (newnom === "") {
+    if (newnom === '') {
       alert(
-        "Le nom de la fiche ne peut pas être vide, le nom n'a pas été modifié"
-      );
+        "Le nom de la fiche ne peut pas être vide, le nom n'a pas été modifié",
+      )
     }
 
     try {
       await axios.post(`http://localhost:5000/POST/ficheUpdateName`, {
         name: oldnom,
         newName: newnom,
-      });
+      })
     } catch (error) {
-      console.error(error);
+      console.error(error)
     }
-    redirection(2);
-    redirection(6);
-  };
+    redirection(2)
+    redirection(6)
+  }
 
   const testNameFiche = async (nomFiche: string) => {
     try {
@@ -203,15 +208,15 @@ function ListeFiches({ redirection, refreshFiche }: any) {
 
   const dupliquerFiche = async (nomf: string) => {
     try {
-      await axios.post("http://localhost:5000/POST/ficheDuplicate", {
+      await axios.post('http://localhost:5000/POST/ficheDuplicate', {
         name: nomf,
-      });
+      })
     } catch (error) {
-      console.error(error);
+      console.error(error)
     }
-    redirection(2);
-    redirection(6);
-  };
+    redirection(2)
+    redirection(6)
+  }
 
   return (
     <div>
@@ -233,7 +238,7 @@ function ListeFiches({ redirection, refreshFiche }: any) {
         Retour
       </button>
     </div>
-  );
+  )
 }
 
-export default ListeFiches;
+export default ListeFiches

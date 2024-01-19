@@ -134,8 +134,6 @@ const fonctionsMiniBoxInfoJson: FonctionsMiniBoxInfoJson = {
   },
 
   setNewJson: (newJson) => {
-    console.log('newJson --> ', newJson)
-
     if (typeof newJson === 'object' && newJson !== null) {
       if (newJson.AllMiniBox) {
         FicheJson.AllMiniBox = newJson.AllMiniBox

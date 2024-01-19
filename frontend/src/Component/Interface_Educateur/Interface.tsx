@@ -31,7 +31,7 @@ function Interface({ redirection, role }: any) {
           <div className="global_bouton_interface_educateur">
             <button
               className="bouton_interface_educateur"
-              onClick={() => redirection(3)}
+              onClick={redirectionCreationFiche}
             >
               Création fiche
             </button>

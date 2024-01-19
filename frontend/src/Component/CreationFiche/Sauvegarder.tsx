@@ -44,7 +44,6 @@ function Sauvegarder({ redirection, setSaveName }: any) {
     axios
       .post('http://localhost:5000/POST/fiche', data)
       .then((response) => {
-        console.log('Réponse du serveur :', response.data)
         redirection(2)
         setSaveName(false)
         fonctionsMiniBoxInfoJson.modifierAllJsonToBase()
@@ -71,10 +70,6 @@ function Sauvegarder({ redirection, setSaveName }: any) {
       console.error('Erreur lors de la requête vers le serveur :', error)
       throw error
     }
-  }
-
-  const logAllJson = () => {
-    console.log(fonctionsMiniBoxInfoJson.getAllJson())
   }
 
   useEffect(() => {

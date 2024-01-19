@@ -519,7 +519,6 @@ function UnMat({ mat, numMat, setSelect, image }: any) {
 
     default:
       img = parDefaut
-      console.log(img)
   }
   const setSelectFalse = () => {
     setSelect(false)
