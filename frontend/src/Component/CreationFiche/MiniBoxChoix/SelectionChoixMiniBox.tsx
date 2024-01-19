@@ -4,7 +4,7 @@ import ModificationTexte from "./ModificationTexte";
 import SetSelectionChoixMiniBox from "./SetSelectionChoixMiniBox";
 import fonctionsMiniBoxInfoJson from "../MiniBoxInfoFunction";
 import ModificationPicto from "./ModificationPicto";
-import { set } from "mongoose";
+// import { set } from "mongoose";
 function SelectionChoixMiniBox({
   setSelectionChoixMiniBoxFalse,
   numeroMiniBox,

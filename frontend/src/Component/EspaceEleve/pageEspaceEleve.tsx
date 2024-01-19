@@ -158,12 +158,14 @@ function PageEspaceEleve({ redirection, nomEleve, prenomEleve, eleve }: any) {
                 Mes fiches finies
               </button>
             </div>
+            <div className="global_pas_de_fiche">
+              {pasDeFicheEnCour ? (
+                <p className="pas_de_fiche">Tu n'as pas de fiche !</p>
+              ) : null}
+            </div>
+
           </div>
-          <div className="global_pas_de_fiche">
-            {pasDeFicheEnCour ? (
-              <p className="pas_de_fiche">Tu n'as pas de fiche !</p>
-            ) : null}
-          </div>
+
         </div>
       ) : null}
       {seeMesFichesTermine ? (

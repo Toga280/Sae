@@ -161,7 +161,7 @@ function ConsulterFichesImages({ redirection, IdConnecter }: any) {
 
       {voirphoto && (
         <div>
-          <h2 className="txt_picto_present">Liste des photo(s) :</h2>
+          <h2 className="txt_picto_present">Liste des photos :</h2>
           <div className="global-vu-picto">
             <div className="picto-container-vue">
               {imageError && <p className="error-message">{imageError}</p>}
