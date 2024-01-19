@@ -3,7 +3,7 @@ import React, { useEffect, useState } from 'react'
 import fonctionsMiniBoxInfoJson from '../../../CreationFiche/MiniBoxInfoFunction'
 import FicheBoxTotal from '../../../CreationFiche/FicheBoxTotal'
 import './FicheEleve.css'
-const image = require("../../../CreationFiche/MiniBoxChoix/tts.webp");
+const image = require('../../../CreationFiche/MiniBoxChoix/tts.webp')
 function FicheEleve({
   nomEleve,
   prenomEleve,
@@ -23,8 +23,9 @@ function FicheEleve({
   const [aucuneFicheTerminee, setAucuneFicheTerminee] = useState<boolean>(false)
   const [voirFiche, setVoirFiche] = useState(Boolean)
   const [contenu, setContenu] = useState(String)
-  const [isPlaying, setIsPlaying] = useState(false);
-
+  const [isPlaying, setIsPlaying] = useState(false)
+  const [informationSuplementaire, setInformationSuplementaire] =
+    useState(String)
 
   const consulterFicheEnCour = async () => {
     await FicheNames(ficheEnCour)
@@ -93,7 +94,6 @@ function FicheEleve({
   }
 
   const PostCommentaire = async () => {
-    console.log('ficheSelected --> ', ficheSelected)
     axios
       .post(`http://localhost:5000/POST/commentaire`, {
         ficheName: ficheSelected,
@@ -122,6 +122,20 @@ function FicheEleve({
     }
   }
 
+  const GetInformationSupplementaire = async () => {
+    axios
+      .get(
+        `http://localhost:5000/GET/info/informationSuplementaire?ficheName=${ficheSelected}`,
+      )
+      .then((response) => {
+        console.log('GetInformationSupplementaire --> ', response.data)
+        setInformationSuplementaire(response.data)
+      })
+      .catch((error) => {
+        console.error('Erreur --> ', error)
+      })
+  }
+
   useEffect(() => {
     getFicheInProgressEleve()
     getFicheCompletedEleve()
@@ -130,16 +144,17 @@ function FicheEleve({
   useEffect(() => {
     if (ficheSelected) {
       GetAllCommentaire(ficheSelected)
+      GetInformationSupplementaire()
     }
   }, [ficheSelected])
 
   const lireTexte = (texte: string) => {
     if (!isPlaying) {
-      setIsPlaying(true);
-      const syntheseVocale = new SpeechSynthesisUtterance(texte);
-      syntheseVocale.lang = "fr-FR";
-      syntheseVocale.onend = () => setIsPlaying(false);
-      window.speechSynthesis.speak(syntheseVocale);
+      setIsPlaying(true)
+      const syntheseVocale = new SpeechSynthesisUtterance(texte)
+      syntheseVocale.lang = 'fr-FR'
+      syntheseVocale.onend = () => setIsPlaying(false)
+      window.speechSynthesis.speak(syntheseVocale)
     }
   }
 
@@ -187,6 +202,10 @@ function FicheEleve({
           <div className="div_text_area_commentaire_fiche">
             {!versionEleve ? (
               <div>
+                {informationSuplementaire ? (
+                  <p>{informationSuplementaire}</p>
+                ) : null}
+
                 <h1 className="add_com">Ajouter un commentaire</h1>
 
                 <textarea
@@ -212,10 +231,18 @@ function FicheEleve({
                   <span className="commentaire_fiche_txt">
                     {commentaire.contenu}
                   </span>
-                  <div style={{ display: "flex", alignItems: "center" }}>
+                  <div style={{ display: 'flex', alignItems: 'center' }}>
                     {/* Bouton pour lire le texte en audio */}
-                    <button onClick={() => lireTexte(commentaire.contenu)} disabled={isPlaying} style={{ marginLeft: "10px" }}>
-                      <img src={image} alt="Lire en audio" style={{ width: "24px", height: "24px" }} />
+                    <button
+                      onClick={() => lireTexte(commentaire.contenu)}
+                      disabled={isPlaying}
+                      style={{ marginLeft: '10px' }}
+                    >
+                      <img
+                        src={image}
+                        alt="Lire en audio"
+                        style={{ width: '24px', height: '24px' }}
+                      />
                     </button>
                   </div>
                 </div>

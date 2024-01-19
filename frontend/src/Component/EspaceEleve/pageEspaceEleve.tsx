@@ -127,7 +127,9 @@ function PageEspaceEleve({ redirection, nomEleve, prenomEleve, eleve }: any) {
             onClick={() => redirection(16)}
           />
           <div className="global_bouton_interface_élève">
-            <p className="txt_espace_élève">Espace élève</p>
+            <div className='global_txt_espace_élève'>
+              <h1 className="txt_espace_élève">Espace élève</h1>
+            </div>
 
             <div className="content_espace_eleve">
               <button
