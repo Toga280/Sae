@@ -116,7 +116,7 @@
   display: flex;
   justify-content: center;
   align-items: center;
-  height: 100vh; /* Centrer verticalement sur toute la hauteur de la vue */
+  height: 5em;
 }
 
 .pas_de_fiche {
