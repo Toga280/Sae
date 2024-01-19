@@ -25,7 +25,7 @@ function ConnectionEleveShema({
 
     axios
       .get(
-        `http://localhost:5000/GET/eleve/authentification?prenom=${encodeURIComponent(
+        `http://192.168.120.71:5000/GET/eleve/authentification?prenom=${encodeURIComponent(
           prenomEleveActuelle
         )}&nom=${encodeURIComponent(nomEleveActuelle)}&mdp=${encodeURIComponent(
           password.join("")

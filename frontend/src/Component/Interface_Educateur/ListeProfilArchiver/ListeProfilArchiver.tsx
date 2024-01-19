@@ -13,7 +13,7 @@ function ListeProfilArchiver({ redirection, identifiant }: any) {
 
   const getEleve = () => {
     axios
-      .get(`http://localhost:5000/GET/allEleveArchiver`)
+      .get(`http://192.168.120.71:5000/GET/allEleveArchiver`)
       .then((response) => {
         setEleves(response.data);
       })
@@ -30,7 +30,7 @@ function ListeProfilArchiver({ redirection, identifiant }: any) {
           const imageName = `${eleve.nom}${eleve.prenom}.webp`;
           console.log('Recherche de l\'image :', imageName);
           try {
-            const imagePath = `http://localhost:5000/GET/piceleve?name=${encodeURIComponent(imageName)}`;
+            const imagePath = `http://192.168.120.71:5000/GET/piceleve?name=${encodeURIComponent(imageName)}`;
             const response = await axios.get(imagePath, {
               responseType: 'arraybuffer',
             });
@@ -62,7 +62,7 @@ function ListeProfilArchiver({ redirection, identifiant }: any) {
     );
     if (confirmation) {
       axios
-        .post("http://localhost:5000/POST/restorerEleve", { nom, prenom })
+        .post("http://192.168.120.71:5000/POST/restorerEleve", { nom, prenom })
         .then((response) => {
           console.log(response.data);
           getEleve();
@@ -90,7 +90,7 @@ function ListeProfilArchiver({ redirection, identifiant }: any) {
   useEffect(() => {
     // Appeler la requête pour récupérer l'image du fond d'écran
     axios
-      .get('http://localhost:5000/GET/fondecran', {
+      .get('http://192.168.120.71:5000/GET/fondecran', {
         params: {
           name: identifiant,
         },

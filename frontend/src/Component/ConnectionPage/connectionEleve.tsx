@@ -33,7 +33,7 @@ function ConnectionEleve({
           const imageName = `${eleve.nom}${eleve.prenom}.webp`;
           console.log("Recherche de l'image :", imageName);
           try {
-            const imagePath = `http://localhost:5000/GET/piceleve?name=${encodeURIComponent(
+            const imagePath = `http://192.168.120.71:5000/GET/piceleve?name=${encodeURIComponent(
               imageName
             )}`;
             const response = await axios.get(imagePath, {
@@ -74,7 +74,7 @@ function ConnectionEleve({
   useEffect(() => {
     const getEleve = async () => {
       try {
-        const response = await axios.get(`http://localhost:5000/GET/allEleve`);
+        const response = await axios.get(`http://192.168.120.71:5000/GET/allEleve`);
         setEleves(response.data);
       } catch (error) {
         console.error("Erreur lors de la récupération des étudiants :", error);

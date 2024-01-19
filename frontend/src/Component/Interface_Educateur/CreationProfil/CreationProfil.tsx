@@ -46,7 +46,7 @@ function CreationProfil({ redirection, setSaveName, identifiant }: any) {
   /*METHODE POST =====================================================*/
   const postEleve = (eleveData: any) => {
     axios
-      .post("http://localhost:5000/POST/eleves", eleveData)
+      .post("http://192.168.120.71:5000/POST/eleves", eleveData)
       .then((response) => {
         console.log("Réponse du serveur :", response.data);
       })
@@ -59,7 +59,7 @@ function CreationProfil({ redirection, setSaveName, identifiant }: any) {
     const formData = new FormData();
         formData.append('file', imageEleve);
     axios
-    .post("http://localhost:5000/POST/uploadpictoEleve", formData, {
+    .post("http://192.168.120.71:5000/POST/uploadpictoEleve", formData, {
       params: {
         name: nomEleve+prenomEleve,
       },
@@ -75,7 +75,7 @@ function CreationProfil({ redirection, setSaveName, identifiant }: any) {
   useEffect(() => {
     // Appeler la requête pour récupérer l'image du fond d'écran
     axios
-      .get('http://localhost:5000/GET/fondecran', {
+      .get('http://192.168.120.71:5000/GET/fondecran', {
         params: {
           name: identifiant,
         },

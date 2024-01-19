@@ -7,7 +7,7 @@ function PictoChoisi({ numeroMiniBox}: any) {
     useEffect(() => {
         const getPictoFile = async () => {
             try {
-                const response = await axios.get('http://localhost:5000/GET/getpicto-file', {
+                const response = await axios.get('http://192.168.120.71:5000/GET/getpicto-file', {
                     params: {
                         name: fonctionsMiniBoxInfoJson.getNomPicto(numeroMiniBox)
                     },

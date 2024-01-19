@@ -20,7 +20,7 @@ function Optionprof({ redirection, identifiant }: any) {
   useEffect(() => {
     // Appeler la requête pour récupérer l'image du fond d'écran
     axios
-      .get('http://localhost:5000/GET/fondecran', {
+      .get('http://192.168.120.71:5000/GET/fondecran', {
         params: {
           name: identifiant,
         },
@@ -49,7 +49,7 @@ function Optionprof({ redirection, identifiant }: any) {
         const formData = new FormData()
         formData.append('file', selectedFile)
         const response = await axios.post(
-          'http://localhost:5000/POST/uploadfondecran',
+          'http://192.168.120.71:5000/POST/uploadfondecran',
           formData,
           {
             params: {
@@ -79,7 +79,7 @@ function Optionprof({ redirection, identifiant }: any) {
 
       if (identifiant.trim() !== '') {
         const response = await axios.get(
-          `http://localhost:5000/DELETE/fond?name=${identifiant}`,
+          `http://192.168.120.71:5000/DELETE/fond?name=${identifiant}`,
           {
             // Additional request configuration if needed
           },
@@ -100,7 +100,7 @@ function Optionprof({ redirection, identifiant }: any) {
   useEffect(() => {
     // Appeler la requête pour récupérer l'image du fond d'écran
     axios
-      .get('http://localhost:5000/GET/fondecran', {
+      .get('http://192.168.120.71:5000/GET/fondecran', {
         params: {
           name: identifiant,
         },

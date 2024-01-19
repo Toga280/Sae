@@ -18,7 +18,7 @@ function PageLoginEducateur({ redirection, setRole, setIdConnecter, identifiant 
 
   const getRole = (id: string) => {
     axios
-      .get(`http://localhost:5000/GET/roleProf?id=${encodeURIComponent(id)}`)
+      .get(`http://192.168.120.71:5000/GET/roleProf?id=${encodeURIComponent(id)}`)
       .then((response) => {
         let role = response.data.role
         setRole(role)
@@ -33,7 +33,7 @@ function PageLoginEducateur({ redirection, setRole, setIdConnecter, identifiant 
     setMdpFaut(false)
     axios
       .get(
-        `http://localhost:5000/GET/admin/authentification?id=${encodeURIComponent(
+        `http://192.168.120.71:5000/GET/admin/authentification?id=${encodeURIComponent(
           id,
         )}&mdp=${encodeURIComponent(mdp)}`,
       )

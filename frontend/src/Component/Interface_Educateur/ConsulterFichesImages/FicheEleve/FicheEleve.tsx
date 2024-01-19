@@ -46,7 +46,7 @@ function FicheEleve({
   const getFicheInProgressEleve = () => {
     axios
       .get(
-        `http://localhost:5000/GET/eleve/FicheInProgress?nom=${nomEleve}&prenom=${prenomEleve}`,
+        `http://192.168.120.71:5000/GET/eleve/FicheInProgress?nom=${nomEleve}&prenom=${prenomEleve}`,
       )
       .then((response) => {
         SetFicheEnCour(response.data)
@@ -62,7 +62,7 @@ function FicheEleve({
   const getFicheCompletedEleve = () => {
     axios
       .get(
-        `http://localhost:5000/GET/eleve/FicheCompleted?nom=${nomEleve}&prenom=${prenomEleve}`,
+        `http://192.168.120.71:5000/GET/eleve/FicheCompleted?nom=${nomEleve}&prenom=${prenomEleve}`,
       )
       .then((response) => {
         if (response.data === 'Aucune fiche terminée trouvée') {
@@ -82,7 +82,7 @@ function FicheEleve({
   const FicheNames = async (nameValue: string) => {
     try {
       const response = await axios.get(
-        `http://localhost:5000/GET/nameFiche?name=${encodeURIComponent(
+        `http://192.168.120.71:5000/GET/nameFiche?name=${encodeURIComponent(
           nameValue,
         )}`,
       )
@@ -95,7 +95,7 @@ function FicheEleve({
 
   const PostCommentaire = async () => {
     axios
-      .post(`http://localhost:5000/POST/commentaire`, {
+      .post(`http://192.168.120.71:5000/POST/commentaire`, {
         ficheName: ficheSelected,
         contenu: contenu,
         idCommentateur: IdConnecter,
@@ -114,7 +114,7 @@ function FicheEleve({
   const GetAllCommentaire = async (ficheName: string) => {
     try {
       const response = await axios.get(
-        `http://localhost:5000/GET/allCommentaire?ficheName=${ficheName}`,
+        `http://192.168.120.71:5000/GET/allCommentaire?ficheName=${ficheName}`,
       )
       setAllCommentaire(response.data.commentaires)
     } catch (error) {
@@ -125,7 +125,7 @@ function FicheEleve({
   const GetInformationSupplementaire = async () => {
     axios
       .get(
-        `http://localhost:5000/GET/info/informationSuplementaire?ficheName=${ficheSelected}`,
+        `http://192.168.120.71:5000/GET/info/informationSuplementaire?ficheName=${ficheSelected}`,
       )
       .then((response) => {
         console.log('GetInformationSupplementaire --> ', response.data)

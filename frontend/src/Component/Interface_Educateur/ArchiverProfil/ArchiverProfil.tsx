@@ -13,7 +13,7 @@ function ConnectionEleve({ redirection, identifiant }: any) {
 
   const getEleve = () => {
     axios
-      .get(`http://localhost:5000/GET/allEleve`)
+      .get(`http://192.168.120.71:5000/GET/allEleve`)
       .then((response) => {
         setEleves(response.data)
       })
@@ -30,7 +30,7 @@ function ConnectionEleve({ redirection, identifiant }: any) {
           const imageName = `${eleve.nom}${eleve.prenom}.webp`
           console.log("Recherche de l'image :", imageName)
           try {
-            const imagePath = `http://localhost:5000/GET/piceleve?name=${encodeURIComponent(
+            const imagePath = `http://192.168.120.71:5000/GET/piceleve?name=${encodeURIComponent(
               imageName,
             )}`
             const response = await axios.get(imagePath, {
@@ -73,7 +73,7 @@ function ConnectionEleve({ redirection, identifiant }: any) {
     )
     if (confirmation) {
       axios
-        .post('http://localhost:5000/POST/archiverEleve', { nom, prenom })
+        .post('http://192.168.120.71:5000/POST/archiverEleve', { nom, prenom })
         .then((response) => {
           getEleve()
         })
@@ -100,7 +100,7 @@ function ConnectionEleve({ redirection, identifiant }: any) {
   useEffect(() => {
     // Appeler la requête pour récupérer l'image du fond d'écran
     axios
-      .get('http://localhost:5000/GET/fondecran', {
+      .get('http://192.168.120.71:5000/GET/fondecran', {
         params: {
           name: identifiant,
         },
