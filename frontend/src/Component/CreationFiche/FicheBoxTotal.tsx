@@ -34,7 +34,9 @@ function FicheBoxTotal({
     const data = fonctionsMiniBoxInfoJson.getAllJson()
     axios
       .post('http://localhost:5000/POST/fiche', data)
-      .then((response) => {})
+      .then((response) => {
+        redirection(2)
+      })
       .catch((error) => {
         console.error('Erreur lors de la requête vers le serveur :', error)
       })
@@ -66,7 +68,12 @@ function FicheBoxTotal({
 
   const Sauvegarder = async () => {
     if (versionProf) {
-      setSaveName(true)
+      if (fonctionsMiniBoxInfoJson.getNom() === 'brouillon') {
+        setSaveName(true)
+      } else {
+        await deleteFiche(fonctionsMiniBoxInfoJson.getNom())
+        await postFiche()
+      }
     } else if (!versionProf) {
       await fonctionsMiniBoxInfoJson.changeEnCourFalse()
       setFicheSave(true)
