@@ -144,123 +144,123 @@ function FicheBoxTotal({
 
   return (
     <>
-    {fondEcranUrl && (
-      <style>
-        {`
+      {fondEcranUrl && (
+        <style>
+          {`
           body {
             background-image: url(${fondEcranUrl});
             background-size: cover;
             background-repeat: no-repeat;
           }
         `}
-      </style>
-    )}
-    <div>
-      {isDraftSaved && (
-        <div className="message_brouillon">Fiche mise en brouillon</div>
+        </style>
       )}
+      <div>
+        {isDraftSaved && (
+          <div className="message_brouillon">Fiche mise en brouillon</div>
+        )}
 
-      <div onClick={() => handleClick(1)}>
-        <FicheBox1
-          classNameDiv={'Box'}
-          versionProf={versionProf}
-          nomfiche={fonctionsMiniBoxInfoJson.getNom()}
-        />
-      </div>
-      <div onClick={() => handleClick(2)}>
-        <FicheBox2
-          numeroMiniBox={[1, 2]}
-          infoSelectionChoixMiniBox={infoSelectionChoixMiniBox}
-          classNameDiv={'Box'}
-          versionProf={versionProf}
-          versionVue={versionVue}
-        />
-      </div>
-      <div onClick={() => handleClick(3)}>
-        <FicheBox3
-          numeroMiniBox={[3, 4, 5, 6, 7]}
-          infoSelectionChoixMiniBox={infoSelectionChoixMiniBox}
-          classNameDiv={'Box'}
-          versionProf={versionProf}
-          versionVue={versionVue}
-        />
-      </div>
-      <div onClick={() => handleClick(4)}>
-        <FicheBox4
-          numeroMiniBox={[8, 9]}
-          infoSelectionChoixMiniBox={infoSelectionChoixMiniBox}
-          classNameDiv={'Box'}
-          versionProf={versionProf}
-          versionVue={versionVue}
-        />
-      </div>
-      <div onClick={() => handleClick(5)}>
-        <FicheBox5
-          numeroMiniBox={[10, 11, 12]}
-          infoSelectionChoixMiniBox={infoSelectionChoixMiniBox}
-          classNameDiv={'Box'}
-          versionProf={versionProf}
-          versionVue={versionVue}
-        />
-      </div>
-      <div onClick={() => handleClick(6)}>
-        <FicheBox6
-          numeroMiniBox={[13, 14, 15, 16]}
-          infoSelectionChoixMiniBox={infoSelectionChoixMiniBox}
-          classNameDiv={'Box'}
-          versionProf={versionProf}
-          versionVue={versionVue}
-        />
-      </div>
-      <div onClick={() => handleClick(7)}>
-        <FicheBox7
-          numeroMiniBox={[17, 18, 19]}
-          infoSelectionChoixMiniBox={infoSelectionChoixMiniBox}
-          classNameDiv={'Box'}
-          versionProf={versionProf}
-          versionVue={versionVue}
-        />
-      </div>
-      <div onClick={() => handleClick(8)}>
-        <FicheBox8
-          classNameDiv={'Box'}
-          versionVue={versionVue}
-          versionProf={versionProf}
-        />
-      </div>
+        <div onClick={() => handleClick(1)}>
+          <FicheBox1
+            classNameDiv={'Box'}
+            versionProf={versionProf}
+            nomfiche={fonctionsMiniBoxInfoJson.getNom()}
+          />
+        </div>
+        <div onClick={() => handleClick(2)}>
+          <FicheBox2
+            numeroMiniBox={[1, 2]}
+            infoSelectionChoixMiniBox={infoSelectionChoixMiniBox}
+            classNameDiv={'Box'}
+            versionProf={versionProf}
+            versionVue={versionVue}
+          />
+        </div>
+        <div onClick={() => handleClick(3)}>
+          <FicheBox3
+            numeroMiniBox={[3, 4, 5, 6, 7]}
+            infoSelectionChoixMiniBox={infoSelectionChoixMiniBox}
+            classNameDiv={'Box'}
+            versionProf={versionProf}
+            versionVue={versionVue}
+          />
+        </div>
+        <div onClick={() => handleClick(4)}>
+          <FicheBox4
+            numeroMiniBox={[8, 9]}
+            infoSelectionChoixMiniBox={infoSelectionChoixMiniBox}
+            classNameDiv={'Box'}
+            versionProf={versionProf}
+            versionVue={versionVue}
+          />
+        </div>
+        <div onClick={() => handleClick(5)}>
+          <FicheBox5
+            numeroMiniBox={[10, 11, 12]}
+            infoSelectionChoixMiniBox={infoSelectionChoixMiniBox}
+            classNameDiv={'Box'}
+            versionProf={versionProf}
+            versionVue={versionVue}
+          />
+        </div>
+        <div onClick={() => handleClick(6)}>
+          <FicheBox6
+            numeroMiniBox={[13, 14, 15, 16]}
+            infoSelectionChoixMiniBox={infoSelectionChoixMiniBox}
+            classNameDiv={'Box'}
+            versionProf={versionProf}
+            versionVue={versionVue}
+          />
+        </div>
+        <div onClick={() => handleClick(7)}>
+          <FicheBox7
+            numeroMiniBox={[17, 18, 19]}
+            infoSelectionChoixMiniBox={infoSelectionChoixMiniBox}
+            classNameDiv={'Box'}
+            versionProf={versionProf}
+            versionVue={versionVue}
+          />
+        </div>
+        <div onClick={() => handleClick(8)}>
+          <FicheBox8
+            classNameDiv={'Box'}
+            versionVue={versionVue}
+            versionProf={versionProf}
+          />
+        </div>
 
-      {/* <button onClick={consoleLogJson}>return log json</button> */}
-      <button className="boutton_retour_interaction_edu" onClick={retour}>
-        Retour
-      </button>
-      {!versionVue ? (
-        <button
-          onClick={Sauvegarder}
-          className="boutton_sauvegarder_interaction_edu"
-        >
-          Sauvegarder
+        {/* <button onClick={consoleLogJson}>return log json</button> */}
+        <button className="boutton_retour_interaction_edu" onClick={retour}>
+          Retour
         </button>
-      ) : null}
-      {!versionProf && !versionVue ? (
-        <>
+        {!versionVue ? (
           <button
-            className="boutton_brouillon_interaction_edu"
-            onClick={Brouillon}
+            onClick={Sauvegarder}
+            className="boutton_sauvegarder_interaction_edu"
           >
-            Brouillons
+            Sauvegarder
           </button>
-        </>
-      ) : null}
+        ) : null}
+        {!versionProf && !versionVue ? (
+          <>
+            <button
+              className="boutton_brouillon_interaction_edu"
+              onClick={Brouillon}
+            >
+              Brouillons
+            </button>
+          </>
+        ) : null}
 
-      {versionProf ? (
-        <button
-          className="boutton_sauvegarder_interaction_edu"
-          onClick={imprimerPage}
-        >
-          Imprimer
-        </button>
-      ) : null}
-    </div>
+        {versionProf ? (
+          <button
+            className="boutton_sauvegarder_interaction_edu"
+            onClick={imprimerPage}
+          >
+            Imprimer
+          </button>
+        ) : null}
+      </div>
     </>
   )
 }

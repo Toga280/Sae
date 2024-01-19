@@ -117,9 +117,12 @@ function ListeFiches({ redirection, refreshFiche, identifiant }: any) {
             const newNom = prompt('Entrez le nouveau nom de la fiche :')
             if (newNom !== null) {
               await testNameFiche(newNom)
-              if (ficheexiste === true) {
+              console.log("post test name fiche "+ficheexiste)
+              if (ficheexiste === false) {
+                console.log("avant rename")
                 modifnomfiche(item, newNom)
               } else {
+                console.log("avant alert")
                 alert(
                   'Une fiche avec ce nom existe déjà. Veuillez choisir un autre nom.',
                 )
@@ -191,20 +194,35 @@ function ListeFiches({ redirection, refreshFiche, identifiant }: any) {
 
   const testNameFiche = async (nomFiche: string) => {
     try {
+      console.log(nomFiche)
       const response = await axios.get(
         `http://localhost:5000/GET/nameFicheExiste?name=${encodeURIComponent(
           nomFiche,
         )}`,
       )
       if (response.data) {
-        setFicheexiste(true)
+        console.log(response.data)
+        setFicheexistetrue()
+        console.log("fiche exista set a true est a "+ficheexiste)
       } else {
-        setFicheexiste(false)
+        console.log(response.data)
+        setFicheexisteFalse()
+        console.log("fiche exista set a false est a "+ficheexiste)
       }
     } catch (error) {
       console.error('Erreur lors de la requête vers le serveur :', error)
       throw error
     }
+  }
+
+  const setFicheexistetrue = () => {
+    setFicheexiste(true)
+    console.log("dans const fiche exista set a true est a "+ficheexiste)
+  }
+
+  const setFicheexisteFalse = () => {
+    setFicheexiste(false)
+    console.log("dans const fiche exista set a false est a "+ficheexiste)
   }
 
   const dupliquerFiche = async (nomf: string) => {
