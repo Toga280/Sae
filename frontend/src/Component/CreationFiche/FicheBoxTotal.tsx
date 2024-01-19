@@ -34,9 +34,7 @@ function FicheBoxTotal({
     const data = fonctionsMiniBoxInfoJson.getAllJson()
     axios
       .post('http://localhost:5000/POST/fiche', data)
-      .then((response) => {
-        redirection(2)
-      })
+      .then((response) => {})
       .catch((error) => {
         console.error('Erreur lors de la requête vers le serveur :', error)
       })
@@ -73,6 +71,7 @@ function FicheBoxTotal({
       } else {
         await deleteFiche(fonctionsMiniBoxInfoJson.getNom())
         await postFiche()
+        redirection(2)
       }
     } else if (!versionProf) {
       await fonctionsMiniBoxInfoJson.changeEnCourFalse()
