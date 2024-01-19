@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from 'react'
 import './SuiviEleve.css'
 import axios from 'axios';
-function SuiviEleve({ redirection }: any) {
+function SuiviEleve({ redirection, identifiant }: any) {
     const redirectionTwo = () => {
         redirection(2);
     };
@@ -11,6 +11,7 @@ function SuiviEleve({ redirection }: any) {
     const [loading, setLoading] = useState(false); // État pour suivre si les images sont en cours de chargement
     const [studentImages, setStudentImages] = useState<string[]>([]); // État pour stocker les images des étudiants récupérées
     const [selectedEleve, setSelectedEleve] = useState<any | null>(null); // État pour l'élève sélectionné pour le suivi
+    const [fondEcranUrl, setFondEcranUrl] = useState<string | null>(null)
 
     const handleSuiviClick = (eleve: any) => {
       setSelectedEleve(eleve); // Mettre à jour l'état avec l'élève sélectionné
@@ -101,7 +102,43 @@ function SuiviEleve({ redirection }: any) {
       return { value, y };
   });
   
-    return (
+  useEffect(() => {
+    // Appeler la requête pour récupérer l'image du fond d'écran
+    axios
+      .get('http://localhost:5000/GET/fondecran', {
+        params: {
+          name: identifiant,
+        },
+        responseType: 'arraybuffer',
+      })
+      .then((response) => {
+        const base64 = btoa(
+          new Uint8Array(response.data).reduce(
+            (data, byte) => data + String.fromCharCode(byte),
+            '',
+          ),
+        )
+        const url = `data:${response.headers[
+          'content-type'
+        ].toLowerCase()};base64,${base64}`
+        setFondEcranUrl(url)
+      })
+      .catch((error) => console.error(error))
+  }, [])
+
+  return (
+    <>
+    {fondEcranUrl && (
+      <style>
+        {`
+          body {
+            background-image: url(${fondEcranUrl});
+            background-size: cover;
+            background-repeat: no-repeat;
+          }
+        `}
+      </style>
+    )}
       <div>
           {selectedEleve ? (
             <div>
@@ -159,6 +196,7 @@ function SuiviEleve({ redirection }: any) {
             </div>
           )}
       </div>
+    </>
   );
 }
 

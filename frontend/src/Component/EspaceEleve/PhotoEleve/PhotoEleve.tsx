@@ -121,14 +121,43 @@ function PhotoEleve({ redirection, eleve }: any) {
     getPictoInfo()
   }, [])
 
+  useEffect(() => {
+    // Appeler la requête pour récupérer l'image du fond d'écran
+    axios
+      .get('http://localhost:5000/GET/fondecran', {
+        params: {
+          name: eleve,
+        },
+        responseType: 'arraybuffer',
+      })
+      .then((response) => {
+        const base64 = btoa(
+          new Uint8Array(response.data).reduce(
+            (data, byte) => data + String.fromCharCode(byte),
+            '',
+          ),
+        )
+        const url = `data:${response.headers[
+          'content-type'
+        ].toLowerCase()};base64,${base64}`
+        setFondEcranUrl(url)
+      })
+      .catch((error) => console.error(error))
+  }, [])
+
   return (
-    <div
-      style={{
-        backgroundImage: `url(${fondEcranUrl})`,
-        backgroundSize: 'cover',
-        height: '100vh',
-      }}
-    >
+    <>
+    {fondEcranUrl && (
+      <style>
+        {`
+          body {
+            background-image: url(${fondEcranUrl});
+            background-size: cover;
+            background-repeat: no-repeat;
+          }
+        `}
+      </style>
+    )}
       <div className="global_bouton_interface_élève">
         <div>
           <div className="content_espace__take_photo_eleve">
@@ -175,7 +204,7 @@ function PhotoEleve({ redirection, eleve }: any) {
           Retour
         </button>
       </div>
-    </div>
+    </>
   )
 }
 

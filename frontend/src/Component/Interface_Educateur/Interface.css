@@ -53,6 +53,10 @@
     cursor: pointer;
 
 }
+.reglage-icon{
+    margin: 2em;
+    float: right;
+}
 .txt_espace_prof{
     font-size: 2em;
     margin-top: 3em;
@@ -60,7 +64,6 @@
     text-align: center;
     color: #355c7d;
     font-family: Arial, sans-serif;
-
 }
 .bouton_interface_educateur:hover,
 .bouton_interface_educateur:focus {

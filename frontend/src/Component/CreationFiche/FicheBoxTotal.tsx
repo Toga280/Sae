@@ -20,10 +20,13 @@ function FicheBoxTotal({
   forceRefreshFiche,
   versionVue,
   setFicheSave,
+  identifiant,
 }: any) {
   const [numBox, setNumBox] = useState(0)
 
   const [isDraftSaved, setIsDraftSaved] = useState(false)
+
+  const [fondEcranUrl, setFondEcranUrl] = useState<string | null>(null)
 
   const modifierFiche = async () => {
     await deleteFiche(fonctionsMiniBoxInfoJson.getNom())
@@ -116,7 +119,43 @@ function FicheBoxTotal({
     }
   }, [numBox, onSelectBox, forceRefreshFiche])
 
+  useEffect(() => {
+    // Appeler la requête pour récupérer l'image du fond d'écran
+    axios
+      .get('http://localhost:5000/GET/fondecran', {
+        params: {
+          name: identifiant,
+        },
+        responseType: 'arraybuffer',
+      })
+      .then((response) => {
+        const base64 = btoa(
+          new Uint8Array(response.data).reduce(
+            (data, byte) => data + String.fromCharCode(byte),
+            '',
+          ),
+        )
+        const url = `data:${response.headers[
+          'content-type'
+        ].toLowerCase()};base64,${base64}`
+        setFondEcranUrl(url)
+      })
+      .catch((error) => console.error(error))
+  }, [])
+
   return (
+    <>
+    {fondEcranUrl && (
+      <style>
+        {`
+          body {
+            background-image: url(${fondEcranUrl});
+            background-size: cover;
+            background-repeat: no-repeat;
+          }
+        `}
+      </style>
+    )}
     <div>
       {isDraftSaved && (
         <div className="message_brouillon">Fiche mise en brouillon</div>
@@ -223,6 +262,7 @@ function FicheBoxTotal({
         </button>
       ) : null}
     </div>
+    </>
   )
 }
 
