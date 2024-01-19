@@ -72,7 +72,9 @@ function Interface({ redirection, role, identifiant }: any) {
             style={{ width: '40px', height: '40px', cursor: 'pointer' }}
             onClick={() => redirection(18)}
           />
+          <div className='global_txt_espace_prof'>
           <h2 className="txt_espace_prof">Espace super administrateur</h2>
+          </div>
           <div className="global_bouton_interface_educateur">
             <button
               className="bouton_interface_educateur"
@@ -176,9 +178,11 @@ function Interface({ redirection, role, identifiant }: any) {
             style={{ width: '40px', height: '40px', cursor: 'pointer' }}
             onClick={() => redirection(18)}
           />
-          <h2 className="txt_espace_prof">
-            Espace conseillère insertion professionnelle
-          </h2>
+          <div className='global_txt_espace_prof'>
+            <h2 className="txt_espace_prof">
+              Espace conseillère insertion professionnelle
+            </h2>
+          </div>
           <div className="global_bouton_interface_educateur">
             <button
               className="bouton_interface_educateur"
@@ -210,7 +214,9 @@ function Interface({ redirection, role, identifiant }: any) {
             style={{ width: '40px', height: '40px', cursor: 'pointer' }}
             onClick={() => redirection(18)}
           />
+          <div className='global_txt_espace_prof'>
           <h2 className="txt_espace_prof">Espace éducateur technique</h2>
+          </div>
           <div className="global_bouton_interface_educateur">
             <button
               className="bouton_interface_educateur"
