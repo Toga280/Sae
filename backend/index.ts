@@ -109,6 +109,13 @@ const ficheSchema = new Schema<FicheDocument>({
     input18: { type: String },
     input19: { type: Boolean },
   },
+  Commentaires: [
+    {
+      contenu: { type: String },
+      idCommentateur: { type: String },
+      _id: false,
+    },
+  ],
 })
 
 const admin = new Schema<Admin>({
@@ -162,6 +169,51 @@ app.post('/POST/fiche', (req: any, res: any) => {
         res.status(500).send('Erreur interne du serveur')
       }
     })
+})
+
+app.post('/POST/commentaire', async (req: any, res: any) => {
+  const { ficheName, contenu, idCommentateur } = req.body
+  const fiche = await Fiche.findOne({ 'info.name': ficheName })
+  try {
+    if (!fiche) {
+      res.status(404).error('fiche non trouvé')
+    }
+    if (!contenu) {
+      res.status(500).error('contenu vide')
+    }
+    fiche?.Commentaires.push({
+      contenu: contenu,
+      idCommentateur: idCommentateur,
+    })
+    await fiche?.save()
+    res.status(200).json({ message: 'Commentaire ajouté avec succès' })
+  } catch (error) {
+    console.error("Erreur lors de l'ajout d'un commentaire : ", error)
+    res.status(500).json({ error: 'Erreur serveur' })
+  }
+})
+
+app.get('/GET/allCommentaire', async (req: any, res: any) => {
+  const ficheName = req.query.ficheName
+
+  try {
+    if (!ficheName) {
+      return res.status(400).json({ error: 'Paramètre ficheName manquant' })
+    }
+
+    const fiche = await Fiche.findOne({ 'info.name': ficheName })
+
+    if (!fiche) {
+      return res.status(404).json({ error: 'Fiche non trouvée' })
+    }
+
+    const commentaires = fiche.Commentaires || []
+
+    res.status(200).json({ commentaires: commentaires })
+  } catch (error) {
+    console.error('Erreur lors de la récupération des commentaires : ', error)
+    res.status(500).json({ error: 'Erreur serveur' })
+  }
 })
 
 /* UPLOAD IMAGE ELEVES ===========================================================*/
@@ -462,7 +514,6 @@ app.post('/POST/affectereleve', async (req: any, res: any) => {
           fiche.info.nomEleveAttribuer +
           '. il doit finir sa fiche précédente pour pouvoir lui en affecter une nouvelle',
       })
-
     } else {
       return res.status(501).json({
         success: false,
@@ -544,8 +595,10 @@ app.post('/POST/ficheUpdateName', async (req: any, res: any) => {
     if (!fiche) {
       return res.status(404).json({ message: 'Fiche non trouvée' })
     }
-    if(newName === ''){
-      return res.status(404).json({ message: 'Le nom de la fiche ne peut pas être vide' })
+    if (newName === '') {
+      return res
+        .status(404)
+        .json({ message: 'Le nom de la fiche ne peut pas être vide' })
     }
 
     fiche.info.name = newName
@@ -560,37 +613,36 @@ app.post('/POST/ficheUpdateName', async (req: any, res: any) => {
 /*dupliquer FICHE================================================================*/
 
 app.post('/POST/ficheDuplicate', async (req: any, res: any) => {
-  const { name } = req.body;
+  const { name } = req.body
 
   try {
-    const fiche = await Fiche.findOne({ 'info.name': name }).lean();
+    const fiche = await Fiche.findOne({ 'info.name': name }).lean()
 
     if (!fiche) {
-      return res.status(404).json({ message: 'Fiche non trouvée' });
+      return res.status(404).json({ message: 'Fiche non trouvée' })
     }
 
-    if(name === ''){
-      return res.status(404).json({ message: 'Le nom de la fiche ne peut pas être vide' })
+    if (name === '') {
+      return res
+        .status(404)
+        .json({ message: 'Le nom de la fiche ne peut pas être vide' })
     }
     // Créer une copie de l'objet sans le champ _id
-    const { _id, ...ficheWithoutId } = fiche;
+    const { _id, ...ficheWithoutId } = fiche
     fiche.info.nomEleveAttribuer = ''
     fiche.info.prenomEleveAttribuer = ''
     fiche.info.enCour = true
 
-    const newFiche = new Fiche(ficheWithoutId);
-    newFiche.info.name = `${ficheWithoutId.info.name} - Copie`;
+    const newFiche = new Fiche(ficheWithoutId)
+    newFiche.info.name = `${ficheWithoutId.info.name} - Copie`
 
-    await newFiche.save();
-    res.status(200).json({ message: 'Fiche dupliquée avec succès' });
+    await newFiche.save()
+    res.status(200).json({ message: 'Fiche dupliquée avec succès' })
   } catch (error) {
-    console.error(error);
-    res.status(500).json({ message: 'Erreur serveur' });
+    console.error(error)
+    res.status(500).json({ message: 'Erreur serveur' })
   }
-});
-
-
-
+})
 
 /*------------------- GET -------------------*/
 
@@ -962,32 +1014,31 @@ app.get('/GET/fondecran', async (req: any, res: any) => {
 /* get eleve affecter a fiche ===============================================================*/
 
 app.get('/GET/eleveAffecter', async (req: any, res: any) => {
-  const { ficheName } = req.query;
-  console.log('ficheName -> ', ficheName);
+  const { ficheName } = req.query
+  console.log('ficheName -> ', ficheName)
   try {
-    console.log("CPT 1");
-    const fiche = await Fiche.findOne({ 'info.name': ficheName }).exec();
-    console.log("CPT 2");
+    console.log('CPT 1')
+    const fiche = await Fiche.findOne({ 'info.name': ficheName }).exec()
+    console.log('CPT 2')
     if (!fiche) {
-      return res.status(404).send('Fiche non trouvée');
+      return res.status(404).send('Fiche non trouvée')
     }
-    console.log("CPT 3");
+    console.log('CPT 3')
     if (!fiche.info.nomEleveAttribuer && !fiche.info.prenomEleveAttribuer) {
-      return res.status(200).send('personne');
+      return res.status(200).send('personne')
     }
-    console.log("CPT 4");
+    console.log('CPT 4')
 
     // Formattez la réponse comme une chaîne de caractères
-    const eleveAffecteString = `${fiche.info.nomEleveAttribuer} ${fiche.info.prenomEleveAttribuer}`;
-    
-    console.log("CPT 5");
-    return res.status(200).send(eleveAffecteString);
-  } catch (error) {
-    console.error('Erreur lors de la recherche de la fiche :', error);
-    res.status(500).send('Erreur interne du serveur');
-  }
-});
+    const eleveAffecteString = `${fiche.info.nomEleveAttribuer} ${fiche.info.prenomEleveAttribuer}`
 
+    console.log('CPT 5')
+    return res.status(200).send(eleveAffecteString)
+  } catch (error) {
+    console.error('Erreur lors de la recherche de la fiche :', error)
+    res.status(500).send('Erreur interne du serveur')
+  }
+})
 
 /*------------------- DELETE -------------------*/
 
@@ -1047,4 +1098,3 @@ app.get('/GET/NombreEssais', async (req: any, res: any) => {
     res.status(500).json({ message: 'Erreur serveur' })
   }
 })
-

@@ -59,8 +59,8 @@ function AffecterListe({
 
       })
       .catch((error) => {
-        if (!error.response || error.response.status !== 500) {
-          console.error('Erreur autre que 500 :', error)
+        if (!error.response || error.response.status !== 501) {
+          console.error('Erreur autre que 501 :', error)
         }
       })
   }

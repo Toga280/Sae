@@ -191,7 +191,7 @@ function FicheBoxTotal({
         />
       </div>
 
-      <button onClick={consoleLogJson}>return log json</button>
+      {/* <button onClick={consoleLogJson}>return log json</button> */}
       <button className="boutton_retour_interaction_edu" onClick={retour}>
         Retour
       </button>

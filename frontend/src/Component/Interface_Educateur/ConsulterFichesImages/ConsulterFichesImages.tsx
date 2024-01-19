@@ -3,7 +3,7 @@ import React, { useEffect, useState } from 'react'
 import './ConsulterFichesImages.css'
 import FicheEleve from './FicheEleve/FicheEleve'
 
-function ConsulterFichesImages({ redirection }: any) {
+function ConsulterFichesImages({ redirection, IdConnecter }: any) {
   const setRedirectionTwo = () => {
     redirection(2)
   }
@@ -191,6 +191,7 @@ function ConsulterFichesImages({ redirection }: any) {
             prenomEleve={prenomEleveSelectionne}
             nomEleve={nomEleveSelectionne}
             setVoirFicheFalse={setVoirFicheFalse}
+            IdConnecter={IdConnecter}
           />
         </div>
       ) : null}

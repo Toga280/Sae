@@ -1,62 +1,192 @@
-import React from "react";
-import "./Interface.css";
+import React from 'react'
+import './Interface.css'
+import fonctionsMiniBoxInfoJson from '../CreationFiche/MiniBoxInfoFunction'
 
 function Interface({ redirection, role }: any) {
-  
   const handleBoutonClic = () => {
-    const confirmation = window.confirm("Êtes-vous sûr de vouloir vous déconnecter ?");
+    const confirmation = window.confirm(
+      'Êtes-vous sûr de vouloir vous déconnecter ?',
+    )
     if (confirmation) {
       redirection(1)
     }
-  };
+  }
+
+  const redirectionCreationFiche = () => {
+    fonctionsMiniBoxInfoJson.modifierAllJsonToBase()
+    redirection(3)
+  }
 
   return (
     <div>
-      {role === "Admin" && (
+      {role === 'Admin' && (
         <div>
-          <button className="bouton_deconnection_educateur" onClick={handleBoutonClic}>Se déconnecter</button>
-          <h2 className="txt_espace_prof">Espace administrateur</h2>
+          <button
+            className="bouton_deconnection_educateur"
+            onClick={handleBoutonClic}
+          >
+            Se déconnecter
+          </button>
+          <h2 className="txt_espace_prof">Espace super administrateur</h2>
           <div className="global_bouton_interface_educateur">
-            <button className="bouton_interface_educateur" onClick={() => redirection(3)}>Création fiche</button>
-            <button className="bouton_interface_educateur" onClick={() => redirection(14)} >Consulter fiches/images</button>
-            <button className="bouton_interface_educateur" onClick={() => redirection(10)} > Importer un pictogramme</button>
+            <button
+              className="bouton_interface_educateur"
+              onClick={() => redirection(3)}
+            >
+              Création Fiche
+            </button>
+            <button
+              className="bouton_interface_educateur"
+              onClick={() => redirection(14)}
+            >
+              Consulter fiches/images
+            </button>
+            <button
+              className="bouton_interface_educateur"
+              onClick={() => redirection(10)}
+            >
+              {' '}
+              Importer un pictogramme
+            </button>
             {/* <button className="bouton_interface_educateur" onClick={() => redirection(3)}>Brouillons fiches </button> */}
-            <button className="bouton_interface_educateur" onClick={() => redirection(6)}>Modifier/Affecter une fiche</button>
-            <button className="bouton_interface_educateur" onClick={() => redirection(9)}>Modifier les informations</button>
-            <button className="bouton_interface_educateur" onClick={() => redirection(5)}>Créer un profil</button>
-            <button className="bouton_interface_educateur" onClick={() => redirection(8)}>Archiver un profil</button>
-            <button className="bouton_interface_educateur" onClick={() => redirection(12)}>Profils archivés</button>
-            <button className="bouton_interface_educateur" onClick={() => redirection(15)}>Modifier les rôles</button>
-          </div>
-        </div>
-      )}
-      
-      {role === "Professeur" && (
-        <div>
-          <button className="bouton_deconnection_educateur" onClick={handleBoutonClic}>Se déconnecter</button>
-          <h2 className="txt_espace_prof">Espace éducateur intervenant</h2>
-          <div className="global_bouton_interface_educateur">
-            <button className="bouton_interface_educateur" onClick={() => redirection(3)} >Consulter fiches/images</button>
+            <button
+              className="bouton_interface_educateur"
+              onClick={() => redirection(6)}
+            >
+              Fiches créées
+            </button>
+            <button
+              className="bouton_interface_educateur"
+              onClick={() => redirection(9)}
+            >
+              Modifier les informations
+            </button>
+            <button
+              className="bouton_interface_educateur"
+              onClick={() => redirection(5)}
+            >
+              Créer un profil
+            </button>
+            <button
+              className="bouton_interface_educateur"
+              onClick={() => redirection(8)}
+            >
+              Archiver un profil
+            </button>
+            <button
+              className="bouton_interface_educateur"
+              onClick={() => redirection(12)}
+            >
+              Profil Archivé(s)
+            </button>
+            <button
+              className="bouton_interface_educateur"
+              onClick={() => redirection(15)}
+            >
+              Modifier les rôles
+            </button>
+            <button
+                className="bouton_interface_educateur"
+                onClick={() => redirection(17)}
+              >
+                Suivi élèves
+              </button>
           </div>
         </div>
       )}
 
-      {role === "ProfesseurAdmin" && (
+      {role === 'Professeur' && (
         <div>
-          <button className="bouton_deconnection_educateur" onClick={handleBoutonClic}>Se déconnecter</button>
-          <h2 className="txt_espace_prof">Espace éducateur</h2>
+          <button
+            className="bouton_deconnection_educateur"
+            onClick={handleBoutonClic}
+          >
+            Se déconnecter
+          </button>
+          <h2 className="txt_espace_prof">Espace éducateur technique simple</h2>
           <div className="global_bouton_interface_educateur">
-            <button className="bouton_interface_educateur" onClick={() => redirection(3)}>Création Fiche</button>
-            <button className="bouton_interface_educateur" onClick={() => redirection(14)} >Consulter fiches/images</button>
-            <button className="bouton_interface_educateur" onClick={() => redirection(10)} > Importer un pictogramme</button>
+            <button
+              className="bouton_interface_educateur"
+              onClick={() => redirection(3)}
+            >
+              Consulter fiches/images
+            </button>
+          </div>
+        </div>
+      )}
+      {role === 'Cip' && (
+        <div>
+          <button
+            className="bouton_deconnection_educateur"
+            onClick={handleBoutonClic}
+          >
+            Se déconnecter
+          </button>
+          <h2 className="txt_espace_prof">Espace conseillère insertion professionnelle</h2>
+          <div className='global_bouton_interface_educateur'>
+            <button
+                className="bouton_interface_educateur"
+                onClick={() => redirection(14)}
+              >
+                Consulter fiches/images
+              </button>
+              <button
+                className="bouton_interface_educateur"
+                onClick={() => redirection(17)}
+              >
+                Suivi élèves
+              </button>
+          </div>
+
+        </div>
+      )}
+      {role === 'ProfesseurAdmin' && (
+        <div>
+          <button
+            className="bouton_deconnection_educateur"
+            onClick={handleBoutonClic}
+          >
+            Se déconnecter
+          </button>
+          <h2 className="txt_espace_prof">Espace éducateur technique administrateur</h2>
+          <div className="global_bouton_interface_educateur">
+            <button
+              className="bouton_interface_educateur"
+              onClick={() => redirection(3)}
+            >
+              Création Fiche
+            </button>
+            <button
+              className="bouton_interface_educateur"
+              onClick={() => redirection(14)}
+            >
+              Consulter fiches/images
+            </button>
+            <button
+              className="bouton_interface_educateur"
+              onClick={() => redirection(10)}
+            >
+              {' '}
+              Importer un pictogramme
+            </button>
             {/* <button className="bouton_interface_educateur" onClick={() => redirection(3)}>Brouillons fiches </button> */}
-            <button className="bouton_interface_educateur" onClick={() => redirection(6)}>Modifier/Affecter une fiche</button>
-            <button className="bouton_interface_educateur" onClick={() => redirection(9)}>Modifier les informations</button>
+            <button
+              className="bouton_interface_educateur"
+              onClick={() => redirection(6)}
+            >
+              Fiches crées
+            </button>
+            <button
+              className="bouton_interface_educateur"
+              onClick={() => redirection(9)}
+            >
+              Modifier les informations
+            </button>
           </div>
         </div>
       )}
     </div>
-  );
+  )
 }
 
-export default Interface;
+export default Interface

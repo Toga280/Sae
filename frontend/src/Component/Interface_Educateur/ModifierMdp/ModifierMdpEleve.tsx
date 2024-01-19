@@ -168,7 +168,7 @@ function ModifierMdpEleve({ redirection }: any) {
           {profilSelectionne === eleve && inputActive && (
             <>
               <div className="container">
-                <p>Nouveau Mot de passe :</p>
+                <p>Nouveau mot de passe :</p>
                 <input
                   type="password"
                   className="input_login"

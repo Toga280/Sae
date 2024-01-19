@@ -1,7 +1,7 @@
-import React, { useState } from "react";
-import PageLoginEducateur from "./pageLoginEducateur";
-import ConnectionEleve from "./connectionEleve";
-import "./pageConnection.css";
+import React, { useState } from 'react'
+import PageLoginEducateur from './pageLoginEducateur'
+import ConnectionEleve from './connectionEleve'
+import './pageConnection.css'
 
 function PageConnection({
   redirection,
@@ -9,11 +9,12 @@ function PageConnection({
   set1Eleve,
   setNomEleveActuelleApp,
   setPrenomEleveActuelleApp,
+  setIdConnecter,
 }: any) {
-  const [selectBoutton, setSelectBoutton] = useState(false);
+  const [selectBoutton, setSelectBoutton] = useState(false)
   const BoutonCliquezConnection = (etat: boolean) => {
-    setSelectBoutton(etat);
-  };
+    setSelectBoutton(etat)
+  }
 
   return (
     <div className="">
@@ -35,7 +36,11 @@ function PageConnection({
       )}
 
       {selectBoutton ? (
-        <PageLoginEducateur redirection={redirection} setRole={setRole} />
+        <PageLoginEducateur
+          redirection={redirection}
+          setRole={setRole}
+          setIdConnecter={setIdConnecter}
+        />
       ) : null}
       {selectBoutton && (
         <button
@@ -46,7 +51,7 @@ function PageConnection({
         </button>
       )}
     </div>
-  );
+  )
 }
 
-export default PageConnection;
+export default PageConnection
