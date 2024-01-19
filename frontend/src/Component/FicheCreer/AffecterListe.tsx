@@ -5,6 +5,7 @@ import React, { useEffect, useState } from 'react'
 function AffecterListe({
   setAffichageAffecterListeFalse,
   nomFicheSelectionner,
+  redirection,
 }: any) {
   const [eleves, setEleves] = useState<any[]>([])
   const [erreurAffecter, setErreurAffecter] = useState<boolean>(false)
@@ -42,17 +43,17 @@ function AffecterListe({
         },
         {
           validateStatus: function (status) {
-            return status == 501
+            return status == 501 || status == 200
           },
         },
       )
       .then((response) => {
         if (!response.data.success) {
-          setErreurAffecter(true)
           setErreurAffecterMessage(response.data.message)
         } else {
-          setEleves(response.data.data)
           setAffichageAffecterListeFalse()
+          redirection(2)
+          redirection(6)
         }
         window.scrollTo(0, 0)
       })

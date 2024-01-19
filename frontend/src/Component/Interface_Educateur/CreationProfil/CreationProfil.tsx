@@ -1,10 +1,10 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import axios from "axios";
 import CreationProfilProf from "./CreationProfilProf";
 import CreationProfilEleves from "./CreationProfilEleves";
 import "./CreationProfil.css";
 
-function CreationProfil({ redirection, setSaveName }: any) {
+function CreationProfil({ redirection, setSaveName, identifiant }: any) {
   const setRedirectionTwo = () => {
     redirection(2);
   };
@@ -13,6 +13,7 @@ function CreationProfil({ redirection, setSaveName }: any) {
   const [prenomEleve, setPrenomEleve] = useState(String);
   const [imageEleve, setImageEleve] = useState<File | null>(null);
   const [mdpEleve, setMdpEleve] = useState(String);
+  const [fondEcranUrl, setFondEcranUrl] = useState<string | null>(null)
 
   const handleInputChangeNom = (event: any) => {
     setNomEleve(event.target.value);
@@ -70,8 +71,44 @@ function CreationProfil({ redirection, setSaveName }: any) {
       console.error("Erreur lors de la requête vers le serveur :", error);
     });
   };
+  
+  useEffect(() => {
+    // Appeler la requête pour récupérer l'image du fond d'écran
+    axios
+      .get('http://localhost:5000/GET/fondecran', {
+        params: {
+          name: identifiant,
+        },
+        responseType: 'arraybuffer',
+      })
+      .then((response) => {
+        const base64 = btoa(
+          new Uint8Array(response.data).reduce(
+            (data, byte) => data + String.fromCharCode(byte),
+            '',
+          ),
+        )
+        const url = `data:${response.headers[
+          'content-type'
+        ].toLowerCase()};base64,${base64}`
+        setFondEcranUrl(url)
+      })
+      .catch((error) => console.error(error))
+  }, [])
 
   return (
+    <>
+    {fondEcranUrl && (
+      <style>
+        {`
+          body {
+            background-image: url(${fondEcranUrl});
+            background-size: cover;
+            background-repeat: no-repeat;
+          }
+        `}
+      </style>
+    )}
     <div>
       <CreationProfilEleves
         setRedirectionTwo={setRedirectionTwo}
@@ -89,6 +126,7 @@ function CreationProfil({ redirection, setSaveName }: any) {
         Retour
       </button>
     </div>
+    </>
   );
 }
 

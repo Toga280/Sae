@@ -2,13 +2,14 @@ import React, { useEffect, useState } from 'react'
 import axios from 'axios'
 import '../../ConnectionPage/pageConnection.css'
 import './ArchiverProfil.css'
-function ConnectionEleve({ redirection }: any) {
+function ConnectionEleve({ redirection, identifiant }: any) {
   const redirectionTwo = () => {
     redirection(2)
   }
   const [eleves, setEleves] = useState<any[]>([])
   const [loading, setLoading] = useState(false)
   const [studentImages, setStudentImages] = useState<string[]>([])
+  const [fondEcranUrl, setFondEcranUrl] = useState<string | null>(null)
 
   const getEleve = () => {
     axios
@@ -96,7 +97,43 @@ function ConnectionEleve({ redirection }: any) {
     }
   }, [eleves])
 
+  useEffect(() => {
+    // Appeler la requête pour récupérer l'image du fond d'écran
+    axios
+      .get('http://localhost:5000/GET/fondecran', {
+        params: {
+          name: identifiant,
+        },
+        responseType: 'arraybuffer',
+      })
+      .then((response) => {
+        const base64 = btoa(
+          new Uint8Array(response.data).reduce(
+            (data, byte) => data + String.fromCharCode(byte),
+            '',
+          ),
+        )
+        const url = `data:${response.headers[
+          'content-type'
+        ].toLowerCase()};base64,${base64}`
+        setFondEcranUrl(url)
+      })
+      .catch((error) => console.error(error))
+  }, [])
+
   return (
+    <>
+    {fondEcranUrl && (
+      <style>
+        {`
+          body {
+            background-image: url(${fondEcranUrl});
+            background-size: cover;
+            background-repeat: no-repeat;
+          }
+        `}
+      </style>
+    )}
     <div>
       <div>
         <div className="general_login">
@@ -130,6 +167,7 @@ function ConnectionEleve({ redirection }: any) {
         Retour
       </button>
     </div>
+    </>
   )
 }
 

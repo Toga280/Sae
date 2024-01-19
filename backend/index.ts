@@ -51,6 +51,7 @@ const ficheSchema = new Schema<FicheDocument>({
     prenomEleveAttribuer: { type: String },
     enCour: { type: Boolean },
     informationSuplementaire: { type: String },
+    typeFiche: { type: String },
     _id: false,
   },
   AllMiniBox: {
@@ -518,6 +519,22 @@ app.post('/POST/affectereleve', async (req: any, res: any) => {
     }
 
     const fiche = await Fiche.findOne({ 'info.name': ficheName })
+    const ficheEleveDejaAttribuer = await Fiche.findOne({
+      'info.nomEleveAttribuer': nom,
+      'info.prenomEleveAttribuer': prenom,
+      'info.enCour': true,
+    })
+
+    if (ficheEleveDejaAttribuer) {
+      return res.status(501).json({
+        success: false,
+        message:
+          nom +
+          '' +
+          prenom +
+          ' na pas fini sa fiche en cour, il doit la finir avent de pouvoir lui en attribuer une nouvelle.',
+      })
+    }
 
     if (!fiche) {
       return res.status(404).json({ message: 'Fiche non trouvée' })
@@ -556,7 +573,7 @@ app.post('/POST/affectereleve', async (req: any, res: any) => {
 
     console.log('fiche.info --> ', fiche.info)
 
-    res.status(200).json({ message: 'Fiche bien attribuée' })
+    res.status(200).json({ success: true, message: 'Fiche bien attribuée' })
   } catch (error) {
     console.error(error)
     res.status(500).json({ message: 'Erreur serveur' })
@@ -660,7 +677,21 @@ app.post('/POST/ficheDuplicate', async (req: any, res: any) => {
     fiche.info.enCour = true
 
     const newFiche = new Fiche(ficheWithoutId)
-    newFiche.info.name = `${ficheWithoutId.info.name} - Copie`
+    let ficheTestExiste: string = `${ficheWithoutId.info.name} - Copie`
+    const ficheTestExisteBack: string = ficheTestExiste
+    let ficheTestExisteSearsh = await Fiche.findOne({
+      'info.name': ficheTestExiste,
+    })
+    let x: number = 1
+    while (ficheTestExisteSearsh) {
+      ficheTestExiste = ficheTestExisteBack
+      ficheTestExiste = ficheTestExiste + x
+      x++
+      ficheTestExisteSearsh = await Fiche.findOne({
+        'info.name': ficheTestExiste,
+      })
+    }
+    newFiche.info.name = ficheTestExiste
 
     await newFiche.save()
     res.status(200).json({ message: 'Fiche dupliquée avec succès' })
@@ -860,6 +891,26 @@ app.get('/GET/eleve/FicheCompleted', async (req: any, res: any) => {
     res.status(500).json({ success: false, message: 'Internal server error' })
   }
 })
+
+// GET TYPEFICHE
+
+app.get('/fiches/type/:typeFiche', async (req: any, res: any) => {
+  const { nom, prenom } = req.query;
+  const ficheName = await Fiche.findOne({
+    'info.nomEleveAttribuer': nom,
+    'info.prenomEleveAttribuer': prenom,
+    'info.enCour': true,
+  }).exec()
+  
+    try {
+      const fiches = await Fiche.find({ }).exec()
+      res.status(200).json(fiches)
+    } catch (error) {
+      console.error('Error during authentication:', error)
+      res.status(500).json({ success: false, message: 'Internal server error' })
+    }
+  }
+);
 
 /*GET ADMIN======================================================================*/
 
@@ -1105,13 +1156,4 @@ app.get('/DELETE/fond', async (req: any, res: any) => {
   }
 })
 
-/* GET NOMBRE D'ESSAIS ADMIN ===============================================================*/
-app.get('/GET/NombreEssais', async (req: any, res: any) => {
-  try {
-    const admin = await Admin.find({}, 'nom prenom').exec()
-    res.json(admin)
-  } catch (error) {
-    console.error(error)
-    res.status(500).json({ message: 'Erreur serveur' })
-  }
-})
+

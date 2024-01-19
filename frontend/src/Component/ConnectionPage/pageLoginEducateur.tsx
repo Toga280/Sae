@@ -2,13 +2,14 @@ import React, { useState } from 'react'
 import './PageLoginEducateurStyle.css'
 import axios from 'axios'
 
-function PageLoginEducateur({ redirection, setRole, setIdConnecter }: any) {
+function PageLoginEducateur({ redirection, setRole, setIdConnecter, identifiant }: any) {
   const [id, setId] = useState(String)
   const [mdp, setMdp] = useState(String)
   const [mdpFaut, setMdpFaut] = useState(Boolean)
 
   const handleInputId = (event: any) => {
     setId(event.target.value)
+    identifiant(event.target.value)
   }
 
   const handleInputMdp = (event: any) => {
