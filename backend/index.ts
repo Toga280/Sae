@@ -51,6 +51,7 @@ const ficheSchema = new Schema<FicheDocument>({
     prenomEleveAttribuer: { type: String },
     enCour: { type: Boolean },
     informationSuplementaire: { type: String },
+    typeFiche: { type: String },
     _id: false,
   },
   AllMiniBox: {
@@ -835,6 +836,26 @@ app.get('/GET/eleve/FicheCompleted', async (req: any, res: any) => {
   }
 })
 
+// GET TYPEFICHE
+
+app.get('/fiches/type/:typeFiche', async (req: any, res: any) => {
+  const { nom, prenom } = req.query;
+  const ficheName = await Fiche.findOne({
+    'info.nomEleveAttribuer': nom,
+    'info.prenomEleveAttribuer': prenom,
+    'info.enCour': true,
+  }).exec()
+  
+    try {
+      const fiches = await Fiche.find({ }).exec()
+      res.status(200).json(fiches)
+    } catch (error) {
+      console.error('Error during authentication:', error)
+      res.status(500).json({ success: false, message: 'Internal server error' })
+    }
+  }
+);
+
 /*GET ADMIN======================================================================*/
 
 app.get('/GET/admin/authentification', async (req: any, res: any) => {
@@ -1088,13 +1109,4 @@ app.get('/DELETE/fond', async (req: any, res: any) => {
   }
 })
 
-/* GET NOMBRE D'ESSAIS ADMIN ===============================================================*/
-app.get('/GET/NombreEssais', async (req: any, res: any) => {
-  try {
-    const admin = await Admin.find({}, 'nom prenom').exec()
-    res.json(admin)
-  } catch (error) {
-    console.error(error)
-    res.status(500).json({ message: 'Erreur serveur' })
-  }
-})
+

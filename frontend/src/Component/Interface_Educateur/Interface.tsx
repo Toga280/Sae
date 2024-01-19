@@ -53,7 +53,7 @@ function Interface({ redirection, role }: any) {
               className="bouton_interface_educateur"
               onClick={() => redirection(6)}
             >
-              Fiches créées
+              Fiches créée(s)
             </button>
             <button
               className="bouton_interface_educateur"
@@ -77,7 +77,7 @@ function Interface({ redirection, role }: any) {
               className="bouton_interface_educateur"
               onClick={() => redirection(12)}
             >
-              Profil Archivé(s)
+              Profil(s) Archivé(s)
             </button>
             <button
               className="bouton_interface_educateur"
