@@ -10,6 +10,7 @@ function PageEspaceEleve({ redirection, nomEleve, prenomEleve, eleve }: any) {
   const [seeMaFiche, setSeeMaFiche] = useState(Boolean)
   const [pasDeFicheEnCour, setPasDeFicheEnCour] = useState<boolean>(false)
   const [seeMesFichesTermine, setSeeMesFichesTermine] = useState<boolean>(false)
+  const [ficheSave, setFicheSave] = useState<boolean>(false)
 
   useEffect(() => {
     // Appeler la requête pour récupérer l'image du fond d'écran
@@ -95,6 +96,9 @@ function PageEspaceEleve({ redirection, nomEleve, prenomEleve, eleve }: any) {
         height: '100vh',
       }}
     >
+      {ficheSave ? (
+        <div className="message_brouillon">Fiche Sauvegarder !</div>
+      ) : null}
       {!seeMaFiche && !seeMesFichesTermine ? (
         <div
           style={{
@@ -165,7 +169,11 @@ function PageEspaceEleve({ redirection, nomEleve, prenomEleve, eleve }: any) {
         />
       ) : null}
       {seeMaFiche ? (
-        <FicheBoxTotal versionProf={false} redirection={setSeeMaFiche} />
+        <FicheBoxTotal
+          versionProf={false}
+          redirection={setSeeMaFiche}
+          setFicheSave={setFicheSave}
+        />
       ) : null}
     </div>
   )
