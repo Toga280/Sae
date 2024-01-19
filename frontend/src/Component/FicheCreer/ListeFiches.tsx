@@ -110,6 +110,7 @@ function ListeFiches({ redirection, refreshFiche, identifiant }: any) {
           onClick={() => dupliquerFiche(item)}
         />
         <img
+          
           src={require('./modifier.webp')}
           style={{ width: '30px', height: '30px', cursor: 'pointer' }}
           className="autre-icon"

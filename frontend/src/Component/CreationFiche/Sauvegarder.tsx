@@ -4,17 +4,16 @@ import PopUpSauvegarder from './PopUpSauvegarder'
 import axios from 'axios'
 import './Sauvegarder.css'
 
-function Sauvegarder({ redirection, setSaveName, identifiant }: any) {
+function Sauvegarder({ redirection, setSaveName }: any) {
   const [nomFiche, setNomFiche] = useState('')
   const [upPopUpSauvegarder, setUpPopUpSauvegarder] = useState(false)
-  const [typeFiche, setTypeFiche] = useState('')
   const [informationSuplementaire, setInformationSuplementaire] =
     useState(String)
-  const [boutonClique, setBoutonClique] = useState(false)
-  const [fondEcranUrl, setFondEcranUrl] = useState<string | null>(null)
+  const [boutonClique, setBoutonClique] = useState(false);
+    const [fondEcranUrl, setFondEcranUrl] = useState<string | null>(null)
 
-  const handleTypeSelection = (type: any) => {
-    setTypeFiche(type)
+  const handleTypeSelection = async (type: string) => {
+    fonctionsMiniBoxInfoJson.modifierTypeFiche(type);
   }
 
   const addInformationSuplementaire = () => {
@@ -79,43 +78,7 @@ function Sauvegarder({ redirection, setSaveName, identifiant }: any) {
     )
   }, [informationSuplementaire])
 
-  useEffect(() => {
-    // Appeler la requête pour récupérer l'image du fond d'écran
-    axios
-      .get('http://localhost:5000/GET/fondecran', {
-        params: {
-          name: identifiant,
-        },
-        responseType: 'arraybuffer',
-      })
-      .then((response) => {
-        const base64 = btoa(
-          new Uint8Array(response.data).reduce(
-            (data, byte) => data + String.fromCharCode(byte),
-            '',
-          ),
-        )
-        const url = `data:${response.headers[
-          'content-type'
-        ].toLowerCase()};base64,${base64}`
-        setFondEcranUrl(url)
-      })
-      .catch((error) => console.error(error))
-  }, [])
-
   return (
-    <>
-    {fondEcranUrl && (
-      <style>
-        {`
-          body {
-            background-image: url(${fondEcranUrl});
-            background-size: cover;
-            background-repeat: no-repeat;
-          }
-        `}
-      </style>
-    )}
     <div>
       <div className="global_sauvegarder_fiche">
         <h1 className="title_choose_name_for_fiche">
@@ -140,6 +103,7 @@ function Sauvegarder({ redirection, setSaveName, identifiant }: any) {
             onClick={() => {
               handleTypeSelection('Électricité')
               setBoutonClique(true)
+              
             }}
           />
           <input
@@ -147,7 +111,7 @@ function Sauvegarder({ redirection, setSaveName, identifiant }: any) {
             className="boutton_type_ficheBox"
             value="Finition"
             onClick={() => {
-              handleTypeSelection('Général')
+              handleTypeSelection('Finition')
               setBoutonClique(true)
             }}
           />
@@ -203,7 +167,6 @@ function Sauvegarder({ redirection, setSaveName, identifiant }: any) {
         Retour
       </button>
     </div>
-    </>
   )
 }
 

@@ -56,6 +56,7 @@
 .reglage-icon{
     margin: 2em;
     float: right;
+}
 .global_txt_espace_prof{
     display: flex; /* Utilisez Flexbox */
     justify-content: center; /* Centre horizontalement */
@@ -152,5 +153,4 @@
         white-space: nowrap;
         text-overflow: ellipsis;
     }
-}
-}
+};
