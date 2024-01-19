@@ -146,7 +146,7 @@ function PageEspaceEleve({ redirection, nomEleve, prenomEleve, eleve }: any) {
                 value="Voir mes photos"
                 onClick={() => setSeeMesFichesTermine(true)}
               >
-                Mes Fiche Fini
+                Mes fiches finies
               </button>
             </div>
           </div>
