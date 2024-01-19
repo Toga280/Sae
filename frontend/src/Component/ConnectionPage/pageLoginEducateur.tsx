@@ -1,60 +1,57 @@
-import React, { useState } from "react";
-import "./PageLoginEducateurStyle.css";
-import axios from "axios";
+import React, { useState } from 'react'
+import './PageLoginEducateurStyle.css'
+import axios from 'axios'
 
-function PageLoginEducateur({ redirection , setRole}: any) {
-  const [id, setId] = useState(String);
-  const [mdp, setMdp] = useState(String);
-  const [mdpFaut, setMdpFaut] = useState(Boolean);
+function PageLoginEducateur({ redirection, setRole, setIdConnecter }: any) {
+  const [id, setId] = useState(String)
+  const [mdp, setMdp] = useState(String)
+  const [mdpFaut, setMdpFaut] = useState(Boolean)
 
   const handleInputId = (event: any) => {
-    setId(event.target.value);
-  };
+    setId(event.target.value)
+  }
 
   const handleInputMdp = (event: any) => {
-    setMdp(event.target.value);
-  };
+    setMdp(event.target.value)
+  }
 
-  const Connexion = (event: React.FormEvent) => {
-    event.preventDefault(); // Empêche le comportement par défaut du formulaire (rafraîchissement de la page)
-
-    setMdpFaut(false);
-
-
-  function getRole(id: string) {
+  const getRole = (id: string) => {
     axios
       .get(`http://localhost:5000/GET/roleProf?id=${encodeURIComponent(id)}`)
       .then((response) => {
-        let role = response.data.role;
-        setRole(role);
+        let role = response.data.role
+        setRole(role)
       })
       .catch((error) => {
-        console.error("Erreur lors de la requête :", error);
-      });
+        console.error('Erreur lors de la requête :', error)
+      })
   }
 
-
+  const Connexion = (event: React.FormEvent) => {
+    event.preventDefault()
+    setMdpFaut(false)
     axios
       .get(
         `http://localhost:5000/GET/admin/authentification?id=${encodeURIComponent(
-          id
-        )}&mdp=${encodeURIComponent(mdp)}`
+          id,
+        )}&mdp=${encodeURIComponent(mdp)}`,
       )
       .then((response) => {
-        console.log("Réponse du serveur :", response.data);
+        console.log('Réponse du serveur :', response.data)
         if (response.data) {
-          getRole(id);
-          redirection(2);
+          getRole(id)
+          setIdConnecter(id)
+          redirection(2)
         }
       })
       .catch((error) => {
         if (error.response && error.response.status === 401) {
-          setMdpFaut(true);
+          setMdpFaut(true)
         } else {
-          console.error("Erreur lors de la requête :", error);
+          console.error('Erreur lors de la requête :', error)
         }
-      });
-  };
+      })
+  }
 
   return (
     <div id="login-form-wrap">
@@ -96,7 +93,7 @@ function PageLoginEducateur({ redirection , setRole}: any) {
         </p>
       </form>
     </div>
-  );
+  )
 }
 
-export default PageLoginEducateur;
+export default PageLoginEducateur

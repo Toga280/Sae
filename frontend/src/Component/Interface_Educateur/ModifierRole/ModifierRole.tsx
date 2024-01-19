@@ -110,9 +110,10 @@ function ModifierRole({ redirection }: any) {
                   onFocus={(e) => e.preventDefault()}
                 >
                   <option value="" selected disabled>Sélectionnez un rôle</option>
-                  <option value="Professeur">Éducateur intervenant</option>
-                  <option value="ProfesseurAdmin">Éducateur</option>
-                  <option value="Admin">Administrateur</option>
+                  <option value="Professeur">Éducateur technique simple</option>
+                  <option value="ProfesseurAdmin">Éducateur technique administrateur</option>
+                  <option value="Admin">Super administrateur</option>
+                  <option value="Cip">Conseillère insertion professionnelle</option>
                 </select>
                 <button className="bouton_valider" onClick={sauvegarde}>
                   Valider

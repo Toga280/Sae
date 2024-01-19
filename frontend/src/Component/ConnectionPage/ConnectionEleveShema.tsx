@@ -65,6 +65,9 @@ function ConnectionEleveShema({
 
   return (
     <div className="container">
+      <head>
+        <meta name="viewport" content="width=device-width, initial-scale=1" />
+      </head>
       <p className="info_nom_eleve">{`${prenomEleveActuelle} ${nomEleveActuelle}`}</p>
       <div className="affichage">
         <p className="affichageMDP">{password.join("")}</p>

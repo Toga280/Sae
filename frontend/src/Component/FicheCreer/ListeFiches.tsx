@@ -169,11 +169,7 @@ function ListeFiches({ redirection, refreshFiche }: any) {
       alert(
         "Le nom de la fiche ne peut pas être vide, le nom n'a pas été modifié"
       );
-<<<<<<< HEAD
     }
-=======
-      }
->>>>>>> 8741eba5dde0de639efbfb00043ee36e295015a6
 
     try {
       await axios.post(`http://localhost:5000/POST/ficheUpdateName`, {

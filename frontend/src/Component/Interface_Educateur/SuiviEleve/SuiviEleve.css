@@ -1,0 +1,111 @@
+body {
+    background-color: #d7e1ec; /* Couleur de fond de la page */
+  }
+  
+  .global_suivi_eleves {
+    width: 50%; /* Définit la largeur à 70% de la largeur du conteneur parent */
+    margin: 0 auto; /* Centrage horizontal avec une marge automatique */
+    padding: 20px;
+    display: flex;
+    flex-direction: column;
+    align-items: center; /* Alignement vertical au centre */
+    justify-content: center; /* Alignement horizontal au centre (utile si vous avez des hauteurs variables) */
+    background-color: #d7e1ec; /* Ou toute autre couleur de fond souhaitée */
+    border-radius: 8px; /* Optionnel: arrondit les coins du conteneur */
+  }
+  
+  
+  .suivi_eleves {
+    color: #355c7d;
+    margin-bottom: 20px; /* Espace sous le titre */
+    text-align: center;
+  }
+  
+  .general_logine {
+    width: 100%;
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-around; /* Alignement des cartes avec un espacement autour */
+    margin-bottom: 20px; /* Espace sous les cartes */
+  }
+  
+  .login-containers {
+    background-color: #fff;
+    padding: 20px;
+    border-radius: 8px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+    text-align: center;
+    width: 220px; /* Taille ajustée pour les cartes */
+    margin: 10px; /* Espace autour des cartes */
+    transition: transform 0.3s ease, box-shadow 0.3s ease; /* Transition pour les effets au survol */
+  }
+  
+  .login-containers:hover {
+    transform: translateY(-5px); /* Légère élévation lors du survol */
+    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.2); /* Ombre plus prononcée au survol */
+  }
+  
+  .user-photos {
+    border-radius: 50%; /* Cercle complet pour les photos */
+    width: 120px; /* Taille des photos ajustée */
+    height: 120px; /* Hauteur correspondant à la largeur */
+    object-fit: cover;
+    margin-bottom: 15px;
+  }
+  
+  .error-messages {
+    color: #e74c3c;
+    margin-bottom: 15px;
+  }
+  
+  .user-names {
+    font-size: 16px; /* Taille de la police pour le nom de l'utilisateur */
+    margin-bottom: 15px; /* Espace sous le nom */
+  }
+  
+  .login-buttons {
+    background-color: #4CAF50; /* Une couleur verte qui suggère la progression et le positif */
+    color: white;
+    padding: 12px 24px; /* Un peu plus de padding pour un bouton plus grand */
+    border: none;
+    border-radius: 20px; /* Bords très arrondis pour un style moderne */
+    cursor: pointer;
+    font-size: 15px; /* Une taille de police légèrement plus grande pour l'importance */
+    font-weight: bold; /* Texte en gras */
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1); /* Ombre portée subtile pour la profondeur */
+    transition: all 0.3s ease; /* Transition douce pour l'ensemble des propriétés */
+    text-transform: uppercase; /* Texte en majuscules pour plus d'impact */
+    letter-spacing: 1px; /* Espacement entre les lettres pour un look premium */
+  }
+  
+  .login-buttons:hover {
+    background-color: #45a049; /* Un ton plus foncé de vert au survol */
+    box-shadow: 0 6px 12px rgba(0, 0, 0, 0.2); /* Ombre plus prononcée pour l'effet au survol */
+    transform: scale(1.05); /* Légère augmentation de la taille pour attirer l'attention */
+  }
+  
+  .login-buttons:active {
+    background-color: #3e8e41; /* Un vert plus foncé lorsqu'on clique sur le bouton */
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2); /* Diminution de l'ombre pour un effet enfoncé */
+    transform: scale(0.98); /* Rétrécissement du bouton pour un effet de clic */
+  }
+  
+  
+  .bouton_retour_suivi_eleves {
+    bottom: 20px;
+    left: 20px;
+    background-color: #fff;
+    color: #355c7d;
+    font-weight: bold;
+    font-size: 18px;
+    padding: 0.8em;
+    margin: 1em;
+    border-radius: 4px;
+    border: none;
+    cursor:pointer;
+  }
+  
+  .bouton_retour_suivi_eleves:hover {
+    background-color: #5a6268; /* Couleur plus foncée au survol pour le bouton retour */
+  }
+  

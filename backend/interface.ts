@@ -46,6 +46,7 @@ export interface FicheDocument extends Document {
   AllMiniBox: AllMiniBox
   Materiel: Materiel
   InputFiche: InputFiche
+  Commentaires: Commentaire[]
 }
 
 export interface Picto {
@@ -105,4 +106,7 @@ export interface InputFiche {
   input19: Boolean
 }
 
-export interface Commentaire {}
+export interface Commentaire {
+  contenu: string
+  idCommentateur: string
+}
