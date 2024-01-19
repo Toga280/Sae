@@ -19,11 +19,11 @@ function FicheBoxTotal({
   versionProf,
   forceRefreshFiche,
   versionVue,
+  setFicheSave,
 }: any) {
   const [numBox, setNumBox] = useState(0)
 
   const [isDraftSaved, setIsDraftSaved] = useState(false)
-  const [isDraftSavedFiche, setIsDraftSavedFiche] = useState(false)
 
   const modifierFiche = async () => {
     await deleteFiche(fonctionsMiniBoxInfoJson.getNom())
@@ -69,15 +69,11 @@ function FicheBoxTotal({
       setSaveName(true)
     } else if (!versionProf) {
       await fonctionsMiniBoxInfoJson.changeEnCourFalse()
-      setIsDraftSavedFiche(true)
+      setFicheSave(true)
+      setTimeout(() => setFicheSave(false), 5000)
       modifierFiche()
       window.scrollTo(0, 0)
       redirection(false)
-      {
-        isDraftSavedFiche && (
-          <div className="message_brouillon">Fiche Sauvegarder !</div>
-        )
-      } // IL FAUT L4AFFICHER
     }
   }
 
