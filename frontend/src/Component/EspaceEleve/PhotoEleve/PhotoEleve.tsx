@@ -153,7 +153,9 @@ function PhotoEleve({ redirection, eleve }: any) {
           </div>
         </div>
         <div>
-          <h2 className="txt_picto_present">Liste des photos :</h2>
+          <div className='global_txt_espace_élève'>
+            <h2 className="txt_photo_eleve_all">Liste de mes photos :</h2>
+          </div>
           <div className="picto-container">
             {imageError && <p className="error-message">{imageError}</p>}
             {images.map((imageData, index) => (

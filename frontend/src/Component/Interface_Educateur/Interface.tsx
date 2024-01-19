@@ -27,7 +27,9 @@ function Interface({ redirection, role }: any) {
           >
             Se déconnecter
           </button>
-          <h2 className="txt_espace_prof">Espace super administrateur</h2>
+          <div className='global_txt_espace_prof'>
+            <h2 className="txt_espace_prof">Espace super administrateur</h2>
+          </div>
           <div className="global_bouton_interface_educateur">
             <button
               className="bouton_interface_educateur"
@@ -103,7 +105,9 @@ function Interface({ redirection, role }: any) {
           >
             Se déconnecter
           </button>
-          <h2 className="txt_espace_prof">Espace éducateur technique simple</h2>
+          <div className='global_txt_espace_prof'>
+            <h2 className="txt_espace_prof">Espace éducateur technique simple</h2>
+          </div>
           <div className="global_bouton_interface_educateur">
             <button
               className="bouton_interface_educateur"
@@ -122,7 +126,9 @@ function Interface({ redirection, role }: any) {
           >
             Se déconnecter
           </button>
-          <h2 className="txt_espace_prof">Espace conseillère insertion professionnelle</h2>
+          <div className='global_txt_espace_prof'>
+            <h2 className="txt_espace_prof">Espace conseillère insertion professionnelle</h2>
+          </div>
           <div className='global_bouton_interface_educateur'>
             <button
                 className="bouton_interface_educateur"
@@ -148,7 +154,9 @@ function Interface({ redirection, role }: any) {
           >
             Se déconnecter
           </button>
-          <h2 className="txt_espace_prof">Espace éducateur technique administrateur</h2>
+          <div className='global_txt_espace_prof'>
+            <h2 className="txt_espace_prof">Espace éducateur technique administrateur</h2>
+          </div>
           <div className="global_bouton_interface_educateur">
             <button
               className="bouton_interface_educateur"

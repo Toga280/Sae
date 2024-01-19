@@ -135,7 +135,12 @@
   .add_com{
     color: #355c7d;
     text-align: center;
-  }.global_all_commentaire {
+    background-color: white;
+    border-radius: 4px;
+    width: 100%;
+
+  }
+  .global_all_commentaire {
     margin-bottom: 1em;
     display: flex;
     align-items: center;

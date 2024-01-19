@@ -21,6 +21,9 @@
 
 }
 .txt_espace_élève{
+  background-color: white;
+  border-radius: 4px;
+  width: 22%;
   font-size: 2em;
   margin-top: 3em;
   margin-bottom: 2em;
@@ -29,7 +32,23 @@
   font-family: Arial, sans-serif;
 
 }
-
+.txt_photo_eleve_all{
+  background-color: white;
+  border-radius: 4px;
+  width: 25%;
+  font-size: 1.5em;
+  margin-top: 3em;
+  margin-bottom: 2em;
+  text-align: center;
+  color: #355c7d;
+  font-family: Arial, sans-serif;
+}
+.global_txt_espace_élève{
+  display: flex; /* Utilisez Flexbox */
+  justify-content: center; /* Centre horizontalement */
+  align-items: center; /* Centre verticalement */
+  text-align: center; 
+}
 .content_espace_eleve{
   display: flex;
   justify-content: center; 
