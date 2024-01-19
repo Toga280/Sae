@@ -4,6 +4,7 @@ import ModificationTexte from "./ModificationTexte";
 import SetSelectionChoixMiniBox from "./SetSelectionChoixMiniBox";
 import fonctionsMiniBoxInfoJson from "../MiniBoxInfoFunction";
 import ModificationPicto from "./ModificationPicto";
+import { set } from "mongoose";
 function SelectionChoixMiniBox({
   setSelectionChoixMiniBoxFalse,
   numeroMiniBox,
@@ -21,6 +22,11 @@ function SelectionChoixMiniBox({
         numeroMiniBox,
         "Pictogramme"
       );
+    } else if (choixTypeElement === 3) {
+      fonctionsMiniBoxInfoJson.modifierChoixMiniBox(
+        numeroMiniBox,
+        "TexteEtPictogramme"
+      );
     }
     setSelectionChoixMiniBoxFalse();
     fonctionsMiniBoxInfoJson.modifierIsSelectedMiniBox(numeroMiniBox, false);
@@ -28,6 +34,10 @@ function SelectionChoixMiniBox({
 
   const setModificationTextePropsTrue = () => {
     setModificationTexteProps(true);
+  };
+
+  const setModificationTextePropsFalse = () => {
+    setModificationTexteProps(false);
   };
 
   const setModificationPictoPropsTrue = () => {
@@ -47,13 +57,22 @@ function SelectionChoixMiniBox({
   const setTypeMiniBoxTexte = () => {
     setChoixTypeElement(1);
     setModificationTextePropsTrue();
+    setModificationPictoPropsFalse();
     setChoixMiniBoxBooleanFalse();
   };
   const setTypeMiniBoxPictogramme = () => {
     setChoixTypeElement(2);
     setModificationPictoPropsTrue();
+    setModificationTextePropsFalse();
     setChoixMiniBoxBooleanFalse();
   };
+  const setTypeMiniBoxhybride = () => {
+    setChoixTypeElement(3);
+    setModificationTextePropsTrue();
+    setModificationPictoPropsTrue();
+    setChoixMiniBoxBooleanFalse();
+  }
+
   const setTypeMiniBoxSon = () => {
     fonctionsMiniBoxInfoJson.modificationAudio(
       numeroMiniBox,
@@ -68,20 +87,27 @@ function SelectionChoixMiniBox({
           <SetSelectionChoixMiniBox
             setTypeMiniBoxTexte={setTypeMiniBoxTexte}
             setTypeMiniBoxPictogramme={setTypeMiniBoxPictogramme}
+            setTypeMiniBoxhybride={setTypeMiniBoxhybride}
             setTypeMiniBoxSon={setTypeMiniBoxSon}
             numeroMiniBox={numeroMiniBox}
           />
         ) : (
           <p></p>
         )}
-        {modificationTexteProps === true ? (
+        {modificationTexteProps === true && modificationPictoProps === false ? (
           <ModificationTexte numeroMiniBox={numeroMiniBox} />
         ) : (
           <p></p>
         )}
-        {modificationPictoProps === true ? (
+        {modificationPictoProps === true && modificationTexteProps === false ? (
           <ModificationPicto numeroMiniBox={numeroMiniBox}
           />
+        ) : null}
+        {modificationTexteProps === true && modificationPictoProps === true  ?(
+          <div className="choixhybride">
+            <ModificationTexte numeroMiniBox={numeroMiniBox} />
+            <ModificationPicto numeroMiniBox={numeroMiniBox} />
+          </div>
         ) : null}
       </div>
       <button
