@@ -1,5 +1,5 @@
 export interface MiniBox {
-  ChoixMiniBox: 'Pictogramme' | 'Texte'
+  ChoixMiniBox: 'Pictogramme' | 'Texte' | 'TexteEtPictogramme'
   Position: number
   CouleurTexte: string
   PoliceTexte: string
@@ -8,7 +8,7 @@ export interface MiniBox {
   Audio: boolean
 }
 
-type ChoixMiniBoxType = 'Texte' | 'Pictogramme' | 'Rayanair'
+type ChoixMiniBoxType = 'Texte' | 'Pictogramme' | 'TexteEtPictogramme'
 
 export interface FonctionsMiniBoxInfoJson {
   modifierCouleurTexte: (position: number, nouvelleCouleurTexte: string) => void

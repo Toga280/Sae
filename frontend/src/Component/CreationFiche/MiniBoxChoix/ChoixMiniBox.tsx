@@ -17,7 +17,6 @@ function ChoixMiniBox({
       fonctionsMiniBoxInfoJson.allIsSelectedMiniBoxFalse();
       infoSelectionChoixMiniBox(true, numeroMiniBox);
       fonctionsMiniBoxInfoJson.modifierIsSelectedMiniBox(numeroMiniBox, true);
-      fonctionsMiniBoxInfoJson.modifierChoixMiniBox(numeroMiniBox, "Texte");
     }
   };
 
@@ -36,10 +35,21 @@ function ChoixMiniBox({
         )}
         {fonctionsMiniBoxInfoJson.getChoixMiniBox(numeroMiniBox) ===
         "Pictogramme" ? (
-          <PictoChoisi numeroMiniBox={numeroMiniBox} />
+          <PictoChoisi numeroMiniBox={numeroMiniBox}/>
         ) : (
           <p></p>
         )}
+        {fonctionsMiniBoxInfoJson.getChoixMiniBox(numeroMiniBox) === "TexteEtPictogramme" ? (
+        <div className="hybride">
+          <Texte
+            Texte={TexteInfo}
+            Balise={Balise}
+            ClassName={ClassName}
+            numeroMiniBox={numeroMiniBox}
+          />
+          <PictoChoisi numeroMiniBox={numeroMiniBox}/>
+        </div>
+      ) : null}
       </div>
       {fonctionsMiniBoxInfoJson.getAudio(numeroMiniBox) === true ? (
         <Son Texte={TexteInfo} Balise={Balise} ClassName={ClassName} />
