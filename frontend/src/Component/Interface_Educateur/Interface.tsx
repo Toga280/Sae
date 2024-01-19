@@ -27,7 +27,7 @@ function Interface({ redirection, role }: any) {
           >
             Se déconnecter
           </button>
-          <div className='global_txt_espace_prof'>
+          <div className="global_txt_espace_prof">
             <h2 className="txt_espace_prof">Espace super administrateur</h2>
           </div>
           <div className="global_bouton_interface_educateur">
@@ -47,7 +47,6 @@ function Interface({ redirection, role }: any) {
               className="bouton_interface_educateur"
               onClick={() => redirection(10)}
             >
-              {' '}
               Importer un pictogramme
             </button>
             {/* <button className="bouton_interface_educateur" onClick={() => redirection(3)}>Brouillons fiches </button> */}
@@ -88,11 +87,11 @@ function Interface({ redirection, role }: any) {
               Modifier les rôles
             </button>
             <button
-                className="bouton_interface_educateur"
-                onClick={() => redirection(17)}
-              >
-                Suivi élèves
-              </button>
+              className="bouton_interface_educateur"
+              onClick={() => redirection(17)}
+            >
+              Suivi élèves
+            </button>
           </div>
         </div>
       )}
@@ -105,8 +104,10 @@ function Interface({ redirection, role }: any) {
           >
             Se déconnecter
           </button>
-          <div className='global_txt_espace_prof'>
-            <h2 className="txt_espace_prof">Espace éducateur technique simple</h2>
+          <div className="global_txt_espace_prof">
+            <h2 className="txt_espace_prof">
+              Espace éducateur technique simple
+            </h2>
           </div>
           <div className="global_bouton_interface_educateur">
             <button
@@ -126,24 +127,25 @@ function Interface({ redirection, role }: any) {
           >
             Se déconnecter
           </button>
-          <div className='global_txt_espace_prof'>
-            <h2 className="txt_espace_prof">Espace conseillère insertion professionnelle</h2>
+          <div className="global_txt_espace_prof">
+            <h2 className="txt_espace_prof">
+              Espace conseillère insertion professionnelle
+            </h2>
           </div>
-          <div className='global_bouton_interface_educateur'>
+          <div className="global_bouton_interface_educateur">
             <button
-                className="bouton_interface_educateur"
-                onClick={() => redirection(14)}
-              >
-                Consulter fiches/images
-              </button>
-              <button
-                className="bouton_interface_educateur"
-                onClick={() => redirection(17)}
-              >
-                Suivi élèves
-              </button>
+              className="bouton_interface_educateur"
+              onClick={() => redirection(14)}
+            >
+              Consulter fiches/images
+            </button>
+            <button
+              className="bouton_interface_educateur"
+              onClick={() => redirection(17)}
+            >
+              Suivi élèves
+            </button>
           </div>
-
         </div>
       )}
       {role === 'ProfesseurAdmin' && (
@@ -154,8 +156,10 @@ function Interface({ redirection, role }: any) {
           >
             Se déconnecter
           </button>
-          <div className='global_txt_espace_prof'>
-            <h2 className="txt_espace_prof">Espace éducateur technique administrateur</h2>
+          <div className="global_txt_espace_prof">
+            <h2 className="txt_espace_prof">
+              Espace éducateur technique administrateur
+            </h2>
           </div>
           <div className="global_bouton_interface_educateur">
             <button

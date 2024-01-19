@@ -218,12 +218,15 @@ function ListeFiches({ redirection, refreshFiche }: any) {
     redirection(6)
   }
 
+  useEffect(() => {}, [])
+
   return (
     <div>
       {affichageAffecterListe === true ? (
         <AffecterListe
           setAffichageAffecterListeFalse={setAffichageAffecterListeFalse}
           nomFicheSelectionner={nomFicheSelectionner}
+          redirection={redirection}
         />
       ) : (
         <div className="global_all_fiche">
