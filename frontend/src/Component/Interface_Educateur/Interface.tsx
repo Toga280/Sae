@@ -44,6 +44,18 @@ function Interface({ redirection, role, identifiant }: any) {
   }, [])
 
   return (
+    <>
+    {fondEcranUrl && (
+      <style>
+        {`
+          body {
+            background-image: url(${fondEcranUrl});
+            background-size: cover;
+            background-repeat: no-repeat;
+          }
+        `}
+      </style>
+    )}
     <div>
       {role === 'Admin' && (
         <div>
@@ -236,6 +248,7 @@ function Interface({ redirection, role, identifiant }: any) {
         </div>
       )}
     </div>
+    </>
   )
 }
 
