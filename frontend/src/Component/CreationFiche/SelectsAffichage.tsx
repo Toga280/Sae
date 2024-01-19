@@ -4,6 +4,7 @@ import './select.css'
 import fonctionsMiniBoxInfoJson from './MiniBoxInfoFunction'
 function SelectsAffichage({ setSelect, setNumMat, versionProf }: any) {
   const setSelectTrue = (valeur: String) => {
+    console.log('fonctionsMiniBoxInfoJson.getTypeFiche() --> ', fonctionsMiniBoxInfoJson.getTypeFiche())
     if (!versionProf) {
       setSelect(true)
     }

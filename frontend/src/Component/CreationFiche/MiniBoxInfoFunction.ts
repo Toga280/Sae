@@ -113,10 +113,16 @@ const fonctionsMiniBoxInfoJson: FonctionsMiniBoxInfoJson = {
     FicheJson.info.informationSuplementaire = value
   },
 
+  modifierTypeFiche: (value: string) => {
+    FicheJson.info.typeFiche = value
+  },
   getInformationSuplementaire: () => {
     return FicheJson.info.informationSuplementaire
   },
-
+    
+  getTypeFiche: () => {
+    return FicheJson.info.typeFiche
+  },
   changeEnCourTrue: () => {
     FicheJson.info.enCour = true
   },
@@ -163,6 +169,7 @@ const fonctionsMiniBoxInfoJson: FonctionsMiniBoxInfoJson = {
   getMateriel: (nMateriel) => {
     return FicheJson.Materiel[nMateriel]
   },
+
 }
 
 export default fonctionsMiniBoxInfoJson

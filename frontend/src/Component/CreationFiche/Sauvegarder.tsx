@@ -7,13 +7,12 @@ import './Sauvegarder.css'
 function Sauvegarder({ redirection, setSaveName }: any) {
   const [nomFiche, setNomFiche] = useState('')
   const [upPopUpSauvegarder, setUpPopUpSauvegarder] = useState(false)
-  const [typeFiche, setTypeFiche] = useState('')
   const [informationSuplementaire, setInformationSuplementaire] =
     useState(String)
-  const [boutonClique, setBoutonClique] = useState(false)
-
-  const handleTypeSelection = (type: any) => {
-    setTypeFiche(type)
+  const [boutonClique, setBoutonClique] = useState(false);
+  
+  const handleTypeSelection = async (type: string) => {
+    fonctionsMiniBoxInfoJson.modifierTypeFiche(type);
   }
 
   const addInformationSuplementaire = () => {
@@ -103,6 +102,7 @@ function Sauvegarder({ redirection, setSaveName }: any) {
             onClick={() => {
               handleTypeSelection('Électricité')
               setBoutonClique(true)
+              
             }}
           />
           <input
@@ -110,7 +110,7 @@ function Sauvegarder({ redirection, setSaveName }: any) {
             className="boutton_type_ficheBox"
             value="Finition"
             onClick={() => {
-              handleTypeSelection('Général')
+              handleTypeSelection('Finition')
               setBoutonClique(true)
             }}
           />
@@ -162,6 +162,7 @@ function Sauvegarder({ redirection, setSaveName }: any) {
           </div>
         )}
       </div>
+      <button onClick={logAllJson}>oui</button>
       <button className="retour_btn_save" onClick={() => setSaveName(false)}>
         Retour
       </button>

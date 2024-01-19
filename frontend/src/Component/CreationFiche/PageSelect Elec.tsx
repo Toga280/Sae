@@ -4,7 +4,7 @@ import "../../style/ficheGlobal.css";
 import "./select.css";
 import UnMat from "./UnMat";
 
-function PageSelect({setSelect, numMat} : any){
+function PageSelectElec({setSelect, numMat} : any){
   const setSelectFalse = () => setSelect(false);
 
   return (
@@ -39,4 +39,4 @@ function PageSelect({setSelect, numMat} : any){
     </div>
   );
 }
-export default PageSelect;
+export default PageSelectElec;
