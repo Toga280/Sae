@@ -1,13 +1,13 @@
 import React, { useState, useEffect } from 'react'
-import './optioneleve.css'
+import './optionprof.css'
 import axios from 'axios'
 
-function Optioneleve({ redirection, eleve }: any) {
+function Optionprof({ redirection, identifiant }: any) {
   const [selectedFile, setSelectedFile] = useState<File | null>(null)
   const [fondEcranUrl, setFondEcranUrl] = useState<string | null>(null)
 
-  const setRedirectionfour = () => {
-    redirection(4)
+  const setRedirectiontwo = () => {
+    redirection(2)
   }
 
   const handleFileChange = (event: React.ChangeEvent<HTMLInputElement>) => {
@@ -22,7 +22,7 @@ function Optioneleve({ redirection, eleve }: any) {
     axios
       .get('http://localhost:5000/GET/fondecran', {
         params: {
-          name: eleve,
+          name: identifiant,
         },
         responseType: 'arraybuffer',
       })
@@ -45,7 +45,7 @@ function Optioneleve({ redirection, eleve }: any) {
     try {
       console.log('Uploading...')
 
-      if (selectedFile && eleve.trim() !== '') {
+      if (selectedFile && identifiant.trim() !== '') {
         const formData = new FormData()
         formData.append('file', selectedFile)
         const response = await axios.post(
@@ -53,7 +53,7 @@ function Optioneleve({ redirection, eleve }: any) {
           formData,
           {
             params: {
-              name: eleve,
+              name: identifiant,
             },
             validateStatus: function (status) {
               return status >= 200 || status == 409
@@ -70,16 +70,16 @@ function Optioneleve({ redirection, eleve }: any) {
     } catch (error) {
       console.error('Error in handleUpload:', error)
     }
-    redirection(4)
+    redirection(2)
   }
 
   const handlesupprimer = async () => {
     try {
       console.log('Suppression...')
 
-      if (eleve.trim() !== '') {
+      if (identifiant.trim() !== '') {
         const response = await axios.get(
-          `http://localhost:5000/DELETE/fond?name=${eleve}`,
+          `http://localhost:5000/DELETE/fond?name=${identifiant}`,
           {
             // Additional request configuration if needed
           },
@@ -94,14 +94,15 @@ function Optioneleve({ redirection, eleve }: any) {
     } catch (error) {
       console.error('Error in handlesupprimer:', error)
     }
-    redirection(4)
+    redirection(2)
   }
+
   useEffect(() => {
     // Appeler la requête pour récupérer l'image du fond d'écran
     axios
       .get('http://localhost:5000/GET/fondecran', {
         params: {
-          name: eleve,
+          name: identifiant,
         },
         responseType: 'arraybuffer',
       })
@@ -134,11 +135,9 @@ function Optioneleve({ redirection, eleve }: any) {
       </style>
     )}
       <div>
-        <div className='global_titre_changer_fond'>
-          <h2 className="titre_changer_fond">Changer le fond d'écran</h2>
-        </div>
+        <h2 className="titre_changer_fond">Changer le fond d'écran</h2>
 
-        <div className="global_option_eleve">
+        <div className="global_option_prof">
           <label htmlFor="fileInput" className={`custom-file-upload`}>
             {selectedFile
               ? `Fichier sélectionné: ${selectedFile.name}`
@@ -152,7 +151,7 @@ function Optioneleve({ redirection, eleve }: any) {
             />
           </label>
           <img
-            src={require('./PhotoEleve/telecharger.png')}
+            src={require('./telecharger.png')}
             alt="Télécharger une photo"
             onClick={handleFileUpload}
             className={`button_photo ${selectedFile ? 'selected' : ''}`}
@@ -165,7 +164,7 @@ function Optioneleve({ redirection, eleve }: any) {
           />
         </div>
         <div>
-          <button onClick={setRedirectionfour} className="button_retour">
+          <button onClick={setRedirectiontwo} className="button_retour">
             Retour
           </button>
         </div>
@@ -174,4 +173,4 @@ function Optioneleve({ redirection, eleve }: any) {
   )
 }
 
-export default Optioneleve
+export default Optionprof

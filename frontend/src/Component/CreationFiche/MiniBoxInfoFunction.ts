@@ -157,6 +157,9 @@ const fonctionsMiniBoxInfoJson: FonctionsMiniBoxInfoJson = {
       if (newJson.InputFiche) {
         FicheJson.InputFiche = newJson.InputFiche
       }
+      if (newJson.Commentaires) {
+        FicheJson.Commentaires = newJson.Commentaires
+      }
     } else {
       console.error('Le paramètre newJson doit être un objet JSON valide.')
     }

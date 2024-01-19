@@ -3,7 +3,7 @@ import React, { useEffect, useState } from 'react'
 import './ConsulterFichesImages.css'
 import FicheEleve from './FicheEleve/FicheEleve'
 
-function ConsulterFichesImages({ redirection, IdConnecter }: any) {
+function ConsulterFichesImages({ redirection, IdConnecter, identifiant }: any) {
   const setRedirectionTwo = () => {
     redirection(2)
   }
@@ -16,6 +16,7 @@ function ConsulterFichesImages({ redirection, IdConnecter }: any) {
   const [imageError, setImageError] = useState<string>('')
   const [prenomEleveSelectionne, setPrenomEleveSelectionne] = useState(String)
   const [nomEleveSelectionne, setNomEleveSelectionne] = useState(String)
+  const [fondEcranUrl, setFondEcranUrl] = useState<string | null>(null)
 
   const setVoirFicheFalse = () => {
     setVoirFiche(false)
@@ -107,7 +108,43 @@ function ConsulterFichesImages({ redirection, IdConnecter }: any) {
     setVoirFiche(true)
   }
 
+  useEffect(() => {
+    // Appeler la requête pour récupérer l'image du fond d'écran
+    axios
+      .get('http://localhost:5000/GET/fondecran', {
+        params: {
+          name: identifiant,
+        },
+        responseType: 'arraybuffer',
+      })
+      .then((response) => {
+        const base64 = btoa(
+          new Uint8Array(response.data).reduce(
+            (data, byte) => data + String.fromCharCode(byte),
+            '',
+          ),
+        )
+        const url = `data:${response.headers[
+          'content-type'
+        ].toLowerCase()};base64,${base64}`
+        setFondEcranUrl(url)
+      })
+      .catch((error) => console.error(error))
+  }, [])
+
   return (
+    <>
+    {fondEcranUrl && (
+      <style>
+        {`
+          body {
+            background-image: url(${fondEcranUrl});
+            background-size: cover;
+            background-repeat: no-repeat;
+          }
+        `}
+      </style>
+    )}
     <div>
       {!voirphoto && !voirFiche ? (
         <div>
@@ -198,6 +235,7 @@ function ConsulterFichesImages({ redirection, IdConnecter }: any) {
         </div>
       ) : null}
     </div>
+    </>
   )
 }
 

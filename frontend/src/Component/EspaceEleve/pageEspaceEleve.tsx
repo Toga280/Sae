@@ -103,7 +103,7 @@ function PageEspaceEleve({ redirection, nomEleve, prenomEleve, eleve }: any) {
     )}
     <div>
       {ficheSave ? (
-        <div className="message_brouillon">Fiche Sauvegarder !</div>
+        <div className="message_brouillon">Fiche Sauvegardée !</div>
       ) : null}
       {!seeMaFiche && !seeMesFichesTermine ? (
         <div

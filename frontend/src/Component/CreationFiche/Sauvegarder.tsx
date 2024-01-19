@@ -10,7 +10,8 @@ function Sauvegarder({ redirection, setSaveName }: any) {
   const [informationSuplementaire, setInformationSuplementaire] =
     useState(String)
   const [boutonClique, setBoutonClique] = useState(false);
-  
+    const [fondEcranUrl, setFondEcranUrl] = useState<string | null>(null)
+
   const handleTypeSelection = async (type: string) => {
     fonctionsMiniBoxInfoJson.modifierTypeFiche(type);
   }

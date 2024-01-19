@@ -14,7 +14,6 @@ function FicheBox8({ classNameDiv, versionVue, versionProf }: any) {
   
   return (
     <div className={classNameDiv}>
-      <button onClick={fonctionsMiniBoxInfoJson.getTypeFiche}></button>
       {select && !versionVue && fonctionsMiniBoxInfoJson.getTypeFiche() === "Pomberie" ? (
         <PageSelect setSelect={setSelect} numMat={numMat} />
       ) : select && !versionVue && fonctionsMiniBoxInfoJson.getTypeFiche() === "Electricité" ? (

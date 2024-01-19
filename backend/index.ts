@@ -217,6 +217,32 @@ app.get('/GET/allCommentaire', async (req: any, res: any) => {
   }
 })
 
+app.get('/GET/info/informationSuplementaire', async (req: any, res: any) => {
+  const ficheName = req.query.ficheName
+
+  try {
+    if (!ficheName) {
+      return res.status(400).json({ error: 'Paramètre ficheName manquant' })
+    }
+
+    const fiche = await Fiche.findOne({ 'info.name': ficheName })
+
+    if (!fiche) {
+      return res.status(404).json({ error: 'Fiche non trouvée' })
+    }
+
+    const informationSuplementaire = fiche.info.informationSuplementaire
+
+    res.status(200).send(informationSuplementaire)
+  } catch (error) {
+    console.error(
+      'Erreur lors de la récupération des informations supplémentaires : ',
+      error,
+    )
+    res.status(500).json({ error: 'Erreur serveur' })
+  }
+})
+
 /* UPLOAD IMAGE ELEVES ===========================================================*/
 
 app.post(

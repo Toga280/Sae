@@ -9,11 +9,12 @@ interface Admin {
   role: string;
 }
 
-function ModifierRole({ redirection }: any) {
+function ModifierRole({ redirection, identifiant }: any) {
   const [admin, setAdmin] = useState<Admin[]>([]);
   const [profilSelectionne, setProfilSelectionne] = useState<Admin | null>(null);
   const [inputActive, setInputActive] = useState(false);
   const [mdpProf, setMdpProf] = useState("");
+  const [fondEcranUrl, setFondEcranUrl] = useState<string | null>(null)
   
 
   const redirectionTwo = () => {
@@ -82,7 +83,43 @@ function ModifierRole({ redirection }: any) {
     setProfilSelectionne(eleve);
   };
 
-    return (
+  useEffect(() => {
+    // Appeler la requête pour récupérer l'image du fond d'écran
+    axios
+      .get('http://localhost:5000/GET/fondecran', {
+        params: {
+          name: identifiant,
+        },
+        responseType: 'arraybuffer',
+      })
+      .then((response) => {
+        const base64 = btoa(
+          new Uint8Array(response.data).reduce(
+            (data, byte) => data + String.fromCharCode(byte),
+            '',
+          ),
+        )
+        const url = `data:${response.headers[
+          'content-type'
+        ].toLowerCase()};base64,${base64}`
+        setFondEcranUrl(url)
+      })
+      .catch((error) => console.error(error))
+  }, [])
+
+  return (
+    <>
+    {fondEcranUrl && (
+      <style>
+        {`
+          body {
+            background-image: url(${fondEcranUrl});
+            background-size: cover;
+            background-repeat: no-repeat;
+          }
+        `}
+      </style>
+    )}
       <div>
         <div className="global_creation_profil_prof">
           <p className="txt_creation_espace_élève">Modifier le rôle d'un membre de l'équipe</p>
@@ -128,8 +165,8 @@ function ModifierRole({ redirection }: any) {
               Retour
           </button>
       </div>
+    </>
       );
-      
 }
 
 export default ModifierRole;

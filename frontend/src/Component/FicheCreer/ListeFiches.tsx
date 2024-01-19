@@ -4,7 +4,7 @@ import './ListeFiches.css'
 import fonctionsMiniBoxInfoJson from '../CreationFiche/MiniBoxInfoFunction'
 import AffecterListe from './AffecterListe'
 
-function ListeFiches({ redirection, refreshFiche }: any) {
+function ListeFiches({ redirection, refreshFiche, identifiant }: any) {
   const [FichesNames, setFichesNames] = useState<string[]>([])
   const [affichageAffecterListe, setAffichageAffecterListe] = useState(false)
   const [nomFicheSelectionner, setNomFicheSelectionner] = useState('')
@@ -12,6 +12,7 @@ function ListeFiches({ redirection, refreshFiche }: any) {
     Record<string, string | undefined>
   >({})
   const [ficheexiste, setFicheexiste] = useState(false)
+  const [fondEcranUrl, setFondEcranUrl] = useState<string | null>(null)
 
   const setAffichageAffecterListeFalse = () => {
     setAffichageAffecterListe(false)
@@ -109,6 +110,7 @@ function ListeFiches({ redirection, refreshFiche }: any) {
           onClick={() => dupliquerFiche(item)}
         />
         <img
+          
           src={require('./modifier.webp')}
           style={{ width: '30px', height: '30px', cursor: 'pointer' }}
           className="autre-icon"
@@ -218,7 +220,43 @@ function ListeFiches({ redirection, refreshFiche }: any) {
     redirection(6)
   }
 
+  useEffect(() => {
+    // Appeler la requête pour récupérer l'image du fond d'écran
+    axios
+      .get('http://localhost:5000/GET/fondecran', {
+        params: {
+          name: identifiant,
+        },
+        responseType: 'arraybuffer',
+      })
+      .then((response) => {
+        const base64 = btoa(
+          new Uint8Array(response.data).reduce(
+            (data, byte) => data + String.fromCharCode(byte),
+            '',
+          ),
+        )
+        const url = `data:${response.headers[
+          'content-type'
+        ].toLowerCase()};base64,${base64}`
+        setFondEcranUrl(url)
+      })
+      .catch((error) => console.error(error))
+  }, [])
+
   return (
+    <>
+    {fondEcranUrl && (
+      <style>
+        {`
+          body {
+            background-image: url(${fondEcranUrl});
+            background-size: cover;
+            background-repeat: no-repeat;
+          }
+        `}
+      </style>
+    )}
     <div>
       {affichageAffecterListe === true ? (
         <AffecterListe
@@ -238,6 +276,7 @@ function ListeFiches({ redirection, refreshFiche }: any) {
         Retour
       </button>
     </div>
+    </>
   )
 }
 
