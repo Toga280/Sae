@@ -21,6 +21,8 @@
 
 }
 .txt_espace_élève{
+  box-shadow: 2px 2px 12px rgba(0,0,0,0.2); /* Ombre plus prononcée au survol */
+  padding: 3px;
   background-color: white;
   border-radius: 4px;
   width: 22%;

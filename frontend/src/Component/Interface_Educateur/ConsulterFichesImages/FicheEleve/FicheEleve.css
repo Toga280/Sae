@@ -100,12 +100,14 @@
   .div_text_area_commentaire_fiche{
     text-align: center;
     width: 30%;
+    height: 5%;
     margin: 1em;
     float: right;
   }
+  
   .text_area_commentaire_fiche {
     width: 90%;
-    height: 150px;
+    height: 100px;
     padding: 1em;
     border-radius: 8px;
     border: 1px solid #d3d3d3;
@@ -133,6 +135,7 @@
   
   
   .add_com{
+    border: 1px solid #355c7d;
     color: #355c7d;
     text-align: center;
     background-color: white;
@@ -181,4 +184,23 @@
     color: #4b4b4b;
   }
   
-  
+    @media(max-width: 1100px) {
+      .div_text_area_commentaire_fiche{
+        float: none;
+        text-align: center  ;
+        justify-content: center;
+      }
+      .fiche_version_prof{
+        text-align: center;
+        width: 90%;
+        margin-left: 1em;
+        float: none ;
+    
+      }
+      .div_text_area_commentaire_fiche {
+        width: 90%;
+      }
+      .global_all_commentaire{
+        margin-bottom: 2em;
+      }
+    }

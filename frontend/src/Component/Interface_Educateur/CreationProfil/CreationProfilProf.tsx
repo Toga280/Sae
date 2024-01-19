@@ -78,9 +78,10 @@ function CreationProfilProf({ setRedirectionTwo }: any) {
         </div>
 
         <div className="form_prenom_creation_profil">
-          <p> Identifiant </p>
+          <p> Identifiant de connexion </p>
           <input
             type="text"
+            placeholder="Edupont"
             className="TextInput"
             onChange={handleInputChangeId}
           />
@@ -90,6 +91,7 @@ function CreationProfilProf({ setRedirectionTwo }: any) {
           <p> Mot de passe </p>
           <input
             type="text"
+            placeholder="azerty1234"
             className="TextInput"
             onChange={handleInputChangeMdp}
           />

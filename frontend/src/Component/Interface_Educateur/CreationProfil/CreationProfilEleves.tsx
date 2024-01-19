@@ -59,7 +59,8 @@ function CreationProfilEleves({
         <div className="form_prenom_creation_profil">
           <p> Mot de passe </p>
           <input
-            type="text"
+            type="number"
+            placeholder="1234"
             className="TextInput"
             name="prenomEleve"
             onChange={handleInputChangeMdp}
