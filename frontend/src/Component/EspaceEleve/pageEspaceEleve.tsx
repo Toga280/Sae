@@ -89,13 +89,19 @@ function PageEspaceEleve({ redirection, nomEleve, prenomEleve, eleve }: any) {
   }, [])
 
   return (
-    <div
-      style={{
-        backgroundImage: `url(${fondEcranUrl})`,
-        backgroundSize: 'cover',
-        height: '100vh',
-      }}
-    >
+    <>
+    {fondEcranUrl && (
+      <style>
+        {`
+          body {
+            background-image: url(${fondEcranUrl});
+            background-size: cover;
+            background-repeat: no-repeat;
+          }
+        `}
+      </style>
+    )}
+    <div>
       {ficheSave ? (
         <div className="message_brouillon">Fiche Sauvegarder !</div>
       ) : null}
@@ -121,7 +127,9 @@ function PageEspaceEleve({ redirection, nomEleve, prenomEleve, eleve }: any) {
             onClick={() => redirection(16)}
           />
           <div className="global_bouton_interface_élève">
-            <p className="txt_espace_élève">Espace élève</p>
+            <div className='global_txt_espace_élève'>
+              <h1 className="txt_espace_élève">Espace élève</h1>
+            </div>
 
             <div className="content_espace_eleve">
               <button
@@ -152,12 +160,14 @@ function PageEspaceEleve({ redirection, nomEleve, prenomEleve, eleve }: any) {
                 Mes fiches finies
               </button>
             </div>
+            <div className="global_pas_de_fiche">
+              {pasDeFicheEnCour ? (
+                <p className="pas_de_fiche">Tu n'as pas de fiche !</p>
+              ) : null}
+            </div>
+
           </div>
-          <div className="global_pas_de_fiche">
-            {pasDeFicheEnCour ? (
-              <p className="pas_de_fiche">Tu n'as pas de fiche !</p>
-            ) : null}
-          </div>
+
         </div>
       ) : null}
       {seeMesFichesTermine ? (
@@ -176,6 +186,7 @@ function PageEspaceEleve({ redirection, nomEleve, prenomEleve, eleve }: any) {
         />
       ) : null}
     </div>
+    </>
   )
 }
 

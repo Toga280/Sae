@@ -13,8 +13,7 @@ body {
     background-color: #d7e1ec; /* Ou toute autre couleur de fond souhaitée */
     border-radius: 8px; /* Optionnel: arrondit les coins du conteneur */
   }
-  
-  
+
   .suivi_eleves {
     color: #355c7d;
     margin-bottom: 20px; /* Espace sous le titre */
@@ -157,4 +156,8 @@ body {
 }
 .ajout_suivi_commentaire:hover {
   background-color: #07801f;
+}
+
+.global_graph{
+  text-align: center;
 }

@@ -106,7 +106,9 @@ function Optioneleve({ redirection, eleve }: any) {
       }}
     >
       <div>
-        <h2 className="titre_changer_fond">Changer le fond d'écran</h2>
+        <div className='global_titre_changer_fond'>
+          <h2 className="titre_changer_fond">Changer le fond d'écran</h2>
+        </div>
 
         <div className="global_option_eleve">
           <label htmlFor="fileInput" className={`custom-file-upload`}>

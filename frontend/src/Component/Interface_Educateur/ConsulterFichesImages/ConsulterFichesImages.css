@@ -135,10 +135,22 @@ button.custom_affecter_fiche_eleve:hover {
   box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
 }
 
-.txt_picto_present {
+.liste_photo_eleve {
+  justify-content: center;
+  width: 15%;
+  color:#355c7d;
+  background-color: white;
+  border-radius: 10px;
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
   text-align: center;
   font-size: 1.5rem;
   margin-bottom: 10px;
+}
+.global_liste_photo_eleve{
+  display: flex; /* Utilisez Flexbox */
+  justify-content: center; /* Centre horizontalement */
+  align-items: center; /* Centre verticalement */
+  text-align: center; 
 }
 
 .error-message {

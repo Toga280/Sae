@@ -16,8 +16,8 @@ import ConsulterFichesImages from './Interface_Educateur/ConsulterFichesImages/C
 import ModifierRole from './Interface_Educateur/ModifierRole/ModifierRole'
 import Optioneleve from './EspaceEleve/optioneleve'
 import SuiviEleve from './Interface_Educateur/SuiviEleve/SuiviEleve'
-const noel = require('./fond/noel.webp')
-const halloween = require('./fond/hallowen.webp')
+const noel = require('./fond/noel.png')
+const halloween = require('./fond/halloween.png')
 
 function App() {
   const [selectBox, setSelectBox] = useState(null)
@@ -44,7 +44,7 @@ function App() {
     const currentDay = currentDate.getDate()
     const currentMonth = currentDate.getMonth() + 1
 
-    if (currentMonth <= 11 && currentMonth === 12 && currentDay >= 25) {
+    if (currentMonth <= 11 && currentMonth === 12 && currentDay >= 25 ) {
       setBackground(noel)
     } else if (currentMonth === 10 && currentDay <= 31 && currentDay >= 24) {
       setBackground(halloween)
@@ -54,15 +54,19 @@ function App() {
   }, [])
 
   return (
-    <div
-      style={{
-        backgroundImage: `url(${background})`,
-        backgroundSize: 'cover',
-        backgroundRepeat: 'no-repeat',
-        backgroundPosition: 'center',
-        height: '100vh',
-      }}
-    >
+    <>
+    {background && (
+      <style>
+        {`
+          body {
+            background-image: url(${background});
+            background-size: cover;
+            background-repeat: no-repeat;
+          }
+        `}
+      </style>
+    )}
+    <div>
       {redirection === 1 && (
         <PageConnection
           redirection={setRedirection}
@@ -134,6 +138,7 @@ function App() {
         )
       ) : null}
     </div>
+    </>
   )
 }
 

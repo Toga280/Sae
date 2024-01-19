@@ -87,17 +87,46 @@ function SuiviEleve({ redirection }: any) {
       }
     }, [eleves]);
 
+    const data = [12, 5, 6, 7, 9, 10, 3, 7];
+    const maxValue = Math.max(...data);
+
+    // Dimensions du graphique
+    const width = 500;
+    const height = 300;
+    const barWidth = width / data.length;
+    
+    const yAxisTicks = Array.from({ length: 5 }, (_, i) => {
+      const value = (maxValue / 4) * i;
+      const y = height - (value / maxValue) * height;
+      return { value, y };
+  });
+  
     return (
       <div>
           {selectedEleve ? (
+            <div>
             <div>
               <div className='global_suivi_eleve_perso'>
                   <h2 className='nom_eleve_suivi'>Suivi pour {selectedEleve.prenom} {selectedEleve.nom}</h2>
                   <textarea className='text_area_eleve_suivi'/>
                   <button className='ajout_suivi_commentaire'>Ajouter</button>
               </div>
-              <button className="retour_suivi_commentaire"onClick={() => setSelectedEleve(null)}>Retour</button>
-
+              <div className='global_graph'>
+                <svg width={width} height={height} className='graph'>
+                  {data.map((value, index) => (
+                      <rect
+                          key={index}
+                          x={index * barWidth}
+                          y={height - (value / maxValue) * height} // Inverser pour que le graphique s'affiche correctement
+                          width={barWidth - 5} // 5 pour un peu d'espace entre les barres
+                          height={(value / maxValue) * height}
+                          fill="teal"
+                      />
+                  ))}
+                </svg>
+              </div>
+              </div>
+                <button className="retour_suivi_commentaire"onClick={() => setSelectedEleve(null)}>Retour</button>
             </div>
           ) : (
             <div>
