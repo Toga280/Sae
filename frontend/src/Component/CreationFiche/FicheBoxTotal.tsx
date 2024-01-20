@@ -36,7 +36,7 @@ function FicheBoxTotal({
   const postFiche = async () => {
     const data = fonctionsMiniBoxInfoJson.getAllJson()
     axios
-      .post('http://192.168.120.71:5000/POST/fiche', data)
+      .post('http://localhost:5000/POST/fiche', data)
       .then((response) => {})
       .catch((error) => {
         console.error('Erreur lors de la requête vers le serveur :', error)
@@ -46,7 +46,7 @@ function FicheBoxTotal({
   const deleteFiche = async (nomFiche: string) => {
     axios
       .get(
-        `http://192.168.120.71:5000/DELETE/ficheName?name=${encodeURIComponent(
+        `http://localhost:5000/DELETE/ficheName?name=${encodeURIComponent(
           nomFiche,
         )}`,
       )
@@ -121,7 +121,7 @@ function FicheBoxTotal({
   useEffect(() => {
     // Appeler la requête pour récupérer l'image du fond d'écran
     axios
-      .get('http://192.168.120.71:5000/GET/fondecran', {
+      .get('http://localhost:5000/GET/fondecran', {
         params: {
           name: identifiant,
         },

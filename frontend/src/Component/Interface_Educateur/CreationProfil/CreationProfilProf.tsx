@@ -19,7 +19,7 @@ function CreationProfilProf({ setRedirectionTwo }: any) {
     event.preventDefault();
     const data = JSON.stringify({ nom, prenom, mdp, id ,role});
     axios
-      .post("http://192.168.120.71:5000/POST/admin", data, configCreateProfil)
+      .post("http://localhost:5000/POST/admin", data, configCreateProfil)
       .then((response) => {
         console.log("Réponse du serveur :", response.data);
         setRedirectionTwo();

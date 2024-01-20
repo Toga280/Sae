@@ -25,7 +25,7 @@ function SuiviEleve({ redirection, identifiant }: any) {
             const imageName = `${eleve.nom}${eleve.prenom}.webp`;
             console.log("Recherche de l'image :", imageName);
             try {
-              const imagePath = `http://192.168.120.71:5000/GET/piceleve?name=${encodeURIComponent(
+              const imagePath = `http://localhost:5000/GET/piceleve?name=${encodeURIComponent(
                 imageName
               )}`;
               const response = await axios.get(imagePath, {
@@ -66,7 +66,7 @@ function SuiviEleve({ redirection, identifiant }: any) {
     useEffect(() => {
       const getEleve = async () => {
         try {
-          const response = await axios.get(`http://192.168.120.71:5000/GET/allEleve`);
+          const response = await axios.get(`http://localhost:5000/GET/allEleve`);
           setEleves(response.data);
         } catch (error) {
           console.error("Erreur lors de la récupération des étudiants :", error);
@@ -105,7 +105,7 @@ function SuiviEleve({ redirection, identifiant }: any) {
   useEffect(() => {
     // Appeler la requête pour récupérer l'image du fond d'écran
     axios
-      .get('http://192.168.120.71:5000/GET/fondecran', {
+      .get('http://localhost:5000/GET/fondecran', {
         params: {
           name: identifiant,
         },

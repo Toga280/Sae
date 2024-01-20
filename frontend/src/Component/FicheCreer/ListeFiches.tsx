@@ -26,7 +26,7 @@ function ListeFiches({ redirection, refreshFiche, identifiant }: any) {
     if (confirmation) {
       axios
         .get(
-          `http://192.168.120.71:5000/DELETE/ficheName?name=${encodeURIComponent(
+          `http://localhost:5000/DELETE/ficheName?name=${encodeURIComponent(
             nomFiche,
           )}`,
         )
@@ -51,7 +51,7 @@ function ListeFiches({ redirection, refreshFiche, identifiant }: any) {
   const getEleveAffecteAsync = async (nomf: string) => {
     try {
       const response = await axios.get(
-        `http://192.168.120.71:5000/GET/eleveAffecter?ficheName=${encodeURIComponent(
+        `http://localhost:5000/GET/eleveAffecter?ficheName=${encodeURIComponent(
           nomf,
         )}`,
       )
@@ -137,7 +137,7 @@ function ListeFiches({ redirection, refreshFiche, identifiant }: any) {
 
   const allFicheNames = () => {
     axios
-      .get('http://192.168.120.71:5000/GET/allFicheNames')
+      .get('http://localhost:5000/GET/allFicheNames')
       .then((response) => {
         setFichesNames(response.data)
       })
@@ -149,7 +149,7 @@ function ListeFiches({ redirection, refreshFiche, identifiant }: any) {
   const FicheNames = async (nameValue: string) => {
     try {
       const response = await axios.get(
-        `http://192.168.120.71:5000/GET/nameFiche?name=${encodeURIComponent(
+        `http://localhost:5000/GET/nameFiche?name=${encodeURIComponent(
           nameValue,
         )}`,
       )
@@ -181,7 +181,7 @@ function ListeFiches({ redirection, refreshFiche, identifiant }: any) {
     }
 
     try {
-      await axios.post(`http://192.168.120.71:5000/POST/ficheUpdateName`, {
+      await axios.post(`http://localhost:5000/POST/ficheUpdateName`, {
         name: oldnom,
         newName: newnom,
       })
@@ -196,7 +196,7 @@ function ListeFiches({ redirection, refreshFiche, identifiant }: any) {
     try {
       console.log(nomFiche)
       const response = await axios.get(
-        `http://192.168.120.71:5000/GET/nameFicheExiste?name=${encodeURIComponent(
+        `http://localhost:5000/GET/nameFicheExiste?name=${encodeURIComponent(
           nomFiche,
         )}`,
       )
@@ -227,7 +227,7 @@ function ListeFiches({ redirection, refreshFiche, identifiant }: any) {
 
   const dupliquerFiche = async (nomf: string) => {
     try {
-      await axios.post('http://192.168.120.71:5000/POST/ficheDuplicate', {
+      await axios.post('http://localhost:5000/POST/ficheDuplicate', {
         name: nomf,
       })
     } catch (error) {
@@ -240,7 +240,7 @@ function ListeFiches({ redirection, refreshFiche, identifiant }: any) {
   useEffect(() => {
     // Appeler la requête pour récupérer l'image du fond d'écran
     axios
-      .get('http://192.168.120.71:5000/GET/fondecran', {
+      .get('http://localhost:5000/GET/fondecran', {
         params: {
           name: identifiant,
         },

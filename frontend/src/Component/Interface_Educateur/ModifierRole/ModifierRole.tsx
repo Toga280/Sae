@@ -24,7 +24,7 @@ function ModifierRole({ redirection, identifiant }: any) {
   useEffect(() => {
     const getProf = () => {
       axios
-        .get(`http://192.168.120.71:5000/GET/allProf`)
+        .get(`http://localhost:5000/GET/allProf`)
         .then((response) => {
           setAdmin(response.data);
         })
@@ -48,7 +48,7 @@ function ModifierRole({ redirection, identifiant }: any) {
   const postProfChangeRole = (ProfData: Admin) => {
     console.log("ProfData", ProfData);
     axios
-      .post("http://192.168.120.71:5000/POST/ProfUpdateRole", ProfData)
+      .post("http://localhost:5000/POST/ProfUpdateRole", ProfData)
       .then((response) => {
         console.log("Réponse du serveur :", response.data);
       })
@@ -86,7 +86,7 @@ function ModifierRole({ redirection, identifiant }: any) {
   useEffect(() => {
     // Appeler la requête pour récupérer l'image du fond d'écran
     axios
-      .get('http://192.168.120.71:5000/GET/fondecran', {
+      .get('http://localhost:5000/GET/fondecran', {
         params: {
           name: identifiant,
         },

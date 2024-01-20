@@ -16,7 +16,7 @@ function FicheBox8({ classNameDiv, versionVue, versionProf }: any) {
     <div className={classNameDiv}>
       {select && !versionVue && fonctionsMiniBoxInfoJson.getTypeFiche() === "Plomberie" ? (
         <PageSelect setSelect={setSelect} numMat={numMat} />
-      ) : select && !versionVue && fonctionsMiniBoxInfoJson.getTypeFiche() === "Electricité" ? (
+      ) : select && !versionVue && fonctionsMiniBoxInfoJson.getTypeFiche() === "Électricité" ? (
         <PageSelectElec setSelect={setSelect} numMat={numMat} />
       ):select && !versionVue && fonctionsMiniBoxInfoJson.getTypeFiche() === "Finition" ? (
         <PageSelectFinition setSelect={setSelect} numMat={numMat} />

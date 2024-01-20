@@ -15,7 +15,7 @@ function ModifierMdp({redirection,role,identifiant}:any){
     useEffect(() => {
         // Appeler la requête pour récupérer l'image du fond d'écran
         axios
-          .get('http://192.168.120.71:5000/GET/fondecran', {
+          .get('http://localhost:5000/GET/fondecran', {
             params: {
               name: identifiant,
             },

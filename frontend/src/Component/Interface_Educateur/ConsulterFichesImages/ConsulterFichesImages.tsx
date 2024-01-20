@@ -25,7 +25,7 @@ function ConsulterFichesImages({ redirection, IdConnecter, identifiant }: any) {
   useEffect(() => {
     const getEleve = () => {
       axios
-        .get(`http://192.168.120.71:5000/GET/allEleve`)
+        .get(`http://localhost:5000/GET/allEleve`)
         .then((response) => {
           setEleves(response.data)
         })
@@ -49,7 +49,7 @@ function ConsulterFichesImages({ redirection, IdConnecter, identifiant }: any) {
       const getPictoInfo = async () => {
         try {
           const response = await axios.get(
-            'http://192.168.120.71:5000/GET/getphotoeleve-info',
+            'http://localhost:5000/GET/getphotoeleve-info',
             {
               params: {
                 eleve: eleveSelectionne.nom + eleveSelectionne.prenom,
@@ -60,7 +60,7 @@ function ConsulterFichesImages({ redirection, IdConnecter, identifiant }: any) {
 
           // Demander chaque fichier individuellement
           const imagePromises = imageNames.map(async (imageName: string) => {
-            const imagePath = `http://192.168.120.71:5000/GET/getphotoeleve-file?eleve=${encodeURIComponent(
+            const imagePath = `http://localhost:5000/GET/getphotoeleve-file?eleve=${encodeURIComponent(
               eleveSelectionne.nom + eleveSelectionne.prenom,
             )}&name=${encodeURIComponent(imageName)}`
             const imageResponse = await axios.get(imagePath, {
@@ -111,7 +111,7 @@ function ConsulterFichesImages({ redirection, IdConnecter, identifiant }: any) {
   useEffect(() => {
     // Appeler la requête pour récupérer l'image du fond d'écran
     axios
-      .get('http://192.168.120.71:5000/GET/fondecran', {
+      .get('http://localhost:5000/GET/fondecran', {
         params: {
           name: identifiant,
         },
