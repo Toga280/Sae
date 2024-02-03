@@ -895,22 +895,21 @@ app.get('/GET/eleve/FicheCompleted', async (req: any, res: any) => {
 // GET TYPEFICHE
 
 app.get('/fiches/type/:typeFiche', async (req: any, res: any) => {
-  const { nom, prenom } = req.query;
+  const { nom, prenom } = req.query
   const ficheName = await Fiche.findOne({
     'info.nomEleveAttribuer': nom,
     'info.prenomEleveAttribuer': prenom,
     'info.enCour': true,
   }).exec()
-  
-    try {
-      const fiches = await Fiche.find({ }).exec()
-      res.status(200).json(fiches)
-    } catch (error) {
-      console.error('Error during authentication:', error)
-      res.status(500).json({ success: false, message: 'Internal server error' })
-    }
+
+  try {
+    const fiches = await Fiche.find({}).exec()
+    res.status(200).json(fiches)
+  } catch (error) {
+    console.error('Error during authentication:', error)
+    res.status(500).json({ success: false, message: 'Internal server error' })
   }
-);
+})
 
 /*GET ADMIN======================================================================*/
 
@@ -1155,5 +1154,3 @@ app.get('/DELETE/fond', async (req: any, res: any) => {
     res.status(500).send('Internal server error')
   }
 })
-
-
