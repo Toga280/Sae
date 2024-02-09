@@ -1,4 +1,4 @@
-import { Document, Schema, model, Model } from 'mongoose'
+import { Schema, model } from 'mongoose'
 import { MiniBox, FicheDocument, Picto, Eleve, Admin } from './interface'
 import sharp from 'sharp'
 const express = require('express')
@@ -147,6 +147,11 @@ const Eleve = new Schema<Eleve>({
 })
 
 const EleveModel = model<Eleve>('Eleve', Eleve)
+
+if (1) {
+  const
+}
+
 /*------------------- POST -------------------*/
 
 app.post('/POST/fiche', (req: any, res: any) => {

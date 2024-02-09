@@ -4,15 +4,17 @@ FROM node:current-alpine
 WORKDIR /usr/src/app
 
 # Only copy the package.json file to work directory
-COPY package.json ./
+COPY package.json yarn.lock ./
 
 # Install all Packages
-RUN npm install
+RUN yarn install
+RUN yarn add sharp --ignore-engines
 
 # Copy all other source code to work directory
 ADD . /usr/src/app
+RUN chmod -R 777 /usr/src/app
 
 # Start
-CMD ["ts-node", "index"]
+CMD ["yarn", "start"]
 
 EXPOSE 5000
