@@ -11,7 +11,7 @@ function ListeFiches({ redirection, refreshFiche, identifiant }: any) {
   const [eleveAffecte, setEleveAffecte] = useState<
     Record<string, string | undefined>
   >({})
-  const [ficheexiste, setFicheexiste] = useState(false)
+  const [ficheexiste, setFicheexiste] = useState<boolean>(false)
   const [fondEcranUrl, setFondEcranUrl] = useState<string | null>(null)
 
   const setAffichageAffecterListeFalse = () => {
