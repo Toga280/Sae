@@ -40,6 +40,7 @@ export interface FicheInfo {
   enCour: Boolean
   informationSuplementaire: string
   typeFiche: string;
+  reacteleve: string;
 }
 
 export interface FicheDocument extends Document {

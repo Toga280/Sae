@@ -1109,6 +1109,32 @@ app.get('/GET/eleveAffecter', async (req: any, res: any) => {
   }
 })
 
+/* GET tableau réaction eleve ===============================================================*/
+
+app.get('/GET/reactionEleve', async (req: any, res: any) => {
+  const { nomeleve, prenomeleve } = req.query
+  try {
+    const ficheArray = await Fiche.find().exec()
+    const reactionEleveArray = []
+    const nomficheArray = []
+
+    for (const fiche of ficheArray) {
+      if (
+        fiche.info.nomEleveAttribuer === nomeleve &&
+        fiche.info.prenomEleveAttribuer === prenomeleve
+      ) {
+        reactionEleveArray.push(fiche.info.reacteleve)
+        nomficheArray.push(fiche.info.name)
+      }
+    }
+
+    res.status(200).send({ reactions: reactionEleveArray, fiches: nomficheArray });
+  } catch (error) {
+    console.error('Erreur lors de la récupération des fiches :', error)
+    res.status(500).send('Erreur interne du serveur')
+  }
+})
+
 /*------------------- DELETE -------------------*/
 
 /* DELETE FICHE ===============================================================*/
