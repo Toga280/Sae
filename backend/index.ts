@@ -52,6 +52,7 @@ const ficheSchema = new Schema<FicheDocument>({
     enCour: { type: Boolean },
     informationSuplementaire: { type: String },
     typeFiche: { type: String },
+    reacteleve: { type: String },
     _id: false,
   },
   AllMiniBox: {
@@ -147,10 +148,6 @@ const Eleve = new Schema<Eleve>({
 })
 
 const EleveModel = model<Eleve>('Eleve', Eleve)
-
-if (1) {
-  const
-}
 
 /*------------------- POST -------------------*/
 

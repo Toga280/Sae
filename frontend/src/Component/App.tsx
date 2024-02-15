@@ -48,7 +48,7 @@ function App() {
 
     if (currentMonth <= 11 && currentMonth === 12 && currentDay >= 25) {
       setBackground(noel)
-    } else if (currentMonth === 10 && currentDay <= 31 && currentDay >= 24 ) {
+    } else if (currentMonth === 10 && currentDay <= 31 && currentDay >= 24) {
       setBackground(halloween)
     } else {
       setBackground('default.jpg')
