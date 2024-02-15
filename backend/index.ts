@@ -1,4 +1,4 @@
-import { Document, Schema, model, Model } from 'mongoose'
+import { Schema, model } from 'mongoose'
 import { MiniBox, FicheDocument, Picto, Eleve, Admin } from './interface'
 import sharp from 'sharp'
 const express = require('express')
@@ -147,6 +147,11 @@ const Eleve = new Schema<Eleve>({
 })
 
 const EleveModel = model<Eleve>('Eleve', Eleve)
+
+if (1) {
+  const
+}
+
 /*------------------- POST -------------------*/
 
 app.post('/POST/fiche', (req: any, res: any) => {
@@ -895,22 +900,21 @@ app.get('/GET/eleve/FicheCompleted', async (req: any, res: any) => {
 // GET TYPEFICHE
 
 app.get('/fiches/type/:typeFiche', async (req: any, res: any) => {
-  const { nom, prenom } = req.query;
+  const { nom, prenom } = req.query
   const ficheName = await Fiche.findOne({
     'info.nomEleveAttribuer': nom,
     'info.prenomEleveAttribuer': prenom,
     'info.enCour': true,
   }).exec()
-  
-    try {
-      const fiches = await Fiche.find({ }).exec()
-      res.status(200).json(fiches)
-    } catch (error) {
-      console.error('Error during authentication:', error)
-      res.status(500).json({ success: false, message: 'Internal server error' })
-    }
+
+  try {
+    const fiches = await Fiche.find({}).exec()
+    res.status(200).json(fiches)
+  } catch (error) {
+    console.error('Error during authentication:', error)
+    res.status(500).json({ success: false, message: 'Internal server error' })
   }
-);
+})
 
 /*GET ADMIN======================================================================*/
 
@@ -1155,5 +1159,3 @@ app.get('/DELETE/fond', async (req: any, res: any) => {
     res.status(500).send('Internal server error')
   }
 })
-
-
