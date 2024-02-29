@@ -27,6 +27,7 @@ function FicheBoxTotal({
   const [isDraftSaved, setIsDraftSaved] = useState(false)
 
   const [fondEcranUrl, setFondEcranUrl] = useState<string | null>(null)
+  const [reactionencours, setReactionencours] = useState(false)
 
   const modifierFiche = async () => {
     await deleteFiche(fonctionsMiniBoxInfoJson.getNom())
@@ -78,12 +79,18 @@ function FicheBoxTotal({
       }
     } else if (!versionProf) {
       await fonctionsMiniBoxInfoJson.changeEnCourFalse()
+      console.log("reaction function", fonctionsMiniBoxInfoJson.getreacteleve())
       setFicheSave(true)
       setTimeout(() => setFicheSave(false), 5000)
       modifierFiche()
       window.scrollTo(0, 0)
       redirection(false)
     }
+  }
+
+  const setReaction = async (value: string) => {
+    await fonctionsMiniBoxInfoJson.modifierreacteleve(value)
+    Sauvegarder()
   }
 
   const Brouillon = () => {
@@ -104,6 +111,14 @@ function FicheBoxTotal({
     } else if (!versionProf) {
       window.scrollTo(0, 0)
       redirection(false)
+    }
+  }
+
+  const reactionencourscalcul = () => {
+    if (versionProf) {
+      Sauvegarder();
+    } else if (!versionProf) {
+      setReactionencours(true)
     }
   }
 
@@ -155,6 +170,7 @@ function FicheBoxTotal({
         `}
         </style>
       )}
+      {!reactionencours && (
       <div>
         {isDraftSaved && (
           <div className="message_brouillon">Fiche mise en brouillon</div>
@@ -235,7 +251,7 @@ function FicheBoxTotal({
         </button>
         {!versionVue ? (
           <button
-            onClick={Sauvegarder}
+            onClick={reactionencourscalcul}
             className="boutton_sauvegarder_interaction_edu"
           >
             Sauvegarder
@@ -261,6 +277,29 @@ function FicheBoxTotal({
           </button>
         ) : null}
       </div>
+      )}
+      {reactionencours && (
+        <div>
+          <img
+            src={require('./EmojiEleve/s1.png')}
+            onClick={async () => await setReaction("pasbien")}
+            alt="smiley vert"
+            style={{ width: '200px', height: '200px', cursor: 'pointer' }}
+          />
+          <img
+            src={require('./EmojiEleve/s2.png')}
+            onClick={async () => await setReaction("bien")}
+            alt="smiley jaune"
+            style={{ width: '200px', height: '200px', cursor: 'pointer' }}
+          />
+          <img
+            src={require('./EmojiEleve/s3.png')}
+            onClick={async () => await setReaction("bien")}
+            alt="smiley Rouge"
+            style={{ width: '200px', height: '200px', cursor: 'pointer' }}
+          />
+      </div>
+      )}
     </>
   )
 }
