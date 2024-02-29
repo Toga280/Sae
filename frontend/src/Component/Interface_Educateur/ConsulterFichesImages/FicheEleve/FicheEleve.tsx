@@ -190,7 +190,7 @@ function FicheEleve({
               )}
             </div>
             <button
-              className="bouton_retour interaction_edu"
+              className="bouton_retour_fiche"
               onClick={setVoirFicheFalse}
             >
               Retour

@@ -1,6 +1,6 @@
 .global_modif_mdp_eleve{
     border: 1px solid #ccc;
-    background-color: #f5f5f5;
+    background-color: white;
     border-radius: 8px;
     padding: 20px;
     margin: 3em;
@@ -8,25 +8,47 @@
 body{
     font-family: Arial,sans-serif;
 }
+
+
+
 .bouton_retour_modif_mdp_eleve{
-    background-color: white;
-    height: 3em;
-    width: 5%;
-    max-width: 30%;
-    color: #355c7d;
-    font-weight: bold;
-    font-size: 18px;
-    padding: 0.8em;
-    margin: 1em;
-    border-radius: 0.2em;
-    border: none;
-    cursor: pointer;
+  margin:1em;
+  font-weight: bold;
+  display: inline-block;
+  padding: 8px 16px;
+  font-size: 14px;
+  color: #ffffff; 
+  background-color: #007bff; 
+  border: none;
+  border-radius: 4px; 
+  cursor: pointer;
+  text-decoration: none; 
+  transition: background-color 0.2s ease-in-out, transform 0.2s ease-in-out;
+
 }
+
+.bouton_retour_modif_mdp_eleve:hover, .bouton_retour_modif_mdp_eleve:focus {
+  background-color: #0056b3;
+  transform: translateY(-2px); 
+  text-decoration: none;
+}
+
+.bouton_retour_modif_mdp_eleve:active {
+  transform: translateY(1px); 
+}
+
+.bouton_retour_modif_mdp_eleve:before {
+  content: "← "; 
+  display: inline-block;
+  margin-right: 8px;
+}
+
+
 .titre_modif_mdp_eleve{
     text-align: center;
     font-size: 30px;
     font-weight: bold;
-    color: #355c7d;
+    color: #0056b3;
     margin: 1em;
 }
 .container {

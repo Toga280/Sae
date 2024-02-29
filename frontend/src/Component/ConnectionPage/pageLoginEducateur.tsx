@@ -56,7 +56,6 @@ function PageLoginEducateur({ redirection, setRole, setIdConnecter, identifiant 
   return (
     <div id="login-form-wrap">
       <h2 className="nom_login_edu">Connexion</h2>
-      {mdpFaut ? <p>Mots de passe incorrect</p> : null}
       <form id="login-form">
         <p>
           <input
@@ -91,6 +90,7 @@ function PageLoginEducateur({ redirection, setRole, setIdConnecter, identifiant 
             Se connecter
           </button>
         </p>
+        {mdpFaut ? <p className='mdp_faux'>Mots de passe incorrect</p> : null}
       </form>
     </div>
   )
