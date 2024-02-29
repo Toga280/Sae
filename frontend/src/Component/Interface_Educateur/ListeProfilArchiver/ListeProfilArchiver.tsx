@@ -154,7 +154,7 @@ function ListeProfilArchiver({ redirection, identifiant }: any) {
         {redirection}
 
       </div>
-      <button className="button_retour" onClick={redirectionTwo}>
+      <button className="button_retoure" onClick={redirectionTwo}>
           Retour
         </button>
     </div>

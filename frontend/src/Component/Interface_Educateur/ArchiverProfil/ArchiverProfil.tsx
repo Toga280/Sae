@@ -163,7 +163,7 @@ function ConnectionEleve({ redirection, identifiant }: any) {
           {redirection}
         </div>
       </div>
-      <button className="button_retour" onClick={redirectionTwo}>
+      <button className="button_retour_archiver_profil" onClick={redirectionTwo}>
         Retour
       </button>
     </div>

@@ -98,11 +98,15 @@ function ListeFiches({ redirection, refreshFiche, identifiant }: any) {
           onClick={() => deleteFiche(item)}
         />
         <button
-          className="affecter_fiche_crée"
+          className={`affecter_fiche_crée ${eleveAffecte[item] && eleveAffecte[item] !== 'personne' ? 'attribué' : 'non_attribué'}`}
           onClick={() => affecterFiche(item)}
+          disabled={!!(eleveAffecte[item] && eleveAffecte[item] !== 'personne')}
         >
           Affecter
         </button>
+
+
+
         <img
           src={require('./dupliquer.webp')}
           className="autre-icon"
@@ -130,7 +134,7 @@ function ListeFiches({ redirection, refreshFiche, identifiant }: any) {
             }
           }}
         />
-        <p> Fiche attribuée à : {eleveAffecte[item]}</p>
+        <p className='fiche_eleve_nom_attribuer'> Fiche attribuée à : {eleveAffecte[item]}</p>
       </div>
     )
   })
@@ -275,24 +279,27 @@ function ListeFiches({ redirection, refreshFiche, identifiant }: any) {
         </style>
       )}
       <div>
-        {affichageAffecterListe === true ? (
-          <AffecterListe
-            setAffichageAffecterListeFalse={setAffichageAffecterListeFalse}
-            nomFicheSelectionner={nomFicheSelectionner}
-            redirection={redirection}
-          />
-        ) : (
-          <div className="global_all_fiche">
-            <h1 className="titre_h1_fiche_crée">Liste de vos fiches :</h1>
-            {elements}
-          </div>
-        )}
+        <div>
+          {affichageAffecterListe === true ? (
+            <AffecterListe
+              setAffichageAffecterListeFalse={setAffichageAffecterListeFalse}
+              nomFicheSelectionner={nomFicheSelectionner}
+              redirection={redirection}
+            />
+          ) : (
+            <div className="global_all_fiche">
+              <h1 className="titre_h1_fiche_crée">Liste de vos fiches :</h1>
+              {elements}
+            </div>
+          )}
+
+        </div>
         <button
-          className="bouton_retour_liste_fiche_crée_edu"
-          onClick={setRedirectionTwo}
-        >
-          Retour
-        </button>
+            className="bouton_retour_liste_fiche_crée_edu"
+            onClick={setRedirectionTwo}
+          >
+            Retour
+          </button>
       </div>
     </>
   )

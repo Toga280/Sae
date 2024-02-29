@@ -11,10 +11,17 @@
 }
 .global_liste_nom_fiches_crée {
   display: flex;
-  flex-wrap: wrap;
-  margin-top: 2em;
-  margin-left: 2em;
-  justify-content: center;
+  align-items: center;
+  justify-content: space-between;
+  margin-bottom: 10px;
+  padding: 10px;
+  background: #fafafa;
+  border-radius: 5px;
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+
+}
+.fiche_eleve_nom_attribuer{
+  max-width: 12%;
 }
 
 .liste_nom_fiches_crée {
@@ -24,7 +31,7 @@
   width: 20%;
   background-color: #fff;
   border-radius: 8px;
-  box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+  box-shadow: 0 0 5px rgba(0, 0, 0, 0.1);
   text-align: center;
   box-sizing: border-box;
   padding: 1em;
@@ -86,29 +93,111 @@
   transition: background-color 0.3s ease;
 }
 
-.affecter_fiche_crée:hover,
-.bouton_retour_liste_fiche_crée_edu:hover {
-  background-color: #f0f0f0;
-  text-align: center;
-}
 
 .titre_h1_fiche_crée {
   text-align: center;
   margin: 1em;
-  color: #355c7d;
+  color: #0056b3;
   font-weight: bold;
   font-size: 30px;
 }
+.affecter_fiche_crée {
+  padding: 5px 10px;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+  font-weight: bold;
+}
+
+.affecter_fiche_crée.non_attribué {
+  background-color: green;
+  color: white;
+}
+
+.affecter_fiche_crée.attribué {
+  background-color: red;
+  color: white;
+}
+
+.affecter_fiche_crée.attribué:hover {
+  background-color: #670808;
+  text-align: center;
+}
+.affecter_fiche_crée.non_attribué:hover {
+  background-color: #00580f;
+  text-align: center;
+}
+.affecter_fiche_crée[disabled] {
+  cursor: not-allowed;
+}
+
+
+
+
 .bouton_retour_liste_fiche_crée_edu {
+  margin:1em;
+  font-weight: bold;
+  display: inline-block;
+  padding: 8px 16px;
+  font-size: 14px;
+  color: #ffffff; 
+  background-color: #007bff; 
+  border: none;
+  border-radius: 4px; 
+  cursor: pointer;
+  text-decoration: none; 
+  transition: background-color 0.2s ease-in-out, transform 0.2s ease-in-out;
   bottom: 20px;
   left: 20px;
-  background-color: #fff;
-  color: #355c7d;
-  font-weight: bold;
-  font-size: 18px;
-  padding: 0.8em;
-  margin: 1em;
-  border-radius: 4px;
-  border: none;
-  cursor:pointer;
+  cursor: pointer;
+}
+
+.bouton_retour_liste_fiche_crée_edu:hover, .bouton_retour_liste_fiche_crée_edu:focus {
+  background-color: #0056b3;
+  transform: translateY(-2px); 
+  text-decoration: none;
+}
+
+.bouton_retour_liste_fiche_crée_edu:active {
+  transform: translateY(1px); 
+}
+
+.bouton_retour_liste_fiche_crée_edu:before {
+  content: "← "; 
+  display: inline-block;
+  margin-right: 8px;
+}
+
+@media (max-width: 768px) {
+
+  .fiche_eleve_nom_attribuer{
+    max-width: 12%;
+  }
+  .global_liste_nom_fiches_crée {
+
+    flex-direction: column;
+    align-items: flex-start; 
+  }
+
+  .liste_nom_fiches_crée,
+  .delete-icon,
+  .autre-icon,
+  .affecter_fiche_crée {
+    width: 100%;
+    margin: 10px 0; 
+  }
+
+}
+
+@media (max-width: 480px) {
+
+  .liste_nom_fiches_crée,
+  .delete-icon,
+  .autre-icon,
+  .affecter_fiche_crée {
+    width: 100%;
+    margin: 10px 0;
+  }
+
+
 }

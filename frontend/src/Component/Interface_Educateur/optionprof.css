@@ -5,7 +5,15 @@
     margin-top: 2em;
   
   }
-.titre_changer_fond{
+.titre_changer_fond_prof{
+  background-color: white;
+  border-radius: 4px;
+  width: 25%;
     text-align: center;
     color:#355c7d;
+}
+.global_titre_changer_fond_prof{
+  display: flex;
+  justify-content: center;
+  align-items: center;
 }

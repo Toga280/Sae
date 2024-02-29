@@ -21,6 +21,18 @@ function SuiviEleve({ redirection, identifiant }: any) {
         setSelectedEleve(eleve); // Mettre à jour l'état avec l'élève sélectionné
     };
 
+  
+  const [commentaire, setCommentaire] = useState('');
+  // Utilisation d'un tableau d'objets pour inclure le commentaire et le timestamp
+  const [commentairesList, setCommentairesList] = useState<{comment: string, timestamp: string}[]>([]);
+
+  const handleAjoutCommentaire = () => {
+    const now = new Date();
+    const timestamp = now.toLocaleDateString('fr-FR') + ' ' + now.toLocaleTimeString('fr-FR');   
+    setCommentairesList([...commentairesList, { comment: commentaire, timestamp }]);
+    setCommentaire('');
+  };
+
     // Fonction pour récupérer les images des étudiants
     const getStudentImages = async () => {
         try {
@@ -161,16 +173,31 @@ function SuiviEleve({ redirection, identifiant }: any) {
             )}
             <div>
                 {selectedEleve ? (
-                    <div>
-                        <div>
+                                <div>
                             <div className='global_suivi_eleve_perso'>
-                                <h2 className='nom_eleve_suivi'>Suivi pour {selectedEleve.prenom} {selectedEleve.nom}</h2>
-                                <textarea className='text_area_eleve_suivi' />
-                                <button className='ajout_suivi_commentaire'>Ajouter</button>
-                            </div>
-                            <div className='global_graph'>
+                              <div className='text_area_container'>
+                  <h2 className='nom_eleve_suivi'>Suivi pour {selectedEleve.prenom} {selectedEleve.nom}</h2>
+                                <textarea 
+                    className='text_area_eleve_suivi' 
+                    value={commentaire}
+                    onChange={(e) => setCommentaire(e.target.value)}
+                  />
+                                <button 
+                    className='ajout_suivi_commentaire'
+                    onClick={handleAjoutCommentaire}
+                  >
+                    Ajouter
+                  </button>
+                                {commentairesList.map((item, index) => (
+                    <div key={index} className='commentaire_container'>
+                      <label className='commentaire_label'>{item.comment}</label>
+                      <span className='commentaire_timestamp'>{item.timestamp}</span>
+                    </div>
+                  ))}
+                </div>
+                              <div className='global_graph'>
                                 <svg width={width} height={height} className='graph'>
-                                    {reactionsEleve.reactions.map((reaction, index) => {
+                                        {reactionsEleve.reactions.map((reaction, index) => {
                                         let heightValue = 0; // Valeur de hauteur par défaut
     
                                         // Définir la hauteur en fonction de la réaction
@@ -183,21 +210,23 @@ function SuiviEleve({ redirection, identifiant }: any) {
                                         }
     
                                         return (
-                                            <rect
-                                                key={index}
-                                                x={index * barWidth}
-                                                y={height - heightValue} // Utilisez la hauteur spécifique pour la réaction
-                                                width={barWidth - 5} // 5 pour un peu d'espace entre les barres
-                                                height={heightValue}
-                                                fill="teal"
-                                            />
-                                        );
+                                                <rect
+                                                    key={index}
+                                                    x={index * barWidth}
+                                                    y={height - heightValue} // Utilisez la hauteur spécifique pour la réaction
+                                                    width={barWidth - 5} // 5 pour un peu d'espace entre les barres
+                                                    height={heightValue}
+                                                    fill="teal"
+                                                />
+                                            );
                                     })}
-                                </svg>
-                            </div>
+                                    </svg>
+                              </div>
+                      </div>
+                    <div>
+                  <button className="retour_suivi_commentaire"  onClick={() => setSelectedEleve(null)}>Retour</button>
                         </div>
-                        <button className="retour_suivi_commentaire" onClick={() => setSelectedEleve(null)}>Retour</button>
-                    </div>
+          </div>
                 ) : (
                     <div>
                         <div className="global_suivi_eleves">

@@ -90,34 +90,76 @@ button.custom_affecter_fiche_eleve:hover {
   font-size: 20px;
 }
 
-.retour_liste_fiches{
+.retour_liste_fiches {
+  font-weight: bold;
+  display: inline-block;
+  padding: 8px 16px;
+  font-size: 14px;
+  color: #ffffff; 
+  background-color: #007bff; 
+  border: none;
+  border-radius: 4px; 
+  cursor: pointer;
+  text-decoration: none; 
+  transition: background-color 0.2s ease-in-out, transform 0.2s ease-in-out;
   bottom: 20px;
   left: 20px;
-  background-color: #fff;
-  color: #355c7d;
-  font-weight: bold;
-  font-size: 18px;
-  padding: 0.8em;
-  margin: 1em;
-  border-radius: 4px;
-  border: none;
-  cursor:pointer;
+  cursor: pointer;
+  position:absolute;
 }
 
-.retour{
-  position: fixed;
+.retour_liste_fiches:hover, .retour_liste_fiches:focus {
+  background-color: #0056b3;
+  transform: translateY(-2px); 
+  text-decoration: none;
+}
+
+.retour_liste_fiches:active {
+  transform: translateY(1px); 
+}
+
+.retour_liste_fiches:before {
+  content: "← "; 
+  display: inline-block;
+  margin-right: 8px;
+}
+
+
+.retour {
+  font-weight: bold;
+  display: inline-block;
+  padding: 8px 16px;
+  font-size: 14px;
+  color: #ffffff; 
+  background-color: #007bff; 
+  border: none;
+  border-radius: 4px; 
+  cursor: pointer;
+  text-decoration: none; 
+  transition: background-color 0.2s ease-in-out, transform 0.2s ease-in-out;
   bottom: 20px;
   left: 20px;
-  background-color: #fff;
-  color: #355c7d;
-  font-weight: bold;
-  font-size: 18px;
-  padding: 0.8em;
-  margin: 1em;
-  border-radius: 4px;
-  border: none;
-  cursor:pointer;
+  cursor: pointer;
+  position:absolute;
 }
+
+.retour:hover, .retour:focus {
+  background-color: #0056b3;
+  transform: translateY(-2px); 
+  text-decoration: none;
+}
+
+.retour:active {
+  transform: translateY(1px); 
+}
+
+.retour:before {
+  content: "← "; 
+  display: inline-block;
+  margin-right: 8px;
+}
+
+
 
 .global-vu-picto{
   justify-content: center;

@@ -1,16 +1,40 @@
-.button_retour {
+
+
+  .button_retour {
+    margin:1em;
+    font-weight: bold;
+    display: inline-block;
+    padding: 8px 16px;
+    font-size: 14px;
+    color: #ffffff; 
+    background-color: #007bff; 
+    border: none;
+    border-radius: 4px; 
+    cursor: pointer;
+    text-decoration: none; 
+    transition: background-color 0.2s ease-in-out, transform 0.2s ease-in-out;
     bottom: 20px;
     left: 20px;
-    background-color: #fff;
-    color: #355c7d;
-    font-weight: bold;
-    font-size: 18px;
-    padding: 0.8em;
-    margin: 1em;
-    border-radius: 4px;
-    border: none;
-    cursor:pointer;
+    position: absolute;
+    cursor: pointer;
   }
+  
+  .button_retour:hover, .button_retour:focus {
+    background-color: #0056b3;
+    transform: translateY(-2px); 
+    text-decoration: none;
+  }
+  
+  .button_retour:active {
+    transform: translateY(1px); 
+  }
+  
+  .button_retour:before {
+    content: "← "; 
+    display: inline-block;
+    margin-right: 8px;
+  }
+
 
 .archiver-button {
     background-color: #007bff;
@@ -21,4 +45,38 @@
     margin: 1em;
     border-radius: 4px;
     border: none;
+}
+
+.button_retour_archiver_profil {
+  margin:1em;
+  font-weight: bold;
+  display: inline-block;
+  padding: 8px 16px;
+  font-size: 14px;
+  color: #ffffff; 
+  background-color: #007bff; 
+  border: none;
+  border-radius: 4px; 
+  cursor: pointer;
+  text-decoration: none; 
+  transition: background-color 0.2s ease-in-out, transform 0.2s ease-in-out;
+  bottom: 20px;
+  left: 20px;
+  cursor: pointer;
+}
+
+.button_retour_archiver_profil:hover, .button_retour_archiver_profil:focus {
+  background-color: #0056b3;
+  transform: translateY(-2px); 
+  text-decoration: none;
+}
+
+.button_retour_archiver_profil:active {
+  transform: translateY(1px); 
+}
+
+.button_retour_archiver_profil:before {
+  content: "← "; 
+  display: inline-block;
+  margin-right: 8px;
 }
