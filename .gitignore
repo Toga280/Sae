@@ -1,8 +1,8 @@
 node_modules
-./.prettierrc
-./.vscode
-./backend/node_modules
-./frontend/node_modules
-./scannerwork
-./frontend/.scannerwork
-./backend/.scannerwork
+.prettierrc
+.vscode
+backend/node_modules
+frontend/node_modules
+scannerwork
+frontend/.scannerwork
+backend/.scannerwork
