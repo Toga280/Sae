@@ -144,6 +144,7 @@ const Eleve = new Schema<Eleve>({
   prenom: { type: String },
   image: { type: String },
   mdp: { type: String },
+  comCIP: { type: [[String]], default: [] },
   archiver: { type: Boolean, default: false },
 })
 
@@ -703,6 +704,24 @@ app.post('/POST/ficheDuplicate', async (req: any, res: any) => {
   }
 })
 
+/* ajouter un comentaire de la CIP =================================================*/
+app.post('/POST/comCIP', async (req: any, res: any) => {
+  const { nom, prenom, comCIP } = req.body
+  try {
+    const eleve = await EleveModel.findOne({ 'nom': nom, 'prenom': prenom }).exec();
+
+    if (!eleve) {
+      return res.status(404).json({ message: 'Eleve non trouvé' })
+    }
+    eleve.comCIP.push(comCIP)
+    await eleve.save()
+    res.status(200).json({ message: 'commentaire ajouter avec succès' })
+  } catch (error) {
+    console.error(error)
+    res.status(500).json({ message: 'Erreur serveur' })
+  }
+})
+
 /*------------------- GET -------------------*/
 
 /* GET ALL FICHES ===========================================================*/
@@ -816,7 +835,7 @@ app.get('/GET/eleve/authentification', async (req: any, res: any) => {
   }
 })
 
-/*GET ELEVE AUTHENTIFICATION =================================================*/
+/*GET ELEVE FICHE =================================================*/
 
 app.get('/GET/eleve/fiche', async (req: any, res: any) => {
   const { nom, prenom } = req.query
@@ -1132,6 +1151,28 @@ app.get('/GET/reactionEleve', async (req: any, res: any) => {
   } catch (error) {
     console.error('Erreur lors de la récupération des fiches :', error)
     res.status(500).send('Erreur interne du serveur')
+  }
+})
+
+/* GET comentaire de la CIP pour un élève donné ===================================*/
+app.get('/GET/comentaireCIP', async (req: any, res: any) => {
+  const { nomeleve, prenomeleve } = req.query;
+  try {
+    const eleve = await EleveModel.findOne({ 'nom': nomeleve, 'prenom': prenomeleve }).exec();
+
+    if (!eleve) {
+      return res.status(404).json({ message: 'Eleve non trouvé' });
+    }
+    const taille: number = eleve.comCIP.length;
+
+    if (!eleve.comCIP || taille === 0) {
+      return res.status(404).send('Aucun commentaire trouvé');
+    }
+
+    res.status(200).send(eleve.comCIP);
+  } catch (error) {
+    console.error('Erreur lors de la récupération des fiches :', error);
+    res.status(500).send('Erreur interne du serveur');
   }
 })
 

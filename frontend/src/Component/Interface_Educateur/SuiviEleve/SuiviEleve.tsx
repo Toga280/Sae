@@ -4,7 +4,7 @@ import axios from 'axios';
 
 function SuiviEleve({ redirection, identifiant }: any) {
     const redirectionTwo = () => {
-        redirection(2);
+      redirection(2);
     };
     const [eleves, setEleves] = useState<any[]>([]); // État pour stocker la liste des étudiants
     const [nomEleveActuelle, setNomEleveActuelle] = useState(String); // État pour stocker le nom de famille de l'étudiant actuel
@@ -24,14 +24,36 @@ function SuiviEleve({ redirection, identifiant }: any) {
   
   const [commentaire, setCommentaire] = useState('');
   // Utilisation d'un tableau d'objets pour inclure le commentaire et le timestamp
-  const [commentairesList, setCommentairesList] = useState<{comment: string, timestamp: string}[]>([]);
+  const [commentairesList, setCommentairesList] = useState<[string, string][]>([]);
 
-  const handleAjoutCommentaire = () => {
+  const handleAjoutCommentaire = async () => {
     const now = new Date();
-    const timestamp = now.toLocaleDateString('fr-FR') + ' ' + now.toLocaleTimeString('fr-FR');   
-    setCommentairesList([...commentairesList, { comment: commentaire, timestamp }]);
+    const timestamp = now.toLocaleDateString('fr-FR') + ' ' + now.toLocaleTimeString('fr-FR'); 
+    const newCommentaire = [timestamp, commentaire];
+  
+    try {
+      await axios.post('http://localhost:5000/POST/comCIP', {
+        nom: nomEleveActuelle,
+        prenom: prenomEleveActuelle,
+        comCIP: newCommentaire
+      });
+  
+      // Après avoir ajouté le commentaire avec succès, récupérez la liste des commentaires mise à jour
+      const response = await axios.get('http://localhost:5000/GET/comentaireCIP', {
+        params: {
+          nomeleve: nomEleveActuelle,
+          prenomeleve: prenomEleveActuelle
+        }
+      });
+  
+      setCommentairesList(response.data); // Mettre à jour la liste des commentaires avec la réponse mise à jour
+    } catch (error) {
+      console.error("Erreur lors de l'ajout du commentaire :", error);
+    }
+  
     setCommentaire('');
   };
+
 
     // Fonction pour récupérer les images des étudiants
     const getStudentImages = async () => {
@@ -40,7 +62,6 @@ function SuiviEleve({ redirection, identifiant }: any) {
             const responses = await Promise.all(
                 eleves.map(async (eleve: any) => {
                     const imageName = `${eleve.nom}${eleve.prenom}.webp`;
-                    console.log("Recherche de l'image :", imageName);
                     try {
                         const imagePath = `http://localhost:5000/GET/piceleve?name=${encodeURIComponent(
                             imageName
@@ -103,14 +124,31 @@ function SuiviEleve({ redirection, identifiant }: any) {
             }
           });
           setReactionsEleve(response.data);
-          console.log("Réactions des élèves :", response.data);
         } catch (error) {
           console.error("Erreur lors de la récupération des réactions des élèves :", error);
         }
       };
 
+      const getCommentairesEleve = async () => {
+        try {
+          const response = await axios.get('http://localhost:5000/GET/comentaireCIP', {
+            params: {
+              nomeleve: nomEleveActuelle,
+              prenomeleve: prenomEleveActuelle
+            }
+          });
+
+          setCommentairesList(response.data);
+        } catch (error:any) {
+          if (error.response && error.response.status !== 40) {
+          console.error("Erreur lors de l'ajout du commentaire :", error);
+    }
+        }
+      }
+
       if (nomEleveActuelle && prenomEleveActuelle) {
         getReactionsEleve();
+        getCommentairesEleve();
       }
     }, [nomEleveActuelle, prenomEleveActuelle]);
 
@@ -188,10 +226,10 @@ function SuiviEleve({ redirection, identifiant }: any) {
                   >
                     Ajouter
                   </button>
-                                {commentairesList.map((item, index) => (
+                  {commentairesList.map((item, index) => (
                     <div key={index} className='commentaire_container'>
-                      <label className='commentaire_label'>{item.comment}</label>
-                      <span className='commentaire_timestamp'>{item.timestamp}</span>
+                      <label className='commentaire_label'>{item[1]}</label>
+                      <span className='commentaire_timestamp'>{item[0]}</span>
                     </div>
                   ))}
                 </div>
@@ -224,8 +262,11 @@ function SuiviEleve({ redirection, identifiant }: any) {
                               </div>
                       </div>
                     <div>
-                  <button className="retour_suivi_commentaire"  onClick={() => setSelectedEleve(null)}>Retour</button>
-                        </div>
+                      <button className="retour_suivi_commentaire" onClick={() => {
+                        setSelectedEleve(null);
+                        setCommentairesList([]);
+                      }}>Retour</button>
+                    </div>
           </div>
                 ) : (
                     <div>

@@ -69,6 +69,7 @@ export interface Eleve {
   prenom: string
   image: string
   mdp: string
+  comCIP: [[String]]
   archiver: boolean
   wallpaper: string
 }
