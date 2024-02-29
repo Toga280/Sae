@@ -70,7 +70,8 @@ function ConnectionEleveShema({
       </head>
       <p className="info_nom_eleve">{`${prenomEleveActuelle} ${nomEleveActuelle}`}</p>
       <div className="affichage">
-        <p className="affichageMDP">{password.join("")}</p>
+        {password.length === 0 ? <p className="affichageMDP">‎ </p> :
+        <p className="affichageMDP"> {password.join("")} </p> }
       </div>
 
       <div className="boutons">

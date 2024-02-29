@@ -1,0 +1,48 @@
+---
+version: '3'
+
+services:
+  frontend:
+    container_name: frontend-sae
+    build:
+      context: ./frontend/
+      dockerfile: ./frontend/Dockerfile
+    restart: unless-stopped
+    depends_on:
+      - backend
+    environment:
+    networks:
+      - backend
+    ports:
+      - 80:3000
+
+  backend:
+    container_name: backend-sae
+    build:
+      context: ./backend/
+      dockerfile: ./backend/Dockerfile
+    restart: unless-stopped
+    depends_on:
+      - database
+    environment:
+      - DB_USER=admin
+      - DB_PASSWORD=admin
+    networks:
+      - backend
+      - database
+
+  database:
+    container_name: database-sae
+    image: mongo
+    restart: unless-stopped
+    environment:
+      - MONGO_INITDB_ROOT_USERNAME=admin
+      - MONGO_INITDB_ROOT_PASSWORD=admin
+    networks:
+      - database
+
+volumes:
+
+networks:
+  database: {}
+  backend: {}

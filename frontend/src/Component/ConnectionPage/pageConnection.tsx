@@ -16,9 +16,8 @@ function PageConnection({
   const BoutonCliquezConnection = (etat: boolean) => {
     setSelectBoutton(etat)
   }
-
   return (
-    <div className="">
+    <div className="global_login">
       {!selectBoutton && (
         <button
           className="button_connection_edu"
@@ -44,14 +43,14 @@ function PageConnection({
           identifiant={identifiant}
         />
       ) : null}
-      {selectBoutton && (
-        <button
-          className="bouton_retour_connection_edu"
-          onClick={() => BoutonCliquezConnection(false)}
-        >
-          Retour
-        </button>
-      )}
+        {selectBoutton && (
+          <button
+            className="bouton_retour_connection_edu"
+            onClick={() => BoutonCliquezConnection(false)}
+          >
+            Retour
+          </button>
+        )}
     </div>
   )
 }

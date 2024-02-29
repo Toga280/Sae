@@ -173,6 +173,14 @@ const fonctionsMiniBoxInfoJson: FonctionsMiniBoxInfoJson = {
     return FicheJson.Materiel[nMateriel]
   },
 
+  //valeur possible : "pasbien" "moyen" "bien"
+  modifierreacteleve: (value) => {
+    FicheJson.info.reacteleve = value
+  },
+
+  getreacteleve: () => {
+    return FicheJson.info.reacteleve
+  },
 }
 
 export default fonctionsMiniBoxInfoJson

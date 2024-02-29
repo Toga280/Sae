@@ -16,6 +16,18 @@ function SuiviEleve({ redirection, identifiant }: any) {
     const handleSuiviClick = (eleve: any) => {
       setSelectedEleve(eleve); // Mettre à jour l'état avec l'élève sélectionné
   };
+  
+  const [commentaire, setCommentaire] = useState('');
+  // Utilisation d'un tableau d'objets pour inclure le commentaire et le timestamp
+  const [commentairesList, setCommentairesList] = useState<{comment: string, timestamp: string}[]>([]);
+
+  const handleAjoutCommentaire = () => {
+    const now = new Date();
+    const timestamp = now.toLocaleDateString('fr-FR') + ' ' + now.toLocaleTimeString('fr-FR');   
+    setCommentairesList([...commentairesList, { comment: commentaire, timestamp }]);
+    setCommentaire('');
+  };
+
     // Fonction pour récupérer les images des étudiants
     const getStudentImages = async () => {
       try {
@@ -142,29 +154,46 @@ function SuiviEleve({ redirection, identifiant }: any) {
       <div>
           {selectedEleve ? (
             <div>
-            <div>
               <div className='global_suivi_eleve_perso'>
+                <div className='text_area_container'>
                   <h2 className='nom_eleve_suivi'>Suivi pour {selectedEleve.prenom} {selectedEleve.nom}</h2>
-                  <textarea className='text_area_eleve_suivi'/>
-                  <button className='ajout_suivi_commentaire'>Ajouter</button>
-              </div>
-              <div className='global_graph'>
-                <svg width={width} height={height} className='graph'>
-                  {data.map((value, index) => (
-                      <rect
-                          key={index}
-                          x={index * barWidth}
-                          y={height - (value / maxValue) * height} // Inverser pour que le graphique s'affiche correctement
-                          width={barWidth - 5} // 5 pour un peu d'espace entre les barres
-                          height={(value / maxValue) * height}
-                          fill="teal"
-                      />
+                  <textarea 
+                    className='text_area_eleve_suivi'
+                    value={commentaire}
+                    onChange={(e) => setCommentaire(e.target.value)}
+                  />
+                  <button 
+                    className='ajout_suivi_commentaire'
+                    onClick={handleAjoutCommentaire}
+                  >
+                    Ajouter
+                  </button>
+                  {commentairesList.map((item, index) => (
+                    <div key={index} className='commentaire_container'>
+                      <label className='commentaire_label'>{item.comment}</label>
+                      <span className='commentaire_timestamp'>{item.timestamp}</span>
+                    </div>
                   ))}
-                </svg>
-              </div>
-              </div>
-                <button className="retour_suivi_commentaire"onClick={() => setSelectedEleve(null)}>Retour</button>
+                </div>
+                <div className='global_graph'>
+                <svg width={width} height={height} className='graph'>
+                      {data.map((value, index) => (
+                          <rect
+                              key={index}
+                              x={index * barWidth}
+                              y={height - (value / maxValue) * height} // Inverser pour que le graphique s'affiche correctement
+                              width={barWidth - 5} // 5 pour un peu d'espace entre les barres
+                              height={(value / maxValue) * height}
+                              fill="teal"
+                          />
+                      ))}
+                    </svg>
+                </div>
             </div>
+            <div>
+                  <button className="retour_suivi_commentaire" onClick={() => setSelectedEleve(null)}>Retour</button>
+                </div>
+          </div>
           ) : (
             <div>
               <div className="global_suivi_eleves">

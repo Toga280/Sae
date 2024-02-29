@@ -29,19 +29,37 @@ input.TextInput {
   box-sizing: border-box;
 }
 
-.boutton_retour_interaction_edu{
-  background-color: #ffffff;
-  max-height: 4em;
-  width: 10%;
-  max-width: 30%;
-  color: #355c7d;
-  font-weight: bold;
-  font-size: 18px;
-  padding: 0.8em;
+
+.boutton_retour_interaction_edu {
   margin: 1em;
-  border-radius: 4px;
+  font-weight: bold;
+  display: inline-block;
+  padding: 8px 16px;
+  font-size: 14px;
+  color: #ffffff; 
+  background-color: #007bff; 
   border: none;
+  border-radius: 4px; 
   cursor: pointer;
+  text-decoration: none; 
+  transition: background-color 0.2s ease-in-out, transform 0.2s ease-in-out;
+
+}
+
+.boutton_retour_interaction_edu:hover, .bouton_retour_connection_edu:focus {
+  background-color: #0056b3;
+  transform: translateY(-2px); 
+  text-decoration: none;
+}
+
+.boutton_retour_interaction_edu:active {
+  transform: translateY(1px); 
+}
+
+.boutton_retour_interaction_edu:before {
+  content: "← "; 
+  display: inline-block;
+  margin-right: 8px;
 }
 .boutton_sauvegarder_interaction_edu{
   background-color: #ffffff;

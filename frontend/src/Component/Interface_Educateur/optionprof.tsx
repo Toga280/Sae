@@ -135,7 +135,9 @@ function Optionprof({ redirection, identifiant }: any) {
       </style>
     )}
       <div>
-        <h2 className="titre_changer_fond">Changer le fond d'écran</h2>
+        <div className="global_titre_changer_fond_prof">
+        <h2 className="titre_changer_fond_prof">Changer le fond d'écran</h2>
+        </div>
 
         <div className="global_option_prof">
           <label htmlFor="fileInput" className={`custom-file-upload`}>
