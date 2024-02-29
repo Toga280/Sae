@@ -9,6 +9,7 @@ const PORT = 5000
 const multer = require('multer')
 import fs from 'fs'
 import path from 'path'
+import { error } from 'console'
 const storage = multer.memoryStorage()
 const upload = multer({ storage: storage })
 
@@ -148,9 +149,45 @@ const Eleve = new Schema<Eleve>({
 
 const EleveModel = model<Eleve>('Eleve', Eleve)
 
-if (1) {
-  const
+//condition pour creer un admin automatiquement
+async function CreateAdminIfNotExiste() {
+  const adminExistant = await Admin.findOne({ role: 'Admin' })
+
+  if (!adminExistant) {
+    console.log(
+      "Aucun admininstrateur de la base de donné, création de l'administrateur.",
+    )
+    try {
+      const adminBasique = new Admin({
+        nom: 'admin',
+        prenom: 'admin',
+        mdp: 'admin',
+        id: 'admin',
+        role: 'Admin',
+      })
+      adminBasique
+        .save()
+        .then(() => {
+          console.log(
+            "Administrateur creer avec succée. L'identiant est : 'admin', le mot de passe est 'admin'. Changé le mdp des que possible svp.",
+          )
+        })
+        .catch((error: any) => {
+          console.error(
+            "Erreur lors de la création de l'administrateur : ",
+            error,
+          )
+        })
+    } catch (error) {
+      console.log(
+        "Erreur lors de la creation de l'administrateur standare.",
+        error,
+      )
+    }
+  }
 }
+
+CreateAdminIfNotExiste()
 
 /*------------------- POST -------------------*/
 
