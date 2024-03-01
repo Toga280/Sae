@@ -270,7 +270,7 @@ function FicheBoxTotal({
 
         {versionProf ? (
           <button
-            className="boutton_sauvegarder_interaction_edu"
+            className="boutton_imprimer_interaction_edu"
             onClick={imprimerPage}
           >
             Imprimer
@@ -279,26 +279,34 @@ function FicheBoxTotal({
       </div>
       )}
       {reactionencours && (
-        <div>
+        <div className='global_image_ressenti'>
+        <h1 className='txt_ressenti'>Comment ça s'est passé ?</h1>
+        <div className="smiley_container">
           <img
             src={require('./EmojiEleve/s1.png')}
             onClick={async () => await setReaction("pasbien")}
             alt="smiley vert"
-            style={{ width: '200px', height: '200px', cursor: 'pointer' }}
+            className='smiley_ressenti'
           />
+        </div>
+        <div className="smiley_container">
           <img
             src={require('./EmojiEleve/s2.png')}
             onClick={async () => await setReaction("bien")}
             alt="smiley jaune"
-            style={{ width: '200px', height: '200px', cursor: 'pointer' }}
+            className='smiley_ressenti'
           />
+        </div>
+        <div className="smiley_container">
           <img
             src={require('./EmojiEleve/s3.png')}
-            onClick={async () => await setReaction("bien")}
-            alt="smiley Rouge"
-            style={{ width: '200px', height: '200px', cursor: 'pointer' }}
+            onClick={async () => await setReaction("tresbien")}
+            alt="smiley rouge"
+            className='smiley_ressenti'
           />
+        </div>
       </div>
+
       )}
     </>
   )

@@ -18,3 +18,35 @@
     }
   }
   
+  .txt_ressenti{
+    font-weight: bold;
+    color: #355c7d;
+    margin: 1em;
+  }
+  .smiley_description{
+    font-weight: bold;
+    color: #355c7d;
+    margin: 1em;
+  }
+  .global_image_ressenti {
+    text-align: center; /* Centre le contenu */
+    padding: 20px; /* Ajoute un peu d'espace autour du contenu */
+  }
+  
+  .smiley_container {
+    display: inline-block; /* Affiche les conteneurs côte à côte */
+    margin: 10px; /* Ajoute un peu d'espace entre les images */
+    text-align: center; /* Centre le texte sous l'image */
+  }
+  
+  .smiley_ressenti {
+    width: 200px;
+    border-radius: 10%;
+    height: 200px;
+    cursor: pointer; /* Change le curseur en main lorsque vous survolez l'image */
+    transition: transform 0.3s ease; /* Ajoute une animation de zoom au survol */
+  }
+  
+  .smiley_ressenti:hover {
+    transform: scale(1.1); /* Zoom légèrement l'image au survol */
+  }

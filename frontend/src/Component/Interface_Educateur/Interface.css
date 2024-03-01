@@ -58,11 +58,10 @@
     float: right;
 }
 .global_txt_espace_prof{
-    display: flex; /* Utilisez Flexbox */
-    justify-content: center; /* Centre horizontalement */
-    align-items: center; /* Centre verticalement */
-    text-align: center; 
-
+    width: 100%;
+    text-align: center;
+    display: flex;
+    justify-content: center;
 }
 .txt_espace_prof{
     box-shadow: 2px 2px 12px rgba(0,0,0,0.2); /* Ombre plus prononcée au survol */
@@ -82,6 +81,7 @@
     transform: translateY(-3px); /* Légère élévation au survol */
     box-shadow: 2px 2px 12px rgba(0,0,0,0.2); /* Ombre plus prononcée au survol */
 }
+
 @media (max-width: 950px) {
     .global_bouton_interface_educateur {
         display: flex;

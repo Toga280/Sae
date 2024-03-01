@@ -121,22 +121,22 @@ function ModifierRole({ redirection, identifiant }: any) {
       </style>
     )}
       <div>
-        <div className="global_creation_profil_prof">
-          <p className="txt_creation_espace_élève">Modifier le rôle d'un membre de l'équipe</p>
-          <div className="general_login">
+        <div className="global_modifications_role">
+          <p className="txt_modifier_role">Modifier le rôle d'un membre de l'équipe</p>
+          <div className="general_role">
             {admin.map((admin, index) => (
               <div
-                className="login-container"
+                className="login_roles"
                 key={index}
                 onClick={() => selectionnerProfil(admin)}
               >
-                <div className="user-name">{`${admin.prenom} ${admin.nom}`}</div>
+                <div className="user-names">{`${admin.prenom} ${admin.nom}`}</div>
               </div>
             ))}
       
             {profilSelectionne && inputActive && (
-              <div className="container">
-                <label htmlFor="choix" className="select_role">
+              <div className="container_role">
+                <label htmlFor="choix" className="select_roles">
                   Modifier le rôle de : {profilSelectionne.prenom} {profilSelectionne.nom}
                 </label>
                 <select

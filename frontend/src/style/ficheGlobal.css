@@ -62,7 +62,22 @@ input.TextInput {
   margin-right: 8px;
 }
 .boutton_sauvegarder_interaction_edu{
-  background-color: #ffffff;
+  background-color: green;
+  max-height: 4em;
+  width: 15%;
+  max-width: 20%;
+  color: white;
+  font-weight: bold;
+  font-size: 18px;
+  padding: 0.8em;
+  margin: 1em;
+  border-radius: 4px;
+  float: right;
+  cursor: pointer;
+  border: none;
+}
+.boutton_imprimer_interaction_edu{
+  background-color: white;
   max-height: 4em;
   width: 15%;
   max-width: 20%;

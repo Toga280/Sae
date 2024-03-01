@@ -4,6 +4,7 @@
     "@types/node": "*",
     "axios": "^1.6.2",
     "bcrypt": "^5.1.1",
+    "chart.js": "^4.4.2",
     "cors": "^2.8.5",
     "express": "^4.18.2",
     "mongoose": "^8.0.1",
