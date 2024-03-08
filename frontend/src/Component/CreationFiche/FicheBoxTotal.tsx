@@ -280,22 +280,23 @@ function FicheBoxTotal({
       )}
       {reactionencours && (
         <div>
-          <img
-            src={require('./EmojiEleve/s1.png')}
+                    <img
+            src={require('./EmojiEleve/s3.png')}
             onClick={async () => await setReaction("pasbien")}
-            alt="smiley vert"
+            alt="smiley Rouge"
             style={{ width: '200px', height: '200px', cursor: 'pointer' }}
           />
+          
           <img
             src={require('./EmojiEleve/s2.png')}
-            onClick={async () => await setReaction("bien")}
+            onClick={async () => await setReaction("moyen")}
             alt="smiley jaune"
             style={{ width: '200px', height: '200px', cursor: 'pointer' }}
           />
           <img
-            src={require('./EmojiEleve/s3.png')}
+            src={require('./EmojiEleve/s1.png')}
             onClick={async () => await setReaction("bien")}
-            alt="smiley Rouge"
+            alt="smiley vert"
             style={{ width: '200px', height: '200px', cursor: 'pointer' }}
           />
       </div>
