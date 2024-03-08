@@ -1,6 +1,6 @@
 import { Schema, model } from 'mongoose'
 import { MiniBox, FicheDocument, Picto, Eleve, Admin } from './interface'
-import { generateJWT,secretKey } from './jwt';
+import { generateJWT,secretKey,verifyJWT } from './jwt';
 import sharp from 'sharp'
 const express = require('express')
 const app = express()
