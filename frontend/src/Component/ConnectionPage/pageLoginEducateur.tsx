@@ -38,7 +38,8 @@ function PageLoginEducateur({ redirection, setRole, setIdConnecter, identifiant 
         )}&mdp=${encodeURIComponent(mdp)}`,
       )
       .then((response) => {
-        if (response.data) {
+        if (response.data.rep) {
+          localStorage.setItem('token', response.data.token);
           getRole(id)
           setIdConnecter(id)
           redirection(2)

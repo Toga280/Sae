@@ -32,7 +32,9 @@ function ConnectionEleveShema({
         )}`
       )
       .then((response) => {
-        if (response.data) {
+        console.log(response.data.rep);
+        if (response.data.rep) {
+          localStorage.setItem('token', response.data.token);
           redirection(4);
         } else {
           setMdpFaux(true);

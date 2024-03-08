@@ -1,5 +1,6 @@
 import { Schema, model } from 'mongoose'
 import { MiniBox, FicheDocument, Picto, Eleve, Admin } from './interface'
+import { generateJWT } from './jwt';
 import sharp from 'sharp'
 const express = require('express')
 const app = express()
@@ -7,6 +8,8 @@ const mongoose = require('mongoose')
 const cors = require('cors')
 const PORT = 5000
 const multer = require('multer')
+const secretKey = "8.8cm Flak 37 Selbstfahrlafette auf 18 ton Zugkraftwagen";
+const expiresIn = "24h";
 import fs from 'fs'
 import path from 'path'
 const storage = multer.memoryStorage()
@@ -152,6 +155,9 @@ const EleveModel = model<Eleve>('Eleve', Eleve)
 
 /*------------------- POST -------------------*/
 
+/*POST FICHE ===========================================================*/
+/*autorisation : ADMIN*/
+/*autorisation : prof*/
 app.post('/POST/fiche', (req: any, res: any) => {
   const newData = req.body
   const newFiche = new Fiche(newData)
@@ -175,6 +181,11 @@ app.post('/POST/fiche', (req: any, res: any) => {
     })
 })
 
+/*POST COMMENTAIRE ===========================================================*/
+/*autorisation : ADMIN*/
+/*autorisation : prof*/
+/*autorisation : profintervenant*/
+/*autorisation : CIP*/
 app.post('/POST/commentaire', async (req: any, res: any) => {
   const { ficheName, contenu, idCommentateur } = req.body
   const fiche = await Fiche.findOne({ 'info.name': ficheName })
@@ -197,6 +208,12 @@ app.post('/POST/commentaire', async (req: any, res: any) => {
   }
 })
 
+/*GET COMMENTAIRE ===========================================================*/
+/*autorisation : ADMIN*/
+/*autorisation : prof*/
+/*autorisation : profintervenant*/
+/*autorisation : CIP*/
+/*autorisation : eleve*/
 app.get('/GET/allCommentaire', async (req: any, res: any) => {
   const ficheName = req.query.ficheName
 
@@ -220,6 +237,11 @@ app.get('/GET/allCommentaire', async (req: any, res: any) => {
   }
 })
 
+/*GET INFO SUPP FICHE ===========================================================*/
+/*autorisation : ADMIN*/
+/*autorisation : prof*/
+/*autorisation : profintervenant*/
+/*autorisation : CIP*/
 app.get('/GET/info/informationSuplementaire', async (req: any, res: any) => {
   const ficheName = req.query.ficheName
 
@@ -247,7 +269,8 @@ app.get('/GET/info/informationSuplementaire', async (req: any, res: any) => {
 })
 
 /* UPLOAD IMAGE ELEVES ===========================================================*/
-
+/*autorisation : ADMIN*/
+/*autorisation : eleve*/
 app.post(
   '/POST/uploadImageEleve',
   upload.single('file'),
@@ -287,7 +310,8 @@ app.post(
 )
 
 /*UPLOAD PICTO==============================================*/
-
+/*autorisation : ADMIN*/
+/*autorisation : prof*/
 app.post(
   '/POST/uploadpicto',
   upload.single('file'),
@@ -328,8 +352,10 @@ app.post(
     }
   },
 )
-/* upload fond ecran elelve======================================================*/
 
+/* upload fond ecran elelve======================================================*/
+/*autorisation : ADMIN*/
+/*autorisation : eleve*/
 app.post(
   '/POST/uploadfondecran',
   upload.single('file'),
@@ -367,7 +393,8 @@ app.post(
 )
 
 /* upload photo profil eleve======================================================*/
-
+/*autorisation : ADMIN*/
+/*autorisation : prof*/
 app.post(
   '/POST/uploadpictoEleve',
   upload.single('file'),
@@ -405,7 +432,7 @@ app.post(
 )
 
 /* AJOUT ELEVE=========================================================*/
-
+/*autorisation : ADMIN*/
 app.post('/POST/eleves', (req: any, res: any) => {
   const newData = req.body
   const newEleve = new EleveModel(newData)
@@ -430,7 +457,8 @@ app.post('/POST/eleves', (req: any, res: any) => {
 })
 
 /* MODFIER MDP ELEVE======================================================*/
-
+/*autorisation : ADMIN*/
+/*autorisation : prof*/
 app.post('/POST/eleveUpdatePassword', async (req: any, res: any) => {
   const { nom, prenom, mdp } = req.body
 
@@ -454,7 +482,7 @@ app.post('/POST/eleveUpdatePassword', async (req: any, res: any) => {
 })
 
 /*MODIFIER MDP PROF=====================================================*/
-
+/*autorisation : ADMIN*/
 app.post('/POST/profUpdatePassword', async (req: any, res: any) => {
   const { mdp, nom, prenom } = req.body
 
@@ -474,7 +502,7 @@ app.post('/POST/profUpdatePassword', async (req: any, res: any) => {
 })
 
 /*ARCHIVER ELEVE================================================================*/
-
+/*autorisation : ADMIN*/
 app.post('/POST/archiverEleve', async (req: any, res: any) => {
   const { nom, prenom } = req.body
 
@@ -493,7 +521,7 @@ app.post('/POST/archiverEleve', async (req: any, res: any) => {
 })
 
 /*RESTORER ELEVE=================================================================*/
-
+/*autorisation : ADMIN*/
 app.post('/POST/restorerEleve', async (req: any, res: any) => {
   const { nom, prenom } = req.body
 
@@ -512,7 +540,8 @@ app.post('/POST/restorerEleve', async (req: any, res: any) => {
 })
 
 /*AFFECTER UN ELEVE A UNE FICHE=====================================================*/
-
+/*autorisation : ADMIN*/
+/*autorisation : prof*/
 app.post('/POST/affectereleve', async (req: any, res: any) => {
   const { nom, prenom, ficheName } = req.body
   console.log('nom, prenom, ficheName -> ', nom, prenom, ficheName)
@@ -584,7 +613,7 @@ app.post('/POST/affectereleve', async (req: any, res: any) => {
 })
 
 /*AJOUTER UN ADMIN===============================================================*/
-
+/*autorisation : ADMIN*/
 app.post('/POST/admin', (req: any, res: any) => {
   const newData = req.body
   const newAdmin = new Admin(newData)
@@ -611,7 +640,7 @@ app.post('/POST/admin', (req: any, res: any) => {
 })
 
 /*MODIFIER ROLE PROF================================================================*/
-
+/*autorisation : ADMIN*/
 app.post('/POST/ProfUpdateRole', async (req: any, res: any) => {
   const { nom, prenom, role } = req.body
 
@@ -631,7 +660,8 @@ app.post('/POST/ProfUpdateRole', async (req: any, res: any) => {
 })
 
 /*modifier NOM FICHE================================================================*/
-
+/*autorisation : ADMIN*/
+/*autorisation : prof*/
 app.post('/POST/ficheUpdateName', async (req: any, res: any) => {
   const { name, newName } = req.body
 
@@ -657,7 +687,8 @@ app.post('/POST/ficheUpdateName', async (req: any, res: any) => {
 })
 
 /*dupliquer FICHE================================================================*/
-
+/*autorisation : ADMIN*/
+/*autorisation : prof*/
 app.post('/POST/ficheDuplicate', async (req: any, res: any) => {
   const { name } = req.body
 
@@ -705,6 +736,8 @@ app.post('/POST/ficheDuplicate', async (req: any, res: any) => {
 })
 
 /* ajouter un comentaire de la CIP =================================================*/
+/*autorisation : ADMIN*/
+/*autorisation : CIP*/
 app.post('/POST/comCIP', async (req: any, res: any) => {
   const { nom, prenom, comCIP } = req.body
   try {
@@ -725,7 +758,8 @@ app.post('/POST/comCIP', async (req: any, res: any) => {
 /*------------------- GET -------------------*/
 
 /* GET ALL FICHES ===========================================================*/
-
+/*autorisation : ADMIN*/
+/*autorisation : prof*/
 app.get('/GET/allFicheNames', async (req: any, res: any) => {
   try {
     const ficheNames = await Fiche.find({}, 'info.name').exec()
@@ -743,7 +777,11 @@ app.get('/GET/allFicheNames', async (req: any, res: any) => {
 })
 
 /* GET FICHE =============================================*/
-
+/*autorisation : ADMIN*/
+/*autorisation : prof*/
+/*autorisation : profintervenant*/
+/*autorisation : CIP*/
+/*autorisation : eleve*/
 app.get('/GET/nameFiche', async (req: any, res: any) => {
   const { name } = req.query
 
@@ -766,7 +804,8 @@ app.get('/GET/nameFiche', async (req: any, res: any) => {
 })
 
 /* GET NAME FICHES EXISTE =============================================*/
-
+/*autorisation : ADMIN*/
+/*autorisation : prof*/
 app.get('/GET/nameFicheExiste', async (req: any, res: any) => {
   const { name } = req.query
 
@@ -789,7 +828,6 @@ app.get('/GET/nameFicheExiste', async (req: any, res: any) => {
 })
 
 /* GET ELEVES ============================================================*/
-
 app.get('/GET/allEleve', async (req: any, res: any) => {
   try {
     const eleve = await EleveModel.find(
@@ -804,7 +842,7 @@ app.get('/GET/allEleve', async (req: any, res: any) => {
 })
 
 /* GET ELEVES ARCHIVER=======================================================*/
-
+/*autorisation : ADMIN*/
 app.get('/GET/allEleveArchiver', async (req: any, res: any) => {
   try {
     const eleve = await EleveModel.find(
@@ -819,13 +857,19 @@ app.get('/GET/allEleveArchiver', async (req: any, res: any) => {
 })
 
 /*GET ELEVE AUTHENTIFICATION =================================================*/
-
 app.get('/GET/eleve/authentification', async (req: any, res: any) => {
   const { nom, prenom, mdp } = req.query
   try {
-    const admin = await EleveModel.findOne({ nom, prenom, mdp }).exec()
-    if (admin) {
-      res.status(200).send(true)
+    const eleve = await EleveModel.findOne({ nom, prenom, mdp }).exec()
+    if (eleve) {
+      const payload = {
+        role: 'eleve',
+        nom: eleve.nom,
+        prenom: eleve.prenom,
+      }
+      const token = generateJWT(payload, secretKey, expiresIn);
+      res.status(200).send({ rep: true, token: token });
+
     } else {
       res.status(401).send(false)
     }
@@ -836,7 +880,11 @@ app.get('/GET/eleve/authentification', async (req: any, res: any) => {
 })
 
 /*GET ELEVE FICHE =================================================*/
-
+/*autorisation : ADMIN*/
+/*autorisation : prof*/
+/*autorisation : profintervenant*/
+/*autorisation : CIP*/
+/*autorisation : eleve*/
 app.get('/GET/eleve/fiche', async (req: any, res: any) => {
   const { nom, prenom } = req.query
   try {
@@ -852,6 +900,12 @@ app.get('/GET/eleve/fiche', async (req: any, res: any) => {
   }
 })
 
+/*GET ELEVE FICHE IN PROGRESS =================================================*/
+/*autorisation : ADMIN*/
+/*autorisation : prof*/
+/*autorisation : profintervenant*/
+/*autorisation : CIP*/
+/*autorisation : eleve*/
 app.get('/GET/eleve/FicheInProgress', async (req: any, res: any) => {
   const { nom, prenom } = req.query
   try {
@@ -885,6 +939,12 @@ app.get('/GET/eleve/FicheInProgress', async (req: any, res: any) => {
   }
 })
 
+/*GET ELEVE FICHE COMPLETED =================================================*/
+/*autorisation : ADMIN*/
+/*autorisation : prof*/
+/*autorisation : profintervenant*/
+/*autorisation : CIP*/
+/*autorisation : eleve*/
 app.get('/GET/eleve/FicheCompleted', async (req: any, res: any) => {
   const { nom, prenom } = req.query
   try {
@@ -913,8 +973,12 @@ app.get('/GET/eleve/FicheCompleted', async (req: any, res: any) => {
   }
 })
 
-// GET TYPEFICHE
-
+/*GET FICHE TYPE =================================================*/
+/*autorisation : ADMIN*/
+/*autorisation : prof*/
+/*autorisation : profintervenant*/
+/*autorisation : CIP*/
+/*autorisation : eleve*/
 app.get('/fiches/type/:typeFiche', async (req: any, res: any) => {
   const { nom, prenom } = req.query
   const ficheName = await Fiche.findOne({
@@ -932,14 +996,19 @@ app.get('/fiches/type/:typeFiche', async (req: any, res: any) => {
   }
 })
 
-/*GET ADMIN======================================================================*/
-
+/*GET AUTENTIFICATION PROF======================================================================*/
 app.get('/GET/admin/authentification', async (req: any, res: any) => {
   const { id, mdp } = req.query
   try {
     const admin = await Admin.findOne({ id, mdp }).exec()
     if (admin) {
-      res.status(200).send(true)
+      const payload = {
+        role: admin.role,
+        nom: admin.nom,
+        prenom: admin.prenom,
+      }
+      const token = generateJWT(payload, secretKey, expiresIn);
+      res.status(200).send({ rep: true, token: token });
     } else {
       res.status(401).send(false)
     }
@@ -950,7 +1019,10 @@ app.get('/GET/admin/authentification', async (req: any, res: any) => {
 })
 
 /*GET ROLE PROF ====================================================================*/
-
+/*autorisation : ADMIN*/
+/*autorisation : prof*/
+/*autorisation : profintervenant*/
+/*autorisation : CIP*/
 app.get('/GET/roleProf', async (req: any, res: any) => {
   const { id } = req.query
   try {
@@ -968,7 +1040,7 @@ app.get('/GET/roleProf', async (req: any, res: any) => {
 })
 
 /*GET ALL PROF =====================================================================*/
-
+/*autorisation : ADMIN*/
 app.get('/GET/allProf', async (req: any, res: any) => {
   try {
     const admin = await Admin.find({}, 'nom prenom').exec()
@@ -980,7 +1052,11 @@ app.get('/GET/allProf', async (req: any, res: any) => {
 })
 
 /* GET PICTO ===================================================================*/
-
+/*autorisation : ADMIN*/
+/*autorisation : prof*/
+/*autorisation : profintervenant*/
+/*autorisation : CIP*/
+/*autorisation : eleve*/
 app.get('/GET/getpicto-info', async (req: any, res: any) => {
   const pictoDirectory = path.join(__dirname, './src/picto')
 
@@ -999,7 +1075,11 @@ app.get('/GET/getpicto-info', async (req: any, res: any) => {
 })
 
 /* GET PICTO FILE ===============================================================*/
-
+/*autorisation : ADMIN*/
+/*autorisation : prof*/
+/*autorisation : profintervenant*/
+/*autorisation : CIP*/
+/*autorisation : eleve*/
 app.get('/GET/getpicto-file', async (req: any, res: any) => {
   const pictoDirectory = path.join(__dirname, './src/picto')
   const { name } = req.query
@@ -1017,7 +1097,6 @@ app.get('/GET/getpicto-file', async (req: any, res: any) => {
 })
 
 /* GET photo profil ELEVE ===============================================================*/
-
 app.get('/GET/piceleve', async (req: any, res: any) => {
   const pictoDirectory = path.join(__dirname, './src/piceleve')
   const { name } = req.query
@@ -1047,7 +1126,11 @@ app.get('/GET/piceleve', async (req: any, res: any) => {
 })
 
 /* GET PHOTO ELEVE INFO ===================================================================*/
-
+/*autorisation : ADMIN*/
+/*autorisation : prof*/
+/*autorisation : profintervenant*/
+/*autorisation : CIP*/
+/*autorisation : eleve*/
 app.get('/GET/getphotoeleve-info', async (req: any, res: any) => {
   const { eleve } = req.query
   const pictoDirectory = path.join(__dirname, './src/photo/' + eleve)
@@ -1067,7 +1150,11 @@ app.get('/GET/getphotoeleve-info', async (req: any, res: any) => {
 })
 
 /* GET PHOTO ELEVE FILE ===============================================================*/
-
+/*autorisation : ADMIN*/
+/*autorisation : prof*/
+/*autorisation : profintervenant*/
+/*autorisation : CIP*/
+/*autorisation : eleve*/
 app.get('/GET/getphotoeleve-file', async (req: any, res: any) => {
   const { eleve } = req.query
   const pictoDirectory = path.join(__dirname, './src/photo/' + eleve)
@@ -1086,7 +1173,7 @@ app.get('/GET/getphotoeleve-file', async (req: any, res: any) => {
 })
 
 /* GET FOND ECRAN ELEVE ===============================================================*/
-
+/*autorisation : eleve*/
 app.get('/GET/fondecran', async (req: any, res: any) => {
   const pictoDirectory = path.join(__dirname, './src/fond')
   const { name } = req.query
@@ -1109,7 +1196,8 @@ app.get('/GET/fondecran', async (req: any, res: any) => {
 })
 
 /* get eleve affecter a fiche ===============================================================*/
-
+/*autorisation : ADMIN*/
+/*autorisation : prof*/
 app.get('/GET/eleveAffecter', async (req: any, res: any) => {
   const { ficheName } = req.query
   try {
@@ -1128,8 +1216,9 @@ app.get('/GET/eleveAffecter', async (req: any, res: any) => {
   }
 })
 
-/* GET tableau réaction eleve ===============================================================*/
-
+/* GET tableau réaction eleve ======================================================================*/
+/*autorisation : ADMIN*/
+/*autorisation : CIP*/
 app.get('/GET/reactionEleve', async (req: any, res: any) => {
   const { nomeleve, prenomeleve } = req.query
   try {
@@ -1154,7 +1243,9 @@ app.get('/GET/reactionEleve', async (req: any, res: any) => {
   }
 })
 
-/* GET comentaire de la CIP pour un élève donné ===================================*/
+/* GET comentaire de la CIP pour un élève donné =====================================================*/
+/*autorisation : ADMIN*/
+/*autorisation : CIP*/
 app.get('/GET/comentaireCIP', async (req: any, res: any) => {
   const { nomeleve, prenomeleve } = req.query;
   try {
@@ -1179,7 +1270,8 @@ app.get('/GET/comentaireCIP', async (req: any, res: any) => {
 /*------------------- DELETE -------------------*/
 
 /* DELETE FICHE ===============================================================*/
-
+/*autorisation : ADMIN*/
+/*autorisation : prof*/
 app.get('/DELETE/ficheName', async (req: any, res: any) => {
   const { name } = req.query
   if (!name) {
@@ -1204,7 +1296,8 @@ app.get('/DELETE/ficheName', async (req: any, res: any) => {
 })
 
 /* delete fond ecran eleve ===============================================================*/
-
+/*autorisation : ADMIN*/
+/*autorisation : eleve*/
 app.get('/DELETE/fond', async (req: any, res: any) => {
   const { name } = req.query
   const imagePath = path.join(__dirname, './src/fond', `${name}.webp`)
