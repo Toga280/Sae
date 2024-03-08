@@ -2,6 +2,10 @@ body {
     background-color: #d7e1ec;
   }
   
+  .global_login {
+    text-align: right;
+
+  }
   .general_login {
     width: 75%;
     margin: 2em auto; /* Centrage horizontal avec un peu plus d'espace */
@@ -11,6 +15,7 @@ body {
     justify-content: center;
     align-items: center;
     animation: fadeIn 1s ease-out;
+    
   }
   
   .login-container {
@@ -69,6 +74,7 @@ body {
     cursor: pointer;
     font-size: 16px;
     transition: background-color 0.2s ease, transform 0.2s ease;
+
   }
   
   .login-button:hover{

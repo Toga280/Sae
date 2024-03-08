@@ -58,13 +58,14 @@ function ListeProfilArchiver({ redirection, identifiant }: any) {
 
   const restorerEleve = (nom: String, prenom: String) => {
     const confirmation = window.confirm(
-      `Êtes-vous sûr de vouloir archiver ${prenom} ?`
+      `Êtes-vous sûr de vouloir restaurer ${prenom} ?`
     );
     if (confirmation) {
       axios
         .post("http://localhost:5000/POST/restorerEleve", { nom, prenom })
         .then((response) => {
           console.log(response.data);
+          alert(`${prenom} a été restauré avec succès`);
           getEleve();
         })
         .catch((error) => {
