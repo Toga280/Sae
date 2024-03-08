@@ -158,8 +158,11 @@ const EleveModel = model<Eleve>('Eleve', Eleve)
 /*autorisation : ADMIN*/
 /*autorisation : prof*/
 app.post('/POST/fiche', (req: any, res: any) => {
-  const newData = req.body
+  const newData = req.body.data
+  const token = req.body.token
   const newFiche = new Fiche(newData)
+  const { valid, payload } = verifyJWT(token, secretKey);
+  if (valid && (payload.role === 'prof' || payload.role === 'admin')) {
   newFiche
     .save()
     .then(() => {
@@ -178,15 +181,19 @@ app.post('/POST/fiche', (req: any, res: any) => {
         res.status(500).send('Erreur interne du serveur')
       }
     })
+  } else {
+    res.status(401).send('Non autorisé')
+  }
 })
-
 /*POST COMMENTAIRE ===========================================================*/
 /*autorisation : ADMIN*/
 /*autorisation : prof*/
 /*autorisation : profintervenant*/
 /*autorisation : CIP*/
 app.post('/POST/commentaire', async (req: any, res: any) => {
-  const { ficheName, contenu, idCommentateur } = req.body
+  const { ficheName, contenu, idCommentateur, token } = req.body
+  const { valid, payload } = verifyJWT(token, secretKey);
+  if (valid && (payload.role === 'prof' || payload.role === 'admin' || payload.role === 'profintervenant' || payload.role === 'CIP')) {
   const fiche = await Fiche.findOne({ 'info.name': ficheName })
   try {
     if (!fiche) {
@@ -204,6 +211,9 @@ app.post('/POST/commentaire', async (req: any, res: any) => {
   } catch (error) {
     console.error("Erreur lors de l'ajout d'un commentaire : ", error)
     res.status(500).json({ error: 'Erreur serveur' })
+  }
+  } else {
+    res.status(401).send('Non autorisé')
   }
 })
 

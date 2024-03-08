@@ -3,6 +3,7 @@ import React, { useEffect, useState } from 'react'
 import './ListeFiches.css'
 import fonctionsMiniBoxInfoJson from '../CreationFiche/MiniBoxInfoFunction'
 import AffecterListe from './AffecterListe'
+const token = localStorage.getItem('token');
 
 function ListeFiches({ redirection, refreshFiche, identifiant }: any) {
   const [FichesNames, setFichesNames] = useState<string[]>([])

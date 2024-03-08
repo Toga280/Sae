@@ -4,6 +4,7 @@ import fonctionsMiniBoxInfoJson from '../../../CreationFiche/MiniBoxInfoFunction
 import FicheBoxTotal from '../../../CreationFiche/FicheBoxTotal'
 import './FicheEleve.css'
 const image = require('../../../CreationFiche/MiniBoxChoix/tts.webp')
+const token = localStorage.getItem('token');
 function FicheEleve({
   nomEleve,
   prenomEleve,
@@ -99,6 +100,7 @@ function FicheEleve({
         ficheName: ficheSelected,
         contenu: contenu,
         idCommentateur: IdConnecter,
+        token: token,
       })
       .then((response) => {
         if (response.data.message === 'Commentaire ajouté avec succès') {

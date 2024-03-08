@@ -3,6 +3,7 @@ import fonctionsMiniBoxInfoJson from './MiniBoxInfoFunction'
 import PopUpSauvegarder from './PopUpSauvegarder'
 import axios from 'axios'
 import './Sauvegarder.css'
+const token = localStorage.getItem('token');
 
 function Sauvegarder({ redirection, setSaveName }: any) {
   const [nomFiche, setNomFiche] = useState('')
@@ -40,7 +41,7 @@ function Sauvegarder({ redirection, setSaveName }: any) {
   }
 
   const postFiche = async () => {
-    const data = fonctionsMiniBoxInfoJson.getAllJson()
+    const data = {data: fonctionsMiniBoxInfoJson.getAllJson(), token:token}
     axios
       .post('http://localhost:5000/POST/fiche', data)
       .then((response) => {
