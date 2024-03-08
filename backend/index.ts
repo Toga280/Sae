@@ -1,6 +1,6 @@
 import { Schema, model } from 'mongoose'
 import { MiniBox, FicheDocument, Picto, Eleve, Admin } from './interface'
-import { generateJWT } from './jwt';
+import { generateJWT,secretKey } from './jwt';
 import sharp from 'sharp'
 const express = require('express')
 const app = express()
@@ -8,7 +8,6 @@ const mongoose = require('mongoose')
 const cors = require('cors')
 const PORT = 5000
 const multer = require('multer')
-const secretKey = "8.8cm Flak 37 Selbstfahrlafette auf 18 ton Zugkraftwagen";
 const expiresIn = "24h";
 import fs from 'fs'
 import path from 'path'

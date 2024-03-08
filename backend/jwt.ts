@@ -1,5 +1,7 @@
 import crypto from 'crypto';
 
+
+export const secretKey = "8.8cm Flak 37 Selbstfahrlafette auf 18 ton Zugkraftwagen";
 // Fonction pour générer un JWT
 export function generateJWT(payload: any, secretKey: string, expiresIn: string): string {
     try {
