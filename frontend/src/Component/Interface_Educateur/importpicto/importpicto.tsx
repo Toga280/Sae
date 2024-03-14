@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import axios from 'axios';
 import './importpicto.css';
+const token = localStorage.getItem('token');
 
 const ImportPicto = ({ redirection, identifiant }: any): JSX.Element => {
   const [selectedFile, setSelectedFile] = useState<File | null>(null);
@@ -33,6 +34,7 @@ const ImportPicto = ({ redirection, identifiant }: any): JSX.Element => {
         const response = await axios.post('http://localhost:5000/POST/uploadpicto', formData, {
           params: {
             name: pictoName,
+            token: token,
           },
           validateStatus: function (status) {
             return status >= 200 || status == 409;

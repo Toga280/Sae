@@ -1,6 +1,8 @@
 import React, { useState, useEffect } from 'react'
 import axios from 'axios'
 import './PhotoEleve.css'
+const token = localStorage.getItem('token');
+
 
 function PhotoEleve({ redirection, eleve }: any) {
   const [selectedFile, setSelectedFile] = useState<File | null>(null)
@@ -35,6 +37,7 @@ function PhotoEleve({ redirection, eleve }: any) {
           {
             params: {
               name: eleve,
+              token: token,
             },
             validateStatus: function (status) {
               return status >= 200 || status == 409

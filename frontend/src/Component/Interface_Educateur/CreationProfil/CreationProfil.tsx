@@ -3,6 +3,7 @@ import axios from "axios";
 import CreationProfilProf from "./CreationProfilProf";
 import CreationProfilEleves from "./CreationProfilEleves";
 import "./CreationProfil.css";
+const token = localStorage.getItem('token');
 
 function CreationProfil({ redirection, setSaveName, identifiant }: any) {
   const setRedirectionTwo = () => {
@@ -44,9 +45,15 @@ function CreationProfil({ redirection, setSaveName, identifiant }: any) {
   };
 
   /*METHODE POST =====================================================*/
+  
   const postEleve = (eleveData: any) => {
     axios
-      .post("http://localhost:5000/POST/eleves", eleveData)
+      .post("http://localhost:5000/POST/eleves",{
+        params: {
+          eleveData: eleveData,
+          token: token,
+        },
+      })
       .then((response) => {
         console.log("Réponse du serveur :", response.data);
       })
@@ -62,6 +69,7 @@ function CreationProfil({ redirection, setSaveName, identifiant }: any) {
     .post("http://localhost:5000/POST/uploadpictoEleve", formData, {
       params: {
         name: nomEleve+prenomEleve,
+        token: token,
       },
     })
     .then((response) => {

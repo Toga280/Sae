@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from 'react'
 import './optionprof.css'
 import axios from 'axios'
+const token = localStorage.getItem('token');
 
 function Optionprof({ redirection, identifiant }: any) {
   const [selectedFile, setSelectedFile] = useState<File | null>(null)
@@ -54,6 +55,7 @@ function Optionprof({ redirection, identifiant }: any) {
           {
             params: {
               name: identifiant,
+              token: token,
             },
             validateStatus: function (status) {
               return status >= 200 || status == 409

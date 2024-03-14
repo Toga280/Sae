@@ -155,14 +155,14 @@ const EleveModel = model<Eleve>('Eleve', Eleve)
 /*------------------- POST -------------------*/
 
 /*POST FICHE ===========================================================*/
-/*autorisation : ADMIN*/
-/*autorisation : prof*/
+/*autorisation : Admin*/
+/*autorisation : ProfesseurAdmin*/
 app.post('/POST/fiche', (req: any, res: any) => {
   const newData = req.body.data
   const token = req.body.token
   const newFiche = new Fiche(newData)
   const { valid, payload } = verifyJWT(token, secretKey);
-  if (valid && (payload.role === 'prof' || payload.role === 'admin')) {
+  if (valid && (payload.role === 'ProfesseurAdmin' || payload.role === 'Admin')) {
   newFiche
     .save()
     .then(() => {
@@ -185,15 +185,16 @@ app.post('/POST/fiche', (req: any, res: any) => {
     res.status(401).send('Non autorisé')
   }
 })
+
 /*POST COMMENTAIRE ===========================================================*/
-/*autorisation : ADMIN*/
-/*autorisation : prof*/
-/*autorisation : profintervenant*/
-/*autorisation : CIP*/
+/*autorisation : Admin*/
+/*autorisation : ProfesseurAdmin*/
+/*autorisation : Professeur*/
+/*autorisation : Cip*/
 app.post('/POST/commentaire', async (req: any, res: any) => {
   const { ficheName, contenu, idCommentateur, token } = req.body
   const { valid, payload } = verifyJWT(token, secretKey);
-  if (valid && (payload.role === 'prof' || payload.role === 'admin' || payload.role === 'profintervenant' || payload.role === 'CIP')) {
+  if (valid && (payload.role === 'ProfesseurAdmin' || payload.role === 'Admin' || payload.role === 'Professeur' || payload.role === 'Cip')) {
   const fiche = await Fiche.findOne({ 'info.name': ficheName })
   try {
     if (!fiche) {
@@ -218,13 +219,16 @@ app.post('/POST/commentaire', async (req: any, res: any) => {
 })
 
 /*GET COMMENTAIRE ===========================================================*/
-/*autorisation : ADMIN*/
-/*autorisation : prof*/
-/*autorisation : profintervenant*/
-/*autorisation : CIP*/
+/*autorisation : Admin*/
+/*autorisation : ProfesseurAdmin*/
+/*autorisation : Professeur*/
+/*autorisation : Cip*/
 /*autorisation : eleve*/
 app.get('/GET/allCommentaire', async (req: any, res: any) => {
   const ficheName = req.query.ficheName
+  const token = req.query.token
+  const { valid, payload } = verifyJWT(token, secretKey);
+  if (valid && (payload.role === 'Admin' || payload.role === 'ProfesseurAdmin' || payload.role === 'Professeur' || payload.role === 'Cip' || payload.role === 'eleve')) {
 
   try {
     if (!ficheName) {
@@ -244,16 +248,21 @@ app.get('/GET/allCommentaire', async (req: any, res: any) => {
     console.error('Erreur lors de la récupération des commentaires : ', error)
     res.status(500).json({ error: 'Erreur serveur' })
   }
+} else {
+  res.status(401).send('Non autorisé')
+}
 })
 
 /*GET INFO SUPP FICHE ===========================================================*/
-/*autorisation : ADMIN*/
-/*autorisation : prof*/
-/*autorisation : profintervenant*/
-/*autorisation : CIP*/
+/*autorisation : Admin*/
+/*autorisation : ProfesseurAdmin*/
+/*autorisation : Professeur*/
+/*autorisation : Cip*/
 app.get('/GET/info/informationSuplementaire', async (req: any, res: any) => {
   const ficheName = req.query.ficheName
-
+  const token = req.query.token
+  const { valid, payload } = verifyJWT(token, secretKey);
+  if (valid && (payload.role === 'Admin' || payload.role === 'ProfesseurAdmin' || payload.role === 'Professeur' || payload.role === 'Cip')) {
   try {
     if (!ficheName) {
       return res.status(400).json({ error: 'Paramètre ficheName manquant' })
@@ -275,15 +284,18 @@ app.get('/GET/info/informationSuplementaire', async (req: any, res: any) => {
     )
     res.status(500).json({ error: 'Erreur serveur' })
   }
+} else {
+  res.status(401).send('Non autorisé')
+}
 })
 
 /* UPLOAD IMAGE ELEVES ===========================================================*/
-/*autorisation : ADMIN*/
+/*autorisation : Admin*/
 /*autorisation : eleve*/
-app.post(
-  '/POST/uploadImageEleve',
-  upload.single('file'),
-  async (req: any, res: any) => {
+app.post('/POST/uploadImageEleve',upload.single('file'), async (req: any, res: any) => {
+  const token = req.query.token
+  const { valid, payload } = verifyJWT(token, secretKey);
+  if (valid && (payload.role === 'Admin' || payload.role === 'eleve')) {
     try {
       const { name } = req.query
 
@@ -315,16 +327,19 @@ app.post(
       console.error('Erreur lors du téléchargement du fichier:', error)
       res.status(500).json({ error: 'Erreur interne du serveur' })
     }
+    } else {
+  res.status(401).send('Non autorisé')
+}
   },
 )
 
 /*UPLOAD PICTO==============================================*/
-/*autorisation : ADMIN*/
-/*autorisation : prof*/
-app.post(
-  '/POST/uploadpicto',
-  upload.single('file'),
-  async (req: any, res: any) => {
+/*autorisation : Admin*/
+/*autorisation : ProfesseurAdmin*/
+app.post('/POST/uploadpicto',upload.single('file'),async (req: any, res: any) => {
+  const token = req.query.token
+  const { valid, payload } = verifyJWT(token, secretKey);
+  if (valid && (payload.role === 'Admin' || payload.role === 'ProfesseurAdmin')) {
     try {
       const { name } = req.query
 
@@ -359,16 +374,23 @@ app.post(
       console.error('Erreur lors du téléchargement du fichier:', error)
       res.status(500).json({ error: 'Erreur interne du serveur' })
     }
+  } else {
+    res.status(401).send('Non autorisé')
+  } 
   },
 )
 
-/* upload fond ecran elelve======================================================*/
-/*autorisation : ADMIN*/
+/* upload fond ecran======================================================*/
+/*autorisation : Admin*/
+/*autorisation : ProfesseurAdmin*/
+/*autorisation : Professeur*/
+/*autorisation : Cip*/
 /*autorisation : eleve*/
-app.post(
-  '/POST/uploadfondecran',
-  upload.single('file'),
-  async (req: any, res: any) => {
+app.post('/POST/uploadfondecran',upload.single('file'),async (req: any, res: any) => {
+  const token = req.query.token
+  const { valid, payload } = verifyJWT(token, secretKey);
+  console.log('payload.role -> ', payload.role)
+  if (valid && (payload.role === 'Admin' || payload.role === 'ProfesseurAdmin' || payload.role === 'Professeur' || payload.role === 'Cip' || payload.role === 'eleve')) {
     try {
       const { name } = req.query
 
@@ -398,16 +420,19 @@ app.post(
       console.error('Erreur lors du téléchargement du fichier:', error)
       res.status(500).json({ error: 'Erreur interne du serveur' })
     }
+  } else {
+    res.status(401).send('Non autorisé')
+  }
   },
 )
 
 /* upload photo profil eleve======================================================*/
-/*autorisation : ADMIN*/
-/*autorisation : prof*/
-app.post(
-  '/POST/uploadpictoEleve',
-  upload.single('file'),
-  async (req: any, res: any) => {
+/*autorisation : Admin*/
+/*autorisation : ProfesseurAdmin*/
+app.post('/POST/uploadpictoEleve',upload.single('file'),async (req: any, res: any) => {
+  const token = req.query.token
+  const { valid, payload } = verifyJWT(token, secretKey);
+  if (valid && (payload.role === 'Admin' || payload.role === 'ProfesseurAdmin')) {
     try {
       const { name } = req.query
 
@@ -437,14 +462,20 @@ app.post(
       console.error('Erreur lors du téléchargement du fichier:', error)
       res.status(500).json({ error: 'Erreur interne du serveur' })
     }
+  } else {
+    res.status(401).send('Non autorisé')
+  }
   },
 )
 
 /* AJOUT ELEVE=========================================================*/
-/*autorisation : ADMIN*/
+/*autorisation : Admin*/
 app.post('/POST/eleves', (req: any, res: any) => {
-  const newData = req.body
+  const newData = req.body.params.eleveData
   const newEleve = new EleveModel(newData)
+  const token = req.body.params.token
+  const { valid, payload } = verifyJWT(token, secretKey);
+  if (valid && (payload.role === 'Admin')) {
   newEleve
     .save()
     .then(() => {
@@ -463,13 +494,19 @@ app.post('/POST/eleves', (req: any, res: any) => {
         res.status(500).send('Erreur interne du serveur')
       }
     })
+  } else {
+    res.status(401).send('Non autorisé')
+  }
 })
 
 /* MODFIER MDP ELEVE======================================================*/
-/*autorisation : ADMIN*/
-/*autorisation : prof*/
+/*autorisation : Admin*/
+/*autorisation : ProfesseurAdmin*/
 app.post('/POST/eleveUpdatePassword', async (req: any, res: any) => {
-  const { nom, prenom, mdp } = req.body
+  const { nom, prenom, mdp } = req.body.params.eleveData
+  const token = req.body.params.token
+  const { valid, payload } = verifyJWT(token, secretKey);
+  if (valid && (payload.role === 'Admin' || payload.role === 'ProfesseurAdmin')) {
 
   try {
     const eleve = await EleveModel.findOne({ nom, prenom })
@@ -488,12 +525,18 @@ app.post('/POST/eleveUpdatePassword', async (req: any, res: any) => {
     console.error(error)
     res.status(500).json({ message: 'Erreur serveur' })
   }
+} else {
+  res.status(401).send('Non autorisé')
+}
 })
 
 /*MODIFIER MDP PROF=====================================================*/
-/*autorisation : ADMIN*/
+/*autorisation : Admin*/
 app.post('/POST/profUpdatePassword', async (req: any, res: any) => {
-  const { mdp, nom, prenom } = req.body
+  const { mdp, nom, prenom } = req.body.params.ProfData
+  const token = req.body.params.token
+  const { valid, payload } = verifyJWT(token, secretKey);
+  if (valid && (payload.role === 'Admin')) {
 
   try {
     const admin = await Admin.findOne({ nom, prenom })
@@ -508,12 +551,17 @@ app.post('/POST/profUpdatePassword', async (req: any, res: any) => {
     console.error(error)
     res.status(500).json({ message: 'Erreur serveur' })
   }
+} else {
+  res.status(401).send('Non autorisé')
+}
 })
 
 /*ARCHIVER ELEVE================================================================*/
-/*autorisation : ADMIN*/
+/*autorisation : Admin*/
 app.post('/POST/archiverEleve', async (req: any, res: any) => {
-  const { nom, prenom } = req.body
+  const { nom, prenom, token } = req.body
+  const { valid, payload } = verifyJWT(token, secretKey);
+  if (valid && (payload.role === 'Admin')) {
 
   try {
     const eleve = await EleveModel.findOne({ nom, prenom })
@@ -527,13 +575,17 @@ app.post('/POST/archiverEleve', async (req: any, res: any) => {
     console.error(error)
     res.status(500).json({ message: 'Erreur serveur' })
   }
+} else {
+  res.status(401).send('Non autorisé')
+}
 })
 
 /*RESTORER ELEVE=================================================================*/
-/*autorisation : ADMIN*/
+/*autorisation : Admin*/
 app.post('/POST/restorerEleve', async (req: any, res: any) => {
-  const { nom, prenom } = req.body
-
+  const { nom, prenom, token } = req.body
+  const { valid, payload } = verifyJWT(token, secretKey);
+  if (valid && (payload.role === 'Admin')) {
   try {
     const eleve = await EleveModel.findOne({ nom, prenom })
     if (!eleve) {
@@ -546,13 +598,18 @@ app.post('/POST/restorerEleve', async (req: any, res: any) => {
     console.error(error)
     res.status(500).json({ message: 'Erreur serveur' })
   }
+} else {
+  res.status(401).send('Non autorisé')
+}
 })
 
 /*AFFECTER UN ELEVE A UNE FICHE=====================================================*/
-/*autorisation : ADMIN*/
-/*autorisation : prof*/
+/*autorisation : Admin*/
+/*autorisation : ProfesseurAdmin*/
 app.post('/POST/affectereleve', async (req: any, res: any) => {
-  const { nom, prenom, ficheName } = req.body
+  const { nom, prenom, ficheName, token } = req.body
+  const { valid, payload } = verifyJWT(token, secretKey);
+  if (valid && (payload.role === 'Admin' || payload.role === 'ProfesseurAdmin')) {
   console.log('nom, prenom, ficheName -> ', nom, prenom, ficheName)
   try {
     if (!ficheName || !nom || !prenom) {
@@ -619,12 +676,16 @@ app.post('/POST/affectereleve', async (req: any, res: any) => {
     console.error(error)
     res.status(500).json({ message: 'Erreur serveur' })
   }
+} else {
+  res.status(401).send('Non autorisé')
+}
 })
 
-/*AJOUTER UN ADMIN===============================================================*/
-/*autorisation : ADMIN*/
+/*AJOUTER UN Admin===============================================================*/
+/*autorisation : Admin*/
 app.post('/POST/admin', (req: any, res: any) => {
   const newData = req.body
+
   const newAdmin = new Admin(newData)
   newAdmin
     .save()
@@ -649,7 +710,7 @@ app.post('/POST/admin', (req: any, res: any) => {
 })
 
 /*MODIFIER ROLE PROF================================================================*/
-/*autorisation : ADMIN*/
+/*autorisation : Admin*/
 app.post('/POST/ProfUpdateRole', async (req: any, res: any) => {
   const { nom, prenom, role } = req.body
 
@@ -669,8 +730,8 @@ app.post('/POST/ProfUpdateRole', async (req: any, res: any) => {
 })
 
 /*modifier NOM FICHE================================================================*/
-/*autorisation : ADMIN*/
-/*autorisation : prof*/
+/*autorisation : Admin*/
+/*autorisation : ProfesseurAdmin*/
 app.post('/POST/ficheUpdateName', async (req: any, res: any) => {
   const { name, newName } = req.body
 
@@ -696,8 +757,8 @@ app.post('/POST/ficheUpdateName', async (req: any, res: any) => {
 })
 
 /*dupliquer FICHE================================================================*/
-/*autorisation : ADMIN*/
-/*autorisation : prof*/
+/*autorisation : Admin*/
+/*autorisation : ProfesseurAdmin*/
 app.post('/POST/ficheDuplicate', async (req: any, res: any) => {
   const { name } = req.body
 
@@ -744,9 +805,9 @@ app.post('/POST/ficheDuplicate', async (req: any, res: any) => {
   }
 })
 
-/* ajouter un comentaire de la CIP =================================================*/
-/*autorisation : ADMIN*/
-/*autorisation : CIP*/
+/* ajouter un comentaire de la Cip =================================================*/
+/*autorisation : Admin*/
+/*autorisation : Cip*/
 app.post('/POST/comCIP', async (req: any, res: any) => {
   const { nom, prenom, comCIP } = req.body
   try {
@@ -767,8 +828,8 @@ app.post('/POST/comCIP', async (req: any, res: any) => {
 /*------------------- GET -------------------*/
 
 /* GET ALL FICHES ===========================================================*/
-/*autorisation : ADMIN*/
-/*autorisation : prof*/
+/*autorisation : Admin*/
+/*autorisation : ProfesseurAdmin*/
 app.get('/GET/allFicheNames', async (req: any, res: any) => {
   try {
     const ficheNames = await Fiche.find({}, 'info.name').exec()
@@ -786,10 +847,10 @@ app.get('/GET/allFicheNames', async (req: any, res: any) => {
 })
 
 /* GET FICHE =============================================*/
-/*autorisation : ADMIN*/
-/*autorisation : prof*/
-/*autorisation : profintervenant*/
-/*autorisation : CIP*/
+/*autorisation : Admin*/
+/*autorisation : ProfesseurAdmin*/
+/*autorisation : Professeur*/
+/*autorisation : Cip*/
 /*autorisation : eleve*/
 app.get('/GET/nameFiche', async (req: any, res: any) => {
   const { name } = req.query
@@ -813,8 +874,8 @@ app.get('/GET/nameFiche', async (req: any, res: any) => {
 })
 
 /* GET NAME FICHES EXISTE =============================================*/
-/*autorisation : ADMIN*/
-/*autorisation : prof*/
+/*autorisation : Admin*/
+/*autorisation : ProfesseurAdmin*/
 app.get('/GET/nameFicheExiste', async (req: any, res: any) => {
   const { name } = req.query
 
@@ -851,7 +912,7 @@ app.get('/GET/allEleve', async (req: any, res: any) => {
 })
 
 /* GET ELEVES ARCHIVER=======================================================*/
-/*autorisation : ADMIN*/
+/*autorisation : Admin*/
 app.get('/GET/allEleveArchiver', async (req: any, res: any) => {
   try {
     const eleve = await EleveModel.find(
@@ -889,10 +950,10 @@ app.get('/GET/eleve/authentification', async (req: any, res: any) => {
 })
 
 /*GET ELEVE FICHE =================================================*/
-/*autorisation : ADMIN*/
-/*autorisation : prof*/
-/*autorisation : profintervenant*/
-/*autorisation : CIP*/
+/*autorisation : Admin*/
+/*autorisation : ProfesseurAdmin*/
+/*autorisation : Professeur*/
+/*autorisation : Cip*/
 /*autorisation : eleve*/
 app.get('/GET/eleve/fiche', async (req: any, res: any) => {
   const { nom, prenom } = req.query
@@ -910,10 +971,10 @@ app.get('/GET/eleve/fiche', async (req: any, res: any) => {
 })
 
 /*GET ELEVE FICHE IN PROGRESS =================================================*/
-/*autorisation : ADMIN*/
-/*autorisation : prof*/
-/*autorisation : profintervenant*/
-/*autorisation : CIP*/
+/*autorisation : Admin*/
+/*autorisation : ProfesseurAdmin*/
+/*autorisation : Professeur*/
+/*autorisation : Cip*/
 /*autorisation : eleve*/
 app.get('/GET/eleve/FicheInProgress', async (req: any, res: any) => {
   const { nom, prenom } = req.query
@@ -949,10 +1010,10 @@ app.get('/GET/eleve/FicheInProgress', async (req: any, res: any) => {
 })
 
 /*GET ELEVE FICHE COMPLETED =================================================*/
-/*autorisation : ADMIN*/
-/*autorisation : prof*/
-/*autorisation : profintervenant*/
-/*autorisation : CIP*/
+/*autorisation : Admin*/
+/*autorisation : ProfesseurAdmin*/
+/*autorisation : Professeur*/
+/*autorisation : Cip*/
 /*autorisation : eleve*/
 app.get('/GET/eleve/FicheCompleted', async (req: any, res: any) => {
   const { nom, prenom } = req.query
@@ -983,10 +1044,10 @@ app.get('/GET/eleve/FicheCompleted', async (req: any, res: any) => {
 })
 
 /*GET FICHE TYPE =================================================*/
-/*autorisation : ADMIN*/
-/*autorisation : prof*/
-/*autorisation : profintervenant*/
-/*autorisation : CIP*/
+/*autorisation : Admin*/
+/*autorisation : ProfesseurAdmin*/
+/*autorisation : Professeur*/
+/*autorisation : Cip*/
 /*autorisation : eleve*/
 app.get('/fiches/type/:typeFiche', async (req: any, res: any) => {
   const { nom, prenom } = req.query
@@ -1028,10 +1089,10 @@ app.get('/GET/admin/authentification', async (req: any, res: any) => {
 })
 
 /*GET ROLE PROF ====================================================================*/
-/*autorisation : ADMIN*/
-/*autorisation : prof*/
-/*autorisation : profintervenant*/
-/*autorisation : CIP*/
+/*autorisation : Admin*/
+/*autorisation : ProfesseurAdmin*/
+/*autorisation : Professeur*/
+/*autorisation : Cip*/
 app.get('/GET/roleProf', async (req: any, res: any) => {
   const { id } = req.query
   try {
@@ -1049,7 +1110,7 @@ app.get('/GET/roleProf', async (req: any, res: any) => {
 })
 
 /*GET ALL PROF =====================================================================*/
-/*autorisation : ADMIN*/
+/*autorisation : Admin*/
 app.get('/GET/allProf', async (req: any, res: any) => {
   try {
     const admin = await Admin.find({}, 'nom prenom').exec()
@@ -1061,10 +1122,10 @@ app.get('/GET/allProf', async (req: any, res: any) => {
 })
 
 /* GET PICTO ===================================================================*/
-/*autorisation : ADMIN*/
-/*autorisation : prof*/
-/*autorisation : profintervenant*/
-/*autorisation : CIP*/
+/*autorisation : Admin*/
+/*autorisation : ProfesseurAdmin*/
+/*autorisation : Professeur*/
+/*autorisation : Cip*/
 /*autorisation : eleve*/
 app.get('/GET/getpicto-info', async (req: any, res: any) => {
   const pictoDirectory = path.join(__dirname, './src/picto')
@@ -1084,10 +1145,10 @@ app.get('/GET/getpicto-info', async (req: any, res: any) => {
 })
 
 /* GET PICTO FILE ===============================================================*/
-/*autorisation : ADMIN*/
-/*autorisation : prof*/
-/*autorisation : profintervenant*/
-/*autorisation : CIP*/
+/*autorisation : Admin*/
+/*autorisation : ProfesseurAdmin*/
+/*autorisation : Professeur*/
+/*autorisation : Cip*/
 /*autorisation : eleve*/
 app.get('/GET/getpicto-file', async (req: any, res: any) => {
   const pictoDirectory = path.join(__dirname, './src/picto')
@@ -1135,10 +1196,10 @@ app.get('/GET/piceleve', async (req: any, res: any) => {
 })
 
 /* GET PHOTO ELEVE INFO ===================================================================*/
-/*autorisation : ADMIN*/
-/*autorisation : prof*/
-/*autorisation : profintervenant*/
-/*autorisation : CIP*/
+/*autorisation : Admin*/
+/*autorisation : ProfesseurAdmin*/
+/*autorisation : Professeur*/
+/*autorisation : Cip*/
 /*autorisation : eleve*/
 app.get('/GET/getphotoeleve-info', async (req: any, res: any) => {
   const { eleve } = req.query
@@ -1159,10 +1220,10 @@ app.get('/GET/getphotoeleve-info', async (req: any, res: any) => {
 })
 
 /* GET PHOTO ELEVE FILE ===============================================================*/
-/*autorisation : ADMIN*/
-/*autorisation : prof*/
-/*autorisation : profintervenant*/
-/*autorisation : CIP*/
+/*autorisation : Admin*/
+/*autorisation : ProfesseurAdmin*/
+/*autorisation : Professeur*/
+/*autorisation : Cip*/
 /*autorisation : eleve*/
 app.get('/GET/getphotoeleve-file', async (req: any, res: any) => {
   const { eleve } = req.query
@@ -1181,7 +1242,11 @@ app.get('/GET/getphotoeleve-file', async (req: any, res: any) => {
   }
 })
 
-/* GET FOND ECRAN ELEVE ===============================================================*/
+/* GET FOND ECRAN===============================================================*/
+/*autorisation : Admin*/
+/*autorisation : ProfesseurAdmin*/
+/*autorisation : Professeur*/
+/*autorisation : Cip*/
 /*autorisation : eleve*/
 app.get('/GET/fondecran', async (req: any, res: any) => {
   const pictoDirectory = path.join(__dirname, './src/fond')
@@ -1205,8 +1270,8 @@ app.get('/GET/fondecran', async (req: any, res: any) => {
 })
 
 /* get eleve affecter a fiche ===============================================================*/
-/*autorisation : ADMIN*/
-/*autorisation : prof*/
+/*autorisation : Admin*/
+/*autorisation : ProfesseurAdmin*/
 app.get('/GET/eleveAffecter', async (req: any, res: any) => {
   const { ficheName } = req.query
   try {
@@ -1226,8 +1291,8 @@ app.get('/GET/eleveAffecter', async (req: any, res: any) => {
 })
 
 /* GET tableau réaction eleve ======================================================================*/
-/*autorisation : ADMIN*/
-/*autorisation : CIP*/
+/*autorisation : Admin*/
+/*autorisation : Cip*/
 app.get('/GET/reactionEleve', async (req: any, res: any) => {
   const { nomeleve, prenomeleve } = req.query
   try {
@@ -1253,8 +1318,8 @@ app.get('/GET/reactionEleve', async (req: any, res: any) => {
 })
 
 /* GET comentaire de la CIP pour un élève donné =====================================================*/
-/*autorisation : ADMIN*/
-/*autorisation : CIP*/
+/*autorisation : Admin*/
+/*autorisation : Cip*/
 app.get('/GET/comentaireCIP', async (req: any, res: any) => {
   const { nomeleve, prenomeleve } = req.query;
   try {
@@ -1279,8 +1344,8 @@ app.get('/GET/comentaireCIP', async (req: any, res: any) => {
 /*------------------- DELETE -------------------*/
 
 /* DELETE FICHE ===============================================================*/
-/*autorisation : ADMIN*/
-/*autorisation : prof*/
+/*autorisation : Admin*/
+/*autorisation : ProfesseurAdmin*/
 app.get('/DELETE/ficheName', async (req: any, res: any) => {
   const { name } = req.query
   if (!name) {
@@ -1305,7 +1370,7 @@ app.get('/DELETE/ficheName', async (req: any, res: any) => {
 })
 
 /* delete fond ecran eleve ===============================================================*/
-/*autorisation : ADMIN*/
+/*autorisation : Admin*/
 /*autorisation : eleve*/
 app.get('/DELETE/fond', async (req: any, res: any) => {
   const { name } = req.query

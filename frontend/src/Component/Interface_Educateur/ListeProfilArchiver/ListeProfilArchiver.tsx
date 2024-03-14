@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from "react";
 import axios from "axios";
 import "./ListeProfilArchiver.css";
-
+const token = localStorage.getItem('token');
 function ListeProfilArchiver({ redirection, identifiant }: any) {
   const redirectionTwo = () => {
     redirection(2);
@@ -62,7 +62,7 @@ function ListeProfilArchiver({ redirection, identifiant }: any) {
     );
     if (confirmation) {
       axios
-        .post("http://localhost:5000/POST/restorerEleve", { nom, prenom })
+        .post("http://localhost:5000/POST/restorerEleve", { nom, prenom, token })
         .then((response) => {
           console.log(response.data);
           alert(`${prenom} a été restauré avec succès`);

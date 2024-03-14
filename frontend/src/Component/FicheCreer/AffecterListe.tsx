@@ -1,7 +1,7 @@
 import axios from 'axios'
 import './AffecterListe.css'
 import React, { useEffect, useState } from 'react'
-
+const token = localStorage.getItem('token');
 function AffecterListe({
   setAffichageAffecterListeFalse,
   nomFicheSelectionner,
@@ -40,6 +40,7 @@ function AffecterListe({
           nom,
           prenom,
           ficheName,
+          token,
         },
         {
           validateStatus: function (status) {

@@ -116,7 +116,7 @@ function FicheEleve({
   const GetAllCommentaire = async (ficheName: string) => {
     try {
       const response = await axios.get(
-        `http://localhost:5000/GET/allCommentaire?ficheName=${ficheName}`,
+        `http://localhost:5000/GET/allCommentaire?ficheName=${ficheName}&token=${token}`,
       )
       setAllCommentaire(response.data.commentaires)
     } catch (error) {
@@ -127,7 +127,7 @@ function FicheEleve({
   const GetInformationSupplementaire = async () => {
     axios
       .get(
-        `http://localhost:5000/GET/info/informationSuplementaire?ficheName=${ficheSelected}`,
+        `http://localhost:5000/GET/info/informationSuplementaire?ficheName=${ficheSelected}&token=${token}`,
       )
       .then((response) => {
         console.log('GetInformationSupplementaire --> ', response.data)
