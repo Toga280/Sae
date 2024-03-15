@@ -63,12 +63,12 @@ const ImportPicto = ({ redirection, identifiant }: any): JSX.Element => {
   useEffect(() => {
     const getPictoInfo = async () => {
       try {
-        const response = await axios.get('http://localhost:5000/GET/getpicto-info');
+        const response = await axios.get('http://localhost:5000/GET/getpicto-info', {params: {token: token}});
         const { imageNames } = response.data;
 
         // Demander chaque fichier individuellement
         const imagePromises = imageNames.map(async (imageName: string) => {
-          const imagePath = `http://localhost:5000/GET/getpicto-file?name=${encodeURIComponent(imageName)}`;
+          const imagePath = `http://localhost:5000/GET/getpicto-file?name=${encodeURIComponent(imageName)}&token=${token}`;
           const imageResponse = await axios.get(imagePath, {
             responseType: 'arraybuffer',
           });
@@ -96,6 +96,7 @@ const ImportPicto = ({ redirection, identifiant }: any): JSX.Element => {
       .get('http://localhost:5000/GET/fondecran', {
         params: {
           name: identifiant,
+          token: token,
         },
         responseType: 'arraybuffer',
       })

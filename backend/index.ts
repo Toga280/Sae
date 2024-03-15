@@ -685,7 +685,9 @@ app.post('/POST/affectereleve', async (req: any, res: any) => {
 /*autorisation : Admin*/
 app.post('/POST/admin', (req: any, res: any) => {
   const newData = req.body
-
+  const token = req.query.token
+  const { valid, payload } = verifyJWT(token, secretKey);
+  if (valid && (payload.role === 'Admin')) {
   const newAdmin = new Admin(newData)
   newAdmin
     .save()
@@ -707,13 +709,18 @@ app.post('/POST/admin', (req: any, res: any) => {
         res.status(500).send('Erreur interne du serveur')
       }
     })
+  } else {
+    res.status(401).send('Non autorisé')
+  }
 })
 
 /*MODIFIER ROLE PROF================================================================*/
 /*autorisation : Admin*/
 app.post('/POST/ProfUpdateRole', async (req: any, res: any) => {
-  const { nom, prenom, role } = req.body
-
+  const { nom, prenom, role} = req.body.params.ProfData
+  const token = req.body.params.token
+  const { valid, payload } = verifyJWT(token, secretKey);
+  if (valid && (payload.role === 'Admin')) {
   try {
     const admin = await Admin.findOne({ nom, prenom })
 
@@ -727,14 +734,18 @@ app.post('/POST/ProfUpdateRole', async (req: any, res: any) => {
     console.error(error)
     res.status(500).json({ message: 'Erreur serveur' })
   }
+} else {
+  res.status(401).send('Non autorisé')
+}
 })
 
 /*modifier NOM FICHE================================================================*/
 /*autorisation : Admin*/
 /*autorisation : ProfesseurAdmin*/
 app.post('/POST/ficheUpdateName', async (req: any, res: any) => {
-  const { name, newName } = req.body
-
+  const { name, newName, token } = req.body
+  const { valid, payload } = verifyJWT(token, secretKey);
+  if (valid && (payload.role === 'Admin' || payload.role === 'ProfesseurAdmin')) {
   try {
     const fiche = await Fiche.findOne({ 'info.name': name })
 
@@ -754,14 +765,18 @@ app.post('/POST/ficheUpdateName', async (req: any, res: any) => {
     console.error(error)
     res.status(500).json({ message: 'Erreur serveur' })
   }
+} else {
+  res.status(401).send('Non autorisé')
+}
 })
 
 /*dupliquer FICHE================================================================*/
 /*autorisation : Admin*/
 /*autorisation : ProfesseurAdmin*/
 app.post('/POST/ficheDuplicate', async (req: any, res: any) => {
-  const { name } = req.body
-
+  const { name, token } = req.body
+  const { valid, payload } = verifyJWT(token, secretKey);
+  if (valid && (payload.role === 'Admin' || payload.role === 'ProfesseurAdmin')) {
   try {
     const fiche = await Fiche.findOne({ 'info.name': name }).lean()
 
@@ -803,13 +818,18 @@ app.post('/POST/ficheDuplicate', async (req: any, res: any) => {
     console.error(error)
     res.status(500).json({ message: 'Erreur serveur' })
   }
+} else {
+  res.status(401).send('Non autorisé')
+}
 })
 
 /* ajouter un comentaire de la Cip =================================================*/
 /*autorisation : Admin*/
 /*autorisation : Cip*/
 app.post('/POST/comCIP', async (req: any, res: any) => {
-  const { nom, prenom, comCIP } = req.body
+  const { nom, prenom, comCIP, token } = req.body
+  const { valid, payload } = verifyJWT(token, secretKey);
+  if (valid && (payload.role === 'Admin' || payload.role === 'Cip')) {
   try {
     const eleve = await EleveModel.findOne({ 'nom': nom, 'prenom': prenom }).exec();
 
@@ -823,6 +843,9 @@ app.post('/POST/comCIP', async (req: any, res: any) => {
     console.error(error)
     res.status(500).json({ message: 'Erreur serveur' })
   }
+} else {
+  res.status(401).send('Non autorisé')
+}
 })
 
 /*------------------- GET -------------------*/
@@ -831,6 +854,9 @@ app.post('/POST/comCIP', async (req: any, res: any) => {
 /*autorisation : Admin*/
 /*autorisation : ProfesseurAdmin*/
 app.get('/GET/allFicheNames', async (req: any, res: any) => {
+  const token = req.query.token
+  const { valid, payload } = verifyJWT(token, secretKey);
+  if (valid && (payload.role === 'Admin' || payload.role === 'ProfesseurAdmin')) {
   try {
     const ficheNames = await Fiche.find({}, 'info.name').exec()
 
@@ -844,6 +870,9 @@ app.get('/GET/allFicheNames', async (req: any, res: any) => {
     console.error('Erreur lors de la recherche des noms de fiches :', error)
     res.status(500).send('Erreur interne du serveur')
   }
+} else {
+  res.status(401).send('Non autorisé')
+}
 })
 
 /* GET FICHE =============================================*/
@@ -854,7 +883,9 @@ app.get('/GET/allFicheNames', async (req: any, res: any) => {
 /*autorisation : eleve*/
 app.get('/GET/nameFiche', async (req: any, res: any) => {
   const { name } = req.query
-
+  const token = req.query.token
+  const { valid, payload } = verifyJWT(token, secretKey);
+  if (valid && (payload.role === 'Admin' || payload.role === 'ProfesseurAdmin' || payload.role === 'Professeur' || payload.role === 'Cip' || payload.role === 'eleve')) {
   if (!name) {
     return res.status(400).send('Le paramètre "name" est requis.')
   }
@@ -871,6 +902,9 @@ app.get('/GET/nameFiche', async (req: any, res: any) => {
     console.error('Erreur lors de la recherche de la fiche :', error)
     res.status(500).send('Erreur interne du serveur')
   }
+} else {
+  res.status(401).send('Non autorisé')
+}
 })
 
 /* GET NAME FICHES EXISTE =============================================*/
@@ -878,7 +912,9 @@ app.get('/GET/nameFiche', async (req: any, res: any) => {
 /*autorisation : ProfesseurAdmin*/
 app.get('/GET/nameFicheExiste', async (req: any, res: any) => {
   const { name } = req.query
-
+  const token = req.query.token
+  const { valid, payload } = verifyJWT(token, secretKey);
+  if (valid && (payload.role === 'Admin' || payload.role === 'ProfesseurAdmin')) {
   if (!name) {
     return res.status(400).send('Le paramètre "name" est requis.')
   }
@@ -895,6 +931,10 @@ app.get('/GET/nameFicheExiste', async (req: any, res: any) => {
     console.error('Erreur lors de la recherche de la fiche :', error)
     res.status(500).send('Erreur interne du serveur')
   }
+} else {
+  res.status(401).send('Non autorisé')
+}
+
 })
 
 /* GET ELEVES ============================================================*/
@@ -914,6 +954,9 @@ app.get('/GET/allEleve', async (req: any, res: any) => {
 /* GET ELEVES ARCHIVER=======================================================*/
 /*autorisation : Admin*/
 app.get('/GET/allEleveArchiver', async (req: any, res: any) => {
+  const token = req.query.token
+  const { valid, payload } = verifyJWT(token, secretKey);
+  if (valid && (payload.role === 'Admin')) {
   try {
     const eleve = await EleveModel.find(
       { archiver: { $ne: false } },
@@ -924,6 +967,9 @@ app.get('/GET/allEleveArchiver', async (req: any, res: any) => {
     console.error(error)
     res.status(500).json({ message: 'Erreur serveur' })
   }
+} else {
+  res.status(401).send('Non autorisé')
+}
 })
 
 /*GET ELEVE AUTHENTIFICATION =================================================*/
@@ -957,6 +1003,9 @@ app.get('/GET/eleve/authentification', async (req: any, res: any) => {
 /*autorisation : eleve*/
 app.get('/GET/eleve/fiche', async (req: any, res: any) => {
   const { nom, prenom } = req.query
+  const token = req.query.token
+  const { valid, payload } = verifyJWT(token, secretKey);
+  if (valid && (payload.role === 'Admin' || payload.role === 'ProfesseurAdmin' || payload.role === 'Professeur' || payload.role === 'Cip' || payload.role === 'eleve')) {
   try {
     const fiche = await Fiche.findOne({
       'info.nomEleveAttribuer': nom,
@@ -968,6 +1017,9 @@ app.get('/GET/eleve/fiche', async (req: any, res: any) => {
     console.error('Error during authentication:', error)
     res.status(500).json({ success: false, message: 'Internal server error' })
   }
+} else {
+  res.status(401).send('Non autorisé')
+}
 })
 
 /*GET ELEVE FICHE IN PROGRESS =================================================*/
@@ -978,6 +1030,9 @@ app.get('/GET/eleve/fiche', async (req: any, res: any) => {
 /*autorisation : eleve*/
 app.get('/GET/eleve/FicheInProgress', async (req: any, res: any) => {
   const { nom, prenom } = req.query
+  const token = req.query.token
+  const { valid, payload } = verifyJWT(token, secretKey);
+  if (valid && (payload.role === 'Admin' || payload.role === 'ProfesseurAdmin' || payload.role === 'Professeur' || payload.role === 'Cip' || payload.role === 'eleve')) {
   try {
     const ficheName = await Fiche.findOne({
       'info.nomEleveAttribuer': nom,
@@ -1007,6 +1062,9 @@ app.get('/GET/eleve/FicheInProgress', async (req: any, res: any) => {
     console.error('Error during authentication:', error)
     res.status(500).json({ success: false, message: 'Internal server error' })
   }
+} else {
+  res.status(401).send('Non autorisé')
+}
 })
 
 /*GET ELEVE FICHE COMPLETED =================================================*/
@@ -1017,6 +1075,9 @@ app.get('/GET/eleve/FicheInProgress', async (req: any, res: any) => {
 /*autorisation : eleve*/
 app.get('/GET/eleve/FicheCompleted', async (req: any, res: any) => {
   const { nom, prenom } = req.query
+  const token = req.query.token
+  const { valid, payload } = verifyJWT(token, secretKey);
+  if (valid && (payload.role === 'Admin' || payload.role === 'ProfesseurAdmin' || payload.role === 'Professeur' || payload.role === 'Cip' || payload.role === 'eleve')) {
   try {
     const fichesTermines = await Fiche.find({
       'info.nomEleveAttribuer': nom,
@@ -1041,30 +1102,35 @@ app.get('/GET/eleve/FicheCompleted', async (req: any, res: any) => {
     console.error('Error during authentication:', error)
     res.status(500).json({ success: false, message: 'Internal server error' })
   }
+} else {
+  res.status(401).send('Non autorisé')
+}
 })
 
-/*GET FICHE TYPE =================================================*/
-/*autorisation : Admin*/
-/*autorisation : ProfesseurAdmin*/
-/*autorisation : Professeur*/
-/*autorisation : Cip*/
-/*autorisation : eleve*/
-app.get('/fiches/type/:typeFiche', async (req: any, res: any) => {
-  const { nom, prenom } = req.query
-  const ficheName = await Fiche.findOne({
-    'info.nomEleveAttribuer': nom,
-    'info.prenomEleveAttribuer': prenom,
-    'info.enCour': true,
-  }).exec()
 
-  try {
-    const fiches = await Fiche.find({}).exec()
-    res.status(200).json(fiches)
-  } catch (error) {
-    console.error('Error during authentication:', error)
-    res.status(500).json({ success: false, message: 'Internal server error' })
-  }
-})
+// /*GET FICHE TYPE =================================================*/
+// /*autorisation : Admin*/
+// /*autorisation : ProfesseurAdmin*/
+// /*autorisation : Professeur*/
+// /*autorisation : Cip*/
+// /*autorisation : eleve*/
+// app.get('/fiches/type/:typeFiche', async (req: any, res: any) => {
+//   const { nom, prenom } = req.query
+//   const ficheName = await Fiche.findOne({
+//     'info.nomEleveAttribuer': nom,
+//     'info.prenomEleveAttribuer': prenom,
+//     'info.enCour': true,
+//   }).exec()
+
+//   try {
+//     const fiches = await Fiche.find({}).exec()
+//     res.status(200).json(fiches)
+//   } catch (error) {
+//     console.error('Error during authentication:', error)
+//     res.status(500).json({ success: false, message: 'Internal server error' })
+//   }
+// })
+
 
 /*GET AUTENTIFICATION PROF======================================================================*/
 app.get('/GET/admin/authentification', async (req: any, res: any) => {
@@ -1089,10 +1155,6 @@ app.get('/GET/admin/authentification', async (req: any, res: any) => {
 })
 
 /*GET ROLE PROF ====================================================================*/
-/*autorisation : Admin*/
-/*autorisation : ProfesseurAdmin*/
-/*autorisation : Professeur*/
-/*autorisation : Cip*/
 app.get('/GET/roleProf', async (req: any, res: any) => {
   const { id } = req.query
   try {
@@ -1112,6 +1174,9 @@ app.get('/GET/roleProf', async (req: any, res: any) => {
 /*GET ALL PROF =====================================================================*/
 /*autorisation : Admin*/
 app.get('/GET/allProf', async (req: any, res: any) => {
+  const token = req.query.token
+  const { valid, payload } = verifyJWT(token, secretKey);
+  if (valid && (payload.role === 'Admin')) {
   try {
     const admin = await Admin.find({}, 'nom prenom').exec()
     res.json(admin)
@@ -1119,6 +1184,9 @@ app.get('/GET/allProf', async (req: any, res: any) => {
     console.error(error)
     res.status(500).json({ message: 'Erreur serveur' })
   }
+} else {
+  res.status(401).send('Non autorisé')
+}
 })
 
 /* GET PICTO ===================================================================*/
@@ -1129,7 +1197,9 @@ app.get('/GET/allProf', async (req: any, res: any) => {
 /*autorisation : eleve*/
 app.get('/GET/getpicto-info', async (req: any, res: any) => {
   const pictoDirectory = path.join(__dirname, './src/picto')
-
+  const token = req.query.token
+  const { valid, payload } = verifyJWT(token, secretKey);
+  if (valid && (payload.role === 'Admin' || payload.role === 'ProfesseurAdmin' || payload.role === 'Professeur' || payload.role === 'Cip' || payload.role === 'eleve')) {
   try {
     const files = fs.readdirSync(pictoDirectory)
 
@@ -1142,6 +1212,9 @@ app.get('/GET/getpicto-info', async (req: any, res: any) => {
     console.error('Erreur lors de la lecture du répertoire des images :', error)
     res.status(500).send('Erreur interne du serveur')
   }
+} else {
+  res.status(401).send('Non autorisé')
+}
 })
 
 /* GET PICTO FILE ===============================================================*/
@@ -1152,8 +1225,9 @@ app.get('/GET/getpicto-info', async (req: any, res: any) => {
 /*autorisation : eleve*/
 app.get('/GET/getpicto-file', async (req: any, res: any) => {
   const pictoDirectory = path.join(__dirname, './src/picto')
-  const { name } = req.query
-
+  const { name , token } = req.query
+  const { valid, payload } = verifyJWT(token, secretKey);
+  if (valid && (payload.role === 'Admin' || payload.role === 'ProfesseurAdmin' || payload.role === 'Professeur' || payload.role === 'Cip' || payload.role === 'eleve')) {
   try {
     // Construction du chemin complet du fichier image
     const imagePath = path.join(pictoDirectory, name)
@@ -1164,6 +1238,9 @@ app.get('/GET/getpicto-file', async (req: any, res: any) => {
     console.error('Erreur lors de la récupération du fichier image :', error)
     res.status(500).send('Erreur interne du serveur')
   }
+} else {
+  res.status(401).send('Non autorisé')
+}
 })
 
 /* GET photo profil ELEVE ===============================================================*/
@@ -1202,8 +1279,10 @@ app.get('/GET/piceleve', async (req: any, res: any) => {
 /*autorisation : Cip*/
 /*autorisation : eleve*/
 app.get('/GET/getphotoeleve-info', async (req: any, res: any) => {
-  const { eleve } = req.query
+  const { eleve, token } = req.query
   const pictoDirectory = path.join(__dirname, './src/photo/' + eleve)
+  const { valid, payload } = verifyJWT(token, secretKey);
+  if (valid && (payload.role === 'Admin' || payload.role === 'ProfesseurAdmin' || payload.role === 'Professeur' || payload.role === 'Cip' || payload.role === 'eleve')) {
 
   try {
     const files = fs.readdirSync(pictoDirectory)
@@ -1217,6 +1296,10 @@ app.get('/GET/getphotoeleve-info', async (req: any, res: any) => {
     console.error('Erreur lors de la lecture du répertoire des images :', error)
     res.status(500).send('Erreur interne du serveur')
   }
+} else {
+  res.status(401).send('Non autorisé')
+}
+
 })
 
 /* GET PHOTO ELEVE FILE ===============================================================*/
@@ -1226,10 +1309,10 @@ app.get('/GET/getphotoeleve-info', async (req: any, res: any) => {
 /*autorisation : Cip*/
 /*autorisation : eleve*/
 app.get('/GET/getphotoeleve-file', async (req: any, res: any) => {
-  const { eleve } = req.query
+  const { eleve, name, token } = req.query
   const pictoDirectory = path.join(__dirname, './src/photo/' + eleve)
-  const { name } = req.query
-
+  const { valid, payload } = verifyJWT(token, secretKey);
+  if (valid && (payload.role === 'Admin' || payload.role === 'ProfesseurAdmin' || payload.role === 'Professeur' || payload.role === 'Cip' || payload.role === 'eleve')) {
   try {
     // Construction du chemin complet du fichier image
     const imagePath = path.join(pictoDirectory, name)
@@ -1240,6 +1323,9 @@ app.get('/GET/getphotoeleve-file', async (req: any, res: any) => {
     console.error('Erreur lors de la récupération du fichier image :', error)
     res.status(500).send('Erreur interne du serveur')
   }
+} else {
+  res.status(401).send('Non autorisé')
+}
 })
 
 /* GET FOND ECRAN===============================================================*/
@@ -1250,8 +1336,9 @@ app.get('/GET/getphotoeleve-file', async (req: any, res: any) => {
 /*autorisation : eleve*/
 app.get('/GET/fondecran', async (req: any, res: any) => {
   const pictoDirectory = path.join(__dirname, './src/fond')
-  const { name } = req.query
-
+  const { name, token } = req.query
+  const { valid, payload } = verifyJWT(token, secretKey);
+  if (valid && (payload.role === 'Admin' || payload.role === 'ProfesseurAdmin' || payload.role === 'Professeur' || payload.role === 'Cip' || payload.role === 'eleve')) {
   try {
     // Construction du chemin complet du fichier image
     const imagePath = path.join(pictoDirectory, name + '.webp')
@@ -1267,13 +1354,18 @@ app.get('/GET/fondecran', async (req: any, res: any) => {
     console.error('Erreur lors de la récupération du fichier image :', error)
     res.status(500).send('Erreur interne du serveur')
   }
+} else {
+  res.status(401).send('Non autorisé')
+}
 })
 
 /* get eleve affecter a fiche ===============================================================*/
 /*autorisation : Admin*/
 /*autorisation : ProfesseurAdmin*/
 app.get('/GET/eleveAffecter', async (req: any, res: any) => {
-  const { ficheName } = req.query
+  const { ficheName, token } = req.query
+  const { valid, payload } = verifyJWT(token, secretKey);
+  if (valid && (payload.role === 'Admin' || payload.role === 'ProfesseurAdmin')) {
   try {
     const fiche = await Fiche.findOne({ 'info.name': ficheName }).exec()
     if (!fiche) {
@@ -1288,13 +1380,18 @@ app.get('/GET/eleveAffecter', async (req: any, res: any) => {
     console.error('Erreur lors de la recherche de la fiche :', error)
     res.status(500).send('Erreur interne du serveur')
   }
+} else {
+  res.status(401).send('Non autorisé')
+}
 })
 
 /* GET tableau réaction eleve ======================================================================*/
 /*autorisation : Admin*/
 /*autorisation : Cip*/
 app.get('/GET/reactionEleve', async (req: any, res: any) => {
-  const { nomeleve, prenomeleve } = req.query
+  const { nomeleve, prenomeleve, token } = req.query
+  const { valid, payload } = verifyJWT(token, secretKey);
+  if (valid && (payload.role === 'Admin' || payload.role === 'Cip')) {
   try {
     const ficheArray = await Fiche.find().exec()
     const reactionEleveArray = []
@@ -1315,13 +1412,18 @@ app.get('/GET/reactionEleve', async (req: any, res: any) => {
     console.error('Erreur lors de la récupération des fiches :', error)
     res.status(500).send('Erreur interne du serveur')
   }
+} else {
+  res.status(401).send('Non autorisé')
+}
 })
 
 /* GET comentaire de la CIP pour un élève donné =====================================================*/
 /*autorisation : Admin*/
 /*autorisation : Cip*/
 app.get('/GET/comentaireCIP', async (req: any, res: any) => {
-  const { nomeleve, prenomeleve } = req.query;
+  const { nomeleve, prenomeleve, token } = req.query;
+  const { valid, payload } = verifyJWT(token, secretKey);
+  if (valid && (payload.role === 'Admin' || payload.role === 'Cip')) {
   try {
     const eleve = await EleveModel.findOne({ 'nom': nomeleve, 'prenom': prenomeleve }).exec();
 
@@ -1339,6 +1441,9 @@ app.get('/GET/comentaireCIP', async (req: any, res: any) => {
     console.error('Erreur lors de la récupération des fiches :', error);
     res.status(500).send('Erreur interne du serveur');
   }
+} else {
+  res.status(401).send('Non autorisé')
+}
 })
 
 /*------------------- DELETE -------------------*/
@@ -1347,7 +1452,10 @@ app.get('/GET/comentaireCIP', async (req: any, res: any) => {
 /*autorisation : Admin*/
 /*autorisation : ProfesseurAdmin*/
 app.get('/DELETE/ficheName', async (req: any, res: any) => {
-  const { name } = req.query
+  const { name, token } = req.query
+  const { valid, payload } = verifyJWT(token, secretKey);
+  if (valid && (payload.role === 'Admin' || payload.role === 'ProfesseurAdmin')) {
+
   if (!name) {
     return res.status(400).send('Le paramètre "name" est requis.')
   }
@@ -1367,13 +1475,21 @@ app.get('/DELETE/ficheName', async (req: any, res: any) => {
     console.error('Erreur lors de la suppression de la fiche :', error)
     res.status(500).send('Erreur interne du serveur')
   }
+} else {
+  res.status(401).send('Non autorisé')
+}
 })
 
-/* delete fond ecran eleve ===============================================================*/
+/* delete fond ecran ===============================================================*/
 /*autorisation : Admin*/
+/*autorisation : ProfesseurAdmin*/
+/*autorisation : Professeur*/
+/*autorisation : Cip*/
 /*autorisation : eleve*/
 app.get('/DELETE/fond', async (req: any, res: any) => {
-  const { name } = req.query
+  const { name, token } = req.query
+  const { valid, payload } = verifyJWT(token, secretKey);
+  if (valid && (payload.role === 'Admin' || payload.role === 'ProfesseurAdmin' || payload.role === 'Professeur' || payload.role === 'Cip' || payload.role === 'eleve')) {
   const imagePath = path.join(__dirname, './src/fond', `${name}.webp`)
   try {
     // Check if the file exists
@@ -1389,4 +1505,7 @@ app.get('/DELETE/fond', async (req: any, res: any) => {
     console.error('Error deleting the file:', error)
     res.status(500).send('Internal server error')
   }
+} else {
+  res.status(401).send('Non autorisé')
+}
 })

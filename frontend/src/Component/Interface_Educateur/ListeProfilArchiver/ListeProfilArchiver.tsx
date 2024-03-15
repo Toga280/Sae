@@ -13,7 +13,7 @@ function ListeProfilArchiver({ redirection, identifiant }: any) {
 
   const getEleve = () => {
     axios
-      .get(`http://localhost:5000/GET/allEleveArchiver`)
+      .get(`http://localhost:5000/GET/allEleveArchiver`, {  params: { token:token } })
       .then((response) => {
         setEleves(response.data);
       })
@@ -94,6 +94,7 @@ function ListeProfilArchiver({ redirection, identifiant }: any) {
       .get('http://localhost:5000/GET/fondecran', {
         params: {
           name: identifiant,
+          token: token,
         },
         responseType: 'arraybuffer',
       })

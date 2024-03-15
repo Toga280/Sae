@@ -47,7 +47,7 @@ function FicheEleve({
   const getFicheInProgressEleve = () => {
     axios
       .get(
-        `http://localhost:5000/GET/eleve/FicheInProgress?nom=${nomEleve}&prenom=${prenomEleve}`,
+        `http://localhost:5000/GET/eleve/FicheInProgress?nom=${nomEleve}&prenom=${prenomEleve}`, {params: {token: token}}
       )
       .then((response) => {
         SetFicheEnCour(response.data)
@@ -63,7 +63,7 @@ function FicheEleve({
   const getFicheCompletedEleve = () => {
     axios
       .get(
-        `http://localhost:5000/GET/eleve/FicheCompleted?nom=${nomEleve}&prenom=${prenomEleve}`,
+        `http://localhost:5000/GET/eleve/FicheCompleted?nom=${nomEleve}&prenom=${prenomEleve}`, {params: {token: token}}
       )
       .then((response) => {
         if (response.data === 'Aucune fiche terminée trouvée') {
@@ -85,7 +85,7 @@ function FicheEleve({
       const response = await axios.get(
         `http://localhost:5000/GET/nameFiche?name=${encodeURIComponent(
           nameValue,
-        )}`,
+        )}`,{params: {token: token}}
       )
       fonctionsMiniBoxInfoJson.setNewJson(response.data)
       setVoirFiche(true)

@@ -58,8 +58,8 @@ function Sauvegarder({ redirection, setSaveName }: any) {
     try {
       const response = await axios.get(
         `http://localhost:5000/GET/nameFicheExiste?name=${encodeURIComponent(
-          nomFiche,
-        )}`,
+          nomFiche
+        )}`,{params: {token: token}}
       )
 
       if (response.data) {

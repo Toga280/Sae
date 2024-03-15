@@ -9,7 +9,7 @@ function ModifierMdpProf({ redirection }: any) {
   useEffect(() => {
     const getProf = () => {
       axios
-        .get(`http://localhost:5000/GET/allProf`)
+        .get(`http://localhost:5000/GET/allProf`, {params: {token: token}})
         .then((response) => {
           setAdmin(response.data);
         })

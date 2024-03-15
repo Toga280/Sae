@@ -1,16 +1,16 @@
 import React, { useState, useEffect } from 'react';
 import axios from 'axios';
+const token = localStorage.getItem('token');
 
 function Pictogramme({ onSelect }: { onSelect: (selectedImage: string) => void }) {
   const [images, setImages] = useState<ArrayBuffer[]>([]);
   const [imageNames, setImageNames] = useState<string[]>([]);
   const [selectedImage, setSelectedImage] = useState<string | null>(null);
   const [imageError, setImageError] = useState<string>('');
-
   useEffect(() => {
     const getPictoInfo = async () => {
       try {
-        const response = await axios.get('http://localhost:5000/GET/getpicto-info');
+        const response = await axios.get('http://localhost:5000/GET/getpicto-info', {params: {token: token}});
         const { numFiles, imageNames } = response.data;
 
         // Afficher les informations
@@ -19,7 +19,7 @@ function Pictogramme({ onSelect }: { onSelect: (selectedImage: string) => void }
 
         // Demander chaque fichier individuellement
         const imagePromises = imageNames.map(async (imageName: string) => {
-          const imagePath = `http://localhost:5000/GET/getpicto-file?name=${encodeURIComponent(imageName)}`;
+          const imagePath = `http://localhost:5000/GET/getpicto-file?name=${encodeURIComponent(imageName)}&token=${token}`;
           const imageResponse = await axios.get(imagePath, {
             responseType: 'arraybuffer',
           });

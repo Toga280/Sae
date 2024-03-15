@@ -4,6 +4,7 @@ import "./ModifierMdp.css";
 import ModifierMdpEleve from "./ModifierMdpEleve";
 import exp from "constants";
 import ModifierMdpProf from "./ModifierMdpProf";
+const token = localStorage.getItem('token');
 
 function ModifierMdp({redirection,role,identifiant}:any){
     const setRedirectionTwo = () => {
@@ -18,6 +19,7 @@ function ModifierMdp({redirection,role,identifiant}:any){
           .get('http://localhost:5000/GET/fondecran', {
             params: {
               name: identifiant,
+              token: token,
             },
             responseType: 'arraybuffer',
           })

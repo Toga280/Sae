@@ -1,6 +1,7 @@
 import React, { useEffect, useState } from "react";
 import axios from 'axios';
 import fonctionsMiniBoxInfoJson from "../MiniBoxInfoFunction";
+const token = localStorage.getItem('token');
 
 function PictoChoisi({ numeroMiniBox}: any) {
     const [imagePath, setImagePath] = useState<string | null>(null);
@@ -9,7 +10,8 @@ function PictoChoisi({ numeroMiniBox}: any) {
             try {
                 const response = await axios.get('http://localhost:5000/GET/getpicto-file', {
                     params: {
-                        name: fonctionsMiniBoxInfoJson.getNomPicto(numeroMiniBox)
+                        name: fonctionsMiniBoxInfoJson.getNomPicto(numeroMiniBox),
+                        token: token,
                     },
                     responseType: 'blob',
                 });

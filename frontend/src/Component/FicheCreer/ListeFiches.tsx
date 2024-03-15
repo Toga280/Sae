@@ -29,7 +29,7 @@ function ListeFiches({ redirection, refreshFiche, identifiant }: any) {
         .get(
           `http://localhost:5000/DELETE/ficheName?name=${encodeURIComponent(
             nomFiche,
-          )}`,
+          )}&token=${token}`,
         )
         .then((response) => {
           if (response.data) {
@@ -54,7 +54,7 @@ function ListeFiches({ redirection, refreshFiche, identifiant }: any) {
       const response = await axios.get(
         `http://localhost:5000/GET/eleveAffecter?ficheName=${encodeURIComponent(
           nomf,
-        )}`,
+        )}&token=${token}`,
       )
       return response.data
     } catch (error) {
@@ -142,7 +142,11 @@ function ListeFiches({ redirection, refreshFiche, identifiant }: any) {
 
   const allFicheNames = () => {
     axios
-      .get('http://localhost:5000/GET/allFicheNames')
+      .get('http://localhost:5000/GET/allFicheNames', {
+        params: {
+          token: token
+        }
+      })
       .then((response) => {
         setFichesNames(response.data)
       })
@@ -156,7 +160,7 @@ function ListeFiches({ redirection, refreshFiche, identifiant }: any) {
       const response = await axios.get(
         `http://localhost:5000/GET/nameFiche?name=${encodeURIComponent(
           nameValue,
-        )}`,
+        )}`,{params: {token: token}}
       )
       fonctionsMiniBoxInfoJson.setNewJson(response.data)
     } catch (error) {
@@ -189,6 +193,7 @@ function ListeFiches({ redirection, refreshFiche, identifiant }: any) {
       await axios.post(`http://localhost:5000/POST/ficheUpdateName`, {
         name: oldnom,
         newName: newnom,
+        token: token,
       })
     } catch (error) {
       console.error(error)
@@ -203,7 +208,7 @@ function ListeFiches({ redirection, refreshFiche, identifiant }: any) {
       const response = await axios.get(
         `http://localhost:5000/GET/nameFicheExiste?name=${encodeURIComponent(
           nomFiche,
-        )}`,
+        )}`,{params: {token: token}}
       )
       if (response.data) {
         console.log(response.data)
@@ -234,6 +239,7 @@ function ListeFiches({ redirection, refreshFiche, identifiant }: any) {
     try {
       await axios.post('http://localhost:5000/POST/ficheDuplicate', {
         name: nomf,
+        token: token,
       })
     } catch (error) {
       console.error(error)
@@ -248,6 +254,7 @@ function ListeFiches({ redirection, refreshFiche, identifiant }: any) {
       .get('http://localhost:5000/GET/fondecran', {
         params: {
           name: identifiant,
+          token: token,
         },
         responseType: 'arraybuffer',
       })

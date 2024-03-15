@@ -64,6 +64,7 @@ function PhotoEleve({ redirection, eleve }: any) {
       .get('http://localhost:5000/GET/fondecran', {
         params: {
           name: eleve,
+          token: token,
         },
         responseType: 'arraybuffer',
       })
@@ -90,6 +91,7 @@ function PhotoEleve({ redirection, eleve }: any) {
           {
             params: {
               eleve: eleve,
+              token: token,
             },
           },
         )
@@ -99,7 +101,7 @@ function PhotoEleve({ redirection, eleve }: any) {
         const imagePromises = imageNames.map(async (imageName: string) => {
           const imagePath = `http://localhost:5000/GET/getphotoeleve-file?eleve=${encodeURIComponent(
             eleve,
-          )}&name=${encodeURIComponent(imageName)}`
+          )}&name=${encodeURIComponent(imageName)}&token=${token}`
           const imageResponse = await axios.get(imagePath, {
             responseType: 'arraybuffer',
           })
@@ -130,6 +132,7 @@ function PhotoEleve({ redirection, eleve }: any) {
       .get('http://localhost:5000/GET/fondecran', {
         params: {
           name: eleve,
+          token: token,
         },
         responseType: 'arraybuffer',
       })

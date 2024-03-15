@@ -10,6 +10,7 @@ import FicheBox8 from './FicheBox8'
 import SelectionChoixMiniBox from './MiniBoxChoix/SelectionChoixMiniBox'
 import fonctionsMiniBoxInfoJson from './MiniBoxInfoFunction'
 import axios from 'axios'
+const token = localStorage.getItem('token');
 function FicheBoxSelected({ numberFichBox, onSelectBoxChange, identifiant }: any) {
   const [selectionChoixMiniBox, setSelectionChoixMiniBox] = useState(false)
   const [numeroMiniBox, setnumeroMiniBox] = useState(Number)
@@ -37,6 +38,7 @@ function FicheBoxSelected({ numberFichBox, onSelectBoxChange, identifiant }: any
       .get('http://localhost:5000/GET/fondecran', {
         params: {
           name: identifiant,
+          token: token,
         },
         responseType: 'arraybuffer',
       })

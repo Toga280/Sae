@@ -50,7 +50,7 @@ function FicheBoxTotal({
       .get(
         `http://localhost:5000/DELETE/ficheName?name=${encodeURIComponent(
           nomFiche,
-        )}`,
+        )}&token=${token}`,
       )
       .then((response) => {
         if (response.data) {
@@ -140,6 +140,7 @@ function FicheBoxTotal({
       .get('http://localhost:5000/GET/fondecran', {
         params: {
           name: identifiant,
+          token: token,
         },
         responseType: 'arraybuffer',
       })

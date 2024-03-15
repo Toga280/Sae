@@ -24,6 +24,7 @@ function Optionprof({ redirection, identifiant }: any) {
       .get('http://localhost:5000/GET/fondecran', {
         params: {
           name: identifiant,
+          token: token,
         },
         responseType: 'arraybuffer',
       })
@@ -81,7 +82,7 @@ function Optionprof({ redirection, identifiant }: any) {
 
       if (identifiant.trim() !== '') {
         const response = await axios.get(
-          `http://localhost:5000/DELETE/fond?name=${identifiant}`,
+          `http://localhost:5000/DELETE/fond?name=${identifiant}&token=${token}`,
           {
             // Additional request configuration if needed
           },
@@ -105,6 +106,7 @@ function Optionprof({ redirection, identifiant }: any) {
       .get('http://localhost:5000/GET/fondecran', {
         params: {
           name: identifiant,
+          token: token,
         },
         responseType: 'arraybuffer',
       })
