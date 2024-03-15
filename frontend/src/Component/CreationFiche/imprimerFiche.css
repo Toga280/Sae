@@ -17,4 +17,16 @@
         display: none; 
     }
   }
-  
+
+  .imgEmoji {
+    display: flex;
+    justify-content: center;
+    margin-top: 8em;
+    img {
+      border-radius: 30%;
+      box-shadow: 2px 2px 4px rgba(0, 0, 0, 0.4);
+      width: 15em;
+      height: 15em;
+      margin: 5em;
+    }
+  }
