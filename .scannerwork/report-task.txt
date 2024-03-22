@@ -1,0 +1,6 @@
+projectKey=SEA_Back
+serverUrl=http://localhost:9000
+serverVersion=10.4.0.87286
+dashboardUrl=http://localhost:9000/dashboard?id=SEA_Back
+ceTaskId=46aba9d5-2aa6-4299-91d0-0cff37c7e2a2
+ceTaskUrl=http://localhost:9000/api/ce/task?id=46aba9d5-2aa6-4299-91d0-0cff37c7e2a2
