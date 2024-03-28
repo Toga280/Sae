@@ -244,6 +244,7 @@
   bottom: 20px;
   left: 20px;
   cursor: pointer;
+  position: fixed;
 }
 
 .retour_suivi_commentaire:hover, .retour_suivi_commentaire:focus {

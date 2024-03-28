@@ -128,6 +128,7 @@ function SuiviEleve({ redirection, identifiant }: any) {
               token: token
             }
           });
+          console.log(response.data)
           setReactionsEleve(response.data);
         } catch (error) {
           console.error("Erreur lors de la récupération des réactions des élèves :", error);
@@ -148,7 +149,7 @@ function SuiviEleve({ redirection, identifiant }: any) {
         } catch (error:any) {
           if (error.response && error.response.status !== 40) {
           console.error("Erreur lors de l'ajout du commentaire :", error);
-    }
+          }
         }
       }
 
@@ -177,16 +178,17 @@ function SuiviEleve({ redirection, identifiant }: any) {
     const width = 500;
     const height = 150;
     const barWidth = width / data.length;
-
     useEffect(() => {
       const canvas = document.getElementById('myChart') as HTMLCanvasElement; // Ajouter l'assertion de type
       if (canvas) {
           const ctx = canvas.getContext('2d');
           if (ctx) {
+              const labels = reactionsEleve.fiches; // Utiliser les noms des fiches comme étiquettes
+    
               new Chart(ctx, {
                   type: 'bar',
                   data: {
-                      labels: reactionsEleve.reactions.map((reaction, index) => index.toString()),
+                      labels: labels,
                       datasets: [{
                           label: 'Réactions',
                           data: reactionsEleve.reactions.map(reaction => {
@@ -203,18 +205,32 @@ function SuiviEleve({ redirection, identifiant }: any) {
                       }]
                   },
                   options: {
-                      indexAxis: 'x',
                       scales: {
                           y: {
                               beginAtZero: true,
-                              max: 150 // Valeur maximale de l'axe y
+                              ticks: {
+                                  stepSize: 50,
+                                  callback: function(value) {
+                                      if (value === 50) {
+                                          return "Pas bien"; // Étiquette pour 50
+                                      } else if (value === 100) {
+                                          return "Bien"; // Étiquette pour 100
+                                      } else if (value === 150) {
+                                          return "Très bien"; // Étiquette pour 150
+                                      }
+                                  }
+                              }
                           }
                       }
                   }
               });
           }
       }
-  }, [reactionsEleve.reactions]);
+    }, [reactionsEleve]);
+    
+    
+    
+    
   
 
   

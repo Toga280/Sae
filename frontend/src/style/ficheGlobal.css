@@ -175,4 +175,12 @@ input.TextInput {
   font-weight: bold;
   box-shadow: 0px 3px 6px rgba(0, 0, 0, 0.16);
   animation: fadeInOut 5s linear forwards; /* Fade in and out animation */
+  display: flex; /* Utilisation de flexbox pour aligner le contenu horizontalement */
+  align-items: center; /* Alignement vertical au centre */
 }
+
+.message_brouillon img {
+  margin-left: 5px; /* Ajoutez une marge à gauche de l'image */
+  height: 20px; /* Ajustez la hauteur de l'image si nécessaire */
+}
+
