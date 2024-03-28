@@ -12,6 +12,7 @@ const expiresIn = "24h";
 import fs from 'fs'
 import path from 'path'
 import { error } from 'console'
+import crypto from 'crypto';
 const storage = multer.memoryStorage()
 const upload = multer({ storage: storage })
 
@@ -169,6 +170,7 @@ async function CreateAdminIfNotExiste() {
         id: 'admin',
         role: 'Admin',
       })
+      adminBasique.mdp = hashPassword(adminBasique.mdp)
       adminBasique
         .save()
         .then(() => {
@@ -512,33 +514,35 @@ app.post('/POST/uploadpictoEleve',upload.single('file'),async (req: any, res: an
 /* AJOUT ELEVE=========================================================*/
 /*autorisation : Admin*/
 app.post('/POST/eleves', (req: any, res: any) => {
-  const newData = req.body.params.eleveData
-  const newEleve = new EleveModel(newData)
-  const token = req.body.params.token
+  const newData = req.body.params.eleveData;
+  const { nom, prenom, image, mdp } = newData;
+  const hashedMdp = hashPassword(mdp);
+  const newEleve = new EleveModel({ nom, prenom, image, mdp: hashedMdp });
+  const token = req.body.params.token;
   const { valid, payload } = verifyJWT(token, secretKey);
-  if (valid && (payload.role === 'Admin')) {
-  newEleve
-    .save()
-    .then(() => {
-      console.log('Élève enregistré avec succès dans la base de données')
-      res.status(200).send('Élève enregistré avec succès')
-    })
-    .catch((err: any) => {
-      if (err.name === 'ValidationError') {
-        console.error('Erreur de validation des données :', err.message)
-        res.status(400).send('Données de requête invalides')
-      } else {
-        console.error(
-          "Erreur lors de l'enregistrement de l'élève dans la base de données :",
-          err,
-        )
-        res.status(500).send('Erreur interne du serveur')
-      }
-    })
+  if (valid && payload.role === 'Admin') {
+    newEleve
+      .save()
+      .then(() => {
+        console.log('Élève enregistré avec succès dans la base de données');
+        res.status(200).send('Élève enregistré avec succès');
+      })
+      .catch((err: any) => {
+        if (err.name === 'ValidationError') {
+          console.error('Erreur de validation des données :', err.message);
+          res.status(400).send('Données de requête invalides');
+        } else {
+          console.error(
+            "Erreur lors de l'enregistrement de l'élève dans la base de données :",
+            err,
+          );
+          res.status(500).send('Erreur interne du serveur');
+        }
+      });
   } else {
-    res.status(401).send('Non autorisé')
+    res.status(401).send('Non autorisé');
   }
-})
+});
 
 /* MODFIER MDP ELEVE======================================================*/
 /*autorisation : Admin*/
@@ -557,7 +561,8 @@ app.post('/POST/eleveUpdatePassword', async (req: any, res: any) => {
     }
 
     if (mdp !== '' || mdp !== null || mdp !== undefined) {
-      eleve.mdp = mdp
+      let newMdp = hashPassword(mdp)
+      eleve.mdp = newMdp
     }
 
     await eleve.save()
@@ -585,7 +590,8 @@ app.post('/POST/profUpdatePassword', async (req: any, res: any) => {
     if (!admin) {
       return res.status(404).json({ message: 'Prof non trouvé' })
     }
-    admin.mdp = mdp
+    let newMdp = hashPassword(mdp)
+    admin.mdp = newMdp
     await admin.save()
     res.status(200).json({ message: 'Mot de passe mis à jour avec succès' })
   } catch (error) {
@@ -730,6 +736,7 @@ app.post('/POST/admin', (req: any, res: any) => {
   const { valid, payload } = verifyJWT(token, secretKey);
   if (valid && (payload.role === 'Admin')) {
   const newAdmin = new Admin(newData)
+  newAdmin.mdp = hashPassword(newAdmin.mdp)
   newAdmin
     .save()
     .then(() => {
@@ -1017,8 +1024,9 @@ app.get('/GET/allEleveArchiver', async (req: any, res: any) => {
 app.get('/GET/eleve/authentification', async (req: any, res: any) => {
   const { nom, prenom, mdp } = req.query
   try {
-    const eleve = await EleveModel.findOne({ nom, prenom, mdp }).exec()
+    const eleve = await EleveModel.findOne({ nom, prenom}).exec()
     if (eleve) {
+      if (comparePassword(mdp, eleve.mdp)) {
       const payload = {
         role: 'eleve',
         nom: eleve.nom,
@@ -1026,7 +1034,9 @@ app.get('/GET/eleve/authentification', async (req: any, res: any) => {
       }
       const token = generateJWT(payload, secretKey, expiresIn);
       res.status(200).send({ rep: true, token: token });
-
+      } else {
+        res.status(401).send(false)
+      }
     } else {
       res.status(401).send(false)
     }
@@ -1177,8 +1187,9 @@ app.get('/GET/eleve/FicheCompleted', async (req: any, res: any) => {
 app.get('/GET/admin/authentification', async (req: any, res: any) => {
   const { id, mdp } = req.query
   try {
-    const admin = await Admin.findOne({ id, mdp }).exec()
+    const admin = await Admin.findOne({ id }).exec()
     if (admin) {
+      if (comparePassword(mdp, admin.mdp)) {
       const payload = {
         role: admin.role,
         nom: admin.nom,
@@ -1186,6 +1197,9 @@ app.get('/GET/admin/authentification', async (req: any, res: any) => {
       }
       const token = generateJWT(payload, secretKey, expiresIn);
       res.status(200).send({ rep: true, token: token });
+      } else {
+        res.status(401).send(false)
+      }
     } else {
       res.status(401).send(false)
     }
@@ -1550,3 +1564,15 @@ app.get('/DELETE/fond', async (req: any, res: any) => {
   res.status(401).send('Non autorisé')
 }
 })
+
+const salt = 'Flugabwehrraketensystem Roland auf Radkraftfahrzeug';
+
+function hashPassword(mdp: any) {
+  const hashedPassword = crypto.pbkdf2Sync(mdp, salt, 1000, 64, 'sha512').toString('hex');
+  return hashedPassword;
+}
+
+function comparePassword(mdp: string, hash: string): boolean {
+  const hashedPassword = crypto.pbkdf2Sync(mdp, salt, 1000, 64, 'sha512').toString('hex');
+  return hashedPassword === hash;
+}
