@@ -1,6 +1,7 @@
 import React, { useState } from "react";
 import "./CreationProfil.css";
 import axios from "axios";
+const token = localStorage.getItem('token');
 function CreationProfilProf({ setRedirectionTwo }: any) {
   const [nom, setNom] = useState(String);
   const [prenom, setPrenom] = useState(String);
@@ -13,6 +14,9 @@ function CreationProfilProf({ setRedirectionTwo }: any) {
     headers: {
       "Content-Type": "application/json",
     },
+    params : {
+      token: token
+    }
   };
 
   const createProfil = (event: React.MouseEvent<HTMLButtonElement>) => {

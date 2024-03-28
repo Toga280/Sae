@@ -2,6 +2,7 @@ import axios from 'axios'
 import React, { useEffect, useState } from 'react'
 import './ConsulterFichesImages.css'
 import FicheEleve from './FicheEleve/FicheEleve'
+const token = localStorage.getItem('token');
 
 function ConsulterFichesImages({ redirection, IdConnecter, identifiant }: any) {
   const setRedirectionTwo = () => {
@@ -53,6 +54,7 @@ function ConsulterFichesImages({ redirection, IdConnecter, identifiant }: any) {
             {
               params: {
                 eleve: eleveSelectionne.nom + eleveSelectionne.prenom,
+                token: token,
               },
             },
           )
@@ -62,7 +64,7 @@ function ConsulterFichesImages({ redirection, IdConnecter, identifiant }: any) {
           const imagePromises = imageNames.map(async (imageName: string) => {
             const imagePath = `http://localhost:5000/GET/getphotoeleve-file?eleve=${encodeURIComponent(
               eleveSelectionne.nom + eleveSelectionne.prenom,
-            )}&name=${encodeURIComponent(imageName)}`
+            )}&name=${encodeURIComponent(imageName)}&token=${token}`
             const imageResponse = await axios.get(imagePath, {
               responseType: 'arraybuffer',
             })
@@ -114,6 +116,7 @@ function ConsulterFichesImages({ redirection, IdConnecter, identifiant }: any) {
       .get('http://localhost:5000/GET/fondecran', {
         params: {
           name: identifiant,
+          token: token,
         },
         responseType: 'arraybuffer',
       })

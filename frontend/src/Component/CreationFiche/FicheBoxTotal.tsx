@@ -11,6 +11,7 @@ import fonctionsMiniBoxInfoJson from './MiniBoxInfoFunction'
 import { imprimerPage } from '../FonctionEleve/Imprimer'
 import './imprimerFiche.css'
 import axios from 'axios'
+const token = localStorage.getItem('token');
 
 function FicheBoxTotal({
   onSelectBox,
@@ -35,7 +36,7 @@ function FicheBoxTotal({
   }
 
   const postFiche = async () => {
-    const data = fonctionsMiniBoxInfoJson.getAllJson()
+    const data = {data: fonctionsMiniBoxInfoJson.getAllJson(), token:token}
     axios
       .post('http://localhost:5000/POST/fiche', data)
       .then((response) => {})
@@ -49,7 +50,7 @@ function FicheBoxTotal({
       .get(
         `http://localhost:5000/DELETE/ficheName?name=${encodeURIComponent(
           nomFiche,
-        )}`,
+        )}&token=${token}`,
       )
       .then((response) => {
         if (response.data) {
@@ -139,6 +140,7 @@ function FicheBoxTotal({
       .get('http://localhost:5000/GET/fondecran', {
         params: {
           name: identifiant,
+          token: token,
         },
         responseType: 'arraybuffer',
       })

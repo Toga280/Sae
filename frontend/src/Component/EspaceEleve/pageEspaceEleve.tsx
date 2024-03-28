@@ -4,6 +4,7 @@ import FicheBoxTotal from '../CreationFiche/FicheBoxTotal'
 import axios from 'axios'
 import fonctionsMiniBoxInfoJson from '../CreationFiche/MiniBoxInfoFunction'
 import FicheEleve from '../Interface_Educateur/ConsulterFichesImages/FicheEleve/FicheEleve'
+const token = localStorage.getItem('token');
 
 function PageEspaceEleve({ redirection, nomEleve, prenomEleve, eleve }: any) {
   const [fondEcranUrl, setFondEcranUrl] = useState<string | null>(null)
@@ -18,6 +19,7 @@ function PageEspaceEleve({ redirection, nomEleve, prenomEleve, eleve }: any) {
       .get('http://localhost:5000/GET/fondecran', {
         params: {
           name: eleve,
+          token: token,
         },
         responseType: 'arraybuffer',
       })
@@ -49,7 +51,7 @@ function PageEspaceEleve({ redirection, nomEleve, prenomEleve, eleve }: any) {
       .get(
         `http://localhost:5000/GET/eleve/fiche?nom=${encodeURIComponent(
           nomEleve,
-        )}&prenom=${encodeURIComponent(prenomEleve)}`,
+        )}&prenom=${encodeURIComponent(prenomEleve)}`,{params : {token:token}}
       )
       .then((response) => {
         if (response.data) {
@@ -70,6 +72,7 @@ function PageEspaceEleve({ redirection, nomEleve, prenomEleve, eleve }: any) {
       .get('http://localhost:5000/GET/fondecran', {
         params: {
           name: eleve,
+          token: token,
         },
         responseType: 'arraybuffer',
       })

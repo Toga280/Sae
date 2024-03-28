@@ -1,7 +1,7 @@
 import axios from 'axios'
 import './AffecterListe.css'
 import React, { useEffect, useState } from 'react'
-
+const token = localStorage.getItem('token');
 function AffecterListe({
   setAffichageAffecterListeFalse,
   nomFicheSelectionner,
@@ -40,6 +40,7 @@ function AffecterListe({
           nom,
           prenom,
           ficheName,
+          token,
         },
         {
           validateStatus: function (status) {
@@ -49,11 +50,13 @@ function AffecterListe({
       )
       .then((response) => {
         if (!response.data.success) {
+          alert('Vous ne pouvez pas affecter une fiche à cet élève');
           setErreurAffecterMessage(response.data.message)
         } else {
           setAffichageAffecterListeFalse()
           redirection(2)
           redirection(6)
+          
         }
         window.scrollTo(0, 0)
       })

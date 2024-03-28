@@ -2,6 +2,8 @@ import React, { useEffect, useState } from 'react';
 import './SuiviEleve.css';
 import axios from 'axios';
 import Chart from 'chart.js/auto';
+const token = localStorage.getItem('token');
+
 function SuiviEleve({ redirection, identifiant }: any) {
     const redirectionTwo = () => {
       redirection(2);
@@ -35,14 +37,16 @@ function SuiviEleve({ redirection, identifiant }: any) {
       await axios.post('http://localhost:5000/POST/comCIP', {
         nom: nomEleveActuelle,
         prenom: prenomEleveActuelle,
-        comCIP: newCommentaire
+        comCIP: newCommentaire,
+        token: token
       });
   
       // Après avoir ajouté le commentaire avec succès, récupérez la liste des commentaires mise à jour
       const response = await axios.get('http://localhost:5000/GET/comentaireCIP', {
         params: {
           nomeleve: nomEleveActuelle,
-          prenomeleve: prenomEleveActuelle
+          prenomeleve: prenomEleveActuelle,
+          token: token
         }
       });
   
@@ -120,7 +124,8 @@ function SuiviEleve({ redirection, identifiant }: any) {
           const response = await axios.get('http://localhost:5000/GET/reactionEleve', {
             params: {
               nomeleve: nomEleveActuelle,
-              prenomeleve: prenomEleveActuelle
+              prenomeleve: prenomEleveActuelle,
+              token: token
             }
           });
           setReactionsEleve(response.data);
@@ -134,7 +139,8 @@ function SuiviEleve({ redirection, identifiant }: any) {
           const response = await axios.get('http://localhost:5000/GET/comentaireCIP', {
             params: {
               nomeleve: nomEleveActuelle,
-              prenomeleve: prenomEleveActuelle
+              prenomeleve: prenomEleveActuelle,
+              token: token
             }
           });
 
@@ -218,6 +224,7 @@ function SuiviEleve({ redirection, identifiant }: any) {
         .get('http://localhost:5000/GET/fondecran', {
           params: {
             name: identifiant,
+            token: token,
           },
           responseType: 'arraybuffer',
         })
@@ -282,6 +289,8 @@ function SuiviEleve({ redirection, identifiant }: any) {
                       </div>
                     <div>
                       <button className="retour_suivi_commentaire" onClick={() => {
+                        setNomEleveActuelle("");
+                        setPrenomEleveActuelle("");
                         setSelectedEleve(null);
                         setCommentairesList([]);
                       }}>Retour</button>

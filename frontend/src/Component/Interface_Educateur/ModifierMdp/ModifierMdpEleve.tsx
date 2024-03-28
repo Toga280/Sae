@@ -2,6 +2,7 @@ import React, { useEffect, useState } from "react";
 import axios from "axios";
 import "./ModifierMdp.css";
 import "./ModifierMdp";
+const token = localStorage.getItem('token');
 
 function ModifierMdpEleve({ redirection }: any) {
   const [mdpEleve, ModifMdpEleve] = useState("");
@@ -43,7 +44,12 @@ function ModifierMdpEleve({ redirection }: any) {
   /*------------------- MODIFIER MDP ELEVE -------------------*/
   const postEleveChangeMdp = (eleveData: any) => {
     axios
-      .post("http://localhost:5000/POST/eleveUpdatePassword", eleveData)
+      .post("http://localhost:5000/POST/eleveUpdatePassword", {
+        params: {
+          eleveData: eleveData,
+          token: token,
+        },
+      })
       .then((response) => {
         console.log("Réponse du serveur :", response.data);
       })
@@ -133,6 +139,7 @@ function ModifierMdpEleve({ redirection }: any) {
     .post("http://localhost:5000/POST/uploadpictoEleve", formData, {
       params: {
         name: nomEleve+prenomEleve,
+        token: token,
       },
     })
     .then((response) => {

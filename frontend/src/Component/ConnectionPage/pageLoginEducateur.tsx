@@ -1,6 +1,7 @@
 import React, { useState } from 'react'
 import './PageLoginEducateurStyle.css'
 import axios from 'axios'
+const token = localStorage.getItem('token');
 
 function PageLoginEducateur({ redirection, setRole, setIdConnecter, identifiant }: any) {
   const [id, setId] = useState(String)
@@ -18,7 +19,7 @@ function PageLoginEducateur({ redirection, setRole, setIdConnecter, identifiant 
 
   const getRole = (id: string) => {
     axios
-      .get(`http://localhost:5000/GET/roleProf?id=${encodeURIComponent(id)}`)
+      .get(`http://localhost:5000/GET/roleProf?id=${encodeURIComponent(id)}`,{params: {token: token}})
       .then((response) => {
         let role = response.data.role
         setRole(role)
@@ -38,7 +39,8 @@ function PageLoginEducateur({ redirection, setRole, setIdConnecter, identifiant 
         )}&mdp=${encodeURIComponent(mdp)}`,
       )
       .then((response) => {
-        if (response.data) {
+        if (response.data.rep) {
+          localStorage.setItem('token', response.data.token);
           getRole(id)
           setIdConnecter(id)
           redirection(2)
