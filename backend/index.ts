@@ -1565,6 +1565,7 @@ app.get('/DELETE/fond', async (req: any, res: any) => {
 }
 })
 
+/* hashage du mot de passe ========================================================================*/
 const salt = 'Flugabwehrraketensystem Roland auf Radkraftfahrzeug';
 
 function hashPassword(mdp: any) {
