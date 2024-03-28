@@ -11,6 +11,7 @@ function Interface({ redirection, role, identifiant }: any) {
       'Êtes-vous sûr de vouloir vous déconnecter ?',
     )
     if (confirmation) {
+      localStorage.removeItem('token');
       redirection(1)
     }
   }

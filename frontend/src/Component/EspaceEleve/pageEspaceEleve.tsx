@@ -118,7 +118,10 @@ function PageEspaceEleve({ redirection, nomEleve, prenomEleve, eleve }: any) {
         >
           <button
             className="bouton_deconnection_eleve"
-            onClick={() => redirection(1)}
+            onClick={() => {
+              localStorage.removeItem('token');
+              redirection(1);
+            }}
           >
             Se déconnecter
           </button>
