@@ -15,15 +15,19 @@
     margin-bottom: 30px;
   }
   
-  /* Style pour les titres des sections */
-  .section_title {
-    font-size: 1.2rem; /* Taille de police plus grande pour les titres */
-    font-weight: 700; /* Police plus épaisse */
-    color: #2c3e50; /* Couleur de police foncée */
-    border-bottom: 2px solid #2ecc71; /* Ligne en dessous du titre pour une séparation élégante */
-    padding-bottom: 5px; /* Espacement en dessous du titre */
-    margin-bottom: 15px; /* Espacement avant la liste des fiches */
+/* Style pour la section contenant l'image et le titre */
+  .section_container {
+    display: flex;
+    align-items: center; /* Aligner verticalement au centre */
   }
+
+  /* Style pour l'image */
+  .section_container img {
+    margin-left: 10px; /* Espacement entre l'image et le titre */
+    margin-bottom: 5px;
+    width: 5%;
+  }
+
   
   .fiche_container {
     display: flex;

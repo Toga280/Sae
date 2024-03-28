@@ -57,16 +57,16 @@ li:hover {
   background-color: #45a049;
 }
 
-.global_all_fiche {
+ .global_all_fiche {
   text-align: center;
   max-width: 1200px;
   margin: 20px auto;
   padding: 20px;
-  border: 1px solid #ccc;
+  /*border: 1px solid #ccc;*/
   border-radius: 5px;
-  background-color: #f9f9f9;
+ /* background-color: #f9f9f9;*/
   align-items: center;
-}
+} 
 .erreur_affectation_fiche {
   text-align: center;
   background-color: red;

@@ -1,6 +1,7 @@
 import React, { useEffect, useState } from 'react';
 import './SuiviEleve.css';
 import axios from 'axios';
+import Chart from 'chart.js/auto';
 const token = localStorage.getItem('token');
 
 function SuiviEleve({ redirection, identifiant }: any) {
@@ -178,6 +179,46 @@ function SuiviEleve({ redirection, identifiant }: any) {
     const barWidth = width / data.length;
 
     useEffect(() => {
+      const canvas = document.getElementById('myChart') as HTMLCanvasElement; // Ajouter l'assertion de type
+      if (canvas) {
+          const ctx = canvas.getContext('2d');
+          if (ctx) {
+              new Chart(ctx, {
+                  type: 'bar',
+                  data: {
+                      labels: reactionsEleve.reactions.map((reaction, index) => index.toString()),
+                      datasets: [{
+                          label: 'Réactions',
+                          data: reactionsEleve.reactions.map(reaction => {
+                              if (reaction === "pasbien") {
+                                  return 50; // Hauteur pour "pasbien"
+                              } else if (reaction === "moyen") {
+                                  return 100; // Hauteur pour "moyen"
+                              } else if (reaction === "tresbien") {
+                                  return 150; // Hauteur pour "bien"
+                              }
+                          }),
+                          backgroundColor: 'teal',
+                          borderWidth: 1
+                      }]
+                  },
+                  options: {
+                      indexAxis: 'x',
+                      scales: {
+                          y: {
+                              beginAtZero: true,
+                              max: 150 // Valeur maximale de l'axe y
+                          }
+                      }
+                  }
+              });
+          }
+      }
+  }, [reactionsEleve.reactions]);
+  
+
+  
+    useEffect(() => {
       // Appeler la requête pour récupérer l'image du fond d'écran
       axios
         .get('http://localhost:5000/GET/fondecran', {
@@ -217,11 +258,11 @@ function SuiviEleve({ redirection, identifiant }: any) {
             )}
             <div>
                 {selectedEleve ? (
-                                <div>
-                            <div className='global_suivi_eleve_perso'>
-                              <div className='text_area_container'>
+                              <div>
+                          <div className='global_suivi_eleve_perso'>
+                            <div className='text_area_container'>
                   <h2 className='nom_eleve_suivi'>Suivi pour {selectedEleve.prenom} {selectedEleve.nom}</h2>
-                                <textarea 
+                  <textarea 
                     className='text_area_eleve_suivi' 
                     value={commentaire}
                     onChange={(e) => setCommentaire(e.target.value)}
@@ -239,33 +280,12 @@ function SuiviEleve({ redirection, identifiant }: any) {
                     </div>
                   ))}
                 </div>
-                              <div className='global_graph'>
-                                <svg width={width} height={height} className='graph'>
-                                        {reactionsEleve.reactions.map((reaction, index) => {
-                                        let heightValue = 0; // Valeur de hauteur par défaut
-    
-                                        // Définir la hauteur en fonction de la réaction
-                                        if (reaction === "pasbien") {
-                                            heightValue = 50; // Hauteur pour "pasbien"
-                                        } else if (reaction === "moyen") {
-                                            heightValue = 100; // Hauteur pour "moyen"
-                                        } else if (reaction === "bien") {
-                                            heightValue = 150; // Hauteur pour "bien"
-                                        }
-    
-                                        return (
-                                                <rect
-                                                    key={index}
-                                                    x={index * barWidth}
-                                                    y={height - heightValue} // Utilisez la hauteur spécifique pour la réaction
-                                                    width={barWidth - 5} // 5 pour un peu d'espace entre les barres
-                                                    height={heightValue}
-                                                    fill="teal"
-                                                />
-                                            );
-                                    })}
-                                    </svg>
-                              </div>
+
+                <div className='global_graph'>
+                <canvas id='myChart' width={width} height={height}></canvas>
+
+                </div>
+
                       </div>
                     <div>
                       <button className="retour_suivi_commentaire" onClick={() => {

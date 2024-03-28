@@ -165,7 +165,11 @@ function FicheEleve({
       {!voirFiche ? (
         <div className="global_consultation_fiche">
           <div className="section fiche_en_cours">
+          <div className="section_container">
             <p className="section_title">Fiche en cours</p>
+            <img src={require('./chargement.png')} alt="Ma fiche" />
+          </div>
+
             {ficheEnCour != 'Aucune fiche trouvée' ? (
               <div
                 onClick={consulterFicheEnCour}
@@ -177,7 +181,10 @@ function FicheEleve({
               <p className="aucune_fiche_trouvé"> aucune fiche trouvée </p>
             )}
             <div className="section fiche_fini">
+            <div className="section_container">
               <p className="section_title">Fiche(s) finie(s)</p>
+              <img src={require('./icon_finish.png')} alt="Ma fiche" />l
+            </div>
               {!aucuneFicheTerminee ? (
                 ficheTerminee.map((ficheTerminee) => (
                   <div
