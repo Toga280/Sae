@@ -117,7 +117,8 @@ function PageEspaceEleve({ redirection, nomEleve, prenomEleve, eleve }: any) {
             className="bouton_deconnection_eleve"
             onClick={() => redirection(1)}
           >
-            Se déconnecter
+            Se déconnecter 
+            <img src={require('./icon_deconnection.png')} alt="Deconnection" />
           </button>
           <img
             src={require('./icon_reglage.webp')}
@@ -129,18 +130,15 @@ function PageEspaceEleve({ redirection, nomEleve, prenomEleve, eleve }: any) {
           <div className="global_bouton_interface_élève">
             <div className='global_txt_espace_élève'>
               <h1 className="txt_espace_élève">Espace élève</h1>
+              <img src={require('./icon_eleve.png')} alt="Deconnection" />
             </div>
 
             <div className="content_espace_eleve">
-              <button
-                className="bouton_interface_eleve"
-                type="button"
-                id="maFiche"
-                value="ma Fiche"
-                onClick={setMaFiche}
-              >
-                Ma fiche
-              </button>
+            <button className="bouton_interface_eleve" id="maFiche" onClick={setMaFiche}>
+              <img src={require('./icon_fiche.png')} alt="Ma fiche" />
+              Ma fiche
+            </button>
+
               <button
                 className="bouton_interface_eleve"
                 type="button"
@@ -148,6 +146,7 @@ function PageEspaceEleve({ redirection, nomEleve, prenomEleve, eleve }: any) {
                 value="Voir mes photos"
                 onClick={setRedirectionThriteen}
               >
+              <img src={require('./icon_photo.png')} alt="Ma fiche" />
                 Mes photos
               </button>
               <button
@@ -157,7 +156,8 @@ function PageEspaceEleve({ redirection, nomEleve, prenomEleve, eleve }: any) {
                 value="Voir mes photos"
                 onClick={() => setSeeMesFichesTermine(true)}
               >
-                Mes fiches finies
+                <img src={require('./icon_all_fiches.png')} alt="Ma fiche" />
+                Mon Espace Fiches
               </button>
             </div>
             <div className="global_pas_de_fiche">

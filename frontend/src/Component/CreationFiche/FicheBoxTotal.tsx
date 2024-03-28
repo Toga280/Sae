@@ -284,7 +284,7 @@ function FicheBoxTotal({
         <div className="smiley_container">
           <img
             src={require('./EmojiEleve/s1.png')}
-            onClick={async () => await setReaction("pasbien")}
+            onClick={async () => await setReaction("tresbien")}
             alt="smiley vert"
             className='smiley_ressenti'
           />
@@ -292,7 +292,7 @@ function FicheBoxTotal({
         <div className="smiley_container">
           <img
             src={require('./EmojiEleve/s2.png')}
-            onClick={async () => await setReaction("bien")}
+            onClick={async () => await setReaction("moyen")}
             alt="smiley jaune"
             className='smiley_ressenti'
           />
@@ -300,7 +300,7 @@ function FicheBoxTotal({
         <div className="smiley_container">
           <img
             src={require('./EmojiEleve/s3.png')}
-            onClick={async () => await setReaction("tresbien")}
+            onClick={async () => await setReaction("pasbien")}
             alt="smiley rouge"
             className='smiley_ressenti'
           />

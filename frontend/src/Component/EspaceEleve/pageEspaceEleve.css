@@ -5,7 +5,9 @@
 
 }
 .bouton_interface_eleve {
-
+  display: flex; /* Utiliser flexbox */
+  align-items: center; /* Aligner les éléments verticalement */
+  justify-content: center; /* Centrer horizontalement */
   background-color: white;
   max-height: 4em;
   width: 20%;
@@ -18,22 +20,14 @@
   border-radius: 4px;
   border: none;
   cursor: pointer;
-
 }
-.txt_espace_élève{
-  box-shadow: 2px 2px 12px rgba(0,0,0,0.2); /* Ombre plus prononcée au survol */
-  padding: 3px;
-  background-color: white;
-  border-radius: 4px;
-  width: 22%;
-  font-size: 2em;
-  margin-top: 3em;
-  margin-bottom: 2em;
-  text-align: center;
-  color: #355c7d;
-  font-family: Arial, sans-serif;
 
+.bouton_interface_eleve img {
+  width: 20%;
+  margin-right: 15px; /* Espacement entre l'image et le texte */
 }
+
+
 .txt_photo_eleve_all{
   background-color: white;
   border-radius: 4px;
@@ -45,12 +39,33 @@
   color: #355c7d;
   font-family: Arial, sans-serif;
 }
-.global_txt_espace_élève{
+
+.txt_espace_élève{
+  width: 80%;
+  padding: 3px;
+  border-radius: 4px;
+  font-size: 2em;
+  text-align: center;
+  color: #355c7d;
+  font-family: Arial, sans-serif;
+
+}
+.global_txt_espace_élève {
+  box-shadow: 2px 2px 12px rgba(0, 0, 0, 0.2); /* Ombre plus prononcée au survol */
+  border-radius: 1em;
+  background-color: white;
+  width: auto; /* Défini la largeur en fonction du contenu */
+  max-width: 40%; /* Limite la largeur à 50% si le contenu est plus large */
+  max-height: 15vh; /* Limite la hauteur à 80% de la hauteur de la fenêtre */
+  margin: 0 auto; /* Centre la div horizontalement */
   display: flex; /* Utilisez Flexbox */
   justify-content: center; /* Centre horizontalement */
   align-items: center; /* Centre verticalement */
   text-align: center; 
+  margin-bottom: 4em;
 }
+
+
 .content_espace_eleve{
   display: flex;
   justify-content: center; 
@@ -68,6 +83,13 @@
   font-size: 18px;
   padding: 0.8em;
   margin: 1em;
+  width: 15%;
+}
+.bouton_deconnection_eleve img{
+  width: 20%;
+  display: inline-block; /* Permet de gérer l'espace autour de l'image */
+  vertical-align: middle; /* Alignement vertical au centre */
+  margin-left: 10px; /* Espacement entre l'image et le titre */
 }
 @media (max-width: 900px) {
   .bouton_deconnection_eleve{

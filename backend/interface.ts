@@ -40,6 +40,7 @@ export interface FicheInfo {
   enCour: Boolean
   informationSuplementaire: string
   typeFiche: string;
+  reacteleve: string;
 }
 
 export interface FicheDocument extends Document {
@@ -68,6 +69,7 @@ export interface Eleve {
   prenom: string
   image: string
   mdp: string
+  comCIP: [[String]]
   archiver: boolean
   wallpaper: string
 }
