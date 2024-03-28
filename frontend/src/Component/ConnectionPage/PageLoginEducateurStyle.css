@@ -1,93 +1,118 @@
-
-.nom_login_edu{
-  color: #355c7d;
-}
 #login-form-wrap {
-  border: 1px solid #355c7d;
-  background-color: white;
-  width: 30%;
-  margin: 1em auto;
-  text-align: center;
-  padding: 20px 0 20px 0;
-  border-radius: 4px;
-  border: none;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+
+}
+
+.nom_login_edu {
+  font-size: 28px;
+  color: #007bff;
+  margin-bottom: 40px;
 }
 
 #login-form {
-  padding: 0 60px;
-}
-.form_login_edu {
-  border: 1px solid #355c7d;
-  display: block;
-  box-sizing: border-box;
   width: 100%;
-  height: 60px;
-  border-radius: 4px;
+  max-width: 320px;
+  background: #ffffff;
+  padding: 40px;
+  border-radius: 15px;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
 }
-/* BOUTON SE CONNECTER===============================================*/
-.bouton_submit_formulaire_edu{
-  background-color: #3498db;
-  color: #fff;
-  font-weight: bold;
-  font-size: 18px;
-  padding: 0.8em;
-  margin: 1em;
-  border-radius: 4px;
+
+#login-form p {
+  margin: 0;
+  margin-bottom: 20px;
+}
+
+#login-form input[type="text"],
+#login-form input[type="password"] {
+  width: 100%;
+  padding: 15px;
+  border: 1px solid #cccccc;
+  margin-bottom: 20px;
+  border-radius: 25px;
+  box-sizing: border-box;
+  transition: all 0.3s ease;
+}
+
+#login-form input[type="text"]:focus,
+#login-form input[type="password"]:focus {
+  outline: none;
+  border-color: #007bff;
+  box-shadow: 0 0 8px rgba(0,123,255,.2);
+}
+
+.bouton_submit_formulaire_edu {
+  display: block;
+  width: 100%;
+  padding: 15px;
+  background-color: #007bff;
+  color: #ffffff;
   border: none;
+  border-radius: 25px;
+  cursor: pointer;
+  font-weight: bold;
+  text-transform: uppercase;
+  transition: background-color 0.3s ease;
 }
-.nom_login_edu{
-  font-family: Arial, sans-serif;
+
+.bouton_submit_formulaire_edu:hover {
+  background-color: #0056b3;
 }
+
+@media (max-width: 768px) {
+  #login-form-wrap {
+    padding: 20px;
+  }
+
+  #login-form {
+    padding: 20px;
+  }
+}
+
+
+
 /*CSS BOUTTON RETOUR===============================================*/
-.bouton_retour_connection_edu{
-  border: none;
-  background-color: white;
-  color: #355c7d;
+
+.bouton_retour_connection_edu {
   font-weight: bold;
-  font-size: 18px;
-  padding: 0.8em;
-  margin: 1em;
-  border-radius: 4px;
+  display: inline-block;
+  padding: 8px 16px;
+  font-size: 14px;
+  color: #ffffff; /* Text color */
+  background-color: #007bff; /* Background color */
+  border: none;
+  border-radius: 4px; /* Slightly rounded borders for a modern look */
+  cursor: pointer;
+  text-decoration: none; /* Important for links, if you use <a> tag */
+  transition: background-color 0.2s ease-in-out, transform 0.2s ease-in-out;
   bottom: 20px;
   left: 20px;
   cursor: pointer;
   position:absolute;
 }
-/*CSS RESPONSIVE===============================================*/
-@media (max-width: 1100px) {
-  #login-form-wrap {
-    border:none;
-    background-color: white;
-    width: 55%;
-    margin: 30px auto;
-    text-align: center;
-    padding: 20px 0 20px 0;
-    border-radius: 4px;
-  }
+
+.bouton_retour_connection_edu:hover, .bouton_retour_connection_edu:focus {
+  background-color: #0056b3; /* Slightly darker blue on hover/focus */
+  transform: translateY(-2px); /* Small move up for a dynamic effect */
+  text-decoration: none; /* Keep it underline-free on hover */
 }
-@media (max-width: 700px) {
-  #login-form-wrap {
-    border: none;
-    background-color: white;
-    width: 80%;
-    margin: 3em auto;
-    text-align: center;
-    border-radius: 4px;
-  }
-  .bouton_submit_formulaire_edu{
-    background-color: #3498db;
-    color: white;
-    font-weight: bold;
-    font-size: 12px;
-    padding: 0.8em;
-    margin: 1em;
-    border-radius: 4px;
-  }
-  .form_login_edu {
-    display: block;
-    box-sizing: border-box;
-    width: 100%;
-    height: 30px;
-    border-radius: 4px;
-  }
+
+.bouton_retour_connection_edu:active {
+  transform: translateY(1px); /* Small move down on click */
+}
+
+.bouton_retour_connection_edu:before {
+  content: "← "; /* Simple arrow indicating "back" */
+  display: inline-block;
+  margin-right: 8px;
+}
+
+.mdp_faux{
+  text-align: center;
+  color: red;
+  font-size: 16px;
+  margin-bottom: 20px;
 }

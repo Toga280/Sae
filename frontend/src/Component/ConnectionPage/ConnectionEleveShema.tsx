@@ -32,7 +32,9 @@ function ConnectionEleveShema({
         )}`
       )
       .then((response) => {
-        if (response.data) {
+        console.log(response.data.rep);
+        if (response.data.rep) {
+          localStorage.setItem('token', response.data.token);
           redirection(4);
         } else {
           setMdpFaux(true);
@@ -70,7 +72,8 @@ function ConnectionEleveShema({
       </head>
       <p className="info_nom_eleve">{`${prenomEleveActuelle} ${nomEleveActuelle}`}</p>
       <div className="affichage">
-        <p className="affichageMDP">{password.join("")}</p>
+        {password.length === 0 ? <p className="affichageMDP">‎ </p> :
+        <p className="affichageMDP"> {password.join("")} </p> }
       </div>
 
       <div className="boutons">

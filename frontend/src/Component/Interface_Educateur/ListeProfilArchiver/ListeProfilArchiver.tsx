@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from "react";
 import axios from "axios";
 import "./ListeProfilArchiver.css";
-
+const token = localStorage.getItem('token');
 function ListeProfilArchiver({ redirection, identifiant }: any) {
   const redirectionTwo = () => {
     redirection(2);
@@ -13,7 +13,7 @@ function ListeProfilArchiver({ redirection, identifiant }: any) {
 
   const getEleve = () => {
     axios
-      .get(`http://localhost:5000/GET/allEleveArchiver`)
+      .get(`http://localhost:5000/GET/allEleveArchiver`, {  params: { token:token } })
       .then((response) => {
         setEleves(response.data);
       })
@@ -58,13 +58,14 @@ function ListeProfilArchiver({ redirection, identifiant }: any) {
 
   const restorerEleve = (nom: String, prenom: String) => {
     const confirmation = window.confirm(
-      `Êtes-vous sûr de vouloir archiver ${prenom} ?`
+      `Êtes-vous sûr de vouloir restaurer ${prenom} ?`
     );
     if (confirmation) {
       axios
-        .post("http://localhost:5000/POST/restorerEleve", { nom, prenom })
+        .post("http://localhost:5000/POST/restorerEleve", { nom, prenom, token })
         .then((response) => {
           console.log(response.data);
+          alert(`${prenom} a été restauré avec succès`);
           getEleve();
         })
         .catch((error) => {
@@ -93,6 +94,7 @@ function ListeProfilArchiver({ redirection, identifiant }: any) {
       .get('http://localhost:5000/GET/fondecran', {
         params: {
           name: identifiant,
+          token: token,
         },
         responseType: 'arraybuffer',
       })
@@ -154,7 +156,7 @@ function ListeProfilArchiver({ redirection, identifiant }: any) {
         {redirection}
 
       </div>
-      <button className="button_retour" onClick={redirectionTwo}>
+      <button className="button_retoure" onClick={redirectionTwo}>
           Retour
         </button>
     </div>

@@ -1,79 +1,127 @@
-
-body{
+body {
     background-color: #d7e1ec;
   }
+  
+  .global_login {
+    text-align: right;
 
-
-.general_login {
+  }
+  .general_login {
     width: 75%;
-    margin: 1em auto; /* Ajout de 'auto' pour centrer horizontalement */
-    font-family: Arial, sans-serif;
+    margin: 2em auto; /* Centrage horizontal avec un peu plus d'espace */
+    font-family: 'Segoe UI', Arial, sans-serif;
     display: flex;
     flex-wrap: wrap;
     justify-content: center;
     align-items: center;
-}
-
-
-.login-container {
+    animation: fadeIn 1s ease-out;
+    
+  }
+  
+  .login-container {
     width: 20%;
-    margin: 1em;
+    margin: 2em; /* Espacement un peu plus généreux */
     background-color: #fff;
     padding: 20px;
-    border-radius: 8px;
-    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+    border-radius: 10px; /* Bordures légèrement plus arrondies */
+    box-shadow: 0 4px 20px rgba(0, 0, 0, 0.2); /* Ombre plus prononcée pour plus de profondeur */
     text-align: center;
-}
-
-.user-photo {
-    border-radius: 40%;
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+  }
+  
+  .login-container:hover {
+    transform: translateY(-5px); /* Effet de lévitation au survol */
+    box-shadow: 0 6px 24px rgba(0, 0, 0, 0.3);
+  }
+  
+  .user-photo {
+    border-radius: 50%; /* Cercle parfait */
     width: 150px;
     height: 150px;
     object-fit: cover;
-    margin-bottom: 10px;
-}
-@media(max-width: 1100px) {
+    margin-bottom: 15px; /* Espacement un peu plus grand */
+    border: 3px solid #3498db; /* Bordure pour mettre en valeur la photo */
+  }
+  
+  @media (max-width: 1100px) {
     .login-container {
-        width: 40%;
+      width: 40%;
     }
-    
-}
-@media(max-width: 500px) {
+  }
+  
+  @media (max-width: 500px) {
     .login-container {
-        width: 50%;
+      width: 80%; /* Plus large sur les très petits écrans pour une meilleure lisibilité */
     }
     .user-photo {
-        border-radius: 40%;
-        width: 100px;
-        height: 100px;
-        object-fit: cover;
-        margin-bottom: 10px;
+      width: 100px;
+      height: 100px;
     }
-    
-}
-.user-name {
-    font-size: 18px;
-    margin-bottom: 20px;
-}
-
-.login-button {
+  }
+  
+  .user-name {
+    font-size: 20px; /* Légère augmentation de la taille pour plus de lisibilité */
+    color: #355c7d; /* Couleur plus foncée pour un contraste amélioré */
+    margin-bottom: 25px;
+  }
+  
+  .login-button, .button_connection_edu {
     background-color: #3498db;
     color: #fff;
-    padding: 10px 20px;
+    padding: 12px 24px; /* Plus de padding pour des boutons plus grands */
     border: none;
-    border-radius: 4px;
+    border-radius: 5px; /* Bordures légèrement plus arrondies */
     cursor: pointer;
     font-size: 16px;
-}
-.button_connection_edu{
-    
-    background-color: #fff;
-    color: #355c7d;
+    transition: background-color 0.2s ease, transform 0.2s ease;
+
+  }
+  
+  .login-button:hover{
+    background-color: #297cb9; /* Couleur légèrement plus foncée au survol */
+    transform: translateY(-2px); /* Petit effet de lévitation */
+  }
+
+  
+  @keyframes fadeIn {
+    from { opacity: 0; }
+    to { opacity: 1; }
+  }
+  
+  .button_connection_edu {
+    background-color: #fff; /* Couleur de fond initiale */
+    color: #355c7d; /* Couleur du texte */
     font-weight: bold;
     font-size: 18px;
     padding: 0.8em;
     margin: 1em;
-    border-radius: 4px;
-    border:none;
+    border-radius: 30px; /* Bordures plus arrondies pour un look moderne */
+    border: 2px solid #355c7d; /* Bordure pour définir clairement le bouton */
     cursor: pointer;
-}
+    transition: all 0.3s ease; /* Transition pour les effets de survol */
+    position: relative; /* Nécessaire pour l'effet de survol avec pseudo-éléments */
+    overflow: hidden; /* Assure que les pseudo-éléments ne débordent pas du bouton */
+  }
+  
+  .button_connection_edu::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: -100%;
+    width: 100%;
+    height: 100%;
+    background: linear-gradient(120deg, transparent, #3498db, transparent); /* Gradient linéaire qui se déplace */
+    transition: all 0.65s ease;
+  }
+  
+  .button_connection_edu:hover::before {
+    left: 100%;
+  }
+  
+  .button_connection_edu:hover {
+    color: #fff; /* Change la couleur du texte au survol */
+    background-color: #3498db; /* Couleur de fond au survol */
+    border-color: #3498db; /* Assortit la bordure à la couleur de fond */
+    box-shadow: 0 0 10px #3498db; /* Ajoute une ombre pour un effet de profondeur */
+  }
+  

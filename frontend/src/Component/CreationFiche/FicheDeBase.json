@@ -5,7 +5,8 @@
     "prenomEleveAttribuer": "",
     "enCour": true,
     "informationSuplementaire": "",
-    "typeFiche": "Plomberie"
+    "typeFiche": "Plomberie",
+    "reacteleve": ""
   },
   "AllMiniBox": {
     "MiniBox1": {

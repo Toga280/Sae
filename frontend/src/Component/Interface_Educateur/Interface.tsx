@@ -2,6 +2,7 @@ import React, { useEffect, useState } from 'react'
 import './Interface.css'
 import fonctionsMiniBoxInfoJson from '../CreationFiche/MiniBoxInfoFunction'
 import axios from 'axios'
+const token = localStorage.getItem('token');
 
 function Interface({ redirection, role, identifiant }: any) {
   const [fondEcranUrl, setFondEcranUrl] = useState<string | null>(null)
@@ -25,6 +26,7 @@ function Interface({ redirection, role, identifiant }: any) {
       .get('http://localhost:5000/GET/fondecran', {
         params: {
           name: identifiant,
+          token: token,
         },
         responseType: 'arraybuffer',
       })

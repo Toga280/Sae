@@ -4,6 +4,7 @@ import fonctionsMiniBoxInfoJson from '../../../CreationFiche/MiniBoxInfoFunction
 import FicheBoxTotal from '../../../CreationFiche/FicheBoxTotal'
 import './FicheEleve.css'
 const image = require('../../../CreationFiche/MiniBoxChoix/tts.webp')
+const token = localStorage.getItem('token');
 function FicheEleve({
   nomEleve,
   prenomEleve,
@@ -46,7 +47,7 @@ function FicheEleve({
   const getFicheInProgressEleve = () => {
     axios
       .get(
-        `http://localhost:5000/GET/eleve/FicheInProgress?nom=${nomEleve}&prenom=${prenomEleve}`,
+        `http://localhost:5000/GET/eleve/FicheInProgress?nom=${nomEleve}&prenom=${prenomEleve}`, {params: {token: token}}
       )
       .then((response) => {
         SetFicheEnCour(response.data)
@@ -62,7 +63,7 @@ function FicheEleve({
   const getFicheCompletedEleve = () => {
     axios
       .get(
-        `http://localhost:5000/GET/eleve/FicheCompleted?nom=${nomEleve}&prenom=${prenomEleve}`,
+        `http://localhost:5000/GET/eleve/FicheCompleted?nom=${nomEleve}&prenom=${prenomEleve}`, {params: {token: token}}
       )
       .then((response) => {
         if (response.data === 'Aucune fiche terminée trouvée') {
@@ -84,7 +85,7 @@ function FicheEleve({
       const response = await axios.get(
         `http://localhost:5000/GET/nameFiche?name=${encodeURIComponent(
           nameValue,
-        )}`,
+        )}`,{params: {token: token}}
       )
       fonctionsMiniBoxInfoJson.setNewJson(response.data)
       setVoirFiche(true)
@@ -99,6 +100,7 @@ function FicheEleve({
         ficheName: ficheSelected,
         contenu: contenu,
         idCommentateur: IdConnecter,
+        token: token,
       })
       .then((response) => {
         if (response.data.message === 'Commentaire ajouté avec succès') {
@@ -114,7 +116,7 @@ function FicheEleve({
   const GetAllCommentaire = async (ficheName: string) => {
     try {
       const response = await axios.get(
-        `http://localhost:5000/GET/allCommentaire?ficheName=${ficheName}`,
+        `http://localhost:5000/GET/allCommentaire?ficheName=${ficheName}&token=${token}`,
       )
       setAllCommentaire(response.data.commentaires)
     } catch (error) {
@@ -125,7 +127,7 @@ function FicheEleve({
   const GetInformationSupplementaire = async () => {
     axios
       .get(
-        `http://localhost:5000/GET/info/informationSuplementaire?ficheName=${ficheSelected}`,
+        `http://localhost:5000/GET/info/informationSuplementaire?ficheName=${ficheSelected}&token=${token}`,
       )
       .then((response) => {
         console.log('GetInformationSupplementaire --> ', response.data)
@@ -190,7 +192,7 @@ function FicheEleve({
               )}
             </div>
             <button
-              className="bouton_retour interaction_edu"
+              className="bouton_retour_fiche"
               onClick={setVoirFicheFalse}
             >
               Retour

@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from 'react'
 import './optionprof.css'
 import axios from 'axios'
+const token = localStorage.getItem('token');
 
 function Optionprof({ redirection, identifiant }: any) {
   const [selectedFile, setSelectedFile] = useState<File | null>(null)
@@ -23,6 +24,7 @@ function Optionprof({ redirection, identifiant }: any) {
       .get('http://localhost:5000/GET/fondecran', {
         params: {
           name: identifiant,
+          token: token,
         },
         responseType: 'arraybuffer',
       })
@@ -54,6 +56,7 @@ function Optionprof({ redirection, identifiant }: any) {
           {
             params: {
               name: identifiant,
+              token: token,
             },
             validateStatus: function (status) {
               return status >= 200 || status == 409
@@ -79,7 +82,7 @@ function Optionprof({ redirection, identifiant }: any) {
 
       if (identifiant.trim() !== '') {
         const response = await axios.get(
-          `http://localhost:5000/DELETE/fond?name=${identifiant}`,
+          `http://localhost:5000/DELETE/fond?name=${identifiant}&token=${token}`,
           {
             // Additional request configuration if needed
           },
@@ -103,6 +106,7 @@ function Optionprof({ redirection, identifiant }: any) {
       .get('http://localhost:5000/GET/fondecran', {
         params: {
           name: identifiant,
+          token: token,
         },
         responseType: 'arraybuffer',
       })
@@ -135,7 +139,9 @@ function Optionprof({ redirection, identifiant }: any) {
       </style>
     )}
       <div>
-        <h2 className="titre_changer_fond">Changer le fond d'écran</h2>
+        <div className="global_titre_changer_fond_prof">
+        <h2 className="titre_changer_fond_prof">Changer le fond d'écran</h2>
+        </div>
 
         <div className="global_option_prof">
           <label htmlFor="fileInput" className={`custom-file-upload`}>

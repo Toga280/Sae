@@ -2,6 +2,7 @@ import React, { useEffect, useState } from 'react'
 import axios from 'axios'
 import '../../ConnectionPage/pageConnection.css'
 import './ArchiverProfil.css'
+const token = localStorage.getItem('token');
 function ConnectionEleve({ redirection, identifiant }: any) {
   const redirectionTwo = () => {
     redirection(2)
@@ -73,7 +74,7 @@ function ConnectionEleve({ redirection, identifiant }: any) {
     )
     if (confirmation) {
       axios
-        .post('http://localhost:5000/POST/archiverEleve', { nom, prenom })
+        .post('http://localhost:5000/POST/archiverEleve', { nom, prenom,token })
         .then((response) => {
           getEleve()
         })
@@ -103,6 +104,7 @@ function ConnectionEleve({ redirection, identifiant }: any) {
       .get('http://localhost:5000/GET/fondecran', {
         params: {
           name: identifiant,
+          token: token,
         },
         responseType: 'arraybuffer',
       })
@@ -163,7 +165,7 @@ function ConnectionEleve({ redirection, identifiant }: any) {
           {redirection}
         </div>
       </div>
-      <button className="button_retour" onClick={redirectionTwo}>
+      <button className="button_retour_archiver_profil" onClick={redirectionTwo}>
         Retour
       </button>
     </div>

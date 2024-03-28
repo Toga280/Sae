@@ -2,6 +2,8 @@ import React, { useState, useEffect } from 'react';
 import Pictogramme from './Pictogramme';
 import fonctionsMiniBoxInfoJson from '../MiniBoxInfoFunction';
 import "./ModificationPicto.css";
+const token = localStorage.getItem('token');
+
 function ModificationPicto({ setModificationPictoPropsFalse, numeroMiniBox }: any) {
   const [selectedImage, setSelectedImage] = useState<string | undefined>(undefined);
   const [selectedImageName, setSelectedImageName] = useState<string | null>(null);
@@ -10,7 +12,7 @@ function ModificationPicto({ setModificationPictoPropsFalse, numeroMiniBox }: an
     setSelectedImageName(imageName);
 
     // Mettre à jour l'état de selectedImage avec le chemin complet de l'image
-    const imagePath = `http://localhost:5000/GET/getpicto-file?name=${encodeURIComponent(imageName)}`;
+    const imagePath = `http://localhost:5000/GET/getpicto-file?name=${encodeURIComponent(imageName)}&token=${token}`;
     setSelectedImage(imagePath);
   };
 

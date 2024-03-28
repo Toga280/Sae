@@ -1,6 +1,7 @@
 import axios from "axios";
 import React, { useEffect, useState } from "react";
 import "./ModifierRole.css";
+const token = localStorage.getItem('token');
 
 interface Admin {
   nom: string;
@@ -24,7 +25,7 @@ function ModifierRole({ redirection, identifiant }: any) {
   useEffect(() => {
     const getProf = () => {
       axios
-        .get(`http://localhost:5000/GET/allProf`)
+        .get(`http://localhost:5000/GET/allProf`, {params: {token: token}})
         .then((response) => {
           setAdmin(response.data);
         })
@@ -48,7 +49,12 @@ function ModifierRole({ redirection, identifiant }: any) {
   const postProfChangeRole = (ProfData: Admin) => {
     console.log("ProfData", ProfData);
     axios
-      .post("http://localhost:5000/POST/ProfUpdateRole", ProfData)
+      .post("http://localhost:5000/POST/ProfUpdateRole",{
+        params: {
+          token: token,
+          ProfData: ProfData
+        }
+      })
       .then((response) => {
         console.log("Réponse du serveur :", response.data);
       })
@@ -89,6 +95,7 @@ function ModifierRole({ redirection, identifiant }: any) {
       .get('http://localhost:5000/GET/fondecran', {
         params: {
           name: identifiant,
+          token: token,
         },
         responseType: 'arraybuffer',
       })

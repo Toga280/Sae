@@ -11,6 +11,7 @@ import fonctionsMiniBoxInfoJson from './MiniBoxInfoFunction'
 import { imprimerPage } from '../FonctionEleve/Imprimer'
 import './imprimerFiche.css'
 import axios from 'axios'
+const token = localStorage.getItem('token');
 
 function FicheBoxTotal({
   onSelectBox,
@@ -27,6 +28,7 @@ function FicheBoxTotal({
   const [isDraftSaved, setIsDraftSaved] = useState(false)
 
   const [fondEcranUrl, setFondEcranUrl] = useState<string | null>(null)
+  const [reactionencours, setReactionencours] = useState(false)
 
   const modifierFiche = async () => {
     await deleteFiche(fonctionsMiniBoxInfoJson.getNom())
@@ -34,7 +36,7 @@ function FicheBoxTotal({
   }
 
   const postFiche = async () => {
-    const data = fonctionsMiniBoxInfoJson.getAllJson()
+    const data = {data: fonctionsMiniBoxInfoJson.getAllJson(), token:token}
     axios
       .post('http://localhost:5000/POST/fiche', data)
       .then((response) => {})
@@ -48,7 +50,7 @@ function FicheBoxTotal({
       .get(
         `http://localhost:5000/DELETE/ficheName?name=${encodeURIComponent(
           nomFiche,
-        )}`,
+        )}&token=${token}`,
       )
       .then((response) => {
         if (response.data) {
@@ -78,12 +80,18 @@ function FicheBoxTotal({
       }
     } else if (!versionProf) {
       await fonctionsMiniBoxInfoJson.changeEnCourFalse()
+      console.log("reaction function", fonctionsMiniBoxInfoJson.getreacteleve())
       setFicheSave(true)
       setTimeout(() => setFicheSave(false), 5000)
       modifierFiche()
       window.scrollTo(0, 0)
       redirection(false)
     }
+  }
+
+  const setReaction = async (value: string) => {
+    await fonctionsMiniBoxInfoJson.modifierreacteleve(value)
+    Sauvegarder()
   }
 
   const Brouillon = () => {
@@ -107,6 +115,14 @@ function FicheBoxTotal({
     }
   }
 
+  const reactionencourscalcul = () => {
+    if (versionProf) {
+      Sauvegarder();
+    } else if (!versionProf) {
+      setReactionencours(true)
+    }
+  }
+
   const infoSelectionChoixMiniBox = (
     booleanChoixMiniBox: boolean,
     numeroMiniBox: any,
@@ -124,6 +140,7 @@ function FicheBoxTotal({
       .get('http://localhost:5000/GET/fondecran', {
         params: {
           name: identifiant,
+          token: token,
         },
         responseType: 'arraybuffer',
       })
@@ -155,6 +172,7 @@ function FicheBoxTotal({
         `}
         </style>
       )}
+      {!reactionencours && (
       <div>
         {isDraftSaved && (
           <div className="message_brouillon">Fiche mise en brouillon</div>
@@ -235,7 +253,7 @@ function FicheBoxTotal({
         </button>
         {!versionVue ? (
           <button
-            onClick={Sauvegarder}
+            onClick={reactionencourscalcul}
             className="boutton_sauvegarder_interaction_edu"
           >
             Sauvegarder
@@ -261,6 +279,29 @@ function FicheBoxTotal({
           </button>
         ) : null}
       </div>
+      )}
+      {reactionencours && (
+        <div className='imgEmoji'>
+                    <img
+            src={require('./EmojiEleve/s3.png')}
+            onClick={async () => await setReaction("pasbien")}
+            alt="smiley Rouge"
+                  />
+          
+          <img
+            src={require('./EmojiEleve/s2.png')}
+            onClick={async () => await setReaction("moyen")}
+            alt="smiley jaune"
+         
+          />
+          <img
+            src={require('./EmojiEleve/s1.png')}
+            onClick={async () => await setReaction("bien")}
+            alt="smiley vert"
+    
+          />
+      </div>
+      )}
     </>
   )
 }

@@ -1,6 +1,7 @@
 import React, { useEffect, useState } from "react";
 import axios from "axios";
 import "./ModifierMdp.css";
+const token = localStorage.getItem('token');
 
 function ModifierMdpProf({ redirection }: any) {
   /* GET PROF=====================================================*/
@@ -8,7 +9,7 @@ function ModifierMdpProf({ redirection }: any) {
   useEffect(() => {
     const getProf = () => {
       axios
-        .get(`http://localhost:5000/GET/allProf`)
+        .get(`http://localhost:5000/GET/allProf`, {params: {token: token}})
         .then((response) => {
           setAdmin(response.data);
         })
@@ -26,7 +27,12 @@ function ModifierMdpProf({ redirection }: any) {
   };
   const postProfChangeMdp = (ProfData: any) => {
     axios
-      .post("http://localhost:5000/POST/profUpdatePassword", ProfData)
+      .post("http://localhost:5000/POST/profUpdatePassword",{
+        params: {
+          ProfData: ProfData,
+          token: token,
+        },
+      })
       .then((response) => {
         console.log("Réponse du serveur :", response.data);
       })

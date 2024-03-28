@@ -1,6 +1,7 @@
 import React from 'react'
 import axios from 'axios'
 import './Sauvegarder.css'
+const token = localStorage.getItem('token');
 function PopUpSauvegarder({
   setUpPopUpSauvegarder,
   nomFiche,
@@ -11,7 +12,7 @@ function PopUpSauvegarder({
       .get(
         `http://localhost:5000/DELETE/ficheName?name=${encodeURIComponent(
           nomFiche,
-        )}`,
+        )}&token=${token}`,
       )
       .then((response) => {
         if (response.data) {

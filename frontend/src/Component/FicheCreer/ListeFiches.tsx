@@ -3,6 +3,7 @@ import React, { useEffect, useState } from 'react'
 import './ListeFiches.css'
 import fonctionsMiniBoxInfoJson from '../CreationFiche/MiniBoxInfoFunction'
 import AffecterListe from './AffecterListe'
+const token = localStorage.getItem('token');
 
 function ListeFiches({ redirection, refreshFiche, identifiant }: any) {
   const [FichesNames, setFichesNames] = useState<string[]>([])
@@ -11,7 +12,7 @@ function ListeFiches({ redirection, refreshFiche, identifiant }: any) {
   const [eleveAffecte, setEleveAffecte] = useState<
     Record<string, string | undefined>
   >({})
-  const [ficheexiste, setFicheexiste] = useState(false)
+  const [ficheexiste, setFicheexiste] = useState<boolean>(false)
   const [fondEcranUrl, setFondEcranUrl] = useState<string | null>(null)
 
   const setAffichageAffecterListeFalse = () => {
@@ -28,7 +29,7 @@ function ListeFiches({ redirection, refreshFiche, identifiant }: any) {
         .get(
           `http://localhost:5000/DELETE/ficheName?name=${encodeURIComponent(
             nomFiche,
-          )}`,
+          )}&token=${token}`,
         )
         .then((response) => {
           if (response.data) {
@@ -53,7 +54,7 @@ function ListeFiches({ redirection, refreshFiche, identifiant }: any) {
       const response = await axios.get(
         `http://localhost:5000/GET/eleveAffecter?ficheName=${encodeURIComponent(
           nomf,
-        )}`,
+        )}&token=${token}`,
       )
       return response.data
     } catch (error) {
@@ -98,11 +99,15 @@ function ListeFiches({ redirection, refreshFiche, identifiant }: any) {
           onClick={() => deleteFiche(item)}
         />
         <button
-          className="affecter_fiche_crée"
+          className={`affecter_fiche_crée ${eleveAffecte[item] && eleveAffecte[item] !== 'personne' ? 'attribué' : 'non_attribué'}`}
           onClick={() => affecterFiche(item)}
+          disabled={!!(eleveAffecte[item] && eleveAffecte[item] !== 'personne')}
         >
           Affecter
         </button>
+
+
+
         <img
           src={require('./dupliquer.webp')}
           className="autre-icon"
@@ -130,14 +135,18 @@ function ListeFiches({ redirection, refreshFiche, identifiant }: any) {
             }
           }}
         />
-        <p> Fiche attribuée à : {eleveAffecte[item]}</p>
+        <p className='fiche_eleve_nom_attribuer'> Fiche attribuée à : {eleveAffecte[item]}</p>
       </div>
     )
   })
 
   const allFicheNames = () => {
     axios
-      .get('http://localhost:5000/GET/allFicheNames')
+      .get('http://localhost:5000/GET/allFicheNames', {
+        params: {
+          token: token
+        }
+      })
       .then((response) => {
         setFichesNames(response.data)
       })
@@ -151,7 +160,7 @@ function ListeFiches({ redirection, refreshFiche, identifiant }: any) {
       const response = await axios.get(
         `http://localhost:5000/GET/nameFiche?name=${encodeURIComponent(
           nameValue,
-        )}`,
+        )}`,{params: {token: token}}
       )
       fonctionsMiniBoxInfoJson.setNewJson(response.data)
     } catch (error) {
@@ -184,6 +193,7 @@ function ListeFiches({ redirection, refreshFiche, identifiant }: any) {
       await axios.post(`http://localhost:5000/POST/ficheUpdateName`, {
         name: oldnom,
         newName: newnom,
+        token: token,
       })
     } catch (error) {
       console.error(error)
@@ -198,7 +208,7 @@ function ListeFiches({ redirection, refreshFiche, identifiant }: any) {
       const response = await axios.get(
         `http://localhost:5000/GET/nameFicheExiste?name=${encodeURIComponent(
           nomFiche,
-        )}`,
+        )}`,{params: {token: token}}
       )
       if (response.data) {
         console.log(response.data)
@@ -229,6 +239,7 @@ function ListeFiches({ redirection, refreshFiche, identifiant }: any) {
     try {
       await axios.post('http://localhost:5000/POST/ficheDuplicate', {
         name: nomf,
+        token: token,
       })
     } catch (error) {
       console.error(error)
@@ -243,6 +254,7 @@ function ListeFiches({ redirection, refreshFiche, identifiant }: any) {
       .get('http://localhost:5000/GET/fondecran', {
         params: {
           name: identifiant,
+          token: token,
         },
         responseType: 'arraybuffer',
       })
@@ -275,24 +287,27 @@ function ListeFiches({ redirection, refreshFiche, identifiant }: any) {
         </style>
       )}
       <div>
-        {affichageAffecterListe === true ? (
-          <AffecterListe
-            setAffichageAffecterListeFalse={setAffichageAffecterListeFalse}
-            nomFicheSelectionner={nomFicheSelectionner}
-            redirection={redirection}
-          />
-        ) : (
-          <div className="global_all_fiche">
-            <h1 className="titre_h1_fiche_crée">Liste de vos fiches :</h1>
-            {elements}
-          </div>
-        )}
+        <div>
+          {affichageAffecterListe === true ? (
+            <AffecterListe
+              setAffichageAffecterListeFalse={setAffichageAffecterListeFalse}
+              nomFicheSelectionner={nomFicheSelectionner}
+              redirection={redirection}
+            />
+          ) : (
+            <div className="global_all_fiche">
+              <h1 className="titre_h1_fiche_crée">Liste de vos fiches :</h1>
+              {elements}
+            </div>
+          )}
+
+        </div>
         <button
-          className="bouton_retour_liste_fiche_crée_edu"
-          onClick={setRedirectionTwo}
-        >
-          Retour
-        </button>
+            className="bouton_retour_liste_fiche_crée_edu"
+            onClick={setRedirectionTwo}
+          >
+            Retour
+          </button>
       </div>
     </>
   )

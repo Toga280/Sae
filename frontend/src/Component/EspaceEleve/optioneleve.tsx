@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from 'react'
 import './optioneleve.css'
 import axios from 'axios'
+const token = localStorage.getItem('token');
 
 function Optioneleve({ redirection, eleve }: any) {
   const [selectedFile, setSelectedFile] = useState<File | null>(null)
@@ -23,6 +24,7 @@ function Optioneleve({ redirection, eleve }: any) {
       .get('http://localhost:5000/GET/fondecran', {
         params: {
           name: eleve,
+          token: token,
         },
         responseType: 'arraybuffer',
       })
@@ -54,6 +56,7 @@ function Optioneleve({ redirection, eleve }: any) {
           {
             params: {
               name: eleve,
+              token: token,
             },
             validateStatus: function (status) {
               return status >= 200 || status == 409
@@ -79,7 +82,7 @@ function Optioneleve({ redirection, eleve }: any) {
 
       if (eleve.trim() !== '') {
         const response = await axios.get(
-          `http://localhost:5000/DELETE/fond?name=${eleve}`,
+          `http://localhost:5000/DELETE/fond?name=${eleve}&token=${token}`,
           {
             // Additional request configuration if needed
           },
@@ -102,6 +105,7 @@ function Optioneleve({ redirection, eleve }: any) {
       .get('http://localhost:5000/GET/fondecran', {
         params: {
           name: eleve,
+          token: token,
         },
         responseType: 'arraybuffer',
       })

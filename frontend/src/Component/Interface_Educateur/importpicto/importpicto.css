@@ -88,31 +88,37 @@
   max-height: 200px;
 }
 
-.back-button {
-  background-color: #ccc;
-  color: #333;
-  border: none;
-  padding: 10px 20px;
-  margin-top: 20px;
-  font-size: 16px;
-  cursor: pointer;
-  border-radius: 4px;
-  transition: background-color 0.3s ease-in-out;
-}
 
-.back-button:hover {
-  background-color: #bbb;
-}
 .back-button {
+  margin:1em;
+  font-weight: bold;
+  display: inline-block;
+  padding: 8px 16px;
+  font-size: 14px;
+  color: #ffffff; 
+  background-color: #007bff; 
+  border: none;
+  border-radius: 4px; 
+  cursor: pointer;
+  text-decoration: none; 
+  transition: background-color 0.2s ease-in-out, transform 0.2s ease-in-out;
   bottom: 20px;
   left: 20px;
-  background-color: #fff;
-  color: #355c7d;
-  font-weight: bold;
-  font-size: 18px;
-  padding: 0.8em;
-  margin: 1em;
-  border-radius: 4px;
-  border: none;
-  cursor:pointer;
+  cursor: pointer;
+}
+
+.back-button:hover, .back-button:focus {
+  background-color: #0056b3;
+  transform: translateY(-2px); 
+  text-decoration: none;
+}
+
+.back-button:active {
+  transform: translateY(1px); 
+}
+
+.back-button:before {
+  content: "← "; 
+  display: inline-block;
+  margin-right: 8px;
 }
