@@ -1508,7 +1508,6 @@ app.get('/GET/csv', async (req: any, res: any) => {
   const { valid, payload } = verifyJWT(token, secretKey);
   if (valid && (payload.role === 'Admin')) {
     try {
-      console.log("avant findeleve")
       const eleve = await EleveModel.findOne({ 'nom': nom, 'prenom': prenom }).exec();
       if (!eleve) {
         return res.status(404).json({ message: 'Eleve non trouvé' });
@@ -1518,7 +1517,6 @@ app.get('/GET/csv', async (req: any, res: any) => {
       const fileName = `${eleve.nom}_${eleve.prenom}.csv`;
 
       // Generate the CSV data
-      console.log("csvData")
       const csvData = await generateCSVData(eleve);
 
       // Set the response headers with dynamic file name
@@ -1538,7 +1536,7 @@ app.get('/GET/csv', async (req: any, res: any) => {
 
 async function generateCSVData(eleve: any) {
   let csvData = '';
-  //partie comentaire de la CIP
+  //partie commentaire de la CIP
   csvData += `"Commentaire de la CIP"\n`;
   csvData += `"Date";"Commentaire"\n`;
   eleve.comCIP.forEach((commentaire: [Date, string]) => {
@@ -1546,10 +1544,9 @@ async function generateCSVData(eleve: any) {
     csvData += `" ${date}";"${comment}"\n`;
   });
 
-  console.log("comCIP fini")
 
   //partie fiche
-  csvData += `"liste des fiche"\n`;
+  csvData += `\n\n"liste des fiche"\n`;
   const fiches = await Fiche.find({
     'info.nomEleveAttribuer': eleve.nom,
     'info.prenomEleveAttribuer': eleve.prenom,
@@ -1564,15 +1561,16 @@ async function generateCSVData(eleve: any) {
   let input16: string = '';
   let input19: string = '';
 
-  console.log("fiche trouvé")
   fiches.forEach((fiche: any) => {
+    csvData += `"information de la fiche"\n`;
     csvData += `"Nom de la fiche";"type de la fiche";"Informations supplémentaires";"Réaction de l'élève";\n`;
     csvData += `"${fiche.info.name}";"${fiche.info.type}";"${fiche.info.informationSuplementaire}";"${fiche.info.reacteleve}"\n`;
-    csvData += `"case remplie\n"`;
-    csvData += `"Nom de l'intervenant";"${fiche.InputFiche.input1}`;
-    csvData += `"Prénom de l'intervenant";"${fiche.InputFiche.input2}`;
-    csvData += `"Date d'intervention";"${fiche.InputFiche.input8}`;
-    csvData += `"Durée de l'opération";"${fiche.InputFiche.input9}`;
+    csvData += `\n"Case remplie"\n`;
+    csvData += `"Nom de la case";"Contenue remplie"\n`;
+    csvData += `"Nom de l'intervenant";"${fiche.InputFiche.input1}"\n`;
+    csvData += `"Prénom de l'intervenant";"${fiche.InputFiche.input2}"\n`;
+    csvData += `"Date d'intervention";"${fiche.InputFiche.input8}"\n`;
+    csvData += `"Durée de l'opération";"${fiche.InputFiche.input9}"\n`;
     input10 = fiche.InputFiche.input10 ? "case cochée" : "case non cochée";
     input11 = fiche.InputFiche.input11 ? "case cochée" : "case non cochée";
     input12 = fiche.InputFiche.input12 ? "case cochée" : "case non cochée";
@@ -1593,14 +1591,13 @@ async function generateCSVData(eleve: any) {
     csvData += `"Travaux non réalisés";"${fiche.InputFiche.input18}"\n`;
     csvData += `"Nécessite une nouvelle intervention";"${input19}"\n`;
 
-    console.log("input element fini")
-    csvData += `"Commentaire de la fiche"\n`;
+    csvData += `\n"Commentaire de la fiche"\n`;
     csvData += `"Nom du commentateur";"Commentaire"\n`;
-    fiche.info.Commentaires.forEach((commentaire: [string, string]) => {
-      const [contenu, idCommentateur] = commentaire;
-      csvData += `" ${idCommentateur}";"${contenu}"\n`;
+    fiche.Commentaires.slice(1).forEach((commentaire: any) => {
+      const { contenu, idCommentateur } = commentaire;
+      csvData += `"${idCommentateur}";"${contenu}"\n`;
     });
-    console.log("commentaire fini")
+    csvData += `\n"____________________________________________________";"____________________________________________________";"____________________________________________________";"____________________________________________________"\n\n`;
   });
 
   return csvData;
