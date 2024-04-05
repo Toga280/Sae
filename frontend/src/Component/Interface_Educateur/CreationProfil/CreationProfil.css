@@ -118,11 +118,8 @@
     flex-basis: 100%; 
     text-align: center; 
   }
+
   
-  
-  .bouton_sauvegarder_creation_profil_edu:hover {
-    background-color: #45a049;
-  }
 
   .select_role{
     color: #355c7d;
@@ -135,10 +132,16 @@
     .global_creation_profil_prof {
       max-width: 1000px;
     }
+    .global_creation_profil_eleve{
+      max-width: 1000px;
+    }
   }
   
   @media(max-width: 1000px) {
-    .global_creation_profil_prof {
+    .global_creation_profil_prof{
+      max-width: 800px;
+    }
+    .global_creation_profil_eleve{
       max-width: 800px;
     }
   }
@@ -147,13 +150,11 @@
     .global_creation_profil_prof {
       max-width: 600px;
     }
-  }
-  
-  @media(max-width: 600px) {
-    .global_creation_profil_prof {
-      max-width: 400px;
+    .global_creation_profil_eleve {
+      max-width: 600px;
     }
   }
+
     /* Professeur */
 .global_creation_profil_prof {
     max-width: 1200px;
@@ -262,25 +263,29 @@
     .global_creation_profil_prof {
       max-width: 1000px;
     }
+    .bouton_sauvegarder_creation_profil_edu{
+      width: 50%;
+    }
   }
   
-  @media(max-width: 1000px) {
+  @media(max-width: 1024px) {
     .global_creation_profil_prof {
       max-width: 800px;
     }
+    .bouton_sauvegarder_creation_profil_edu{
+      width: 50%;
+    }
   }
   
-  @media(max-width: 800px) {
+  @media(max-width: 720px) {
     .global_creation_profil_prof {
       max-width: 600px;
     }
-  }
-  
-  @media(max-width: 600px) {
-    .global_creation_profil_prof {
-      max-width: 400px;
+    .bouton_sauvegarder_creation_profil_edu{
+      width: 50%;
     }
   }
+
   .uploadpp {
     display: none;
   }

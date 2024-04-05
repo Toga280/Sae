@@ -175,7 +175,9 @@ function FicheBoxTotal({
       {!reactionencours && (
       <div>
         {isDraftSaved && (
-          <div className="message_brouillon">Fiche mise en brouillon</div>
+          <div className="message_brouillon">
+          Fiche mise en brouillon <img src={require('./valide.png')} alt="Valide"/>
+          </div>
         )}
 
         <div onClick={() => handleClick(1)}>

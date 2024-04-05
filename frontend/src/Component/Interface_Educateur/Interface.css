@@ -1,15 +1,29 @@
 .global_bouton_interface_educateur {
-
-
     padding: 9px;
     box-sizing: border-box;
     width: 80%;
-    display: flex; 
-    flex-wrap: wrap; 
+    display: flex;
+    flex-wrap: wrap;
     margin: 1em auto;
     justify-content: center;
-    align-items: center; 
+    align-items: center;
 }
+
+.bouton_interface_educateur {
+    background-color: white;
+    height: 4em; /* Hauteur fixe */
+    width: 20%; /* Largeur dynamique */
+    max-width: 30%; /* Largeur maximale pour garder les boutons grands */
+    color: #355c7d;
+    font-weight: bold;
+    font-size: 18px;
+    padding: 0.8em;
+    margin: 1em;
+    border-radius: 0.2em;
+    border: none;
+    cursor: pointer;
+}
+
 .bouton_sauvegarder_creation_profil_edu{
     background-color: white;
     max-height: 4em;
@@ -37,22 +51,7 @@
     margin: 1em;
 
 }
-.bouton_interface_educateur{
-    
-    background-color: white;
-    height: 4em;
-    width: 20%;
-    max-width: 30%;
-    color: #355c7d;
-    font-weight: bold;
-    font-size: 18px;
-    padding: 0.8em;
-    margin: 1em;
-    border-radius: 0.2em;
-    border: none;
-    cursor: pointer;
 
-}
 .reglage-icon{
     margin: 2em;
     float: right;
@@ -78,81 +77,29 @@
 }
 .bouton_interface_educateur:hover,
 .bouton_interface_educateur:focus {
-    transform: translateY(-3px); /* Légère élévation au survol */
-    box-shadow: 2px 2px 12px rgba(0,0,0,0.2); /* Ombre plus prononcée au survol */
+    transform: translateY(-3px);
+    box-shadow: 2px 2px 12px rgba(0,0,0,0.2); 
 }
 
-@media (max-width: 950px) {
-    .global_bouton_interface_educateur {
-        display: flex;
-        flex-wrap: wrap;
-        width: 100%;
-
-        justify-content: space-around; 
-    }
-    
+@media (max-width: 1024px) {
     .bouton_interface_educateur {
-        flex: 0 0 45%;
-        width: 100%;
-        background-color: white;
-        height: 4em;
-        color: #355c7d;
-        font-weight: bold;
-        font-size: 18px;
-        padding: 0.8em;
-        margin: 1em;
-        border-radius: 4px;
-        overflow: hidden;
-        white-space: nowrap;
-        text-overflow: ellipsis;
+        width: 45%; 
+        max-width: 100%;
     }
+    .txt_espace_prof{
+        width: 80%;
+    
+    }
+}
 
-  }
-  /*
-  @media (max-width: 850px) {
-    .bouton_deconnection_educateur{
-        border: 1px solid red;
-        background-color: red;
-        max-height: 4em;
-        width: 15%;
-        max-width: 20%;
-        color: white;
-        font-weight: bold;
-        font-size: 18px;
-        padding: 0.8em;
-        margin: 1em;
-        border-radius: 4px;
-        overflow: hidden;
-        white-space: nowrap;
-        text-overflow: ellipsis;
-    }
-    .global_bouton_interface_educateur {
-        display: flex;
-        flex-wrap: wrap;
-        justify-content: space-around; 
-    }
-
-  }
-*/
 @media (max-width: 720px) {
     .global_bouton_interface_educateur {
-        display: flex;
-        width: 100%;
-        flex-direction: column; /* Ajout de cette ligne pour aligner les boutons en colonne */
+        flex-direction: column;
+        width: 90%; 
     }
-    
+
     .bouton_interface_educateur {
-        width: 100%;
-        background-color: white;
-        height: 4em;
-        color: #355c7d;
-        font-weight: bold;
-        font-size: 18px;
-        padding: 0.8em;
-        margin: 1em;
-        border-radius: 4px;
-        overflow: hidden;
-        white-space: nowrap;
-        text-overflow: ellipsis;
+        width: 100%; 
+        margin: 0.5em 0; 
     }
-};
+}

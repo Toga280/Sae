@@ -140,36 +140,36 @@ function PageEspaceEleve({ redirection, nomEleve, prenomEleve, eleve }: any) {
             </div>
 
             <div className="content_espace_eleve">
-            <button className="bouton_interface_eleve" id="maFiche" onClick={setMaFiche}>
-              <img src={require('./icon_fiche.png')} alt="Ma fiche" />
-              Ma fiche
-            </button>
+              <button className="bouton_interface_eleve" id="maFiche" onClick={setMaFiche}>
+                <img src={require('./icon_fiche.png')} alt="Ma fiche" />
+                Ma fiche
+              </button>
 
-              <button
-                className="bouton_interface_eleve"
-                type="button"
-                id="photo"
-                value="Voir mes photos"
-                onClick={setRedirectionThriteen}
-              >
-              <img src={require('./icon_photo.png')} alt="Ma fiche" />
-                Mes photos
-              </button>
-              <button
-                className="bouton_interface_eleve"
-                type="button"
-                id="photo"
-                value="Voir mes photos"
-                onClick={() => setSeeMesFichesTermine(true)}
-              >
-                <img src={require('./icon_all_fiches.png')} alt="Ma fiche" />
-                Mon Espace Fiches
-              </button>
-            </div>
-            <div className="global_pas_de_fiche">
-              {pasDeFicheEnCour ? (
-                <p className="pas_de_fiche">Tu n'as pas de fiche !</p>
-              ) : null}
+                <button
+                  className="bouton_interface_eleve"
+                  type="button"
+                  id="photo"
+                  value="Voir mes photos"
+                  onClick={setRedirectionThriteen}
+                >
+                <img src={require('./icon_photo.png')} alt="Ma fiche" />
+                  Mes photos
+                </button>
+                <button
+                  className="bouton_interface_eleve"
+                  type="button"
+                  id="photo"
+                  value="Voir mes photos"
+                  onClick={() => setSeeMesFichesTermine(true)}
+                >
+                  <img src={require('./icon_all_fiches.png')} alt="Ma fiche" />
+                  Mon Espace Fiches
+                </button>
+              </div>
+              <div className="global_pas_de_fiche">
+                {pasDeFicheEnCour ? (
+                  <p className="pas_de_fiche">Tu n'as pas de fiche !</p>
+                ) : null}
             </div>
 
           </div>
