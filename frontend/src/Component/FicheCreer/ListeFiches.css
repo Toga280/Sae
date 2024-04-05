@@ -168,7 +168,7 @@
   margin-right: 8px;
 }
 
-@media (max-width: 768px) {
+/* @media (max-width: 768px) {
 
   .fiche_eleve_nom_attribuer{
     max-width: 12%;
@@ -200,4 +200,46 @@
   }
 
 
+} */
+
+/* Adaptations pour les écrans jusqu'à 1024px */
+/* Adaptations pour les écrans jusqu'à 1024px */
+@media (max-width: 1024px) {
+  .fiche_global_liste_fiche, .global_liste_nom_fiches_crée, .affecter_fiche_crée {
+    width: 80%; /* Augmente la largeur pour un meilleur affichage sur tablettes */
+    margin: auto; /* Assure le centrage horizontal */
+  }
+
+  .liste_nom_fiches_crée, .delete-icon, .autre-icon {
+    width: 90%; /* Ajuste la largeur pour mieux s'adapter aux espaces réduits */
+    margin: 10px auto; /* Centrer les éléments horizontalement */
+  }
+
+  .bouton_retour_liste_fiche_crée_edu {
+    padding: 10px 20px; /* Ajuster le padding pour une meilleure visibilité */
+    font-size: 16px; /* Ajuster la taille de la police pour une meilleure lisibilité */
+    display: block; /* S'assure que le bouton est traité comme un bloc */
+    margin: 10px auto; /* Centrer le bouton horizontalement */
+  }
 }
+
+/* Adaptations pour les écrans jusqu'à 720px */
+@media (max-width: 720px) {
+  .fiche_global_liste_fiche, .global_liste_nom_fiches_crée, .affecter_fiche_crée {
+    width: 100%; /* Utiliser toute la largeur disponible pour un affichage optimal sur mobile */
+    margin: auto; /* Centrage horizontal */
+  }
+
+  .liste_nom_fiches_crée, .delete-icon, .autre-icon {
+    width: 100%; /* Assure que ces éléments s'étendent sur toute la largeur disponible */
+    margin: 10px 0; /* Ajuste les marges pour un espacement cohérent */
+  }
+
+  .bouton_retour_liste_fiche_crée_edu {
+    padding: 12px 24px; /* Augmente le padding pour une meilleure manipulation */
+    font-size: 18px; /* Augmente la taille de la police pour une meilleure lisibilité sur petits écrans */
+    display: block; /* S'assure que le bouton est traité comme un bloc */
+    margin: 20px auto; /* Centrer le bouton horizontalement */
+  }
+}
+

@@ -21,18 +21,22 @@
     border-radius: 4px;
 }
 /*CSS BOUTTON RETOUR===============================================*/
-.bouton_choix_elem_retour{
-    background-color: #ffffff;
-    color: #355c7d;
-    font-weight: bold;
-    font-size: 18px;
-    padding: 0.8em;
-    margin: 1em;
-    float: right;
-    border-radius: 4px;
-    border: none;
 
-}
+.bouton_choix_elem_retour {
+    margin: 1em;
+    font-weight: bold;
+    display: inline-block;
+    padding: 8px 16px;
+    font-size: 14px;
+    color: #ffffff; 
+    background-color: #007bff; 
+    border: none;
+    border-radius: 4px; 
+    cursor: pointer;
+    text-decoration: none; 
+    transition: background-color 0.2s ease-in-out, transform 0.2s ease-in-out;
+  
+  }
 /*CSS Text===============================================*/
 p{
     color: #355c7d;
@@ -75,7 +79,11 @@ p{
     justify-content: center;
     
 } 
-
+.bouton_choix_elem_retour:before {
+    content: "← "; 
+    display: inline-block;
+    margin-right: 8px;
+  }
 .choix_couleur_modif_fiche{
     width: 20%;
 }
@@ -118,18 +126,22 @@ p{
         border-radius: 4px;
     }
     /*CSS BOUTTON RETOUR===============================================*/
-    .bouton_choix_elem_retour{
-        background-color: #ffffff;
-        color: #355c7d;
-        font-weight: bold;
-        font-size: 18px;
-        padding: 0.8em;
+    .bouton_choix_elem_retour {
         margin: 1em;
-        float: right;
-        border-radius: 4px;
+        font-weight: bold;
+        display: inline-block;
+        padding: 8px 16px;
+        font-size: 14px;
+        color: #ffffff; 
+        background-color: #007bff; 
         border: none;
-    
-    }
+        border-radius: 4px; 
+        cursor: pointer;
+        text-decoration: none; 
+        transition: background-color 0.2s ease-in-out, transform 0.2s ease-in-out;
+      
+      }
+
     /*CSS Text===============================================*/
     p{
         color: #355c7d;
@@ -199,109 +211,72 @@ p{
 
 
 
-  /* /*CHOIX DE LA MODIFICATION===============================================
-.choix{
-    display: flex;
-    justify-content: space-between;
-}
-.container_bouton_choix_elem{
-    border-radius: 10px;
-    background-color: white;
-    margin-top: 2em;
-    margin-left: 5em;
-    width: 65%;
-    display: flex;
-    flex-direction: column;
-    border: none;
-    justify-content: center;
-}
-.bouton_choix_elem{
-    border: none;
-    background-color: #3498db;
-    color: white;
-    font-weight: bold;
-    font-size: 18px;
-    padding: 0.8em;
-    margin: 1em;
-    border-radius: 4px;
-}
-/*CSS BOUTTON RETOUR===============================================
-.bouton_choix_elem_retour{
-    background-color: #ffffff;
-    color: #355c7d;
-    font-weight: bold;
-    font-size: 18px;
-    padding: 0.8em;
-    margin: 1em;
-    float: right;
-    border-radius: 4px;
-    border: none;
-
-}
-/*CSS Text===============================================
-p{
-    color: #355c7d;
-    font-size: 20px;
-    font-weight: bold;
-    margin: 0.5em;
-}
-/*CSS BOX SELECTIONNER===============================================
-
-.boxSelected {
-    float: right;
-    margin-right: 5em;
-    margin-top: 2em;
-    border: none;
-    color: #355c7d;
-    padding: 0.5em;
-    width: 1200px;
-    background-color: white;
-  }
-/*BOUTON APPLIQUER===============================================
-.apply_choix_change_button{
-    width: 20%;
-    background-color: #28a745;
-    color: white;
-    font-weight: bold;
-    font-size: 18px;
-    padding: 0.8em;
-    margin: 1em;
-    float: right;
-    border-radius: 4px;
-    border: none;
+@media (max-width: 1024px) {
+    .container_bouton_choix_elem{
+        width: 50%; /* Augmenter la largeur pour mieux utiliser l'espace disponible */
+    }
+    .bouton_choix_elem, .bouton_choix_elem_retour, .apply_choix_change_button {
+        font-size: 16px; /* Ajustement de la taille de police pour mieux s'adapter à l'écran */
+        padding: 0.6em; /* Ajustement du padding pour une meilleure ergonomie */
+    }
+    .modif_texte_ficheBox, .choix_couleur_modif_fiche {
+        width: 40%; /* Ajuster la largeur pour une meilleure visibilité */
+    }
+    .boxSelected, .select_all_choix_picto {
+        width: 100%; /* Utiliser toute la largeur disponible pour ces éléments */
+    }
+    .picto_selec_list {
+        margin: 5px;
+        width: 80px; /* Réduire la taille pour s'adapter à plus d'éléments sur l'écran */
+        height: 80px;
+    }
+    .apply_choix_change_button{
+        width: 25%;
+        background-color: #28a745;
+        color: white;
+        font-weight: bold;
+        font-size: 18px;
+        padding: 0.8em;
+        margin: 1em;
+        float: right;
+        border-radius: 4px;
+        border: none;
+    }
+    .bouton_choix_elem_retour{
+        width: 25%;
+        height: 3em;
+    }
 }
 
-/* CSS MODIF TEXT ===============================================
-.modif_texte_ficheBox{
-    border-radius: 10px;
-    background-color: white;
-    margin-left: 5em;
-    margin-top: 2em;
-    width: 25%;
-    border: none;
-    justify-content: center;
-    
-} 
-
-.choix_couleur_modif_fiche{
-    width: 20%;
+@media (max-width: 720px) {
+    .container_bouton_choix_elem{
+        width: 80%; /* Augmenter la largeur pour les appareils à petit écran */
+    }
+    .bouton_choix_elem, .bouton_choix_elem_retour, .apply_choix_change_button {
+        font-size: 14px; /* Réduire la taille de la police pour l'espace limité */
+        padding: 0.5em; /* Ajuster le padding pour conserver l'ergonomie */
+    }
+    .modif_texte_ficheBox, .choix_couleur_modif_fiche {
+        width: 60%; /* Augmenter la largeur pour une meilleure visibilité sur petits écrans */
+    }
+    .boxSelected, .select_all_choix_picto {
+        width: 100%; /* Adapter la largeur à l'espace disponible */
+    }
+    .picto_selec_list {
+        margin: 4px;
+        width: 70px; /* Adapter la taille pour mieux s'intégrer dans l'espace disponible */
+        height: 70px;
+    }
+    .apply_choix_change_button{
+        width: 30%;
+        background-color: #28a745;
+        color: white;
+        font-weight: bold;
+        font-size: 18px;
+        padding: 0.8em;
+        margin: 1em;
+        float: right;
+        border-radius: 4px;
+        border: none;
+    }
 }
-
-.choix_taille_modif_fiche{
-    margin-bottom: 0.5em;
-}
-/* CSS MODIF PICTO ===============================================
-
-.select_all_choix_picto{
-    border-radius: 10px;
-    width: 20%;
-    background-color: white;
-    border: none;
-    margin-top: 2em;
-    margin-left: 5em;
-}
-.picto_selec_list{
-    margin: 5px;
-    width: 100px;
-    height: 100px;
-} */

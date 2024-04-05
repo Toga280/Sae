@@ -183,7 +183,7 @@ function FicheEleve({
             <div className="section fiche_fini">
             <div className="section_container">
               <p className="section_title">Fiche(s) finie(s)</p>
-              <img src={require('./icon_finish.png')} alt="Ma fiche" />l
+              <img src={require('./icon_finish.png')} alt="Ma fiche" />
             </div>
               {!aucuneFicheTerminee ? (
                 ficheTerminee.map((ficheTerminee) => (
