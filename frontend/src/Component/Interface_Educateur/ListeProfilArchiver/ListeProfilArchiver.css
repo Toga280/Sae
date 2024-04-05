@@ -11,6 +11,18 @@
     border:none;
 }
 
+.csv-button{
+    
+  background: #e62222;
+  color: white;
+  font-weight: bold;
+  font-size: 18px;
+  padding: 0.8em;
+  margin: 1em;
+  border-radius: 4px;
+  border:none;
+}
+
 .button_retoure {
     font-weight: bold;
     display: inline-block;

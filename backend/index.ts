@@ -1501,6 +1501,114 @@ app.get('/GET/comentaireCIP', async (req: any, res: any) => {
 }
 })
 
+/* GET CSV ======================================================================*/
+/*autorisation : Admin*/
+app.get('/GET/csv', async (req: any, res: any) => {
+  const { nom, prenom, token } = req.query;
+  const { valid, payload } = verifyJWT(token, secretKey);
+  if (valid && (payload.role === 'Admin')) {
+    try {
+      console.log("avant findeleve")
+      const eleve = await EleveModel.findOne({ 'nom': nom, 'prenom': prenom }).exec();
+      if (!eleve) {
+        return res.status(404).json({ message: 'Eleve non trouvé' });
+      }
+      
+      // Extracting name for CSV file name
+      const fileName = `${eleve.nom}_${eleve.prenom}.csv`;
+
+      // Generate the CSV data
+      console.log("csvData")
+      const csvData = await generateCSVData(eleve);
+
+      // Set the response headers with dynamic file name
+      res.setHeader('Content-Type', 'text/csv');
+      res.setHeader('Content-Disposition', `attachment; filename="${fileName}"`);
+
+      // Send the CSV data as the response
+      res.send(csvData);
+    } catch (error) {
+      res.status(500).send('Erreur serveur');
+    }
+  } else {
+    res.status(401).send('Non autorisé');
+  }
+});
+
+
+async function generateCSVData(eleve: any) {
+  let csvData = '';
+  //partie comentaire de la CIP
+  csvData += `"Commentaire de la CIP"\n`;
+  csvData += `"Date";"Commentaire"\n`;
+  eleve.comCIP.forEach((commentaire: [Date, string]) => {
+    const [date, comment] = commentaire;
+    csvData += `" ${date}";"${comment}"\n`;
+  });
+
+  console.log("comCIP fini")
+
+  //partie fiche
+  csvData += `"liste des fiche"\n`;
+  const fiches = await Fiche.find({
+    'info.nomEleveAttribuer': eleve.nom,
+    'info.prenomEleveAttribuer': eleve.prenom,
+  }).exec()
+
+  let input10: string = '';
+  let input11: string = '';
+  let input12: string = '';
+  let input13: string = '';
+  let input14: string = '';
+  let input15: string = '';
+  let input16: string = '';
+  let input19: string = '';
+
+  console.log("fiche trouvé")
+  fiches.forEach((fiche: any) => {
+    csvData += `"Nom de la fiche";"type de la fiche";"Informations supplémentaires";"Réaction de l'élève";\n`;
+    csvData += `"${fiche.info.name}";"${fiche.info.type}";"${fiche.info.informationSuplementaire}";"${fiche.info.reacteleve}"\n`;
+    csvData += `"case remplie\n"`;
+    csvData += `"Nom de l'intervenant";"${fiche.InputFiche.input1}`;
+    csvData += `"Prénom de l'intervenant";"${fiche.InputFiche.input2}`;
+    csvData += `"Date d'intervention";"${fiche.InputFiche.input8}`;
+    csvData += `"Durée de l'opération";"${fiche.InputFiche.input9}`;
+    input10 = fiche.InputFiche.input10 ? "case cochée" : "case non cochée";
+    input11 = fiche.InputFiche.input11 ? "case cochée" : "case non cochée";
+    input12 = fiche.InputFiche.input12 ? "case cochée" : "case non cochée";
+    input13 = fiche.InputFiche.input13 ? "case cochée" : "case non cochée";
+    input14 = fiche.InputFiche.input14 ? "case cochée" : "case non cochée";
+    input15 = fiche.InputFiche.input15 ? "case cochée" : "case non cochée";
+    input16 = fiche.InputFiche.input16 ? "case cochée" : "case non cochée";
+    input19 = fiche.InputFiche.input19 ? "case cochée" : "case non cochée";
+
+    csvData += `"améliorative";"${input10}"\n`;
+    csvData += `"préventive";"${input11}"\n`;
+    csvData += `"corrective";"${input12}"\n`;
+    csvData += `"Aménagement";"${input13}"\n`;
+    csvData += `"Finitions";"${input14}"\n`;
+    csvData += `"Installation sanitaire";"${input15}"\n`;
+    csvData += `"Installation électrique";"${input16}"\n`;
+    csvData += `"Travaux réalisés";"${fiche.InputFiche.input17}"\n`;
+    csvData += `"Travaux non réalisés";"${fiche.InputFiche.input18}"\n`;
+    csvData += `"Nécessite une nouvelle intervention";"${input19}"\n`;
+
+    console.log("input element fini")
+    csvData += `"Commentaire de la fiche"\n`;
+    csvData += `"Nom du commentateur";"Commentaire"\n`;
+    fiche.info.Commentaires.forEach((commentaire: [string, string]) => {
+      const [contenu, idCommentateur] = commentaire;
+      csvData += `" ${idCommentateur}";"${contenu}"\n`;
+    });
+    console.log("commentaire fini")
+  });
+
+  return csvData;
+}
+
+
+
+
 /*------------------- DELETE -------------------*/
 
 /* DELETE FICHE ===============================================================*/

@@ -150,6 +150,14 @@ function ListeProfilArchiver({ redirection, identifiant }: any) {
             >
               Restaurer
             </button>
+            <button
+              className="csv-button"
+              onClick={() => {
+                window.open(`http://localhost:5000/GET/csv?nom=${eleve.nom}&prenom=${eleve.prenom}&token=${token}`);
+              }}
+            >
+              Télécharger le CSV
+            </button>
           </div>
         ))}
 
