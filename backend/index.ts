@@ -1537,16 +1537,16 @@ app.get('/GET/csv', async (req: any, res: any) => {
 async function generateCSVData(eleve: any) {
   let csvData = '';
   //partie commentaire de la CIP
-  csvData += `"Commentaire de la CIP"\n`;
-  csvData += `"Date";"Commentaire"\n`;
+  csvData += `"Commentaire de la CIP";"";"█"\n`;
+  csvData += `"Date";"Commentaire";"█"\n`;
   eleve.comCIP.forEach((commentaire: [Date, string]) => {
     const [date, comment] = commentaire;
-    csvData += `" ${date}";"${comment}"\n`;
+    csvData += `" ${date}";"${comment}";"█"\n`;
   });
-
+  csvData += `"██████████████████████████";"██████████████████████████";"█"\n`;
 
   //partie fiche
-  csvData += `\n\n"liste des fiche"\n`;
+  csvData += `\n"liste des fiche"\n`;
   const fiches = await Fiche.find({
     'info.nomEleveAttribuer': eleve.nom,
     'info.prenomEleveAttribuer': eleve.prenom,
@@ -1564,7 +1564,7 @@ async function generateCSVData(eleve: any) {
   fiches.forEach((fiche: any) => {
     csvData += `"information de la fiche"\n`;
     csvData += `"Nom de la fiche";"type de la fiche";"Informations supplémentaires";"Réaction de l'élève";\n`;
-    csvData += `"${fiche.info.name}";"${fiche.info.type}";"${fiche.info.informationSuplementaire}";"${fiche.info.reacteleve}"\n`;
+    csvData += `"${fiche.info.name}";"${fiche.info.typeFiche}";"${fiche.info.informationSuplementaire}";"${fiche.info.reacteleve}"\n`;
     csvData += `\n"Case remplie"\n`;
     csvData += `"Nom de la case";"Contenue remplie"\n`;
     csvData += `"Nom de l'intervenant";"${fiche.InputFiche.input1}"\n`;
@@ -1597,7 +1597,7 @@ async function generateCSVData(eleve: any) {
       const { contenu, idCommentateur } = commentaire;
       csvData += `"${idCommentateur}";"${contenu}"\n`;
     });
-    csvData += `\n"____________________________________________________";"____________________________________________________";"____________________________________________________";"____________________________________________________"\n\n`;
+    csvData += `\n"██████████████████████████";"██████████████████████████";"██████████████████████████";"██████████████████████████"\n\n`;
   });
 
   return csvData;
